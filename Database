@@ -1,0 +1,58 @@
+#Database Layout
+
+Conference database
+CID - conference ID [pk]
+conference name
+conference type
+location
+client ID
+start date (will include time)
+end date (will include time)
+
+Speakers
+speaker ID [pk]
+speaker Name
+speaker affiliation
+speaker email
+speaker tel number
+
+Attendees
+attendee ID [pk]
+name
+email
+salted password
+Array of con ID [fk] *
+
+Clients
+Related Organisation
+client ID [pk]
+contact name
+email
+salted password
+address
+
+Categories
+Category ID [pk]
+name
+keyword Parent ID [fk]
+
+Rooms
+Room ID [pk]
+name
+Conference ID [fk]
+
+Presentation
+Conference ID
+
+Chat Log
+Chat ID [pk]
+Conference ID [fk]
+Attendee ID [fk]
+
+Sponsors
+
+
+White List
+
+
+Black List
