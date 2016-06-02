@@ -1,58 +1,80 @@
 #Database Layout
 
 Conference database
-CID - conference ID [pk]
-conference name
-conference type
-location
-client ID
-start date (will include time)
-end date (will include time)
+- CID - conference ID [pk]
+- Conference name
+- Conference type
+- Location
+- Client ID
+- Start Date (will include time)
+- End Date (will include time)
 
 Speakers
-speaker ID [pk]
-speaker Name
-speaker affiliation
-speaker email
-speaker tel number
+- Speaker ID [pk]
+- Speaker Name
+- Speaker affiliation
+- Speaker email
+- Speaker Tel Number
+- Path to Image
 
 Attendees
-attendee ID [pk]
-name
-email
-salted password
-Array of con ID [fk] *
+- Attendee ID [pk]
+- Name
+- Email
+- Salted Password
+- Array of con ID [fk] *
 
 Clients
-Related Organisation
-client ID [pk]
-contact name
-email
-salted password
-address
+- Related Organisation
+- Client ID [pk]
+- Contact Name
+- Email
+- Salted Password
+- Address
 
 Categories
-Category ID [pk]
-name
-keyword Parent ID [fk]
+- Category ID [pk]
+- Name
+- Keyword
+- Parent ID [fk]
 
 Rooms
-Room ID [pk]
-name
-Conference ID [fk]
+- Room ID [pk]
+- Name
+- Conference ID [fk]
 
 Presentation
-Conference ID
+- Conference ID [fk]
+- Presentation ID [pk]
+- Room ID [fk]
+- Title
+- Abstract
+- Key Words
+- Array of Cat. ID [fk]
 
 Chat Log
-Chat ID [pk]
-Conference ID [fk]
-Attendee ID [fk]
+- Chat ID [pk]
+- Conference ID [fk]
+- Attendee ID [fk]
+- Message
+- Date Sent
+
 
 Sponsors
-
+- Spnosor ID [pk]
+- Conference ID [fk]
+- Name
+- Description
+- Path to Image
+- Website Link
 
 White List
-
+- Conference ID [pk]
+- Attendee ID
+- Email
+- Token
+- Type {email/token}
 
 Black List
+- Conference ID [pk]
+- Attendee ID
