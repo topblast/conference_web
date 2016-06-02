@@ -78,3 +78,8 @@ White List
 Black List
 - Conference ID [pk]
 - Attendee ID
+
+Presentation Speaker
+- Speaker ID [fk]
+- Presentation ID [fk]
+- Speaker Type {Keynote, Discount}
