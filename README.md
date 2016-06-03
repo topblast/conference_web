@@ -1,8 +1,18 @@
 # conference_web
 CSS Conference Application Web &amp; Server Implementation
 
-#Database Layout
+#Requirements
+- PHP 7.x
 
+#How To Run
+1. Navigate to the project directory.
+2. Run the Command: 
+```
+php -S localhost:8000 -t public
+```
+
+
+#Database Layout
 Conference database
 - CID - conference ID [pk]
 - Conference name
