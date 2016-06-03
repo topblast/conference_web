@@ -44,6 +44,76 @@ class Initial extends Migration
                 ->references('client_id')
                 ->on('clients');
         });
+        
+        // Speakers
+        Schema::create('speakers', function(Blueprint $table){
+           $table->increments('speaker_id');
+           $table->string('name', 100);
+           $table->string('email');
+           $table->string('affiliation', 250);
+           $table->string('telephone', 24);
+           $table->string('image_path', 250);
+           $table->timestamps();
+        });
+        
+        // Attendees
+        Schema::create('attendees', function(Blueprint $table){
+           $table->increments('attendee_id');
+           $table->string('name', 100);
+           $table->string('email');
+           $table->string('salted_password', 64);           
+           $table->timestamps();
+        });
+        
+        // Categories
+        Schema::create('categories', function(Blueprint $table){
+           $table->increments('category_id');
+           $table->string('name', 100);
+           $table->text('keywords');
+           $table->integer('parent_id')->nullable();
+           $table->timestamps();
+        });
+        
+        // Rooms
+        Schema::create('rooms', function(Blueprint $table){
+           $table->increments('room_id');
+           $table->string('name', 100);
+           $table->integer('conference_id')->unsigned();
+           $table->timestamps();
+           
+           $table->foreign('conference_id')
+                ->references('conference_id')
+                ->on('conferences');
+        });
+        
+        // Categories
+        Schema::create('categories', function(Blueprint $table){
+           $table->increments('category_id');
+           $table->string('name', 100);
+           $table->text('keywords');
+           $table->integer('parent_id')->nullable();
+           $table->timestamps();
+        });
+        
+        // Presentations
+        Schema::create('presentations', function(Blueprint $table){
+           $table->increments('presentatin_id');
+           $table->integer('room_id')->unsigned();
+           $table->integer('conference_id')->unsigned();
+           $table->string('title', 100);
+           $table->text('abstract');
+           $table->text('keywords');
+           $table->timestamps();
+           
+           $table->foreign('room_id')
+                ->references('room_id')
+                ->on('rooms');
+           
+           $table->foreign('conference_id')
+                ->references('conference_id')
+                ->on('confrences');     
+            
+        });
     }
 
     /**
@@ -54,6 +124,11 @@ class Initial extends Migration
     public function down()
     {
         //
+        Schema::drop('presentations');
+        Schema::drop('categories');
+        Schema::drop('rooms');
+        Schema::drop('attendees');
+        Schema::drop('speakers');
         Schema::drop('conferences');
         Schema::drop('clients');
     }
