@@ -10,7 +10,21 @@ CSS Conference Application Web &amp; Server Implementation
 ```
 php -S localhost:8000 -t public
 ```
+#Database Migrations
+##Creating Database Migration
+1. Navigate to the root folder of the project.
+2. Run the Command:
+```
+php artisan make:migration name_of_migration
+```
+3. Note the creation of the file in the ` ./database/migrations ` folder
 
+##Setting Up Database Migration
+When in doubt [View Documentation `RTFM`](https://laravel.com/docs/5.2/migrations#introduction)
+###Up Function
+        The Up function is basically where you make modifications to the database. For example, where you put all the code to create your tables
+###Down Function
+        The Down function is basically an undo function, where you place code to revert/rollback a migration.
 
 #Database Layout
 Conference database
