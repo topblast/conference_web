@@ -90,18 +90,9 @@ class Initial extends Migration
                 ->on('conferences');
         });
         
-        // Categories
-        Schema::create('categories', function(Blueprint $table){
-           $table->increments('category_id');
-           $table->string('name', 100);
-           $table->text('keywords');
-           $table->integer('parent_id')->nullable();
-           $table->timestamps();
-        });
-        
         // Presentations
         Schema::create('presentations', function(Blueprint $table){
-           $table->increments('presentatin_id');
+           $table->increments('presentation_id');
            $table->integer('room_id')->unsigned();
            $table->integer('conference_id')->unsigned();
            $table->string('title', 100);
@@ -115,7 +106,7 @@ class Initial extends Migration
            
            $table->foreign('conference_id')
                 ->references('conference_id')
-                ->on('confrences');     
+                ->on('conferences');     
             
         });
         
@@ -153,12 +144,15 @@ class Initial extends Migration
         
         // White List
         Schema::create('whitelist', function(Blueprint $table){
+           $table->increments('whitelist_id');
            $table->integer('conference_id')->unsigned();
            $table->integer('attendee_id')->unsigned()->nullable();
            $table->string('email');
            $table->string('token', 64);
            $table->enum('type', ['email', 'token']);
            $table->timestamps();
+           
+           $table->index('attendee_id');
            
            $table->foreign('conference_id')
                 ->references('conference_id')
@@ -167,8 +161,6 @@ class Initial extends Migration
            $table->foreign('attendee_id')
                 ->references('attendee_id')
                 ->on('attendees');
-                
-           $table->primary(['conference_id', 'attendee_id']);
         });
         
         // Black List
