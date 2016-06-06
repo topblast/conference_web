@@ -81,14 +81,14 @@ Presentation
 
 Chat Log
 - Chat ID [pk]
-- Conference ID [fk]
+- Presentation ID [fk]
 - Attendee ID [fk]
 - Message
 - Date Sent
 
 
 Sponsors
-- Spnosor ID [pk]
+- Sponsor ID [pk]
 - Conference ID [fk]
 - Name
 - Description
@@ -100,7 +100,7 @@ White List
 - Attendee ID
 - Email
 - Token
-- Type {email/token}
+- Type {email, token}
 
 Black List
 - Conference ID [pk]
@@ -109,7 +109,7 @@ Black List
 Presentation Speaker
 - Speaker ID [fk]
 - Presentation ID [fk]
-- Speaker Type {Keynote, Discount}
+- Speaker Type {Keynote, Discussant}
 
 ## Official Documentation
 
