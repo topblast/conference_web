@@ -18,3 +18,6 @@ $app->get('/', function () use ($app) {
 //client
 $app->get('/clients', 'ClientsController@get_all');
 $app->get('/clients/{id}', 'ClientsController@get_id');
+//put
+$app->delete('/clients/{id}', 'ClientsController@delete_client');
+$app->put('/clients/{id}', 'ClientsController@edit_client');
