@@ -1,19 +1,25 @@
 #Clients
 - GET `/clients/`
-> Information on all Clients
+
+    > Information on all Clients
 - GET `/clients/{id}/`
-> Information about one Client
+
+    > Information about one Client
 - POST `/clients/register`
-> Sign-Up a client's account
+
+    > Sign-Up a client's account
 - POST `/clients/{id}/changepassword`
-> Verify and Change Password
+
+    > Verify and Change Password
 - DELETE `/clients/{id}`
-> Deletes a client's account
+
+    > Deletes a client's account
 - PUT `/client/{id}`
-> Modifies information about one client
-> - Contact Name
-> - Organization
-> - Address (address 1 & 2, city and country) 
+
+    > Modifies information about one client
+	- Contact Name
+	- Organization
+	- Address (address 1 & 2, city and country) 
 
 #Conferences
 - GET `/conferences/`
