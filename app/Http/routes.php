@@ -14,3 +14,7 @@
 $app->get('/', function () use ($app) {
     return $app->version();
 });
+
+//client
+$app->get('/clients', 'ClientsController@get_all');
+$app->get('/clients/{id}', 'ClientsController@get_id');
