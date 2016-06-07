@@ -3,13 +3,23 @@ CSS Conference Application Web &amp; Server Implementation
 
 #Requirements
 - PHP 7.x
+- Composer
 
 #How To Run
 1. Navigate to the project directory.
 2. Run the Command: 
 ```
-php -S localhost:8000 -t public
+composer install
 ```
+3. Run the Command: 
+```
+php artisan serve
+```
+
+#API End-Points
+[Click Here for API End Points](./endpoints.md)
+
+
 #Database Migrations
 ##Creating Database Migration
 1. Navigate to the root folder of the project.
