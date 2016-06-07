@@ -8,8 +8,7 @@
         "php": ">=5.5.9",
         "laravel/lumen-framework": "5.2.*",
         "vlucas/phpdotenv": "~2.2",
-        "mlntn/lumen-artisan-serve": "~1",
-        "wn/lumen-generators": "^1.1"
+        "mlntn/lumen-artisan-serve": "~1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
