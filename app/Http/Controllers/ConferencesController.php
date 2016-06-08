@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Client;
+use App\Models\Conference;
+
+use Illuminate\Http\Request;
 
 class ConferencesController extends Controller
 {
@@ -16,7 +18,7 @@ class ConferencesController extends Controller
         //
     }
 
-
+    //GET FUNCTIONS
     public function get_all() {
 
         $all = Conference::all();
@@ -32,6 +34,29 @@ class ConferencesController extends Controller
         return response()->json($cli);
     }
 
+    
+    //POST FUNCTIONS
+     public function register( Request $request){
+        
+        $reg = new Conference;
+        $reg->name = $request->input('name');
+        $reg->type = $request->input('type');
+        $reg->client_id = $request->input('client_id');
+        $reg->address1 = $request->input('address1');
+        $reg->address2 = $request->input('address2');
+        $reg->city = $request->input('city');
+        $reg->country = $request->input('country');
+        $reg->start_time = $request->input('start_time');
+        $reg->end_time = $request->input('end_time');
+        
+        $reg->save();
+        
+        return response()->json("New attendee added!");
+    }
+    
+    
+    
+    
     //PUT FUNCTION
 
     public function delete_conference($id){

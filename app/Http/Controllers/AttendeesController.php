@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Attendee;
+use Illuminate\Http\Request;
 
 class AttendeesController extends Controller
 {
@@ -17,6 +18,8 @@ class AttendeesController extends Controller
     }
 
 
+    
+    //GET FUNCTIONS
     public function get_all() {
 
         $all = Attendee::all();
@@ -34,7 +37,31 @@ class AttendeesController extends Controller
         //return view('test', ['attendee' => $cli]); 
     }
 
-    //PUT FUNCTION
+    //POST FUNCTIONS
+     public function register( Request $request){
+        
+        $reg = new Attendee;
+        $reg->name = $request->input('name');
+        $reg->email = $request->input('email');
+        $reg->salted_password = $request->input('salted_password');
+        
+        $reg->save();
+        
+        return response()->json("New attendee added!");
+    }
+    
+    public function change_password($id, Request $request){
+        $pEdit = Attendee::find($id);
+        
+        $pEdit->salted_password = $request->input('salted_password');
+        
+        $pEdit->save();
+        
+        return response()->json("Password changed successfully!");
+    }
+    
+    
+    //DELETE FUNCTION
 
     public function delete_attendee($id){
         $del  = Attendee::find($id);
@@ -45,12 +72,12 @@ class AttendeesController extends Controller
     }
 
 
-        //THIS NEEDS TO BE EDITED
+        //PUT FUNCTION
     public function edit_attendee(Request $request,$id){
         $edit  = Attendee::find($id);
 
-        $edit->title = $request->input('title');
-        $edit->content = $request->input('content');
+        $edit->name = $request->input('name');
+        $edit->email = $request->input('email');
  
         $edit->save();
   

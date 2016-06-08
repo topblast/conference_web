@@ -20,7 +20,7 @@ class Initial extends Migration
            $table->string('salted_password', 64);
            $table->string('organisation');
            $table->string('address1');
-           $table->string('address2');
+           $table->string('address2')->nullable();;
            $table->string('city');
            $table->string('country');
            $table->timestamps();
@@ -35,7 +35,7 @@ class Initial extends Migration
            $table->string('name', 100);
            $table->enum('type', ['public', 'private']);
            $table->string('address1');
-           $table->string('address2');
+           $table->string('address2')->nullable();
            $table->string('city');
            $table->string('country');
            $table->dateTimeTz('start_time');

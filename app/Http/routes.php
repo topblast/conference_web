@@ -19,6 +19,10 @@ $app->get('/', function () use ($app) {
 //client
 $app->get('/clients', 'ClientsController@get_all');
 $app->get('/clients/{id}', 'ClientsController@get_id');
+
+$app->post('clients/register', 'ClientsController@register');
+$app->post('clients/{id}/changepassword', 'ClientsController@change_password');
+
 //put
 $app->delete('/clients/{id}', 'ClientsController@delete_client');
 $app->put('/clients/{id}', 'ClientsController@edit_client');
@@ -28,6 +32,8 @@ $app->put('/clients/{id}', 'ClientsController@edit_client');
 //conferences
 $app->get('/conferences/', 'ConferencesController@get_all');
 $app->get('/conferences/{id}', 'ConferencesController@get_id');
+
+$app->post('conferences/register', 'ConferencesController@register');
 
 $app->delete('/conferences/{id}', 'ConferencesController@delete_conference');
 $app->put('/conferences/{id}', 'ConferencesController@edit_conferences');
@@ -45,9 +51,11 @@ $app->get('/speakers/{id}/presentations', 'SpeakersController@get_presentations'
 
 
 //attendees
-$app->get('/attendees', 'AttendeesController@get_all');
+//$app->get('/attendees', 'AttendeesController@get_all');
 $app->get('/attendees/{id}', 'AttendeesController@get_id');
 
+$app->post('attendees/register', 'AttendeesController@register');
+$app->post('attendees/{id}/changepassword', 'AttendeesController@change_password');
 
 $app->delete('/attendees/{id}', 'AttendeesController@delete_attendee');
 
