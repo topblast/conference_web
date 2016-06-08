@@ -47,7 +47,7 @@ class ClientsController extends Controller
         $edit  = Client::find($id);
 
         $edit->contact_name = $request->input('contact_name');
-        //$edit->content = $request->input('content');  ORGANIZATION
+        $edit->organisation = $request->input('organisation');  
         $edit->address1 = $request->input('address1');
         $edit->address2 = $request->input('address2');
         $edit->city = $request->input('city');
