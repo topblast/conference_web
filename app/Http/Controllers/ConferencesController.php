@@ -4,10 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Client;
 
-use Illuminate\Http\Request;
-
-
-class ClientsController extends Controller
+class ConferencesController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -35,23 +32,23 @@ class ClientsController extends Controller
         return response()->json($cli);
     }
 
-    
+    //PUT FUNCTION
 
-    public function delete_client($id){
+    public function delete_conference($id){
         $del  = Client::find($id);
  
         $del->delete();
  
-        return response()->json('Client has been removed');
+        return response()->json('Conference has been removed');
     }
 
-    //PUT FUNCTION
-    public function edit_client($id, Request $request){
+
+    //THIS NEEDS TO BE EDITED
+    public function edit_conference(Request $request,$id){
         $edit  = Client::find($id);
 
-        $edit->contact_name = $request->input('contact_name');
-        $edit->email = $request->input('email');
-
+        $edit->title = $request->input('title');
+        $edit->content = $request->input('content');
  
         $edit->save();
   

@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 class Presentation extends Model {
+    protected $primaryKey="presentation_id";
+
     public function conference(){
         return $this->belongsTo('App\Models\Conference');
     }

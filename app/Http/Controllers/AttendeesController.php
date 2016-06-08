@@ -18,8 +18,10 @@ class AttendeesController extends Controller
 
 
     public function get_all() {
+
+        $all = Client::all();
         
-        return Attendee::all();
+        return response()->json($all);
     }
 
 
@@ -27,9 +29,9 @@ class AttendeesController extends Controller
 
         $cli = Attendee::find($id);
         
-       //  $cli = Attendee::query()->findOrFail($id);
-       // return response()->json($cli);
-        return view('test', ['attendee' => $cli]); 
+        // $cli = Attendee::query()->findOrFail($id);
+        return response()->json($cli);
+        //return view('test', ['attendee' => $cli]); 
     }
 
     //PUT FUNCTION
@@ -42,13 +44,15 @@ class AttendeesController extends Controller
         return response()->json('Client has been removed');
     }
 
-    public function edit_attendee($id){
+
+        //THIS NEEDS TO BE EDITED
+    public function edit_attendee(Request $request,$id){
         $edit  = Attendee::find($id);
 
-        $article->title = $request->input('title');
-        $article->content = $request->input('content');
+        $edit->title = $request->input('title');
+        $edit->content = $request->input('content');
  
-        $article->save();
+        $edit->save();
   
         return response()->json($edit);
     }
