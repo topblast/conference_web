@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 class Attendee extends Model{
+    protected $primaryKey ='attendee_id';
+    
     public function conferences(){
         return $this->belongsToMany('App\Models\Conference', 'conference_attendees');
     }
