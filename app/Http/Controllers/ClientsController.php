@@ -47,13 +47,26 @@ class ClientsController extends Controller
     public function edit_client(Request $request,$id){
         $edit  = Client::find($id);
 
-        $edit->title = $request->input('title');
-        $edit->content = $request->input('content');
+        $edit->name = $request->input('name');
+        //$edit->content = $request->input('content');  ORGANIZATION
+        $edit->address1 = $request->input('address1');
+        $edit->address2 = $request->input('address2');
+        $edit->city = $request->input('city');
+        $edit->country = $request->input('country');
  
         $edit->save();
   
         return response()->json($edit);
     }
 
-
 }
+
+
+/*
+contact name
+organization
+address1
+address2
+city
+counrty
+*/
