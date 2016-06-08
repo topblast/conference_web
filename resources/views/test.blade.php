@@ -12,11 +12,7 @@
     <div class="quote-container">
         <p class="text">Test Page</p>
         <p class="text">{{$attendee->name}}</p>
-<!--        <p>
-            {{ Form::open(['method' => 'DELETE', 'route' => 'items.destroy', $item->id]) }}
-                {{ Form::hidden('id', $item->id) }}
-                {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
-        </p>-->
+     
     </div>
 </div>  
 </body>  

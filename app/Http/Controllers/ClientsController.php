@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Client;
 
+use Illuminate\Http\Request;
+
+
 class ClientsController extends Controller
 {
     /**
@@ -30,23 +33,24 @@ class ClientsController extends Controller
         return response()->json($cli);
     }
 
-    //PUT FUNCTION
+    
 
     public function delete_client($id){
         $del  = Client::find($id);
  
-        $article->delete();
+        $del->delete();
  
         return response()->json('Client has been removed');
     }
 
-    public function edit_client($id){
+    //PUT FUNCTION
+    public function edit_client($id, Request $request){
         $edit  = Client::find($id);
 
-        $article->title = $request->input('title');
-        $article->content = $request->input('content');
+        $edit->contact_name = $request->input('contact_name');
+        $edit->email = $request->input('email');
  
-        $article->save();
+        $edit->save();
   
         return response()->json($edit);
     }

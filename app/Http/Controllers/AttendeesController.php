@@ -37,7 +37,7 @@ class AttendeesController extends Controller
     public function delete_attendee($id){
         $del  = Attendee::find($id);
  
-        $article->delete();
+        $del->delete();
  
         return response()->json('Client has been removed');
     }
