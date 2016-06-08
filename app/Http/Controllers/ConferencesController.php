@@ -19,7 +19,7 @@ class ConferencesController extends Controller
 
     public function get_all() {
 
-        $all = Client::all();
+        $all = Conference::all();
         
         return response()->json($all);
     }
@@ -27,7 +27,7 @@ class ConferencesController extends Controller
 
     public function get_id($id) {
 
-        $cli = Client::find($id);
+        $cli = Conference::find($id);
 
         return response()->json($cli);
     }
@@ -35,7 +35,7 @@ class ConferencesController extends Controller
     //PUT FUNCTION
 
     public function delete_conference($id){
-        $del  = Client::find($id);
+        $del  = Conference::find($id);
  
         $del->delete();
  
@@ -45,10 +45,18 @@ class ConferencesController extends Controller
 
     //THIS NEEDS TO BE EDITED
     public function edit_conference(Request $request,$id){
-        $edit  = Client::find($id);
+        $edit  = Conference::find($id);
 
-        $edit->title = $request->input('title');
-        $edit->content = $request->input('content');
+		$edit->name = $request->input('name');
+		$edit->type = $request->input('type');
+		$edit->address1 = $request->input('address1');
+		$edit->address2 = $request->input('address2');
+		$edit->city = $request->input('city');
+		$edit->country = $request->input('country');
+		$edit->start = $request->input('start');
+		$edit->end = $request->input('end');
+
+		
  
         $edit->save();
   

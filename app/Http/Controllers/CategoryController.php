@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Client;
 
-class CatergoryController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -19,7 +19,7 @@ class CatergoryController extends Controller
 
     public function get_all() {
 
-        $all = Client::all();
+        $all = Category::all();
         
         return response()->json($all);
     }
@@ -27,7 +27,7 @@ class CatergoryController extends Controller
 
     public function get_id($id) {
 
-        $cli = Client::find($id);
+        $cli = Category::find($id);
 
         return response()->json($cli);
     }
@@ -35,7 +35,7 @@ class CatergoryController extends Controller
     //PUT FUNCTION
 
     public function delete_category($id){
-        $del  = Client::find($id);
+        $del  = Category::find($id);
  
         $del->delete();
  
@@ -45,7 +45,7 @@ class CatergoryController extends Controller
 
     //THIS NEEDS TO BE EDITED
     public function edit_category(Request $request,$id){
-        $edit  = Client::find($id);
+        $edit  = Category::find($id);
 
         $edit->title = $request->input('title');
         $edit->content = $request->input('content');
