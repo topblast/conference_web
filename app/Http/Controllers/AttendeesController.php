@@ -19,7 +19,7 @@ class AttendeesController extends Controller
 
     public function get_all() {
 
-        $all = Client::all();
+        $all = Attendee::all();
         
         return response()->json($all);
     }

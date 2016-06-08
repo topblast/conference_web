@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Client;
+use App\Models\Speaker;
 
-class ClientsController extends Controller
+class SpeakersController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -19,7 +19,7 @@ class ClientsController extends Controller
 
     public function get_id($id) {
 
-        $cli = Client::find($id);
+        $cli = Speakers::find($id);
 
         return response()->json($cli);
     }

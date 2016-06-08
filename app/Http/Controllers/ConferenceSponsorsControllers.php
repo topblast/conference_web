@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Client;
+use App\Models\Sponsor;
 
-class ClientsController extends Controller
+class ConferenceSponsorsController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -19,7 +19,7 @@ class ClientsController extends Controller
 
     public function get_id($id) {
 
-        $cli = Client::find($id);
+        $cli = ConferenceSponsors::find($id);
 
         return response()->json($cli);
     }
@@ -27,11 +27,11 @@ class ClientsController extends Controller
     //PUT FUNCTION
 
     public function delete_conference_sponsor($id){
-        $del  = Client::find($id);
+        $del  = CoferenceSponsors::find($id);
  
         $del->delete();
  
-        return response()->json('Client has been removed');
+        return response()->json('Conference sponsor has been removed');
     }
 
 
