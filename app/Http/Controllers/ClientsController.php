@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Client;
 
+use Illuminate\Http\Request;
+
+
 class ClientsController extends Controller
 {
     /**
@@ -32,7 +35,7 @@ class ClientsController extends Controller
         return response()->json($cli);
     }
 
-    //PUT FUNCTION
+    
 
     public function delete_client($id){
         $del  = Client::find($id);
@@ -42,17 +45,17 @@ class ClientsController extends Controller
         return response()->json('Client has been removed');
     }
 
-
-    //THIS NEEDS TO BE EDITED
-    public function edit_client(Request $request,$id){
+    //PUT FUNCTION
+    public function edit_client($id, Request $request){
         $edit  = Client::find($id);
 
-        $edit->name = $request->input('name');
+        $edit->contact_name = $request->input('contact_name');
         //$edit->content = $request->input('content');  ORGANIZATION
         $edit->address1 = $request->input('address1');
         $edit->address2 = $request->input('address2');
         $edit->city = $request->input('city');
         $edit->country = $request->input('country');
+
  
         $edit->save();
   
