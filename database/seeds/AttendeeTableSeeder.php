@@ -2,7 +2,7 @@
 
 # database/seeds/QuoteTableSeeder.php
 
-use App\Models\Attendees;  
+use App\Models\Attendee;  
 use Illuminate\Database\Seeder;
 
 class AttendeeTableSeeder extends Seeder  
@@ -16,11 +16,11 @@ class AttendeeTableSeeder extends Seeder
 			
         ]);*/
 
-         Attendees::create([
-            'attendee_id' => 'qwerty',
-			'name' => 'Kdotz',
-            'email' => 'ahhhh.com',
-			'salted_password' => 'MaadCity',
+         Attendee::create([
+            'attendee_id' => '55',
+            'name' => 'Test',
+            'email' => 'dotcom.com',
+            'salted_password' => 'period',
 			
         ]); 
 		

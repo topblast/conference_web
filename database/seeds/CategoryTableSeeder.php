@@ -2,7 +2,7 @@
 
 # database/seeds/QuoteTableSeeder.php
 
-use App\Models\Categories;  
+use App\Models\Category;  
 use Illuminate\Database\Seeder;
 
 class CategoryTableSeeder extends Seeder  
@@ -16,9 +16,9 @@ class CategoryTableSeeder extends Seeder
 			
         ]);*/
 
-         Categories::create([
-            'name' => 'Kdotz',
-            'keywords' => 666,
+         Category::create([
+            'name' => 'Test',
+            'keywords' => 999,
 			
 			
         ]); 
