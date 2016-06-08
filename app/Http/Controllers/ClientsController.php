@@ -62,11 +62,3 @@ class ClientsController extends Controller
 }
 
 
-/*
-contact name
-organization
-address1
-address2
-city
-counrty
-*/
