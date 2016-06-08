@@ -18,8 +18,10 @@ class ClientsController extends Controller
 
 
     public function get_all() {
+
+        $all = Client::all();
         
-        return Client::all();
+        return response()->json($all);
     }
 
 
@@ -35,18 +37,20 @@ class ClientsController extends Controller
     public function delete_client($id){
         $del  = Client::find($id);
  
-        $article->delete();
+        $del->delete();
  
         return response()->json('Client has been removed');
     }
 
-    public function edit_client($id){
+
+    //THIS NEEDS TO BE EDITED
+    public function edit_client(Request $request,$id){
         $edit  = Client::find($id);
 
-        $article->title = $request->input('title');
-        $article->content = $request->input('content');
+        $edit->title = $request->input('title');
+        $edit->content = $request->input('content');
  
-        $article->save();
+        $edit->save();
   
         return response()->json($edit);
     }

@@ -27,9 +27,9 @@ class AttendeesController extends Controller
 
         $cli = Attendee::find($id);
         
-       //  $cli = Attendee::query()->findOrFail($id);
-       // return response()->json($cli);
-        return view('test', ['attendee' => $cli]); 
+        // $cli = Attendee::query()->findOrFail($id);
+        return response()->json($cli);
+        //return view('test', ['attendee' => $cli]); 
     }
 
     //PUT FUNCTION
@@ -37,18 +37,20 @@ class AttendeesController extends Controller
     public function delete_attendee($id){
         $del  = Attendee::find($id);
  
-        $article->delete();
+        $del->delete();
  
         return response()->json('Client has been removed');
     }
 
+
+        //THIS NEEDS TO BE EDITED
     public function edit_attendee($id){
         $edit  = Attendee::find($id);
 
-        $article->title = $request->input('title');
-        $article->content = $request->input('content');
+        $edit->title = $request->input('title');
+        $edit->content = $request->input('content');
  
-        $article->save();
+        $edit->save();
   
         return response()->json($edit);
     }
