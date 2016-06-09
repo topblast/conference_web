@@ -33,25 +33,35 @@ $app->put('/clients/{id}', 'ClientsController@edit_client');
 $app->get('/conferences/', 'ConferencesController@get_all');
 $app->get('/conferences/{id}', 'ConferencesController@get_id');
 
+$app->get('/conferences/{id}/presentations/', 'ConferencesController@get_presentations');
+$app->get('/conferences/{id}/sponsors/', 'ConferencesController@get_sponsors');
+
 $app->post('conferences/register', 'ConferencesController@register');
+$app->post('conferences/{id}/presentations', 'ConferencesController@create_new_presentation');
+$app->post('conferences/{id}/sponsors', 'ConferencesController@create_new_sponsor');
+
 
 $app->delete('/conferences/{id}', 'ConferencesController@delete_conference');
+$app->delete('/conferences/{id}/sponsors/', 'ConferencesController@delete_sponsor');
+
 $app->put('/conferences/{id}', 'ConferencesController@edit_conferences');
 
 
 //speakers
 $app->get('/speakers/', 'SpeakersController@get_all');
+$app->get('/speakers/{id}/presentations', 'SpeakersController@get_presentations');
+
+
 $app->post('/speakers/', 'SpeakersController@create');
 
 
 
-//Speaker Presentations
-$app->get('/speakers/{id}/presentations', 'SpeakersController@get_presentations');
+
 
 
 
 //attendees
-//$app->get('/attendees', 'AttendeesController@get_all');
+$app->get('/attendees', 'AttendeesController@get_all');
 $app->get('/attendees/{id}', 'AttendeesController@get_id');
 
 $app->post('attendees/register', 'AttendeesController@register');
