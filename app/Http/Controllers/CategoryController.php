@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Presentation;
 
 class CategoryController extends Controller
 {
@@ -31,8 +32,16 @@ class CategoryController extends Controller
 
         return response()->json($cli);
     }
+    
+    public function get_presentations($id)
+    {
+        $cli = Category::find($id)->presentations;
+        
+        return response($cli);
+    }
+    
 
-    //PUT FUNCTION
+    //DELETE FUNCTION
 
     public function delete_category($id){
         $del  = Category::find($id);
@@ -43,7 +52,7 @@ class CategoryController extends Controller
     }
 
 
-    //THIS NEEDS TO BE EDITED
+    //PUT FUNCTION
     public function edit_category(Request $request,$id){
         $edit  = Category::find($id);
 
@@ -55,5 +64,5 @@ class CategoryController extends Controller
         return response()->json($edit);
     }
 
-
+ 
 }
