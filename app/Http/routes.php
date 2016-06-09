@@ -63,6 +63,9 @@ $app->post('/speakers/', 'SpeakersController@create');
 
 
 //attendees
+$app->post('/attendees/login', 'AttendeesController@login');
+$app->post('/attendees/register', 'AttendeesController@register');
+
 $app->get('/attendees', 'AttendeesController@get_all');
 $app->get('/attendees/{id}', 'AttendeesController@get_id');
 

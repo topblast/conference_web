@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Attendee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AttendeesController extends Controller
 {
@@ -17,7 +19,69 @@ class AttendeesController extends Controller
         //
     }
 
+    public function login(Request $request) {
+        $result = $this->validate($request, [
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
 
+        if (isset($result->error))
+        {
+            return response()->json([
+                'error'=> [
+                    'message' => 'Verification Failed',
+                    'result' => $result->error
+                ]
+            ], IlluminateResponse::HTTP_BAD_REQUEST);
+        }
+
+        $credentials = $request->only('email', 'password');
+
+        if (!Auth::guard('attendee')->attempt($credentials))
+        {
+            return response()->json(['error' => 'invalid_credentials'], 401);
+        }
+
+        return response()->json(Auth::guard('attendee')->user());
+    }
+
+    public function register(Request $request){
+        $result = $this->validate($request,[
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        if (isset($result->error))
+        {
+            return response()->json([
+                'error'=> [
+                    'message' => 'Verification Failed',
+                    'result' => $result->error
+                ]
+            ], IlluminateResponse::HTTP_BAD_REQUEST);
+        }
+
+        $attendee_into = $request->only(
+            'name',
+            'email',
+            'password'
+        );
+
+        if (Attendee::where('email', $attendee_into['email'])->count() > 0)
+        {
+            // Email Exist
+            return response()->json([
+                'error'=> [
+                    'message' => 'Email already in use',
+                ]
+            ], 409 );
+        }
+
+        $attendee_into['password'] = Hash::make($attendee_into['password']);
+        $attendee = Attendee::create($attendee_into);
+        return response()->json($attendee);
+    }
     
     //GET FUNCTIONS
     public function get_all() {
@@ -38,18 +102,6 @@ class AttendeesController extends Controller
     }
 
     //POST FUNCTIONS
-     public function register( Request $request){
-        
-        $reg = new Attendee;
-        $reg->name = $request->input('name');
-        $reg->email = $request->input('email');
-        $reg->salted_password = $request->input('salted_password');
-        
-        $reg->save();
-        
-        return response()->json("New attendee added!");
-    }
-    
     public function change_password($id, Request $request){
         $pEdit = Attendee::find($id);
         

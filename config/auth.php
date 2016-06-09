@@ -7,7 +7,7 @@ return [
     'guards' => [
         'api' => ['driver' => 'api'],
         'client' => ['driver' => 'basic', 'provider' => 'client'],
-        'attendee' => ['driver' => 'session', 'provider' => 'attendee']
+        'attendee' => ['driver' => 'basic', 'provider' => 'attendee']
     ],
 
     'providers' => [
