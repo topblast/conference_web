@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
-
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 
 class ClientsController extends Controller
@@ -17,6 +18,79 @@ class ClientsController extends Controller
     public function __construct()
     {
         //
+    }
+
+    public function login(Request $request) {
+        $result = $this->validate($request, [
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+
+        if (isset($result->error))
+        {
+            return response()->json([
+                'error'=> [
+                    'message' => 'Verification Failed',
+                    'result' => $result->error
+                ]
+            ], IlluminateResponse::HTTP_BAD_REQUEST);
+        }
+
+        $credentials = $request->only('email', 'password');
+
+        if (!Auth::guard('client')->attempt($credentials))
+        {
+            return response()->json(['error' => 'invalid_credentials'], 401);
+        }
+
+        return response()->json(Auth::guard('client')->user());
+    }
+
+    public function register(Request $request){
+        $result = $this->validate($request,[
+            'contact_name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required',
+            'organisation' => 'required',
+            'address1' => 'required',
+            'city' => 'required',
+            'country' => 'required',
+        ]);
+
+        if (isset($result->error))
+        {
+            return response()->json([
+                'error'=> [
+                    'message' => 'Verification Failed',
+                    'result' => $result->error
+                ]
+            ], IlluminateResponse::HTTP_BAD_REQUEST);
+        }
+
+        $client_into = $request->only(
+            'contact_name',
+            'email',
+            'password',
+            'organisation',
+            'address1',
+            'address2',
+            'city',
+            'country'
+        );
+
+        if (Client::where('email', $client_into['email'])->count() > 0)
+        {
+            // Email Exist
+            return response()->json([
+                'error'=> [
+                    'message' => 'Email already in use',
+                ]
+            ], 409 );
+        }
+
+        $client_into['password'] = Hash::make($client_into['password']);
+        $cli = Client::create($client_into);
+        return response()->json($cli);
     }
 
     //GET FUNCTIONS
@@ -37,28 +111,11 @@ class ClientsController extends Controller
     
     
     
-    //POST FUNCTIONS
-     public function register( Request $request){
-        
-        $reg = new Client;
-        $reg->contact_name = $request->input('contact_name');
-        $reg->email = $request->input('email');
-        $reg->salted_password = $request->input('salted_password');
-        $reg->organisation = $request->input('organisation');
-        $reg->address1 = $request->input('address1');
-        $reg->address2 = $request->input('address2');
-        $reg->city = $request->input('city');
-        $reg->country = $request->input('country');
-        
-        $reg->save();
-        
-        return response()->json("New client added!");
-    }
-    
+    //POST FUNCTIONS    
     public function change_password($id, Request $request){
         $pEdit = Client::find($id);
         
-        $pEdit->salted_password = $request->input('salted_password');
+        $pEdit->salted_password = $request->input('password');
         
         $pEdit->save();
         
@@ -80,14 +137,15 @@ class ClientsController extends Controller
         $edit  = Client::find($id);
 
         $edit->contact_name = $request->input('contact_name');
-
-        //$edit->email = $request->input('email');
-
+        $edit->email = $request->input('email');
         $edit->organisation = $request->input('organisation');  
         $edit->address1 = $request->input('address1');
         $edit->address2 = $request->input('address2');
         $edit->city = $request->input('city');
         $edit->country = $request->input('country');
+
+        //no password is needed as we have an edit password function
+        //have values loaded for put function, so as to not have blank fields
 
  
         $edit->save();
@@ -98,15 +156,4 @@ class ClientsController extends Controller
    
     
 }
-
-
-
-/*
-contact name
-organisation
-address1
-address2
-city
-country
-*/
 

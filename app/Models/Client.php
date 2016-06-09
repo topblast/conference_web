@@ -12,7 +12,21 @@ class Client extends Model implements AuthContract {
 
     protected $primaryKey = 'client_id';
 
-    
+    protected $fillable = [
+        'contact_name',
+        'email',
+        'password',
+        'organisation',
+        'address1',
+        'address2',
+        'city',
+        'country',
+    ];
+
+    protected $hidden = [
+        'password',
+    ];
+
     public function conferences()
     {
         return $this->hasMany('App\Models\Conference');
