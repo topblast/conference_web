@@ -50,6 +50,8 @@ class AttendeesController extends Controller
         return response()->json("New attendee added!");
     }
     
+
+    //CHANGE PASSWORD FUNCTION
     public function change_password($id, Request $request){
         $pEdit = Attendee::find($id);
         
@@ -68,7 +70,7 @@ class AttendeesController extends Controller
  
         $del->delete();
  
-        return response()->json('Client has been removed');
+        return response()->json('Attendee has been removed');
     }
 
 
