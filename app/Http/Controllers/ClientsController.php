@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
+
 class ClientsController extends Controller
 {
     /**
@@ -92,6 +93,7 @@ class ClientsController extends Controller
         return response()->json($cli);
     }
 
+    //GET FUNCTIONS
     public function get_all() {
 
         $all = Client::all();
@@ -106,8 +108,21 @@ class ClientsController extends Controller
 
         return response()->json($cli);
     }
+    
+    
+    
+    //POST FUNCTIONS    
+    public function change_password($id, Request $request){
+        $pEdit = Client::find($id);
+        
+        $pEdit->salted_password = $request->input('password');
+        
+        $pEdit->save();
+        
+        return response()->json("Password changed successfully!");
+    }
 
-    //PUT FUNCTION
+    //DELETE FUNCTION
 
     public function delete_client($id){
         $del  = Client::find($id);
@@ -122,6 +137,9 @@ class ClientsController extends Controller
         $edit  = Client::find($id);
 
         $edit->contact_name = $request->input('contact_name');
+
+        //$edit->email = $request->input('email');
+
         $edit->organisation = $request->input('organisation');  
         $edit->address1 = $request->input('address1');
         $edit->address2 = $request->input('address2');
@@ -134,6 +152,18 @@ class ClientsController extends Controller
         return response()->json($edit);
     }
 
+   
+    
 }
 
+
+
+/*
+contact name
+organisation
+address1
+address2
+city
+country
+*/
 
