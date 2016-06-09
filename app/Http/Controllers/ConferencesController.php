@@ -72,7 +72,7 @@ class ConferencesController extends Controller
         
         $reg->save();
         
-        return response()->json("New attendee added!");
+        return response()->json("New conference added!");
     }
     
     
