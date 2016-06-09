@@ -137,14 +137,15 @@ class ClientsController extends Controller
         $edit  = Client::find($id);
 
         $edit->contact_name = $request->input('contact_name');
-
-        //$edit->email = $request->input('email');
-
+        $edit->email = $request->input('email');
         $edit->organisation = $request->input('organisation');  
         $edit->address1 = $request->input('address1');
         $edit->address2 = $request->input('address2');
         $edit->city = $request->input('city');
         $edit->country = $request->input('country');
+
+        //no password is needed as we have an edit password function
+        //have values loaded for put function, so as to not have blank fields
 
  
         $edit->save();
@@ -155,15 +156,4 @@ class ClientsController extends Controller
    
     
 }
-
-
-
-/*
-contact name
-organisation
-address1
-address2
-city
-country
-*/
 
