@@ -39,4 +39,19 @@ class Conference extends Model{
     public function attendees(){
         return $this->belongsToMany('App\Models\Attendee', 'conference_attendees');
     }
+    
+     public static function boot()
+    {
+        parent::boot();    
+    
+        // cause a delete of a product to cascade to children so they are also deleted
+        static::deleted(function($conference)
+        {
+            $conference->presentations()->delete();
+            $conference->rooms()->delete();
+            $conference->sponsors()->delete();
+            $conference->whitelist()->delete();
+            $conference->blacklist()->delete();
+        });
+    }    
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Speaker;
+use App\Models\Presentation;
 
 use Illuminate\Http\Request;
 
