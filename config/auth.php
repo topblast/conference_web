@@ -6,18 +6,17 @@ return [
     ],
     'guards' => [
         'api' => ['driver' => 'api'],
-        'client' => ['driver' => 'token', 'provider' => 'client'],
+        'client' => ['driver' => 'basic', 'provider' => 'client'],
         'attendee' => ['driver' => 'session', 'provider' => 'attendee']
     ],
 
     'providers' => [
         //
-        'attendee' => ['driver' => 'eloquent', 'model' => 'App\Models\Attendee'],
-        'client' => ['driver' => 'eloquent', 'model' => 'App\Models\Client'],
+        'attendee' => ['driver' => 'eloquent', 'model' => App\Models\Attendee::class],
+        'client' => ['driver' => 'eloquent', 'model' => App\Models\Client::class],
     ],
 
     'passwords' => [
         //
     ],
-
 ];

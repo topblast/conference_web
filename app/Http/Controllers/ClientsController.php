@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class ClientsController extends Controller
 {
@@ -16,6 +19,78 @@ class ClientsController extends Controller
         //
     }
 
+    public function login(Request $request) {
+        $result = $this->validate($request, [
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+
+        if (isset($result->error))
+        {
+            return response()->json([
+                'error'=> [
+                    'message' => 'Verification Failed',
+                    'result' => $result->error
+                ]
+            ], IlluminateResponse::HTTP_BAD_REQUEST);
+        }
+
+        $credentials = $request->only('email', 'password');
+
+        if (!Auth::guard('client')->attempt($credentials))
+        {
+            return response()->json(['error' => 'invalid_credentials'], 401);
+        }
+
+        return response()->json(Auth::guard('client')->user());
+    }
+
+    public function register(Request $request){
+        $result = $this->validate($request,[
+            'contact_name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required',
+            'organisation' => 'required',
+            'address1' => 'required',
+            'city' => 'required',
+            'country' => 'required',
+        ]);
+
+        if (isset($result->error))
+        {
+            return response()->json([
+                'error'=> [
+                    'message' => 'Verification Failed',
+                    'result' => $result->error
+                ]
+            ], IlluminateResponse::HTTP_BAD_REQUEST);
+        }
+
+        $client_into = $request->only(
+            'contact_name',
+            'email',
+            'password',
+            'organisation',
+            'address1',
+            'address2',
+            'city',
+            'country'
+        );
+
+        if (Client::where('email', $client_into['email'])->count() > 0)
+        {
+            // Email Exist
+            return response()->json([
+                'error'=> [
+                    'message' => 'Email already in use',
+                ]
+            ], 409 );
+        }
+
+        $client_into['password'] = Hash::make($client_into['password']);
+        $cli = Client::create($client_into);
+        return response()->json($cli);
+    }
 
     public function get_all() {
 

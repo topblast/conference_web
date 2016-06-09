@@ -17,6 +17,8 @@ $app->get('/', function () use ($app) {
 
 
 //client
+$app->post('/clients/login', 'ClientsController@login');
+$app->post('/clients/register', 'ClientsController@register');
 $app->get('/clients', 'ClientsController@get_all');
 $app->get('/clients/{id}', 'ClientsController@get_id');
 //put
