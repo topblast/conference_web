@@ -27,15 +27,15 @@ class CategoryController extends Controller
 
 
     public function get_id($id) {
-
-        $cli = Category::find($id);
+        if(!$cli = Category::find($id));
+            return response()->json([], 404);
 
         return response()->json($cli);
     }
     
-    public function get_presentations($id)
-    {
-        $cli = Category::find($id)->presentations;
+    public function get_presentations($id){
+        if(!$cli = Category::find($id)->presentations);
+            return response()->json([], 404);            
         
         return response($cli);
     }
@@ -44,17 +44,19 @@ class CategoryController extends Controller
     //DELETE FUNCTION
 
     public function delete_category($id){
-        $del  = Category::find($id);
+        if(!$del  = Category::find($id));
+            return response()->json([], 404);            
  
         $del->delete();
  
-        return response()->json('Category has been removed');
+        return response()->json($del);
     }
 
 
     //PUT FUNCTION
     public function edit_category(Request $request,$id){
-        $edit  = Category::find($id);
+        if(!$edit  = Category::find($id));
+            return response()->json([], 404);            
 
         $edit->title = $request->input('title');
         $edit->content = $request->input('content');

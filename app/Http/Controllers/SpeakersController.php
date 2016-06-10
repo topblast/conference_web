@@ -31,22 +31,22 @@ class SpeakersController extends Controller
     
 
     public function get_id($id) {
-
-        $cli = Speaker::find($id);
+        if(!$cli = Speaker::find($id));
+            return response()->json([], 404);
 
         return response()->json($cli);
     }
     
     //GET for Speaker Presentations
     public function get_presentations($id){
-        $cli = Speaker::find($id)->presentations;
+        if(!$cli = Speaker::find($id)->presentations);
+            return response()->json([], 404);
         
         return response()->json($cli);
     }
 
     //POST FUNCTION
-    public function create_new(Request $request)
-    {
+    public function create_new(Request $request){
         $speaker = new Speaker;
         
         $speaker->name = $request->input('name');
@@ -57,7 +57,7 @@ class SpeakersController extends Controller
         
         $speaker->save();
         
-        return response()->json("Speaker added!");
+        return response()->json($speaker);
         
     }
 

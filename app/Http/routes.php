@@ -77,3 +77,21 @@ $app->delete('/attendees/{id}', 'AttendeesController@delete_attendee');
 
 //put
 $app->put('/attendees/{id}', 'AttendeesController@edit_attendee');
+
+$app->get('/attendees/{id}/conferences', 'AttendeesController@get_conferences');
+
+
+//nothing to link presentations to speakers OR attendees to conferences
+
+//IF RETURNS EMPTY ARRAY SHOW MESSAGE SAYING NO ID FOUND
+
+
+
+/*
+add attendee to conference
+$app->post('', '');
+
+add speaker to presentation
+$app->post('', '');
+
+*/

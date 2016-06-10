@@ -95,16 +95,16 @@ class ClientsController extends Controller
 
     //GET FUNCTIONS
     public function get_all() {
-
-        $all = Client::all();
+        if(!$all = Client::all());
+            return response()->json([], 404);
         
         return response()->json($all);
     }
 
 
     public function get_id($id) {
-
-        $cli = Client::find($id);
+        if(!$cli = Client::find($id));
+            return response()->json([], 404);
 
         return response()->json($cli);
     }
@@ -113,28 +113,31 @@ class ClientsController extends Controller
     
     //POST FUNCTIONS    
     public function change_password($id, Request $request){
-        $pEdit = Client::find($id);
-        
+        if(!$pEdit = Client::find($id));
+            return response()->json([], 404);
+
         $pEdit->salted_password = $request->input('password');
         
         $pEdit->save();
         
-        return response()->json("Password changed successfully!");
+        return response()->json($pEdit);
     }
 
     //DELETE FUNCTION
 
     public function delete_client($id){
-        $del  = Client::find($id);
+        if(!$del  = Client::find($id));
+            return response()->json([], 404);
  
         $del->delete();
  
-        return response()->json('Client has been removed');
+        return response()->json($del;
     }
 
     //PUT FUNCTION
     public function edit_client($id, Request $request){
-        $edit  = Client::find($id);
+        if(!$edit  = Client::find($id));
+            return response()->json([], 404);
 
         $edit->contact_name = $request->input('contact_name');
         $edit->email = $request->input('email');
