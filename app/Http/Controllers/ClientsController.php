@@ -40,7 +40,7 @@ class ClientsController extends Controller
 
         if (!Auth::guard('client')->attempt($credentials))
         {
-            return response()->json(['error' => 'invalid_credentials'], 401);
+            return response()->json(['error' => 'invalid_credentials'], 404);
         }
 
         return response()->json(Auth::guard('client')->user());
