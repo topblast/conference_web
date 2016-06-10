@@ -91,20 +91,18 @@ class AttendeesController extends Controller
         return response()->json($all);
     }
 
-
+    //GET BY ID FUNCTION
     public function get_id($id) {
-        if(!$cli = Attendee::find($id));
+        if(!$cli = Attendee::find($id))
             return response()->json([], 404);
         
-        // $cli = Attendee::query()->findOrFail($id);
         return response()->json($cli);
-        //return view('test', ['attendee' => $cli]); 
     }
 
     //POST FUNCTIONS
     //CHANGE PASSWORD FUNCTION
     public function change_password($id, Request $request){
-        if(!$pEdit = Attendee::find($id));
+        if(!$pEdit = Attendee::find($id))
             return response()->json([], 404);
         
         $pEdit->salted_password = $request->input('salted_password');
@@ -117,7 +115,7 @@ class AttendeesController extends Controller
     //DELETE FUNCTION
 
     public function delete_attendee($id){
-        if (!$del  = Attendee::find($id));
+        if (!$del  = Attendee::find($id))
             return response()->json([], 404);
 
         $del->delete();
@@ -128,7 +126,7 @@ class AttendeesController extends Controller
 
         //PUT FUNCTION
     public function edit_attendee(Request $request,$id){
-        if (!$edit  = Attendee::find($id));
+        if (!$edit  = Attendee::find($id))
             return response()->json($del);
 
         $edit->name = $request->input('name');

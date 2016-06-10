@@ -29,9 +29,9 @@ class SpeakersController extends Controller
     }
     
     
-
+    //GET BY ID FUNCTION
     public function get_id($id) {
-        if(!$cli = Speaker::find($id));
+        if(!$cli = Speaker::find($id))
             return response()->json([], 404);
 
         return response()->json($cli);
@@ -39,7 +39,7 @@ class SpeakersController extends Controller
     
     //GET for Speaker Presentations
     public function get_presentations($id){
-        if(!$cli = Speaker::find($id)->presentations);
+        if(!$cli = Speaker::find($id)->presentations)
             return response()->json([], 404);
         
         return response()->json($cli);

@@ -30,16 +30,18 @@ class ConferencesController extends Controller
     }
 
 
+    //GET ID FUNCTION
     public function get_id($id) {
-        if(!$cli = Conference::find($id));
+        if(!$cli = Conference::find($id))
             return response()->json([], 404);
 
         return response()->json($cli);
     }
     
     
+    //GET PRESENTATION BY ID FUNCTION
     public function get_presentations($id){
-        if(!$cli = Conference::find($id)->presentations);
+        if(!$cli = Conference::find($id)->presentations)
             return response()->json([], 404);
         
         return response()->json($cli);
@@ -48,8 +50,9 @@ class ConferencesController extends Controller
     }
     
     
+    //GET SPONSORS FUNCTION
     public function get_sponsors($id){
-         if(!$cli = Conference::find($id)->sponsors);
+         if(!$cli = Conference::find($id)->sponsors)
             return response()->json([], 404);
         
         return response()->json($cli);
@@ -78,8 +81,9 @@ class ConferencesController extends Controller
     }
     
     
+    //CREATE NEW PRESENTATION FUNCTION
     public function create_new_presentation(Request $request, $id){
-       if(!$conference = Conference::find($id));
+       if(!$conference = Conference::find($id))
             return response()->json([], 404);
        
        $presentation = new Presentation;
@@ -95,8 +99,9 @@ class ConferencesController extends Controller
     }
     
     
+    //CREATE SPONSOR ID FUNCTION
     public function create_new_sponsor(Request $request, $id){
-       if(!$conference = Conference::find($id));
+       if(!$conference = Conference::find($id))
             return response()->json([], 404);
        
        $sponsor = new Sponsor;
@@ -113,9 +118,8 @@ class ConferencesController extends Controller
     
     
     //DELETE FUNCTION
-//here
     public function delete_conference($id){
-        if(!$del  = Conference::find($id));
+        if(!$del  = Conference::find($id))
             return response()->json([], 404);
  
         $del->delete();
@@ -123,10 +127,12 @@ class ConferencesController extends Controller
         return response()->json($del);
     }
     
+
+    //DELETE SPONSOR BY ID FUNCTION
     public function delete_sponsor($id, Request $request){
         $sponsorid = $request->input('id');
         
-        if(!$del  = Conference::find($id)->sponsors()->where('sponsor_id', $sponsorid)->first());
+        if(!$del  = Conference::find($id)->sponsors()->where('sponsor_id', $sponsorid)->first())
             return response()->json([], 404);
 
         $del->delete();
@@ -137,7 +143,7 @@ class ConferencesController extends Controller
 
     //PUT FUNCTION
     public function edit_conference(Request $request,$id){
-        if(!$edit  = Conference::find($id));
+        if(!$edit  = Conference::find($id))
             return response()->json([], 404);
 
 	$edit->name = $request->input('name');
