@@ -39,7 +39,7 @@ class AttendeesController extends Controller
 
         if (!Auth::guard('attendee')->attempt($credentials))
         {
-            return response()->json(['error' => 'invalid_credentials'], 401);
+            return response()->json(['error' => 'invalid_credentials'], 404);
         }
 
         return response()->json(Auth::guard('attendee')->user());
