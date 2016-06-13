@@ -140,9 +140,21 @@ class ConferencesController extends Controller
 
     //DELETE SPONSOR BY ID FUNCTION
     public function delete_sponsor($id, Request $request){
-        $sponsorid = $request->input('id');
+        $sponsorid = $request->input('sponsor_id');
         
         if(!$del  = Conference::find($id)->sponsors()->where('sponsor_id', $sponsorid)->first())
+            return response()->json([], 404);
+
+        $del->delete();
+ 
+        return response()->json($del);
+    }
+
+    //DELETE PRESENTATION BY ID FUNCTION
+    public function delete_presentation($id, Request $request){
+        $presentationid = $request->input('presentation_id');
+        
+        if(!$del  = Conference::find($id)->presentations()->where('presentation_id', $presentationid)->first())
             return response()->json([], 404);
 
         $del->delete();
