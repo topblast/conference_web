@@ -55,7 +55,7 @@ $app->put('/conferences/{id}', 'ConferencesController@edit_conferences');
 $app->get('/speakers/', 'SpeakersController@get_all');
 $app->get('/speakers/{id}/presentations', 'SpeakersController@get_presentations');
 
-$app->post('/speakers/', 'SpeakersController@create_new');
+$app->post('/speakers/register', 'SpeakersController@create_new');
 
 
 
@@ -66,11 +66,14 @@ $app->post('/attendees/register', 'AttendeesController@register');
 
 $app->get('/attendees', 'AttendeesController@get_all');
 $app->get('/attendees/{id}', 'AttendeesController@get_id');
+$app->get('/attendees/{id}/conferences', 'AttendeesController@get_conferences');
 
-$app->post('attendees/register', 'AttendeesController@register');
+
+//$app->post('attendees/register', 'AttendeesController@register');
 $app->post('attendees/{id}/changepassword', 'AttendeesController@change_password');
 
 $app->delete('/attendees/{id}', 'AttendeesController@delete_attendee');
+
 
 //put
 $app->put('/attendees/{id}', 'AttendeesController@edit_attendee');
@@ -82,13 +85,12 @@ $app->get('/categories/', 'CategoryController@get_all');
 $app->get('/categories/{id}', 'CategoryController@get_id');
 $app->get('/categories/{id}/presentations', 'CategoryController@get_all');
 
-$app->post('/categories/', 'CategoryController@create_new');
+$app->post('/categories/register', 'CategoryController@create_new');
 
 $app->delete('/categories/{id}', 'CategoryController@delete_category');
 
 $app->put('/categories/{id}', 'CategoryController@edit_category');
 
-$app->get('/attendees/{id}/conferences', 'AttendeesController@get_conferences');
 
 
 

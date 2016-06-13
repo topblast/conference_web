@@ -80,6 +80,8 @@ class AttendeesController extends Controller
 
         $attendee_into['password'] = Hash::make($attendee_into['password']);
         $attendee = Attendee::create($attendee_into);
+        $attendee->find($attendee->attendee_id)->conferences()->attach($request->input('conference_id'), ['created_at'=>$attendee->created_at, 'updated_at'=>$attendee->updated_at]);
+
         return response()->json($attendee);
     }
     
@@ -100,7 +102,7 @@ class AttendeesController extends Controller
     }
 
     //POST FUNCTIONS
-
+/*
      public function register( Request $request){
         
         $reg = new Attendee;
@@ -113,7 +115,7 @@ class AttendeesController extends Controller
         
         return response()->json("New attendee added!");
     }
-    
+    */
 
 
     //CHANGE PASSWORD FUNCTION

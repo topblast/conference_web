@@ -51,12 +51,12 @@ class CategoryController extends Controller
         
         $category->name = $request->input('name');
         $category->keywords = $request->input('keywords');
-        $parent_id->parent_id = $request->input('parent_id');
+        $category->parent_id = $request->input('parent_id');
         
         $category->save();
         $category->find($category->category_id)->presentations()->attach($request->input('presentation_id'), ['created_at'=>$category->created_at, 'updated_at'=>$category->updated_at]);
         
-        return response()->json('Category has been added');
+        return response()->json($category);
     }
     
 
