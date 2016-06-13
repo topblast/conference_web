@@ -38,7 +38,7 @@ $app->get('/conferences/{id}', 'ConferencesController@get_id');
 $app->get('/conferences/{id}/presentations/', 'ConferencesController@get_presentations');
 $app->get('/conferences/{id}/sponsors/', 'ConferencesController@get_sponsors');
 
-    //register says new attendee added
+
 $app->post('conferences/register', 'ConferencesController@register');
 $app->post('conferences/{id}/presentations', 'ConferencesController@create_new_presentation');
 $app->post('conferences/{id}/sponsors', 'ConferencesController@create_new_sponsor');
@@ -54,13 +54,16 @@ $app->put('/conferences/{id}', 'ConferencesController@edit_conferences');
 //speakers
 $app->get('/speakers/', 'SpeakersController@get_all');
 $app->get('/speakers/{id}/presentations', 'SpeakersController@get_presentations');
-    //no key linking speakers to presenatations
 
 $app->post('/speakers/', 'SpeakersController@create_new');
 
 
 
+
 //attendees
+$app->post('/attendees/login', 'AttendeesController@login');
+$app->post('/attendees/register', 'AttendeesController@register');
+
 $app->get('/attendees', 'AttendeesController@get_all');
 $app->get('/attendees/{id}', 'AttendeesController@get_id');
 
@@ -73,6 +76,7 @@ $app->delete('/attendees/{id}', 'AttendeesController@delete_attendee');
 $app->put('/attendees/{id}', 'AttendeesController@edit_attendee');
 
 
+
 //categories
 $app->get('/categories/', 'CategoryController@get_all');
 $app->get('/categories/{id}', 'CategoryController@get_id');
@@ -83,3 +87,14 @@ $app->post('/categories/', 'CategoryController@create_new');
 $app->delete('/categories/{id}', 'CategoryController@delete_category');
 
 $app->put('/categories/{id}', 'CategoryController@edit_category');
+
+$app->get('/attendees/{id}/conferences', 'AttendeesController@get_conferences');
+
+
+
+
+//IF RETURNS EMPTY ARRAY SHOW MESSAGE SAYING NO ID FOUND
+
+
+
+

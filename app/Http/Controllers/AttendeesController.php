@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Attendee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AttendeesController extends Controller
 {
@@ -17,7 +19,69 @@ class AttendeesController extends Controller
         //
     }
 
+    public function login(Request $request) {
+        $result = $this->validate($request, [
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
 
+        if (isset($result->error))
+        {
+            return response()->json([
+                'error'=> [
+                    'message' => 'Verification Failed',
+                    'result' => $result->error
+                ]
+            ], IlluminateResponse::HTTP_BAD_REQUEST);
+        }
+
+        $credentials = $request->only('email', 'password');
+
+        if (!Auth::guard('attendee')->attempt($credentials))
+        {
+            return response()->json(['error' => 'invalid_credentials'], 404);
+        }
+
+        return response()->json(Auth::guard('attendee')->user());
+    }
+
+    public function register(Request $request){
+        $result = $this->validate($request,[
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        if (isset($result->error))
+        {
+            return response()->json([
+                'error'=> [
+                    'message' => 'Verification Failed',
+                    'result' => $result->error
+                ]
+            ], IlluminateResponse::HTTP_BAD_REQUEST);
+        }
+
+        $attendee_into = $request->only(
+            'name',
+            'email',
+            'password'
+        );
+
+        if (Attendee::where('email', $attendee_into['email'])->count() > 0)
+        {
+            // Email Exist
+            return response()->json([
+                'error'=> [
+                    'message' => 'Email already in use',
+                ]
+            ], 409 );
+        }
+
+        $attendee_into['password'] = Hash::make($attendee_into['password']);
+        $attendee = Attendee::create($attendee_into);
+        return response()->json($attendee);
+    }
     
     //GET FUNCTIONS
     public function get_all() {
@@ -27,17 +91,16 @@ class AttendeesController extends Controller
         return response()->json($all);
     }
 
-
+    //GET BY ID FUNCTION
     public function get_id($id) {
-
-        $cli = Attendee::find($id);
+        if(!$cli = Attendee::find($id))
+            return response()->json([], 404);
         
-        // $cli = Attendee::query()->findOrFail($id);
         return response()->json($cli);
-        //return view('test', ['attendee' => $cli]); 
     }
 
     //POST FUNCTIONS
+
      public function register( Request $request){
         
         $reg = new Attendee;
@@ -52,12 +115,13 @@ class AttendeesController extends Controller
     }
     
 
+
     //CHANGE PASSWORD FUNCTION
     public function change_password($id, Request $request){
-        $pEdit = Attendee::find($id);
+        if(!$pEdit = Attendee::find($id))
+            return response()->json([], 404);
         
         $pEdit->salted_password = $request->input('salted_password');
-        
         $pEdit->save();
         
         return response()->json("Password changed successfully!");
@@ -67,17 +131,19 @@ class AttendeesController extends Controller
     //DELETE FUNCTION
 
     public function delete_attendee($id){
-        $del  = Attendee::find($id);
- 
+        if (!$del  = Attendee::find($id))
+            return response()->json([], 404);
+
         $del->delete();
  
-        return response()->json('Attendee has been removed');
+        return response()->json($del);
     }
 
 
         //PUT FUNCTION
     public function edit_attendee(Request $request,$id){
-        $edit  = Attendee::find($id);
+        if (!$edit  = Attendee::find($id))
+            return response()->json($del);
 
         $edit->name = $request->input('name');
         $edit->email = $request->input('email');
@@ -88,6 +154,15 @@ class AttendeesController extends Controller
         
         
         return response()->json($edit);
+    }
+
+
+    //GET CONFERENCES FUNCTION 
+    public function get_conferences($id){
+        if (!$cli = Attendee::find($id))
+            return response()->json([], 404);
+
+        return response()->json($cli->conferences);
     }
 
 

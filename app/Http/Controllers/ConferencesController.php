@@ -30,16 +30,19 @@ class ConferencesController extends Controller
     }
 
 
+    //GET ID FUNCTION
     public function get_id($id) {
-
-        $cli = Conference::find($id);
+        if(!$cli = Conference::find($id))
+            return response()->json([], 404);
 
         return response()->json($cli);
     }
     
     
+    //GET PRESENTATION BY ID FUNCTION
     public function get_presentations($id){
-        $cli = Conference::find($id)->presentations;
+        if(!$cli = Conference::find($id)->presentations)
+            return response()->json([], 404);
         
         return response()->json($cli);
         
@@ -47,8 +50,10 @@ class ConferencesController extends Controller
     }
     
     
+    //GET SPONSORS FUNCTION
     public function get_sponsors($id){
-         $cli = Conference::find($id)->sponsors;
+         if(!$cli = Conference::find($id)->sponsors)
+            return response()->json([], 404);
         
         return response()->json($cli);
     }
@@ -72,13 +77,14 @@ class ConferencesController extends Controller
         
         $reg->save();
         
-        return response()->json("New attendee added!");
+        return response()->json($reg);
     }
     
     
-    public function create_new_presentation(Request $request, $id)
-    {
-       $conference = Conference::find($id);
+    //CREATE NEW PRESENTATION FUNCTION
+    public function create_new_presentation(Request $request, $id){
+       if(!$conference = Conference::find($id))
+            return response()->json([], 404);
        
        $presentation = new Presentation;
        $presentation->title= $request->input('title');
@@ -89,13 +95,14 @@ class ConferencesController extends Controller
        
        $conference->presentations()->save($presentation);
         
-       return response()->json("New presentation added!");
+       return response()->json($conference);
     }
     
     
-    public function create_new_sponsor(Request $request, $id)
-    {
-       $conference = Conference::find($id);
+    //CREATE SPONSOR ID FUNCTION
+    public function create_new_sponsor(Request $request, $id){
+       if(!$conference = Conference::find($id))
+            return response()->json([], 404);
        
        $sponsor = new Sponsor;
        $sponsor->name = $request->input('name');
@@ -106,7 +113,7 @@ class ConferencesController extends Controller
        
        $conference->sponsors()->save($sponsor);
        
-       return response()->json("New sponsor added!");
+       return response()->json($conference);
     }
     
     public function add_to_whitelist()
@@ -121,22 +128,26 @@ class ConferencesController extends Controller
     
     
     //DELETE FUNCTION
-
     public function delete_conference($id){
-        $del  = Conference::find($id);
+        if(!$del  = Conference::find($id))
+            return response()->json([], 404);
  
         $del->delete();
  
-        return response()->json('Conference has been removed');
+        return response()->json($del);
     }
     
+
+    //DELETE SPONSOR BY ID FUNCTION
     public function delete_sponsor($id, Request $request){
         $sponsorid = $request->input('id');
-        $del  = Conference::find($id)->sponsors()->where('sponsor_id', $sponsorid)->first();
- 
+        
+        if(!$del  = Conference::find($id)->sponsors()->where('sponsor_id', $sponsorid)->first())
+            return response()->json([], 404);
+
         $del->delete();
  
-        return response()->json("Sponsor removed");
+        return response()->json($del);
     }
     
     
@@ -154,7 +165,8 @@ class ConferencesController extends Controller
 
     //PUT FUNCTION
     public function edit_conference(Request $request,$id){
-        $edit  = Conference::find($id);
+        if(!$edit  = Conference::find($id))
+            return response()->json([], 404);
 
 	$edit->name = $request->input('name');
 	$edit->type = $request->input('type');

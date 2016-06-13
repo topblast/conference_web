@@ -18,7 +18,9 @@ class CategoryController extends Controller
         //
     }
 
+
     //GET FUNCTIONS
+
     public function get_all() {
 
         $all = Category::all();
@@ -26,17 +28,18 @@ class CategoryController extends Controller
         return response()->json($all);
     }
 
-
+    //GET BY ID FUNCTION
     public function get_id($id) {
-
-        $cli = Category::find($id);
+        if(!$cli = Category::find($id))
+            return response()->json([], 404);
 
         return response()->json($cli);
     }
     
-    public function get_presentations($id)
-    {
-        $cli = Category::find($id)->presentations;
+    //GET PRESENTATION FUNCTION
+    public function get_presentations($id){
+        if(!$cli = Category::find($id)->presentations)
+            return response()->json([], 404);            
         
         return response($cli);
     }
@@ -60,17 +63,19 @@ class CategoryController extends Controller
     //DELETE FUNCTION
 
     public function delete_category($id){
-        $del  = Category::find($id);
+        if(!$del  = Category::find($id))
+            return response()->json([], 404);            
  
         $del->delete();
  
-        return response()->json('Category has been removed');
+        return response()->json($del);
     }
 
 
     //PUT FUNCTION
     public function edit_category(Request $request,$id){
-        $edit  = Category::find($id);
+        if(!$edit  = Category::find($id))
+            return response()->json([], 404);            
 
         $edit->name = $request->input('name');
         $edit->keywords = $request->input('keywords');
