@@ -46,6 +46,7 @@ class AttendeesController extends Controller
         $reg->salted_password = $request->input('salted_password');
         
         $reg->save();
+        $reg->find($reg->attendee_id)->conferences()->attach($request->input('conference_id'), ['created_at' => $reg->created_at, 'updated_at' => $reg->updated_at]);
         
         return response()->json("New attendee added!");
     }
@@ -80,9 +81,12 @@ class AttendeesController extends Controller
 
         $edit->name = $request->input('name');
         $edit->email = $request->input('email');
+        $edit->salted_password = $request->input('salted_password');
  
         $edit->save();
-  
+        $edit->conferences()->updateExistingPivot($request->input('conference_id'), ['updated_at' => $edit->updated_at]);
+        
+        
         return response()->json($edit);
     }
 

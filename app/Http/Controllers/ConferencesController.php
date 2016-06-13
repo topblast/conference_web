@@ -109,6 +109,16 @@ class ConferencesController extends Controller
        return response()->json("New sponsor added!");
     }
     
+    public function add_to_whitelist()
+    {
+        
+    }
+    
+    public function add_to_blacklist()
+    {
+        
+    }
+    
     
     //DELETE FUNCTION
 
@@ -128,6 +138,18 @@ class ConferencesController extends Controller
  
         return response()->json("Sponsor removed");
     }
+    
+    
+     public function remove_from_whitelist()
+     {
+         
+     }
+    
+    public function remove_from_blacklist()
+    {
+        
+    }
+    
 
 
     //PUT FUNCTION
@@ -148,6 +170,6 @@ class ConferencesController extends Controller
         return response()->json($edit);
     }
 
-    //GET and POST for Conference Presentations, Conference Sponsors
+    
     
 }

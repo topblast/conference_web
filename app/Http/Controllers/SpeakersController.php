@@ -57,6 +57,8 @@ class SpeakersController extends Controller
         
         $speaker->save();
         
+        $speaker->find($speaker->speaker_id)->presentations()->attach($request->input('presentation_id'),['type'=>$request->input('type'), 'created_at' => $speaker->created_at]);
+        
         return response()->json("Speaker added!");
         
     }

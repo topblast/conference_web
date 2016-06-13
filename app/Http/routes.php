@@ -43,10 +43,10 @@ $app->post('conferences/register', 'ConferencesController@register');
 $app->post('conferences/{id}/presentations', 'ConferencesController@create_new_presentation');
 $app->post('conferences/{id}/sponsors', 'ConferencesController@create_new_sponsor');
 
-    //these didn't work
+    //works now
 $app->delete('/conferences/{id}', 'ConferencesController@delete_conference');
 $app->delete('/conferences/{id}/sponsors/', 'ConferencesController@delete_sponsor');
-    //these
+    
 
 $app->put('/conferences/{id}', 'ConferencesController@edit_conferences');
 
@@ -57,10 +57,6 @@ $app->get('/speakers/{id}/presentations', 'SpeakersController@get_presentations'
     //no key linking speakers to presenatations
 
 $app->post('/speakers/', 'SpeakersController@create_new');
-
-
-
-
 
 
 
@@ -75,3 +71,15 @@ $app->delete('/attendees/{id}', 'AttendeesController@delete_attendee');
 
 //put
 $app->put('/attendees/{id}', 'AttendeesController@edit_attendee');
+
+
+//categories
+$app->get('/categories/', 'CategoryController@get_all');
+$app->get('/categories/{id}', 'CategoryController@get_id');
+$app->get('/categories/{id}/presentations', 'CategoryController@get_all');
+
+$app->post('/categories/', 'CategoryController@create_new');
+
+$app->delete('/categories/{id}', 'CategoryController@delete_category');
+
+$app->put('/categories/{id}', 'CategoryController@edit_category');

@@ -45,13 +45,58 @@ class Conference extends Model{
         parent::boot();    
     
         // cause a delete of a product to cascade to children so they are also deleted
-        static::deleted(function($conference)
+        static::deleting(function($conference)
         {
-            $conference->presentations()->delete();
-            $conference->rooms()->delete();
-            $conference->sponsors()->delete();
-            $conference->whitelist()->delete();
-            $conference->blacklist()->delete();
+            
+            
+            
+            
+            if (is_null($conference->presentations)) {
+                //Do nothing
+            }
+            else
+            {
+                $conference->presentations()->delete();
+            }
+            
+            
+            
+           
+            
+            
+            if (is_null($conference->sponsors)) {
+                //Do nothing
+            }
+            else
+            {
+                $conference->sponsors()->delete();
+            }
+            
+            
+            if (is_null($conference->whitelist)) {
+                //Do nothing
+            }
+            else
+            {
+                $conference->whitelist()->delete();
+            }
+            
+            
+            if (is_null($conference->blacklist)) {
+                //Do nothing
+            }
+            else
+            {
+                $conference->blacklist()->delete();
+            }
+            
+             if (is_null($conference->rooms)) {
+                //Do nothing
+            }
+            else
+            {
+                $conference->rooms()->delete();
+            }
         });
     }    
 }

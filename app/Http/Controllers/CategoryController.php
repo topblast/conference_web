@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Presentation;
+use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
@@ -17,7 +18,7 @@ class CategoryController extends Controller
         //
     }
 
-
+    //GET FUNCTIONS
     public function get_all() {
 
         $all = Category::all();
@@ -40,6 +41,21 @@ class CategoryController extends Controller
         return response($cli);
     }
     
+    //POST FUNCTION
+    public function create_new(Request $request)
+    {
+        $category = new Category;
+        
+        $category->name = $request->input('name');
+        $category->keywords = $request->input('keywords');
+        $parent_id->parent_id = $request->input('parent_id');
+        
+        $category->save();
+        $category->find($category->category_id)->presentations()->attach($request->input('presentation_id'), ['created_at'=>$category->created_at, 'updated_at'=>$category->updated_at]);
+        
+        return response()->json('Category has been added');
+    }
+    
 
     //DELETE FUNCTION
 
@@ -56,10 +72,13 @@ class CategoryController extends Controller
     public function edit_category(Request $request,$id){
         $edit  = Category::find($id);
 
-        $edit->title = $request->input('title');
-        $edit->content = $request->input('content');
- 
+        $edit->name = $request->input('name');
+        $edit->keywords = $request->input('keywords');
+        $edit->parent_id = $request->input('parent_id');
+        
         $edit->save();
+        
+        $edit->presentations()->updateExistingPivot($request->input('presentation_id'), ['updated_at'=> $edit->updated_at]);
   
         return response()->json($edit);
     }

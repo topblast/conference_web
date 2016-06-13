@@ -189,11 +189,13 @@ class Initial extends Migration
            
            $table->foreign('presentation_id')
                 ->references('presentation_id')
-                ->on('presentations');
+                ->on('presentations')
+                ->onDelete('cascade');
            
            $table->foreign('speaker_id')
                 ->references('speaker_id')
-                ->on('speakers');
+                ->on('speakers')
+                ->onDelete('cascade');
                 
            $table->primary(['presentation_id', 'speaker_id']);
         });
@@ -206,16 +208,18 @@ class Initial extends Migration
            
            $table->foreign('presentation_id')
                 ->references('presentation_id')
-                ->on('presentations');
+                ->on('presentations')
+                ->onDelete('cascade');
            
            $table->foreign('category_id')
                 ->references('category_id')
-                ->on('categories');
+                ->on('categories')
+                ->onDelete('cascade');
                 
            $table->primary(['presentation_id', 'category_id']);
         });
         
-        // Presentation Categories
+        // Conference Attendees
         Schema::create('conference_attendees', function(Blueprint $table){
            $table->integer('conference_id')->unsigned();
            $table->integer('attendee_id')->unsigned();
@@ -223,11 +227,13 @@ class Initial extends Migration
            
            $table->foreign('conference_id')
                 ->references('conference_id')
-                ->on('conferences');
+                ->on('conferences')
+                ->onDelete('cascade');
            
            $table->foreign('attendee_id')
                 ->references('attendee_id')
-                ->on('attendees');
+                ->on('attendees')
+                ->onDelete('cascade');
                 
            $table->primary(['conference_id', 'attendee_id']);
         });
