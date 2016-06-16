@@ -1,0 +1,20 @@
+<p>main page</p>
+
+<hr>
+
+<div class="pull-right"><button type="button" class="btn btn-info" ng-click="logout()">Logout!</button></div>
+
+<div class="clearfix"></div>
+
+<hr>
+
+<div class="row">
+    <div class="col-md-12">
+        <p>You currently have <b>{{ speakers.length }}</b> books in your wishlists.</p>
+        <ul>
+            <li ng-repeat="speaker in speakers">
+                <b>{{ speaker.speaker_id }}</b> by <i>{{ speaker.name }}</i>
+            </li>
+        </ul>
+    </div>
+</div>

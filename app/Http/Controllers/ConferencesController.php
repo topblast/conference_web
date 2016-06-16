@@ -116,14 +116,37 @@ class ConferencesController extends Controller
        return response()->json($conference);
     }
     
-    public function add_to_whitelist()
+    public function add_to_whitelist(Request $request, $id)
     {
+        if(!$conference = Conference::find($id))
+            return response()->json([], 404);
         
+        $whitelist = new Whitelist;
+        $whitelist->conference_id = $request->input('conference_id');
+        $whitelist->attendee_id = $request->input('attendee_id');
+        $whitelist->email = $request->input('email');
+        $whitelist->token = $request->input('token');
+        $whitelist->type = $request->input('type');
+        
+        $conference->whitelists()->save($whitelist);
+        
+        return response()->json($conference);
     }
     
-    public function add_to_blacklist()
+    public function add_to_blacklist(Request $request, $id)
     {
+        //Client authentication required for adding attendees to blacklist
+        if(!$conference = Conference::find($id))
+            return response()->json([], 404);
         
+        $blacklist = new Blacklist;
+        $blacklist->conference_id = $request->input('conference_id');
+        $blacklist->attendee_id = $request->input('attendee_id');
+        
+        
+        $conference->blacklists()->save($blacklist);
+        
+        return response()->json($conference);
     }
     
     
@@ -137,7 +160,19 @@ class ConferencesController extends Controller
         return response()->json($del);
     }
     
+    //DELETE PRESENTATION BY ID FUNCTION
+    public function delete_presentation(Request $request, $id)
+    {
+        $presentationid = $request->input('presentation_id');
+        
+        if(!$del  = Conference::find($id)->presentations()->where('presentation_id', $presentationid)->first())
+            return response()->json([], 404);
 
+        $del->delete();
+ 
+        return response()->json($del);
+    }
+    
     //DELETE SPONSOR BY ID FUNCTION
     public function delete_sponsor($id, Request $request){
         $sponsorid = $request->input('id');

@@ -21,6 +21,13 @@ class SpeakersController extends Controller
     
     
     //GET FUNCTIONS
+    public function index() {
+
+        $all = Speaker::all();
+        
+        return response()->json($all);
+    }
+    
     public function get_all() {
 
         $all = Speaker::all();

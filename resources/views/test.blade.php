@@ -11,7 +11,7 @@
 <div class="container">  
     <div class="quote-container">
         <p class="text">Test Page</p>
-        <p class="text">{{$attendee->name}}</p>
+        <p class="text">d</p>
      
     </div>
 </div>  

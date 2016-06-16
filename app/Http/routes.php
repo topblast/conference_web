@@ -12,18 +12,18 @@
 */
 
 $app->get('/', function () use ($app) {
-    return $app->version();
+    //return $app->version();
+    return view('index');
 });
 
 
 //client
 $app->post('/clients/login', 'ClientsController@login');
 $app->post('/clients/register', 'ClientsController@register');
+$app->post('clients/{id}/changepassword', 'ClientsController@change_password');
+
 $app->get('/clients', 'ClientsController@get_all');
 $app->get('/clients/{id}', 'ClientsController@get_id');
-
-$app->post('clients/register', 'ClientsController@register');
-$app->post('clients/{id}/changepassword', 'ClientsController@change_password');
 
 //put
 $app->delete('/clients/{id}', 'ClientsController@delete_client');
@@ -53,6 +53,13 @@ $app->put('/conferences/{id}', 'ConferencesController@edit_conferences');
 
 //speakers
 $app->get('/speakers/', 'SpeakersController@get_all');
+
+/*
+Route::get('/speakers/', function() {   
+    View::make('index'); // will return app/views/index.php 
+});
+*/
+
 $app->get('/speakers/{id}/presentations', 'SpeakersController@get_presentations');
 
 $app->post('/speakers/', 'SpeakersController@create_new');
@@ -63,12 +70,10 @@ $app->post('/speakers/', 'SpeakersController@create_new');
 //attendees
 $app->post('/attendees/login', 'AttendeesController@login');
 $app->post('/attendees/register', 'AttendeesController@register');
+$app->post('attendees/{id}/changepassword', 'AttendeesController@change_password');
 
 $app->get('/attendees', 'AttendeesController@get_all');
 $app->get('/attendees/{id}', 'AttendeesController@get_id');
-
-$app->post('attendees/register', 'AttendeesController@register');
-$app->post('attendees/{id}/changepassword', 'AttendeesController@change_password');
 
 $app->delete('/attendees/{id}', 'AttendeesController@delete_attendee');
 
