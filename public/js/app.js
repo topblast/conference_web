@@ -16,7 +16,18 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
   .state('main', {
     url: '/main',
     abstract: true,
-    templateUrl: '/templates/main.html'
+    
+    views:{
+        'header':{
+       templateUrl: 'templates/header.html'   
+      },
+       'container':{
+        templateUrl: '/templates/main.html'  
+       },
+      'footer':{
+       templateUrl: 'templates/footer.html'   
+      }
+    }
   })
   
   .state('tab', {
@@ -28,17 +39,19 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
   // Each tab has its own nav history stack:
 
   .state('main.home', {
-    url: '/home/',
+    url: '/home',
     views: {
+      
       'main-home': {
         templateUrl: 'templates/main-home.html',
         controller: 'HomeCtrl'
-      }
+      },
+   
     }
   })
   
    .state('main.home-speakers', {
-    url: '/home/:speakerID',
+    url: '/:speakerID',
     views: {
       'main-home': {
         templateUrl: 'templates/test.html',
@@ -47,6 +60,12 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
     }
   })
   
+  .state('main.test', {
+    url: '/test',
+    templateUrl: 'templates/test.html',
+    controller: 'HomeCtrl'
+       
+  })
   
   .state('test', {
     url: '/test',

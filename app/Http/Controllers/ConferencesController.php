@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Conference;
 use App\Models\Presentation;
 use App\Models\Sponsor;
+use App\Models\Blacklist;
 
 use Illuminate\Http\Request;
 
@@ -122,15 +123,15 @@ class ConferencesController extends Controller
             return response()->json([], 404);
         
         $whitelist = new Whitelist;
-        $whitelist->conference_id = $request->input('conference_id');
+        $whitelist->conference_id = $id;
         $whitelist->attendee_id = $request->input('attendee_id');
         $whitelist->email = $request->input('email');
         $whitelist->token = $request->input('token');
         $whitelist->type = $request->input('type');
         
-        $conference->whitelists()->save($whitelist);
+        $conference->whitelist()->save($whitelist);
         
-        return response()->json($conference);
+        return response()->json($whitelist);
     }
     
     public function add_to_blacklist(Request $request, $id)
@@ -140,13 +141,13 @@ class ConferencesController extends Controller
             return response()->json([], 404);
         
         $blacklist = new Blacklist;
-        $blacklist->conference_id = $request->input('conference_id');
+        $blacklist->conference_id = $id;
         $blacklist->attendee_id = $request->input('attendee_id');
         
         
-        $conference->blacklists()->save($blacklist);
+        $conference->blacklist()->save($blacklist);
         
-        return response()->json($conference);
+        return response()->json($blacklist);
     }
     
     

@@ -20,7 +20,7 @@ $app->get('/', function () use ($app) {
 //client
 $app->post('/clients/login', 'ClientsController@login');
 $app->post('/clients/register', 'ClientsController@register');
-$app->post('clients/{id}/changepassword', 'ClientsController@change_password');
+$app->post('/clients/{id}/changepassword', 'ClientsController@change_password');
 
 $app->get('/clients', 'ClientsController@get_all');
 $app->get('/clients/{id}', 'ClientsController@get_id');
@@ -39,14 +39,17 @@ $app->get('/conferences/{id}/presentations/', 'ConferencesController@get_present
 $app->get('/conferences/{id}/sponsors/', 'ConferencesController@get_sponsors');
 
 
-$app->post('conferences/register', 'ConferencesController@register');
-$app->post('conferences/{id}/presentations', 'ConferencesController@create_new_presentation');
-$app->post('conferences/{id}/sponsors', 'ConferencesController@create_new_sponsor');
+$app->post('/conferences/register', 'ConferencesController@register');
+$app->post('/conferences/{id}/presentations', 'ConferencesController@create_new_presentation');
+$app->post('/conferences/{id}/sponsors', 'ConferencesController@create_new_sponsor');
+$app->post('/conferences/{id}/blacklist', 'ConferencesController@add_to_blacklist');
+$app->post('/conferences/{id}/whitelist', 'ConferencesController@add_to_whitelist');
 
     //works now
 $app->delete('/conferences/{id}', 'ConferencesController@delete_conference');
 $app->delete('/conferences/{id}/sponsors/', 'ConferencesController@delete_sponsor');
-    
+$app->delete('/conferences/{id}/blacklist', 'ConferencesController@remove_from_blacklist');    
+$app->delete('/conferences/{id}/blacklist', 'ConferencesController@remove_from_whitelist');    
 
 $app->put('/conferences/{id}', 'ConferencesController@edit_conferences');
 
@@ -72,7 +75,7 @@ $app->post('/speakers/register', 'SpeakersController@create_new');
 //attendees
 $app->post('/attendees/login', 'AttendeesController@login');
 $app->post('/attendees/register', 'AttendeesController@register');
-$app->post('attendees/{id}/changepassword', 'AttendeesController@change_password');
+$app->post('/attendees/{id}/changepassword', 'AttendeesController@change_password');
 
 $app->get('/attendees', 'AttendeesController@get_all');
 $app->get('/attendees/{id}', 'AttendeesController@get_id');

@@ -17,8 +17,10 @@
     <script src="js/services.js"></script>
   </head>
   <body ng-app="starter">
-      <div ui-view>
+     <div ui-view="header"></div>
+      <div ui-view="container">
           
       </div>
+      <div ui-view="footer"></div>
   </body>
 </html>
