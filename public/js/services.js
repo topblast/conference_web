@@ -38,7 +38,7 @@ angular.module('starter.services', [])
                         },
                         
 			create: function(speakerData, onSuccess, onError) {
-                                var self = this;
+				var self = this;
 				self.user = {};
                                 speakerData.type = 'random';
 				//return $http.post(API_LOCATION + 'speakers', speakerData);
@@ -65,11 +65,12 @@ angular.module('starter.services', [])
                                 });
                         },
 		},
+		
 		Conference: {
 			list: function(onSuccess, onError) {
 				var self = this;
 				self.user = {};
-				return $http.get(API_LOCATION + 'conferences')
+				return $http.get(API_LOCATION + 'conferences/');
 //				.then (function(response){
 //					self.user = response;
 //					onSuccess(response);
@@ -80,11 +81,11 @@ angular.module('starter.services', [])
 			list: function(onSuccess, onError) {
 				var self = this;
 				self.user = {};
-				$http.get(API_LOCATION + 'presentations')
-				.then (function(response){
-					self.user = response;
-					onSuccess(response);
-				}, onError);
+				return $http.get(API_LOCATION + 'presentations/');
+//				.then (function(response){
+//					self.user = response;
+//					onSuccess(response);
+//				}, onError);
 			},
 			
 		},
