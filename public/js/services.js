@@ -4,9 +4,23 @@ angular.module('starter.services', [])
 	var API_LOCATION = 'http://localhost:8000/';
 	return {
 		user: {},
+                
+                Client: {
+                        login: function(onSuccess, onError){
+                            
+                        },
+                        register: function(onSuccess, onError) {
+                            
+                        },
+                        
+                        delete: function(id){
+                            
+                        },
+                },
+                
 		Speaker: {
 			
-			list: function(onSuccess=null, onError=null) {
+			list: function(onSuccess, onError) {
 				var self = this;
 				self.user = {};
 				return $http.get(API_LOCATION + 'speakers/');
@@ -18,12 +32,17 @@ angular.module('starter.services', [])
 //                                        //return onSuccess;
 //				}, onError);
 			},
+                        
+                        select: function(id){
+                                return $http.get(API_LOCATION + 'speakers/' + id);
+                        },
+                        
 			create: function(speakerData, onSuccess, onError) {
                                 var self = this;
 				self.user = {};
                                 speakerData.type = 'random';
 				//return $http.post(API_LOCATION + 'speakers', speakerData);
-                                $http.post(API_LOCATION + 'speakers', speakerData)
+                                $http.post(API_LOCATION + 'speakers/register', speakerData)
                                     .then (function(response){
 					self.user = response;
 					onSuccess(response);
@@ -32,10 +51,22 @@ angular.module('starter.services', [])
                                     onError(response);
                                 });
                                 
+                                
+                        },
+                        
+                        delete: function(id, onSuccess, onError){
+                                $http.delete(API_LOCATION + 'speakers/' + id)
+                                        .then(function (response){
+                                            self.user = response;
+                                            onSuccess(response);
+                                }, function(response)
+                                {
+                                    onError(response);
+                                });
                         },
 		},
 		Conference: {
-			list: function(onSuccess=null, onError=null) {
+			list: function(onSuccess, onError) {
 				var self = this;
 				self.user = {};
 				return $http.get(API_LOCATION + 'conferences')
@@ -46,7 +77,7 @@ angular.module('starter.services', [])
 			},
 					},
 		Presentation: {
-			list: function(onSuccess=null, onError=null) {
+			list: function(onSuccess, onError) {
 				var self = this;
 				self.user = {};
 				$http.get(API_LOCATION + 'presentations')
@@ -58,7 +89,7 @@ angular.module('starter.services', [])
 			
 		},
 		Sponsor: {
-			list: function(onSuccess=null, onError=null) {
+			list: function(onSuccess, onError) {
 				var self = this;
 				self.user = {};
 				$http.get(API_LOCATION + 'sponsors')
@@ -70,7 +101,7 @@ angular.module('starter.services', [])
 			
 		},
 		Attendee:	{
-			login: function(credentials, onSuccess=null, onError=null) {
+			login: function(credentials, onSuccess, onError) {
 				var self = this;
 				self.user = {};
 				$http.post(API_LOCATION + 'attendees/login', credentials)
@@ -79,7 +110,7 @@ angular.module('starter.services', [])
 					onSuccess(response);
 				}, onError);
 			},
-			changepass:  function(id, onSuccess=null, onError=null) {
+			changepass:  function(id, onSuccess, onError) {
 				var self = this;
 				self.user = {};
 				$http.post(API_LOCATION + 'attendees/{id}/changepassword', id)
@@ -88,7 +119,7 @@ angular.module('starter.services', [])
 					onSuccess(response);
 				}, onError);
 			},
-			register: function(crendentials, onSuccess=null, onError=null) {
+			register: function(crendentials, onSuccess, onError) {
 				var self = this;
 				self.user = {};
 				$http.post(API_LOCATION + 'attendees/register', credentials)
@@ -97,7 +128,7 @@ angular.module('starter.services', [])
 					onSuccess(response);
 				}, onError);
 			},
-			deleteAccount: function(credentials, onSuccess=null, onError=null) {
+			deleteAccount: function(credentials, onSuccess, onError) {
 				var self = this;
 				self.user = {};
 				$http.delete(API_LOCATION + 'attendees/{id}', credentials)
@@ -106,7 +137,7 @@ angular.module('starter.services', [])
 					onSuccess(response);
 				}, onError);
 			},
-			update: function(id, onSuccess=null, onError=null) {
+			update: function(id, onSuccess, onError) {
 				var self = this;
 				self.user = {};
 				$http.put(API_LOCATION + 'attendees/{id}', id)

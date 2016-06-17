@@ -11,6 +11,10 @@ angular.module('starter.controllers', [])
        
        Web.Speaker.create($scope.speakerData, function (response){
                 alert('Speaker added!');
+                Web.Speaker.list()
+                .success(function(data) {
+                    $scope.speakers = data;
+                });
             },
             function(response){
                 alert('Something went wrong with the login process. Try again later!');
@@ -33,12 +37,31 @@ angular.module('starter.controllers', [])
         });
     
     
+    $scope.deleteSpeaker=function(id){
+    Web.Speaker.delete(id, function (response){
+        alert("Speaker deleted");
+         Web.Speaker.list()
+                .success(function(data) {
+                    $scope.speakers = data;
+                });
+        }, function (response){
+        alert("Error!!!");    
+        }
+    );
+    }
     
 //    Web.Conference.list()
 //        .success(function(data) {
 //            $scope.speakers = data;
 //           // alert('Reached here with ' + $scope.speakers);
 //        });
+})
+
+.controller('SelectCtrl', function($scope, $stateParams, Web){
+    Web.Speaker.select($stateParams.speakerID).success(function(data){
+        $scope.speaker = data;
+        
+    })
 })
 
 .controller('loginCtrl', function($scope) {})

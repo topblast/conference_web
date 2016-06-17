@@ -53,7 +53,9 @@ $app->put('/conferences/{id}', 'ConferencesController@edit_conferences');
 
 //speakers
 $app->get('/speakers/', 'SpeakersController@get_all');
+$app->get('/speakers/{id}', 'SpeakersController@get_id');
 
+$app->delete('/speakers/{id}', 'SpeakersController@delete_speaker');
 /*
 Route::get('/speakers/', function() {   
     View::make('index'); // will return app/views/index.php 

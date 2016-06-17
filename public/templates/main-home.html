@@ -56,6 +56,8 @@
       <p>Speakers go here</p>
         <div ng-repeat="speaker in speakers">
 	   {{speaker.speaker_id}} {{speaker.name}}
+           <span ng-if="!speaker">No speakers added!</span>
+           <p><a href="#" ng-if="speaker" ng-click="deleteSpeaker(speaker.speaker_id)" class="text-muted">Delete</a></p>
 	</div>	
 
 <!--<ion-list>

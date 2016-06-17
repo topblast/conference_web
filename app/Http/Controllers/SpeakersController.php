@@ -72,6 +72,18 @@ class SpeakersController extends Controller
 
         
     }
+    
+    //DELETE FUNCTION
+     public function delete_speaker($id)
+    {
+        if (!$del  = Speaker::find($id))
+                return response()->json([], 404);
+        Speaker::find($id)->presentations()->detach($id);
+        $del->delete();
+        
+        
+        return response()->json($del);
+    }
 
     
 }
