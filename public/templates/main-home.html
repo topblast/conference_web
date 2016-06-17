@@ -56,19 +56,18 @@
       <p>Speakers go here</p>
         <div ng-repeat="speaker in speakers">
 	   {{speaker.speaker_id}} {{speaker.name}}
-           <span ng-if="!speaker">No speakers added!</span>
            <p><a href="#" ng-if="speaker" ng-click="deleteSpeaker(speaker.speaker_id)" class="text-muted">Delete</a></p>
 	</div>	
 
     <p>Conferences go here</p>
         <div ng-repeat="conference in conferences">
             {{conference.conference_id}} {{conference.name}}
+        </div>
 
                 <p>presenations</p>
-                <div ng-repeat="presentation in presentations">
+                <div ng-repeat="presentation in conferences">
                     {{presentation.presentation_id}} {{presentation.title}}
                     </div>
-        </div>
 
 <!--<ion-list>
 

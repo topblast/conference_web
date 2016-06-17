@@ -81,7 +81,7 @@ angular.module('starter.services', [])
 			list: function(onSuccess, onError) {
 				var self = this;
 				self.user = {};
-				return $http.get(API_LOCATION + 'presentations/');
+				return $http.get(API_LOCATION + 'conferences/{id}/presentations/');
 //				.then (function(response){
 //					self.user = response;
 //					onSuccess(response);
