@@ -37,6 +37,7 @@ angular.module('starter.controllers', [])
         });
     
     
+
     $scope.deleteSpeaker=function(id){
     Web.Speaker.delete(id, function (response){
         alert("Speaker deleted");
@@ -53,8 +54,20 @@ angular.module('starter.controllers', [])
 //    Web.Conference.list()
 //        .success(function(data) {
 //            $scope.speakers = data;
+
+    Web.Conference.list()
+        .success(function(data) {
+            $scope.conferences = data;
+
 //           // alert('Reached here with ' + $scope.speakers);
-//        });
+        });
+
+    Web.Presentation.list()
+        .success(function(data) {
+          $scope.presentations = data;
+        });
+
+
 })
 
 .controller('SelectCtrl', function($scope, $stateParams, Web){
