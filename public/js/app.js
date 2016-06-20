@@ -88,14 +88,14 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
 
     .state('login', {
       url: '/login',
-      templateUrl: 'templates/login.html',
+      templateUrl: 'templates/login-example.html',
       controller: 'loginCtrl',
     })
 
 
     .state('register', {
       url: '/register',
-      templateUrl: 'templates/register.html',
+      templateUrl: 'templates/register-example.html',
       controller: 'RegCtrl',
     })
 

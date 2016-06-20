@@ -108,7 +108,21 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller('loginCtrl', function($scope) {})
+.controller('loginCtrl', function($scope) {
+    $scope.submitAttendee=function()
+    {
+         $scope.loading = true;
+       
+       Web.Attendee.register($scope.attendeeData, function (response){
+                alert('Attendee added!');
+                
+            },
+            function(response){
+                alert('Something went wrong with the login process. Try again later!');
+            }
+        );
+    }
+})
 
 .controller('RegCtrl', function($scope) {})
 
