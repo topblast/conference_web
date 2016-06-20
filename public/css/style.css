@@ -1,1 +1,22 @@
 /* Empty. Add your own CSS if you like */
+
+main {
+   padding-left: 25%;
+	padding-right:25%;
+    padding-top:10%;
+    padding-bottom:20%;
+    
+}
+
+.btn-default {
+    width: 100%;
+}
+
+.form-group{
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+
+#logo-holder{
+    padding-left:35%;
+}
