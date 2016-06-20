@@ -80,24 +80,22 @@ angular.module('starter.services', [])
 //					onSuccess(response);
 //				}, onError);
 			},
-<<<<<<< HEAD
+
 
 			listPresentations: function(id, onSuccess, onError) { 
 
 
 				return $http.get(API_LOCATION + 'conference/' + id + '/presentations');
-			}
-=======
+			},
+
                         
-                        list_presentations: function(id){
-                         return $http.get(API_LOCATION + 'conferences/' + id + '/presentations');   
-                        },
+                     
                         
                         select: function(id){
                             return $http.get(API_LOCATION + 'conferences/' + id);
                         },
->>>>>>> origin/dev
-					},
+
+			},
 /*			
 		Presentation: {
 			list: function(onSuccess, onError, id) {
