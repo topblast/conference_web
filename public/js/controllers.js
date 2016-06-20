@@ -61,11 +61,18 @@ angular.module('starter.controllers', [])
 
 //           // alert('Reached here with ' + $scope.speakers);
         });
+   
+    $scope.selectPres=function(id){
+    Web.Conference.list_presentations(id)
+            .success(function (data){
+                $scope.presentations = data;
+    });
+    }
 
-    Web.Presentation.list()
-        .success(function(data) {
-          $scope.presentations = data;
-        });
+//    Web.Presentation.list()
+//        .success(function(data) {
+//          $scope.presentations = data;
+//        });
 
 
 })
@@ -77,30 +84,37 @@ angular.module('starter.controllers', [])
     })
 })
 
+.controller('ConfCtrl', function($scope, $stateParams, Web){
+    Web.Conference.select($stateParams.conferenceID).success(function(data){
+        $scope.conference = data;
+        
+    });
+    
+    Web.Speaker.selectConf($stateParams.conferenceID).success(function(data){
+        $scope.speakers = data;
+    });
+    
+    $scope.deleteSpeaker=function(id){
+    Web.Speaker.delete(id, function (response){
+        alert("Speaker deleted");
+         Web.Speaker.selectConf($stateParams.conferenceID)
+                 .success(function(data){
+                $scope.speakers = data;
+            });
+        }, function (response){
+        alert("Error!!!");    
+        }
+    );
+    }
+})
+
 .controller('loginCtrl', function($scope) {})
 
 .controller('RegCtrl', function($scope) {})
 
 .controller('MainCtrl', function($scope) {})
 
-.controller('ChatsCtrl', function($scope, Chats) {
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
 
-  $scope.chats = Chats.all.list();
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
-  };
-})
-
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
-})
 
 .controller('AccountCtrl', function($scope) {
   $scope.settings = {

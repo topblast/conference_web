@@ -21,12 +21,6 @@ class SpeakersController extends Controller
     
     
     //GET FUNCTIONS
-    public function index() {
-
-        $all = Speaker::all();
-        
-        return response()->json($all);
-    }
     
     public function get_all() {
 
@@ -46,8 +40,21 @@ class SpeakersController extends Controller
     
     //GET for Speaker Presentations
     public function get_presentations($id){
+        if(!$cli = Speaker::find($id))
+            return response()->json([], 404);
+        
         if(!$cli = Speaker::find($id)->presentations)
             return response()->json([], 404);
+        
+        return response()->json($cli);
+    }
+    
+    public function get_conference_speakers($id){
+        $cli = Speaker::whereHas('presentations', function($q) use ($id){
+        
+            $q->where('conference_id', $id);
+                
+        })->get();
         
         return response()->json($cli);
     }

@@ -30,11 +30,7 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
     }
   })
   
-  .state('tab', {
-      url:'/tab',
-      abstract:true,
-      templateUrl: 'templates/tabs.html'
-  })
+  
 
   // Each tab has its own nav history stack:
 
@@ -67,6 +63,20 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
        
   })
   
+  .state('main.conference', {
+      url: '/conference/:conferenceID',
+       views:{
+        'header':{
+            templateUrl: 'templates/conference-header.html'   
+        },
+        'main-home':{
+            templateUrl: 'templates/select-conference.html',
+            controller: 'ConfCtrl'
+        }
+     }
+     
+  })
+  
   .state('test', {
     url: '/test',
     templateUrl: 'templates/test.html',
@@ -74,24 +84,7 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
        
   })
 
-  .state('tab.chats', {
-      url: '/chats',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
-        }
-      }
-    })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
-        }
-      }
-    })
+
 
     .state('login', {
       url: '/login',
@@ -111,15 +104,7 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
 
 
 
-  .state('tab.account', {
-    url: '/account',
-    views: {
-      'tab-account': {
-        templateUrl: 'templates/tab-account.html',
-        controller: 'AccountCtrl'
-      }
-    }
-  });
+  
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('main/home');

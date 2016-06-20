@@ -1,12 +1,4 @@
-<!--<ion-view view-title="Home">
-        <ion-content class="padding">
-          
-			<div class="list list-inset">
-			  <label class="item item-input">
-			    <i class="icon ion-search placeholder-icon"></i>
-			    <input type="text" placeholder="Search">
-			  </label>
-			</div>-->
+
 
 
 		
@@ -64,55 +56,10 @@
         <div ng-repeat="conference in conferences">
             {{conference.conference_id}} {{conference.name}}
 
-                <p>presenations</p>
-                <div ng-repeat="presentation in presentations">
+                <p>presentations</p>
+                <div ng-repeat="presentation in presentations" ng-init="selectPres(conference.conference_id)">
                     {{presentation.presentation_id}} {{presentation.title}}
                     </div>
         </div>
 
-<!--<ion-list>
 
-	<div class="item item-divider">
-	    Group By Date
-	</div>
-
-	  
-<ion-item>
-    
-    
-   
-</ion-item>
-
-<ion-item>
-    <a class="item item-thumbnail-left" href="#">
-      <img src="img/ionic.png">
-      <h2>Pretty Hate Machine</h2>
-      <p>Nine Inch Nails</p>
-    </a>
-</ion-item>-->
-
-<!--<div class="item item-divider">
-	    Group By Date
-	</div>
-
-	  
-
-    <a class="item item-thumbnail-left" href="#">
-      <img src="img/ionic.png">
-      <h2>Pretty Hate Machine</h2>
-      <p>Nine Inch Nails</p>
-    </a>
-    <a class="item item-thumbnail-left" href="#">
-      <img src="img/ionic.png">
-      <h2>Pretty Hate Machine</h2>
-      <p>Nine Inch Nails</p>
-      
-    </a>    -->
-
-    
-
-<!--</ion-list>
-						
-
-        </ion-content>
-      </ion-view>-->
