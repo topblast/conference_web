@@ -36,7 +36,9 @@ $app->get('/conferences/', 'ConferencesController@get_all');
 $app->get('/conferences/{id}', 'ConferencesController@get_id');
 
 $app->get('/conferences/{id}/presentations/', 'ConferencesController@get_presentations');
+$app->get('/conferences/{id}/speakers/', 'ConferencesController@get_conference_speakers');
 $app->get('/conferences/{id}/sponsors/', 'ConferencesController@get_sponsors');
+
 
 
 $app->post('/conferences/register', 'ConferencesController@register');
@@ -57,6 +59,9 @@ $app->put('/conferences/{id}', 'ConferencesController@edit_conferences');
 //speakers
 $app->get('/speakers/', 'SpeakersController@get_all');
 $app->get('/speakers/{id}', 'SpeakersController@get_id');
+$app->get('/speakers/{id}/presentations', 'SpeakersController@get_presentations');
+
+$app->get('/speakers/{id}/conferences', 'SpeakersController@get_conference_speakers');
 
 $app->delete('/speakers/{id}', 'SpeakersController@delete_speaker');
 /*
@@ -65,7 +70,7 @@ Route::get('/speakers/', function() {
 });
 */
 
-$app->get('/speakers/{id}/presentations', 'SpeakersController@get_presentations');
+
 
 $app->post('/speakers/register', 'SpeakersController@create_new');
 

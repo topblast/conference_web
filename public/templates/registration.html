@@ -1,0 +1,31 @@
+<DOCTYPE! html>
+<html>
+
+
+      <head>
+		       <title>Conference</title>
+           <metachar="UTF-8">
+	         <link rel="stylesheet" type="text/css" href="registration.css">
+
+      </head>
+
+      <body>
+        <script type="text/javascript" src="registration.js"></script>
+
+        <img alt="LOGO" src="" height="150" width="150">
+
+        <section>
+          <h1>Registration</h1>
+
+          <form name="registration" method="post" action="#">
+            <ul>
+              <li><input class="box" type="text" name="username" value="" placeholder="Username" required=""><p id="error_msg2"></p></li>
+              <li><input class="box" type="text" name="email" value="" placeholder="Email Address" required=""><p id="error_msg3"></p></li>
+              <li><input class="box" type="password" name="password" value="" placeholder="Password" required=""><p id="error_msg4"></p></li>
+              <li><input class="box" type="passwrod" name="confirm_pword" value="" placeholder="Confirm Password" required=""><p id="error_msg1"></p></li>
+              <li><input id="button_reg" type="submit" name="submitform" value="Register" onclick="submitForm(this.form)" required=""></li>
+          </ul>
+          </form>
+        </section>
+      </body>
+</html>

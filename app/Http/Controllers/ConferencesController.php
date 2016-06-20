@@ -50,6 +50,29 @@ class ConferencesController extends Controller
         
     }
     
+    public function get_conference_speakers($id){
+        if(!$cli = Conference::find($id)->presentations)
+            return response()->json([], 404);
+        
+        $cli = Conference::with([
+            'presentations'=> function ($q) use ($id){
+        $q->where('conference_id', $id); //constraint on child
+        },'presentations.speakers' => function ($q) {
+            //$q->where('presentation_id', ''); //constraint on grandchild
+        }
+        ])->find($id);
+         
+//        $cli = Conference::whereHas('presentations.speakers', function ($q) use ($id){
+//         $q->where('conference_id', 'like', $id);
+            
+//        })->get();
+        
+        //if(!$cli = Conference::find($id)->presentations()->speakers)
+        //    return response()->json([], 404);
+        
+        return response()->json($cli);
+    }
+    
     
     //GET SPONSORS FUNCTION
     public function get_sponsors($id){

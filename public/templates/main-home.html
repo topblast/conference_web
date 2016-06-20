@@ -1,18 +1,11 @@
-<!--<ion-view view-title="Home">
-        <ion-content class="padding">
-          
-			<div class="list list-inset">
-			  <label class="item item-input">
-			    <i class="icon ion-search placeholder-icon"></i>
-			    <input type="text" placeholder="Search">
-			  </label>
-			</div>-->
+
 
 
 		
                 
       <!--=========================NEW COMMENT FORM =============================================== -->
-    <form ng-submit="submitSpeaker()">  <!--ng-submit will disable the default form action and use our function -->
+<!--    <form ng-submit="submitSpeaker()">  
+        ng-submit will disable the default form action and use our function 
     
          NAME 
         <div class="form-group">
@@ -50,18 +43,19 @@
         <div class="form-group text-right">   
             <button type="submit" class="btn btn-primary btn-lg">Submit</button>
         </div>
-    </form>
+    </form>-->
                 
 
-      <p>Speakers go here</p>
+<!--      <p>Speakers go here</p>
         <div ng-repeat="speaker in speakers">
 	   {{speaker.speaker_id}} {{speaker.name}}
            <p><a href="#" ng-if="speaker" ng-click="deleteSpeaker(speaker.speaker_id)" class="text-muted">Delete</a></p>
-	</div>	
+	</div>	-->
 
     <p>Conferences go here</p>
         <div ng-repeat="conference in conferences">
             {{conference.conference_id}} {{conference.name}}
+<<<<<<< HEAD
 
             <p>presentation goes here</p>
                 <div ng-repeat="presentation in getConferenceID(conference.id)">
@@ -70,50 +64,16 @@
         </div>
 
                 
+=======
+            
+             <p>presentations</p>
+                <div ng-repeat="presentation in presentations" ng-init="selectPres(conference.conference_id)">
+                    {{presentation.presentation_id}} {{presentation.title}}
+                    </div>
+        </div>
+>>>>>>> origin/dev
 
-<!--<ion-list>
 
-	<div class="item item-divider">
-	    Group By Date
-	</div>
+               
 
-	  
-<ion-item>
-    
-    
-   
-</ion-item>
 
-<ion-item>
-    <a class="item item-thumbnail-left" href="#">
-      <img src="img/ionic.png">
-      <h2>Pretty Hate Machine</h2>
-      <p>Nine Inch Nails</p>
-    </a>
-</ion-item>-->
-
-<!--<div class="item item-divider">
-	    Group By Date
-	</div>
-
-	  
-
-    <a class="item item-thumbnail-left" href="#">
-      <img src="img/ionic.png">
-      <h2>Pretty Hate Machine</h2>
-      <p>Nine Inch Nails</p>
-    </a>
-    <a class="item item-thumbnail-left" href="#">
-      <img src="img/ionic.png">
-      <h2>Pretty Hate Machine</h2>
-      <p>Nine Inch Nails</p>
-      
-    </a>    -->
-
-    
-
-<!--</ion-list>
-						
-
-        </ion-content>
-      </ion-view>-->
