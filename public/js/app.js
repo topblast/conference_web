@@ -16,18 +16,9 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
   .state('main', {
     url: '/main',
     abstract: true,
+    templateUrl: '/templates/main.html'  
     
-    views:{
-        'header':{
-       templateUrl: 'templates/header.html'   
-      },
-       'container':{
-        templateUrl: '/templates/main.html'  
-       },
-      'footer':{
-       templateUrl: 'templates/footer.html'   
-      }
-    }
+    
   })
   
   
@@ -37,18 +28,27 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
   .state('main.home', {
     url: '/home',
     views: {
-      
+      'header': {
+          templateUrl: 'templates/header.html'
+      },
       'main-home': {
         templateUrl: 'templates/main-home.html',
         controller: 'HomeCtrl'
       },
-   
+      
+      'footer': {
+          templateUrl: 'templates/footer.html'
+      }
     }
   })
   
    .state('main.home-speakers', {
     url: '/:speakerID',
     views: {
+       'header': {
+          templateUrl: 'templates/header.html'
+      }, 
+        
       'main-home': {
         templateUrl: 'templates/test.html',
         controller: 'SelectCtrl'
@@ -93,7 +93,7 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
     })
 
 
-    .state('Register', {
+    .state('register', {
       url: '/register',
       templateUrl: 'templates/register.html',
       controller: 'RegCtrl',
@@ -107,6 +107,6 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
   
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('main/home');
+  $urlRouterProvider.otherwise('/login');
 
 });
