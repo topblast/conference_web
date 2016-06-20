@@ -62,12 +62,14 @@
     <p>Conferences go here</p>
         <div ng-repeat="conference in conferences">
             {{conference.conference_id}} {{conference.name}}
-        </div>
 
-                <p>presentations</p>
-                <div ng-repeat="presentation in conferences">
+            <p>presentation goes here</p>
+                <div ng-repeat="presentation in getConferenceID(conference.id)">
                     {{presentation.presentation_id}} {{presentation.title}}
                     </div>
+        </div>
+
+                
 
 <!--<ion-list>
 

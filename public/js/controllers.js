@@ -62,9 +62,9 @@ angular.module('starter.controllers', [])
 //           // alert('Reached here with ' + $scope.speakers);
         });
 
-    Web.Presentation.list()
+    Web.Conference.listPresentations()
         .success(function(data) {
-          $scope.presentations = data;
+          $scope.getConferenceID = data;
         });
 
 
