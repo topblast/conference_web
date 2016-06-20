@@ -69,10 +69,17 @@ angular.module('starter.controllers', [])
     });
     }
 
+<<<<<<< HEAD
+    Web.Conference.listPresentations()
+        .success(function(data) {
+          $scope.getConferenceID = data;
+        });
+=======
 //    Web.Presentation.list()
 //        .success(function(data) {
 //          $scope.presentations = data;
 //        });
+>>>>>>> origin/dev
 
 
 })

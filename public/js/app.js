@@ -55,6 +55,16 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
       }
     }
   })
+
+    .state('main.home-presentations', {
+    url: '/:presentationID',
+    views: {
+      'main-home': {
+        templateUrl: 'templates/test.html',
+        controller: 'SelectCtrl'
+      }
+    }
+  })
   
   .state('main.test', {
     url: '/test',

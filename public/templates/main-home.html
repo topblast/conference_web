@@ -55,12 +55,23 @@
     <p>Conferences go here</p>
         <div ng-repeat="conference in conferences">
             {{conference.conference_id}} {{conference.name}}
+<<<<<<< HEAD
+
+            <p>presentation goes here</p>
+                <div ng-repeat="presentation in getConferenceID(conference.id)">
+                    {{presentation.presentation_id}} {{presentation.title}}
+                    </div>
+        </div>
+
+                
+=======
             
              <p>presentations</p>
                 <div ng-repeat="presentation in presentations" ng-init="selectPres(conference.conference_id)">
                     {{presentation.presentation_id}} {{presentation.title}}
                     </div>
         </div>
+>>>>>>> origin/dev
 
 
                
