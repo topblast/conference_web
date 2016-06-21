@@ -8,6 +8,7 @@
 
     <link href="css/style.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="templates/registration.css" rel="stylesheet">
     
     <script src="{{URL::asset("public/vendor/angular/angular.min.js")}}"></script> 
     <script src="{{URL::asset("public/vendor/angular-ui-router/release/angular-ui-router.min.js")}}"></script> 
@@ -16,7 +17,14 @@
     <script src="js/app.js"></script>
     <script src="js/controllers.js"></script>
     <script src="js/services.js"></script>
+    
+    <!--jQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    
+    <!--Bootstrap-->
     <script src="js/bootstrap.min.js"></script>
+    
+    <script src="templates/registration.js"></script>
   </head>
   <body ng-app="starter">
 <!--     <div ui-view="header"></div>-->

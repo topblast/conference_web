@@ -105,7 +105,7 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
 
     .state('register', {
       url: '/register',
-      templateUrl: 'templates/register-example.html',
+      templateUrl: 'templates/registration.html',
       controller: 'RegCtrl',
     })
 

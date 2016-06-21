@@ -14,6 +14,7 @@ angular.module('starter.controllers', [])
                 Web.Speaker.list()
                 .success(function(data) {
                     $scope.speakers = data;
+                    $scope.loading = false;
                 });
             },
             function(response){
@@ -29,10 +30,13 @@ angular.module('starter.controllers', [])
 //                   })
 //       });
    }
+   
+   $scope.loading = true;
+   
     Web.Speaker.list()
         .success(function(data) {
             $scope.speakers = data;
-    //        $scope.loading = false;
+            $scope.loading = false;
            // alert('Reached here with ' + $scope.speakers);
         });
     
@@ -54,25 +58,31 @@ angular.module('starter.controllers', [])
 //    Web.Conference.list()
 //        .success(function(data) {
 //            $scope.speakers = data;
+    $scope.loading = true;
 
     Web.Conference.list()
         .success(function(data) {
             $scope.conferences = data;
-
+            $scope.loading = false;
 //           // alert('Reached here with ' + $scope.speakers);
         });
+   
+   $scope.loading = true;
    
     $scope.selectPres=function(id){
     Web.Conference.list_presentations(id)
             .success(function (data){
                 $scope.presentations = data;
+                $scope.loading = false;
     });
     }
 
-
+    $scope.loading = true;
+    
     Web.Conference.listPresentations()
         .success(function(data) {
           $scope.getConferenceID = data;
+          $scope.loading = false;
         });
 
 
@@ -110,13 +120,17 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller('loginCtrl', function($scope) {
-    $scope.submitAttendee=function()
+.controller('loginCtrl', function($scope, Web, $location) {
+     $scope.loginAttendee=function()
     {
+        alert('Function entered!');
          $scope.loading = true;
-       
-       Web.Attendee.register($scope.attendeeData, function (response){
-                alert('Attendee added!');
+         
+             
+       Web.Attendee.login($scope.attendeeData, function (response){
+                alert('Login Successful!');
+                $scope.loading = false;
+                 $location.path('/main/home');
                 
             },
             function(response){
@@ -126,7 +140,29 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller('RegCtrl', function($scope) {})
+.controller('RegCtrl', function($scope, Web, $location) {
+     $scope.submitAttendee=function()
+    {
+        
+         $scope.loading = true;
+         
+         if($scope.attendeeData.password != $scope.pword)
+         {
+             alert("passwords don't match!");
+             return;
+         }
+       
+       Web.Attendee.register($scope.attendeeData, function (response){
+                alert('Attendee added!');
+                 $location.path('/login');
+                
+            },
+            function(response){
+                alert('Something went wrong with the login process. Try again later!');
+            }
+        );
+    }
+})
 
 .controller('MainCtrl', function($scope) {})
 
