@@ -120,7 +120,7 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller('loginCtrl', function($scope, Web, $location) {
+.controller('LoginCtrl', function($scope, Web, $location) {
      $scope.loginAttendee=function()
     {
         alert('Function entered!');
@@ -164,9 +164,9 @@ angular.module('starter.controllers', [])
     }
 })
 
+.controller('ForgotPassCtrl', function($scope) {})
+
 .controller('MainCtrl', function($scope) {})
-
-
 
 .controller('AccountCtrl', function($scope) {
   $scope.settings = {

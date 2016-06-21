@@ -98,8 +98,8 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
 
     .state('login', {
       url: '/login',
-      templateUrl: 'templates/login-example.html',
-      controller: 'loginCtrl',
+      templateUrl: 'templates/login.html',
+      controller: 'LoginCtrl',
     })
 
 
@@ -109,6 +109,12 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
       controller: 'RegCtrl',
     })
 
+    
+    .state('forgotpassword', {
+        url:'/forgotpass',
+        templateUrl: 'templates/pass-reset.html',
+        controller: 'ForgotPassCtrl',
+    })
   
 
 

@@ -12,16 +12,16 @@
     <div id="logo-holder">
         <img src="..." alt="Logo" class="img-circle" height="150" width="150" id="Logo-Img">
     </div>
-    <form>
+    <form ng-submit="loginAttendee()">
         <div class="form-group">
             <div class="col-sm-12">
-            <input type="text" name="username" class="form-control" placeholder="Username" > 
+            <input type="email" name="email" class="form-control" placeholder="Email" ng-model="attendeeData.email"> 
             </div>
         </div>
         
         <div class="form-group">
             <div class="col-sm-12">
-                <input type="password" name="password" class="form-control" placeholder="Password">
+                <input type="password" name="password" class="form-control" placeholder="Password" ng-model="attendeeData.password">
         
             </div>
         </div>
@@ -30,15 +30,15 @@
             
             <div class="col-sm-12">
             
-            <input type="button"  class="btn btn-default" value="Log in"> 
+            <input type="submit"  class="btn btn-default" value="Log in"> 
             <br>
-                <a href="registration.html" class="btn btn-default" role="button">Sign up</a>
+                <a ui-sref="register" class="btn btn-default" role="button">Sign up</a>
             </div>
         </div>
     </form>
     
     <div class="col-sm-12">
-        <p>  Have you forgotten your username or password? <a href="pass-reset.html"> Click here</a> </p>
+        <p>  Have you forgotten your username or password? <a ui-sref="forgotpassword"> Click here</a> </p>
     
     </div>
     
