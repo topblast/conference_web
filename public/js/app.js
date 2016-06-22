@@ -57,7 +57,7 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
   })
 
     .state('main.home-presentations', {
-    url: '/:presentationID',
+    url: '/:conferenceID',
     views: {
       'main-home': {
         templateUrl: 'templates/test.html',
