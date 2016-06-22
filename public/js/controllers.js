@@ -164,7 +164,7 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller('ForgotPassCtrl', function($scope) {})
+.controller('ForgotPassCtrl', function($scope, Web, $location) {})
 
 .controller('MainCtrl', function($scope) {})
 

@@ -18,6 +18,19 @@ class AttendeesController extends Controller
     {
         //
     }
+    
+    /**
+     * Handle an authentication attempt.
+     *
+     * @return Response
+     */
+    public function authenticate()
+    {
+        if (Auth::attempt(['email' => $email, 'password' => $password], $remember)) {
+            // Authentication passed...
+            return redirect()->intended('dashboard');
+        }
+    }
 
     public function login(Request $request) {
         $result = $this->validate($request, [
@@ -46,10 +59,11 @@ class AttendeesController extends Controller
     }
 
     public function register(Request $request){
+        $regex = '/(?=.*[0-9])(?=.*[A-Z])(?=.*).{8,}/'; //at least 8 characters including at least 1 Uppercase and 1 digit required
         $result = $this->validate($request,[
             'name' => 'required',
             'email' => 'required|email',
-            'password' => 'required',
+            'password' => 'required|min:8|regex:' . $regex,
         ]);
 
         if (isset($result->error))
