@@ -24,13 +24,6 @@ angular.module('starter.services', [])
 				var self = this;
 				self.user = {};
 				return $http.get(API_LOCATION + 'speakers/');
-//				$http.get(API_LOCATION + 'speakers')
-//				.then (function(response){
-//					alert("The response is " + response);
-//                                        //return response;
-//					onSuccess=response;
-//                                        //return onSuccess;
-//				}, onError);
 			},
                         
                         select: function(id){
@@ -44,7 +37,7 @@ angular.module('starter.services', [])
 			create: function(speakerData, onSuccess, onError) {
 				var self = this;
 				self.user = {};
-                                speakerData.type = 'random';
+                                speakerData.type = 'keynote';
 				//return $http.post(API_LOCATION + 'speakers', speakerData);
                                 $http.post(API_LOCATION + 'speakers/register', speakerData)
                                     .then (function(response){
@@ -75,16 +68,18 @@ angular.module('starter.services', [])
 				var self = this;
 				self.user = {};
 				return $http.get(API_LOCATION + 'conferences/');
-//				.then (function(response){
-//					self.user = response;
-//					onSuccess(response);
-//				}, onError);
+
 			},
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/dev
 
 			listPresentations: function(id, onSuccess, onError) { 
 
 
 				return $http.get(API_LOCATION + 'conference/' + id + '/presentations');
+<<<<<<< HEAD
 			}
 
 					},
@@ -98,10 +93,19 @@ angular.module('starter.services', [])
 //					self.user = response;
 //					onSuccess(response);
 //				}, onError);
+=======
 			},
-			
-		},
-*/
+
+                        
+                     
+                        
+                        select: function(id){
+                            return $http.get(API_LOCATION + 'conferences/' + id);
+                        },
+
+>>>>>>> origin/dev
+			},
+
 
 		Sponsor: {
 			list: function(onSuccess, onError) {

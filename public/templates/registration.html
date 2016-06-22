@@ -1,4 +1,4 @@
-<DOCTYPE! html>
+<!--<DOCTYPE! html>
 <html>
 
 
@@ -10,22 +10,28 @@
       </head>
 
       <body>
-        <script type="text/javascript" src="registration.js"></script>
+       <script type="text/javascript" src="registration.js"></script>   -->
+        <div class="form-body"> 
+        
 
-        <img alt="LOGO" src="" height="150" width="150">
+            <img alt="LOGO" src="" height="150" width="150">
 
-        <section>
-          <h1>Registration</h1>
+            <section>
+            <h1>Registration</h1>
 
-          <form name="registration" method="post" action="#">
-            <ul>
-              <li><input class="box" type="text" name="username" value="" placeholder="Username" required=""><p id="error_msg2"></p></li>
-              <li><input class="box" type="text" name="email" value="" placeholder="Email Address" required=""><p id="error_msg3"></p></li>
-              <li><input class="box" type="password" name="password" value="" placeholder="Password" required=""><p id="error_msg4"></p></li>
-              <li><input class="box" type="passwrod" name="confirm_pword" value="" placeholder="Confirm Password" required=""><p id="error_msg1"></p></li>
-              <li><input id="button_reg" type="submit" name="submitform" value="Register" onclick="submitForm(this.form)" required=""></li>
-          </ul>
-          </form>
-        </section>
-      </body>
-</html>
+                <form name="registration" ng-submit="submitAttendee()">
+                    <ul>
+                          <li><input class="box" type="text" name="username" value="" placeholder="Username" required="" ng-model="attendeeData.name"><p id="error_msg2"></p></li>
+                          <li><input class="box" type="text" name="email" value="" placeholder="Email Address" required="" ng-model="attendeeData.email"><p id="error_msg3"></p></li>
+                          <li><input class="box" type="password" name="password" value="" placeholder="Password" required="" ng-model="attendeeData.password"><p id="error_msg4"></p></li>
+                          <li><input class="box" type="password" name="confirm_pword" value="" placeholder="Confirm Password" required="" ng-model="pword"><p id="error_msg1"></p></li>
+                          <li><input id="button_reg" type="submit" name="submitform" value="Register" required=""></li>
+                          <li><a class="button button block button-calm" ui-sref="login"> Back to Login </a></li>
+                    </ul>
+                </form>
+            
+            
+            </section>
+        </div>
+<!--      </body>
+</html>-->

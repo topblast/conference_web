@@ -1,4 +1,13 @@
-li{
+
+
+.form-body{
+  width: 500px;
+  margin: auto;
+  border: solid black;
+  margin-top: 50px;
+}
+
+.form-body li{
   list-style: none;
   padding-top: 10px;
 }
@@ -7,18 +16,11 @@ li{
   width: 400px;
 }
 
-body{
-  width: 500px;
-  margin: auto;
-  border: solid black;
-  margin-top: 50px;
-}
-
-h1{
+.form-body h1{
   text-align: center;
 }
 
-img{
+.form-body img{
   margin: auto;
   padding-left: 175px;
 }

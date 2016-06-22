@@ -49,10 +49,11 @@ class ClientsController extends Controller
 
     //REGISTER FUNCTION
     public function register(Request $request){
+         $regex = '/(?=.*[0-9])(?=.*[A-Z])(?=.*).{8,}/'; //at least 8 characters including at least 1 Uppercase and 1 digit required
         $result = $this->validate($request,[
             'contact_name' => 'required',
             'email' => 'required|email',
-            'password' => 'required',
+            'password' => 'required|min:8|regex' . $regex,
             'organisation' => 'required',
             'address1' => 'required',
             'city' => 'required',

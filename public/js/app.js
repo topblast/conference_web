@@ -99,16 +99,22 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
     .state('login', {
       url: '/login',
       templateUrl: 'templates/login.html',
-      controller: 'loginCtrl',
+      controller: 'LoginCtrl',
     })
 
 
     .state('register', {
       url: '/register',
-      templateUrl: 'templates/register.html',
+      templateUrl: 'templates/registration.html',
       controller: 'RegCtrl',
     })
 
+    
+    .state('forgotpassword', {
+        url:'/forgotpass',
+        templateUrl: 'templates/pass-reset.html',
+        controller: 'ForgotPassCtrl',
+    })
   
 
 
