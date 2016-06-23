@@ -4,36 +4,36 @@ angular.module('starter.services', [])
 	var API_LOCATION = 'http://localhost:8000/';
 	return {
 		user: {},
-                
+
                 Client: {
                         login: function(onSuccess, onError){
-                            
+
                         },
                         register: function(onSuccess, onError) {
-                            
+
                         },
-                        
+
                         delete: function(id){
-                            
+
                         },
                 },
-                
+
 		Speaker: {
-			
+
 			list: function(onSuccess, onError) {
 				var self = this;
 				self.user = {};
 				return $http.get(API_LOCATION + 'speakers/');
 			},
-                        
+
                         select: function(id){
                                 return $http.get(API_LOCATION + 'speakers/' + id);
                         },
-                        
+
                         selectConf: function(id){
                             return $http.get(API_LOCATION + 'speakers/' + id + '/conferences');
                         },
-                        
+
 			create: function(speakerData, onSuccess, onError) {
 				var self = this;
 				self.user = {};
@@ -43,14 +43,14 @@ angular.module('starter.services', [])
                                     .then (function(response){
 					self.user = response;
 					onSuccess(response);
-				}, function(response) 
+				}, function(response)
                                 {
                                     onError(response);
                                 });
-                                
-                                
+
+
                         },
-                        
+
                         delete: function(id, onSuccess, onError){
                                 $http.delete(API_LOCATION + 'speakers/' + id)
                                         .then(function (response){
@@ -62,7 +62,7 @@ angular.module('starter.services', [])
                                 });
                         },
 		},
-		
+
 		Conference: {
 			list: function(onSuccess, onError) {
 				var self = this;
@@ -70,20 +70,17 @@ angular.module('starter.services', [])
 				return $http.get(API_LOCATION + 'conferences/');
 
 			},
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/dev
 
-			listPresentations: function(id, onSuccess, onError) { 
+			listPresentations: function(id, onSuccess, onError) {
 
 
 				return $http.get(API_LOCATION + 'conference/' + id + '/presentations');
-<<<<<<< HEAD
+
 			}
 
 					},
-/*			
+/*
 		Presentation: {
 			list: function(onSuccess, onError, id) {
 				var self = this;
@@ -96,16 +93,16 @@ angular.module('starter.services', [])
 =======
 			},
 
-                        
-                     
-                        
+
+
+
                         select: function(id){
                             return $http.get(API_LOCATION + 'conferences/' + id);
                         },
 
 >>>>>>> origin/dev
 			},
-
+*/
 
 		Sponsor: {
 			list: function(onSuccess, onError) {
@@ -117,7 +114,7 @@ angular.module('starter.services', [])
 					onSuccess(response);
 				}, onError);
 			},
-			
+
 		},
 		Attendee:	{
 			login: function(credentials, onSuccess, onError) {
@@ -168,5 +165,3 @@ angular.module('starter.services', [])
 		}
 	}
 });
-			
-

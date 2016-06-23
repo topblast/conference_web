@@ -5,10 +5,10 @@ angular.module('starter.controllers', [])
    // alert('Reached here with ' + $scope.speakers);
     // loading variable to show the spinning loading icon
   //  $scope.loading = true;
-   
+
    $scope.submitSpeaker=function(){
        $scope.loading = true;
-       
+
        Web.Speaker.create($scope.speakerData, function (response){
                 alert('Speaker added!');
                 Web.Speaker.list()
@@ -22,7 +22,7 @@ angular.module('starter.controllers', [])
             }
         );
 //               .success(function(data) {
-//                   
+//
 //                   Web.Speaker.list()
 //                           .success(function(getData){
 //                               $scope.speakers = getData;
@@ -30,17 +30,17 @@ angular.module('starter.controllers', [])
 //                   })
 //       });
    }
-   
+
    $scope.loading = true;
-   
+
     Web.Speaker.list()
         .success(function(data) {
             $scope.speakers = data;
             $scope.loading = false;
            // alert('Reached here with ' + $scope.speakers);
         });
-    
-    
+
+
 
     $scope.deleteSpeaker=function(id){
     Web.Speaker.delete(id, function (response){
@@ -50,11 +50,11 @@ angular.module('starter.controllers', [])
                     $scope.speakers = data;
                 });
         }, function (response){
-        alert("Error!!!");    
+        alert("Error!!!");
         }
     );
     }
-    
+
 //    Web.Conference.list()
 //        .success(function(data) {
 //            $scope.speakers = data;
@@ -66,9 +66,9 @@ angular.module('starter.controllers', [])
             $scope.loading = false;
 //           // alert('Reached here with ' + $scope.speakers);
         });
-   
+
    $scope.loading = true;
-   
+
     $scope.selectPres=function(id){
     Web.Conference.list_presentations(id)
             .success(function (data){
@@ -77,10 +77,9 @@ angular.module('starter.controllers', [])
     });
     }
 
-<<<<<<< HEAD
-=======
+
     $scope.loading = true;
-    
+
     Web.Conference.listPresentations()
         .success(function(data) {
           $scope.getConferenceID = data;
@@ -88,27 +87,27 @@ angular.module('starter.controllers', [])
         });
 
 
->>>>>>> origin/dev
+
 
 })
 
 .controller('SelectCtrl', function($scope, $stateParams, Web){
     Web.Speaker.select($stateParams.speakerID).success(function(data){
         $scope.speaker = data;
-        
+
     })
 })
 
 .controller('ConfCtrl', function($scope, $stateParams, Web){
     Web.Conference.select($stateParams.conferenceID).success(function(data){
         $scope.conference = data;
-        
+
     });
-    
+
     Web.Speaker.selectConf($stateParams.conferenceID).success(function(data){
         $scope.speakers = data;
     });
-    
+
     $scope.deleteSpeaker=function(id){
     Web.Speaker.delete(id, function (response){
         alert("Speaker deleted");
@@ -117,7 +116,7 @@ angular.module('starter.controllers', [])
                 $scope.speakers = data;
             });
         }, function (response){
-        alert("Error!!!");    
+        alert("Error!!!");
         }
     );
     }
@@ -128,13 +127,13 @@ angular.module('starter.controllers', [])
     {
         alert('Function entered!');
          $scope.loading = true;
-         
-             
+
+
        Web.Attendee.login($scope.attendeeData, function (response){
                 alert('Login Successful!');
                 $scope.loading = false;
                  $location.path('/main/home');
-                
+
             },
             function(response){
                 alert('Something went wrong with the login process. Try again later!');
@@ -146,19 +145,19 @@ angular.module('starter.controllers', [])
 .controller('RegCtrl', function($scope, Web, $location) {
      $scope.submitAttendee=function()
     {
-        
+
          $scope.loading = true;
-         
+
          if($scope.attendeeData.password != $scope.pword)
          {
              alert("passwords don't match!");
              return;
          }
-       
+
        Web.Attendee.register($scope.attendeeData, function (response){
                 alert('Attendee added!');
                  $location.path('/login');
-                
+
             },
             function(response){
                 alert('Something went wrong with the login process. Try again later!');
