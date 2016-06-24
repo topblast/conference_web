@@ -91,12 +91,6 @@ angular.module('starter.controllers', [])
           $scope.loading = false;
         });
 
-
-<<<<<<< Updated upstream
-=======
-
-
->>>>>>> Stashed changes
 })
 
 .controller('SelectCtrl', function($scope, $stateParams, Web){
