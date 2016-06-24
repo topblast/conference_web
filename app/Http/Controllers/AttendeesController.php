@@ -7,6 +7,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
+
+use Illuminate\Http\Exception\HttpResponseException;
+use JWTAuth;
+use Tymon\JWTAuth\Exceptions\JWTException;
+use App\Http\Controllers\Controller;
+
+use Illuminate\Http\Response as IlluminateResponse;
+
+
 class AttendeesController extends Controller
 {
     /**
@@ -24,13 +33,13 @@ class AttendeesController extends Controller
      *
      * @return Response
      */
-    public function authenticate()
-    {
-        if (Auth::attempt(['email' => $email, 'password' => $password], $remember)) {
-            // Authentication passed...
-            return redirect()->intended('dashboard');
-        }
-    }
+//    public function authenticate()
+//    {
+//        if (Auth::attempt(['email' => $email, 'password' => $password], $remember)) {
+//            // Authentication passed...
+//            return redirect()->intended('dashboard');
+//        }
+//    }
 
     public function login(Request $request) {
         $result = $this->validate($request, [
@@ -49,14 +58,52 @@ class AttendeesController extends Controller
         }
 
         $credentials = $request->only('email', 'password');
-
+        //$credentials['password'] = Hash::make($credentials['password']);
+        
         if (!Auth::guard('attendee')->attempt($credentials))
         {
-            return response()->json(['error' => 'invalid_credentials'], 404);
+            return response()->json(['error' => 'invalid_credentials_guard'], 404);
         }
+        
+       
+        
+         try
+        {
+            // attempt to verify the credentials and create a token for the user
+            
+            if ( ! $token = JWTAuth::fromUser(Auth::guard('attendee')->user()))
+            {
 
-        return response()->json(Auth::guard('attendee')->user());
+                return response()->json(['error' => 'invalid_credentials'], 401);
+            }
+           
+            /* 
+              // attempt to verify the credentials and create a token for the user
+            if (! $token = JWTAuth::attempt($credentials)) {
+                return response()->json(['error' => 'invalid_credentials'], 401);
+            }
+              */
+             
+        }
+        catch (JWTException $e)
+        {
+            // something went wrong whilst attempting to encode the token
+            return response()->json(['error' => 'could_not_create_token'], 500);
+        }
+        
+        
+        // all good so return the token
+        return response()->json(compact('token'));
+        
+        
+//        if (!Auth::guard('attendee')->attempt($credentials))
+//        {
+//            return response()->json(['error' => 'invalid_credentials'], 404);
+//        }
+//
+//        return response()->json(Auth::guard('attendee')->user());
     }
+   
 
     public function register(Request $request){
         $regex = '/(?=.*[0-9])(?=.*[A-Z])(?=.*).{8,}/'; //at least 8 characters including at least 1 Uppercase and 1 digit required

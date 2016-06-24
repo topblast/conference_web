@@ -3,7 +3,23 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router'])
+angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router', 'ngStorage'])
+
+.run(function ($rootScope, $http, $location, $localStorage) {
+        // keep user logged in after page refresh
+        if ($localStorage.currentUser) {
+            $http.defaults.headers.common.Authorization = 'Bearer ' + $localStorage.currentUser.token;
+        }
+ 
+        // redirect to login page if not logged in and trying to access a restricted page
+        $rootScope.$on('$locationChangeStart', function (event, next, current) {
+            var publicPages = ['/login', '/forgotpass', '/register'];
+            var restrictedPage = publicPages.indexOf($location.path()) === -1;
+            if (restrictedPage && !$localStorage.currentUser) {
+                $location.path('/login');
+            }
+        });
+    })
 
 .config(function($stateProvider, $urlRouterProvider) {
 
@@ -126,3 +142,5 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
   $urlRouterProvider.otherwise('/login');
 
 });
+
+ 

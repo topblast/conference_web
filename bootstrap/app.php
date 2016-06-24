@@ -24,6 +24,16 @@ $app = new Laravel\Lumen\Application(
 );
 
 $app->withFacades();
+$app->configure('jwt');
+
+class_alias('Tymon\JWTAuth\Facades\JWTAuth', 'JWTAuth');
+/** This gives you finer control over the payloads you create if you require it.
+ *  Source: https://github.com/tymondesigns/jwt-auth/wiki/Installation
+ */
+class_alias('Tymon\JWTAuth\Facades\JWTFactory', 'JWTFactory'); // Optional
+
+$app->alias('cache', 'Illuminate\Cache\CacheManager');
+$app->alias('auth', 'Illuminate\Auth\AuthManager');
 
 $app->withEloquent();
 
@@ -64,7 +74,9 @@ $app->singleton(
 // ]);
 
 $app->routeMiddleware([
-    'auth' => App\Http\Middleware\Authenticate::class,
+    //'auth' => App\Http\Middleware\Authenticate::class,
+    'jwt.auth'    => Tymon\JWTAuth\Middleware\GetUserFromToken::class,
+    'jwt.refresh' => Tymon\JWTAuth\Middleware\RefreshToken::class,
 ]);
 
 /*
@@ -81,6 +93,7 @@ $app->routeMiddleware([
 // $app->register(App\Providers\AppServiceProvider::class);
 $app->register(App\Providers\AuthServiceProvider::class);
 $app->register(Arubacao\BasicAuth\BasicGuardServiceProvider::class);
+$app->register('Tymon\JWTAuth\Providers\JWTAuthServiceProvider');
 // $app->register(App\Providers\EventServiceProvider::class);
 
 /*

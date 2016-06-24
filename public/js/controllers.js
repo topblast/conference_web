@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('HomeCtrl', function($scope, Web) {
+.controller('HomeCtrl', function($scope, Web, $localStorage, $location, $http) {
     //$scope.speakers = Web.Speaker.list();
    // alert('Reached here with ' + $scope.speakers);
     // loading variable to show the spinning loading icon
@@ -85,7 +85,12 @@ angular.module('starter.controllers', [])
           $scope.loading = false;
         });
 
-
+    $scope.logout=function() {
+            // remove user from local storage and clear http auth header
+            delete $localStorage.currentUser;
+            $http.defaults.headers.common.Authorization = '';
+            $location.path('/login');
+        };
 
 })
 
@@ -120,16 +125,22 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller('LoginCtrl', function($scope, Web, $location) {
+.controller('LoginCtrl', function($scope, Web, $location, $http, $localStorage) {
      $scope.loginAttendee=function()
     {
-        alert('Function entered!');
+        
          $scope.loading = true;
          
              
        Web.Attendee.login($scope.attendeeData, function (response){
                 alert('Login Successful!');
                 $scope.loading = false;
+                // store username and token in local storage to keep user logged in between page refreshes
+                $localStorage.currentUser = { username: $scope.attendeeData.email, token: response.data.token };
+ 
+                // add jwt token to auth header for all requests made by the $http service
+                   
+                $http.defaults.headers.common.Authorization = 'Bearer ' + response.data.token;
                  $location.path('/main/home');
                 
             },
@@ -137,6 +148,8 @@ angular.module('starter.controllers', [])
                 alert('Something went wrong with the login process. Try again later!');
             }
         );
+
+       
     }
 })
 

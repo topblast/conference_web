@@ -66,7 +66,9 @@ angular.module('starter.services', [])
 		Conference: {
 			list: function(onSuccess, onError) {
 				var self = this;
-				self.user = {};
+                                //alert(self.user);
+				//self.user = {};
+                               // $http.post(API_LOCATION + 'auth/refresh-token');
 				return $http.get(API_LOCATION + 'conferences/');
 
 			},
@@ -107,6 +109,7 @@ angular.module('starter.services', [])
 				$http.post(API_LOCATION + 'attendees/login', credentials)
 				.then (function(response){
 					self.user = response;
+                                        //alert(self.user.data.token + ' ' + self.user.status);
 					onSuccess(response);
 				}, onError);
 			},
