@@ -7,33 +7,33 @@ angular.module('starter.services', [])
                 
                 Client: {
                         login: function(onSuccess, onError){
-                            
+
                         },
                         register: function(onSuccess, onError) {
-                            
+
                         },
-                        
+
                         delete: function(id){
-                            
+
                         },
                 },
-                
+
 		Speaker: {
-			
+
 			list: function(onSuccess, onError) {
 				var self = this;
 				self.user = {};
 				return $http.get(API_LOCATION + 'speakers/');
 			},
-                        
+
                         select: function(id){
                                 return $http.get(API_LOCATION + 'speakers/' + id);
                         },
-                        
+
                         selectConf: function(id){
                             return $http.get(API_LOCATION + 'speakers/' + id + '/conferences');
                         },
-                        
+
 			create: function(speakerData, onSuccess, onError) {
 				var self = this;
 				self.user = {};
@@ -43,14 +43,14 @@ angular.module('starter.services', [])
                                     .then (function(response){
 					self.user = response;
 					onSuccess(response);
-				}, function(response) 
+				}, function(response)
                                 {
                                     onError(response);
                                 });
-                                
-                                
+
+
                         },
-                        
+
                         delete: function(id, onSuccess, onError){
                                 $http.delete(API_LOCATION + 'speakers/' + id)
                                         .then(function (response){
@@ -62,7 +62,7 @@ angular.module('starter.services', [])
                                 });
                         },
 		},
-		
+
 		Conference: {
 			list: function(onSuccess, onError) {
 				var self = this;
@@ -72,7 +72,7 @@ angular.module('starter.services', [])
 			},
 
 
-			listPresentations: function(id, onSuccess, onError) { 
+			listPresentations: function(id, onSuccess, onError) {
 
 
 				return $http.get(API_LOCATION + 'conference/' + id + '/presentations');
@@ -80,7 +80,7 @@ angular.module('starter.services', [])
 			}
 
 					},
-/*			
+/*
 		Presentation: {
 			list: function(onSuccess, onError, id) {
 				var self = this;
@@ -93,9 +93,9 @@ angular.module('starter.services', [])
 =======
 			},
 
-                        
-                     
-                        
+
+
+
                         select: function(id){
                             return $http.get(API_LOCATION + 'conferences/' + id);
                         },
@@ -114,7 +114,7 @@ angular.module('starter.services', [])
 					onSuccess(response);
 				}, onError);
 			},
-			
+
 		},
 		Attendee:	{
 			login: function(credentials, onSuccess, onError) {
@@ -165,5 +165,3 @@ angular.module('starter.services', [])
 		}
 	}
 });
-			
-

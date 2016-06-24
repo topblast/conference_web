@@ -5,11 +5,24 @@
 </head>
 <body>
 <script src="../js/tabbedcon.js"></script>
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBD4TjGeZXKw7fWYR8X0UGfHAIvQqzUmF0"></script>
+<script>
+function initialize() {
+  var mapProp = {
+    center:new google.maps.LatLng(51.508742,-0.120850),
+    zoom:5,
+    mapTypeId:google.maps.MapTypeId.ROADMAP
+  };
+  var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+}
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
 
 <ul class="tab">
  <li><a href="#" class="tablinks active" onclick="openCity(event, 'London')">Schedule</a></li>
  <li><a href="#" class="tablinks" onclick="openCity(event, 'Paris')">Speakers</a></li>
- <li><a href="#" class="tablinks" onclick="openCity(event, 'Tokyo')">Map</a></li>
+ <li><a href="#" class="tablinks" onclick="openCity(event, 'Map')">Map</a></li>
+ <li><a href="#" class="tablinks" onclick="openCity(event, 'Tokyo')">About</a></li>
 </ul>
 
 <div id="London" class="tabcontent">
@@ -80,8 +93,24 @@
 </div>
 
 <div id="Tokyo" class="tabcontent">
- <h3>Tokyo</h3>
- <p>Tokyo is the capital of Japan.</p>
+ <div>
+   /*this div will contain the band of images seen in the template*/
+ </div>
+
+ <div>
+   <h3>
+     About the conference
+   </h3>
+   <p>
+     Stuff about the conference...
+   </p>
+
+ </div>
+ </div>
+
+ <div id="Map" class="tabcontent">
+  <div id="googleMap" style="width:500px;height:380px;"></div>
+   <p>sfsfewfsf</p>
 </div>
 </body>
 </html>
