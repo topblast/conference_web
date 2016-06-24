@@ -101,8 +101,13 @@ angular.module('starter.services', [])
                         },
 
 >>>>>>> origin/dev
+<<<<<<< Updated upstream
 			}, */
 
+=======
+			},
+*/
+>>>>>>> Stashed changes
 
 		Sponsor: {
 			list: function(onSuccess, onError) {

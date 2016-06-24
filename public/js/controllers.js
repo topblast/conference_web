@@ -81,12 +81,22 @@ angular.module('starter.controllers', [])
     $scope.loading = true;
     
     Web.Conference.listPresentations()
+/*        $scope.getConID = function (){
+
+        }
+
+*/
         .success(function(data) {
           $scope.getConferenceID = data;
           $scope.loading = false;
         });
 
 
+<<<<<<< Updated upstream
+=======
+
+
+>>>>>>> Stashed changes
 })
 
 .controller('SelectCtrl', function($scope, $stateParams, Web){
