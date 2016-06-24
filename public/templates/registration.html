@@ -1,37 +1,48 @@
-<!--<DOCTYPE! html>
-<html>
-
-
-      <head>
-		       <title>Conference</title>
-           <metachar="UTF-8">
-	         <link rel="stylesheet" type="text/css" href="registration.css">
-
-      </head>
-
-      <body>
-       <script type="text/javascript" src="registration.js"></script>   -->
-        <div class="form-body"> 
-        
-
-            <img alt="LOGO" src="" height="150" width="150">
-
-            <section>
-            <h1>Registration</h1>
-
-                <form name="registration" ng-submit="submitAttendee()">
-                    <ul>
-                          <li><input class="box" type="text" name="username" value="" placeholder="Username" required="" ng-model="attendeeData.name"><p id="error_msg2"></p></li>
-                          <li><input class="box" type="text" name="email" value="" placeholder="Email Address" required="" ng-model="attendeeData.email"><p id="error_msg3"></p></li>
-                          <li><input class="box" type="password" name="password" value="" placeholder="Password" required="" ng-model="attendeeData.password"><p id="error_msg4"></p></li>
-                          <li><input class="box" type="password" name="confirm_pword" value="" placeholder="Confirm Password" required="" ng-model="pword"><p id="error_msg1"></p></li>
-                          <li><input id="button_reg" type="submit" name="submitform" value="Register" required=""></li>
-                          <li><a class="button button block button-calm" ui-sref="login"> Back to Login </a></li>
-                    </ul>
-                </form>
-            
-            
-            </section>
-        </div>
-<!--      </body>
-</html>-->
+<!--<DOCTYPE! html><html><head><title>Conference</title><metachar="UTF-8"><link rel="stylesheet" type="text/css" href="registration.css"></head><body><script type="text/javascript" src="registration.js"></script>   -->
+<div class="container-fluid">
+    <style>
+.center {
+    text-align: center;
+    }
+</style>
+    <div class="center" id="logo-holder">
+        <a class="brand" style="margin: 0; float: none; text-align:center" href="#">
+            <img src="../img/Logo_TV_2015.png" height = "140" width ="133" align ="middle" />
+        </a>
+    </div>
+    <section>
+        <form ng-submit="submitAttendee()" class="form-horizontal">
+            <div class="form-group">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <input type="text" name="username" class="form-control" placeholder="Username" ng-model="attendeeData.name" required = "" ng-model = "attendeeData.name" id="error_msg2">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-6 col-sm-offset-3">
+                        <input type="email" name="email" class="form-control" placeholder="Email" required="" ng-model="attendeeData.email" id="error_msg3">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-6 col-sm-offset-3">
+                            <input type="password" name="password" class="form-control" placeholder="Password" required="" ng-model="attendeeData.password" id="error_msg4">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-6 col-sm-offset-3">
+                                <input type="password" name="confirm_pword" class="form-control" placeholder="Confirm Password" required="" ng-model="pword" id="error_msg1">
+                                </div>
+                            </div>
+                            <div>
+                                <div style="padding-left:6px;" class="col-sm-6 col-sm-offset-3">
+                                    <input id="button_reg" type="submit" name="submitform" required="" class="btn btn-default" value="Register">
+                                    </div>
+                                </div>
+                            </form>
+                           
+                            <div style="padding-left:6px;"  class="col-sm-6 col-sm-offset-3">
+                                <a ui-sref="login">Back to Login</a>
+                        </div>
+                    </div>
+                </section>
+           
+        <!--      </body></html>-->

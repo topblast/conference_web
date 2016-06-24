@@ -109,7 +109,7 @@ angular.module('starter.services', [])
 				$http.post(API_LOCATION + 'attendees/login', credentials)
 				.then (function(response){
 					self.user = response;
-                                        //alert(self.user.data.token + ' ' + self.user.status);
+                                        alert(self.user.data.token + ' ' + self.user.status);
 					onSuccess(response);
 				}, onError);
 			},

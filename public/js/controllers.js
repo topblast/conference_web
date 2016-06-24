@@ -22,7 +22,7 @@ angular.module('starter.controllers', [])
             }
         );
 //               .success(function(data) {
-//                   
+//
 //                   Web.Speaker.list()
 //                           .success(function(getData){
 //                               $scope.speakers = getData;
@@ -30,9 +30,9 @@ angular.module('starter.controllers', [])
 //                   })
 //       });
    }
-   
+
    $scope.loading = true;
-   
+
     Web.Speaker.list()
         .success(function(data) {
             $scope.speakers = data;
@@ -50,11 +50,11 @@ angular.module('starter.controllers', [])
                     $scope.speakers = data;
                 });
         }, function (response){
-        alert("Error!!!");    
+        alert("Error!!!");
         }
     );
     }
-    
+
 //    Web.Conference.list()
 //        .success(function(data) {
 //            $scope.speakers = data;
@@ -77,6 +77,7 @@ angular.module('starter.controllers', [])
     });
     }
 
+
     $scope.loading = true;
     
     Web.Conference.listPresentations()
@@ -85,6 +86,7 @@ angular.module('starter.controllers', [])
           $scope.loading = false;
         });
 
+
     $scope.logout=function() {
             // remove user from local storage and clear http auth header
             delete $localStorage.currentUser;
@@ -92,21 +94,22 @@ angular.module('starter.controllers', [])
             $location.path('/login');
         };
 
+
 })
 
 .controller('SelectCtrl', function($scope, $stateParams, Web){
     Web.Speaker.select($stateParams.speakerID).success(function(data){
         $scope.speaker = data;
-        
+
     })
 })
 
 .controller('ConfCtrl', function($scope, $stateParams, Web){
     Web.Conference.select($stateParams.conferenceID).success(function(data){
         $scope.conference = data;
-        
+
     });
-    
+
     Web.Speaker.selectConf($stateParams.conferenceID).success(function(data){
         $scope.speakers = data;
     });
@@ -119,7 +122,7 @@ angular.module('starter.controllers', [])
                 $scope.speakers = data;
             });
         }, function (response){
-        alert("Error!!!");    
+        alert("Error!!!");
         }
     );
     }
@@ -130,8 +133,8 @@ angular.module('starter.controllers', [])
     {
         
          $scope.loading = true;
-         
-             
+
+
        Web.Attendee.login($scope.attendeeData, function (response){
                 alert('Login Successful!');
                 $scope.loading = false;
@@ -142,7 +145,7 @@ angular.module('starter.controllers', [])
                    
                 $http.defaults.headers.common.Authorization = 'Bearer ' + response.data.token;
                  $location.path('/main/home');
-                
+
             },
             function(response){
                 alert('Something went wrong with the login process. Try again later!');
@@ -156,15 +159,15 @@ angular.module('starter.controllers', [])
 .controller('RegCtrl', function($scope, Web, $location) {
      $scope.submitAttendee=function()
     {
-        
+
          $scope.loading = true;
-         
+
          if($scope.attendeeData.password != $scope.pword)
          {
              alert("passwords don't match!");
              return;
          }
-       
+
        Web.Attendee.register($scope.attendeeData, function (response){
                 alert('Attendee added!');
                  $location.path('/login');
