@@ -81,11 +81,15 @@ angular.module('starter.controllers', [])
     $scope.loading = true;
     
     Web.Conference.listPresentations()
+/*        $scope.getConID = function (){
+
+        }
+
+*/
         .success(function(data) {
           $scope.getConferenceID = data;
           $scope.loading = false;
         });
-
 
 })
 

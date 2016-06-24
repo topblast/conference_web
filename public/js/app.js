@@ -84,7 +84,17 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
             controller: 'ConfCtrl'
         }
      }
-     
+/*
+     .state('main.presentations', {
+       
+       url: '/conference/:conferenceID/presentations',
+        views:{
+          'presentations':{
+            templateUrl: 'main-presentation.html'
+          }
+        }
+     })
+*/     
   })
   
   .state('test', {
