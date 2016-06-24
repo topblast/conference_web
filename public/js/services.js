@@ -100,11 +100,12 @@ angular.module('starter.services', [])
                             return $http.get(API_LOCATION + 'conferences/' + id);
                         },
 
->>>>>>> origin/dev
-<<<<<<< Updated upstream
-			}, */
+
+			}, 
+
 
 			},
+*/
 
 
 		Sponsor: {
