@@ -77,8 +77,7 @@ angular.module('starter.controllers', [])
     });
     }
 
-<<<<<<< HEAD
-=======
+
     $scope.loading = true;
     
     Web.Conference.listPresentations()
@@ -87,8 +86,6 @@ angular.module('starter.controllers', [])
           $scope.loading = false;
         });
 
-
->>>>>>> origin/dev
 
 })
 

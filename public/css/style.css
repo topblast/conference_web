@@ -8,15 +8,8 @@ main {
     
 }
 
-.btn-default {
-    width: 100%;
-}
 
-.form-group{
-    padding-top: 3%;
-    padding-bottom: 3%;
-}
 
 #logo-holder{
-    padding-left:35%;
-}
+    margin-bottom:30px;
+} 

@@ -70,16 +70,13 @@ angular.module('starter.services', [])
 				return $http.get(API_LOCATION + 'conferences/');
 
 			},
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/dev
 
 			listPresentations: function(id, onSuccess, onError) { 
 
 
 				return $http.get(API_LOCATION + 'conference/' + id + '/presentations');
-<<<<<<< HEAD
+
 			}
 
 					},
@@ -104,7 +101,7 @@ angular.module('starter.services', [])
                         },
 
 >>>>>>> origin/dev
-			},
+			}, */
 
 
 		Sponsor: {
