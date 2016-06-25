@@ -104,7 +104,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('HeaderCtrl', function($scope, Web, $location, $localStorage) {
+.controller('HeaderCtrl', function($scope, Web, $location, $localStorage, $http) {
     $scope.logout=function() {
             // remove user from local storage and clear http auth header
             Web.Attendee.logout();
