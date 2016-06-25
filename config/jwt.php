@@ -23,6 +23,58 @@ return [
 
     'secret' => env('JWT_SECRET', 'GtChVrWzKxWf7FOuEmO18182odgTBtx5'),
 
+    
+     /*
+    |--------------------------------------------------------------------------
+    | JWT Authentication Keys
+    |--------------------------------------------------------------------------
+    |
+    | What algorithm you are using, will determine whether your tokens are
+    | signed with a random string (defined in `JWT_SECRET`) or using the
+    | following public & private keys.
+    |
+    | Symmetric Algorithms:
+    | HS256, HS384 & HS512 will use `JWT_SECRET`.
+    |
+    | Asymmetric Algorithms:
+    | RS256, RS384 & RS512 / ES256, ES384 & ES512 will use the keys below.
+    |
+    */
+    'keys' => [
+        /*
+        |--------------------------------------------------------------------------
+        | Public Key
+        |--------------------------------------------------------------------------
+        |
+        | A path or resource to your public key.
+        |
+        | E.g. 'file://path/to/public/key'
+        |
+        */
+        'public' => env('JWT_PUBLIC_KEY'),
+        /*
+        |--------------------------------------------------------------------------
+        | Private Key
+        |--------------------------------------------------------------------------
+        |
+        | A path or resource to your private key.
+        |
+        | E.g. 'file://path/to/private/key'
+        |
+        */
+        'private' => env('JWT_PRIVATE_KEY'),
+        /*
+        |--------------------------------------------------------------------------
+        | Passphrase
+        |--------------------------------------------------------------------------
+        |
+        | The passphrase for your private key. Can be null if none set.
+        |
+        */
+        'passphrase' => env('JWT_PASSPHRASE'),
+    ],
+
+    
     /*
     |--------------------------------------------------------------------------
     | JWT time to live
@@ -85,7 +137,7 @@ return [
     |
     */
 
-    'identifier' => 'id',
+    'identifier' => 'attendee_id',
 
     /*
     |--------------------------------------------------------------------------
@@ -112,6 +164,22 @@ return [
 
     'blacklist_enabled' => env('JWT_BLACKLIST_ENABLED', true),
 
+    
+     /*
+    | -------------------------------------------------------------------------
+    | Blacklist Grace Period
+    | -------------------------------------------------------------------------
+    |
+    | When multiple concurrent requests are made with the same JWT,
+    | it is possible that some of them fail, due to token regeneration
+    | on every request.
+    |
+    | Set grace period in seconds to prevent parallel request failure.
+    |
+    */
+    'blacklist_grace_period' => env('JWT_BLACKLIST_GRACE_PERIOD', 0),
+    
+    
     /*
     |--------------------------------------------------------------------------
     | Providers
@@ -133,7 +201,7 @@ return [
         |
         */
 
-        'user' => 'Tymon\JWTAuth\Providers\User\EloquentUserAdapter',
+       // 'user' => 'Tymon\JWTAuth\Providers\User\EloquentUserAdapter',
 
         /*
         |--------------------------------------------------------------------------
@@ -144,7 +212,7 @@ return [
         |
         */
 
-        'jwt' => 'Tymon\JWTAuth\Providers\JWT\NamshiAdapter',
+     //   'jwt' => 'Tymon\JWTAuth\Providers\JWT\NamshiAdapter',
 
         /*
         |--------------------------------------------------------------------------
@@ -155,7 +223,7 @@ return [
         |
         */
 
-        'auth' => 'Tymon\JWTAuth\Providers\Auth\IlluminateAuthAdapter',
+     //   'auth' => 'Tymon\JWTAuth\Providers\Auth\IlluminateAuthAdapter',
 
         /*
         |--------------------------------------------------------------------------
@@ -166,7 +234,36 @@ return [
         |
         */
 
-        'storage' => 'Tymon\JWTAuth\Providers\Storage\IlluminateCacheAdapter',
+      //  'storage' => 'Tymon\JWTAuth\Providers\Storage\IlluminateCacheAdapter',
+
+        
+        /*
+        |--------------------------------------------------------------------------
+        | JWT Provider
+        |--------------------------------------------------------------------------
+        |
+        | Specify the provider that is used to create and decode the tokens.
+        |
+        */
+        'jwt' => Tymon\JWTAuth\Providers\JWT\Namshi::class,
+        /*
+        |--------------------------------------------------------------------------
+        | Authentication Provider
+        |--------------------------------------------------------------------------
+        |
+        | Specify the provider that is used to authenticate users.
+        |
+        */
+        'auth' => Tymon\JWTAuth\Providers\Auth\Illuminate::class,
+        /*
+        |--------------------------------------------------------------------------
+        | Storage Provider
+        |--------------------------------------------------------------------------
+        |
+        | Specify the provider that is used to store tokens in the blacklist.
+        |
+        */
+        'storage' => Tymon\JWTAuth\Providers\Storage\Illuminate::class,
 
     ],
 

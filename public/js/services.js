@@ -113,6 +113,12 @@ angular.module('starter.services', [])
 					onSuccess(response);
 				}, onError);
 			},
+                        logout: function(onSuccess, onError){
+                                $http.get(API_LOCATION + 'attendees/logout')
+                                        .then(function(response){
+                                            
+                                },onError);
+                        },
 			changepass:  function(id, onSuccess, onError) {
 				var self = this;
 				self.user = {};

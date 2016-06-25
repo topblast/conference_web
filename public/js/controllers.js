@@ -89,6 +89,7 @@ angular.module('starter.controllers', [])
 
     $scope.logout=function() {
             // remove user from local storage and clear http auth header
+            Web.Attendee.logout();
             delete $localStorage.currentUser;
             $http.defaults.headers.common.Authorization = '';
             $location.path('/login');

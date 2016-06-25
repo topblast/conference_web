@@ -4,14 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Lumen\Auth\Authorizable;
-use Illuminate\Auth\Authenticatable;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
+use Tymon\JWTAuth\Contracts\JWTSubject as JWTSubject;
+use Illuminate\Contracts\Auth\Authenticatable;
+//use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 
 
-class Attendee extends Model implements AuthenticatableContract,
-         AuthorizableContract{
-    use Authenticatable, Authorizable;
+class Attendee extends Model implements JWTSubject, Authenticatable{
+    use AuthenticatableTrait, Authorizable;
 
     protected $primaryKey = 'attendee_id';
 
@@ -42,5 +42,23 @@ class Attendee extends Model implements AuthenticatableContract,
     public function blacklist()
     {
         return $this->hasMany('App\Models\Blacklist');
+    }
+    
+     /**
+     * Get the identifier that will be stored in the subject claim of the JWT
+     *
+     * @return mixed
+     */
+    public function getJWTIdentifier(){
+        return $this->getKey();
+    }
+
+    /**
+     * Return a key value array, containing any custom claims to be added to the JWT
+     *
+     * @return array
+     */
+    public function getJWTCustomClaims(){
+        return [];
     }
 }

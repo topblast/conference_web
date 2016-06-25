@@ -7,14 +7,14 @@ use App\Models\Presentation;
 use App\Models\Sponsor;
 use App\Models\Blacklist;
 
-use Illuminate\Http\Request;
-
-use Illuminate\Http\Exception\HttpResponseException;
-use JWTAuth;
-use Tymon\JWTAuth\Exceptions\JWTException;
-use App\Http\Controllers\Controller;
-
-use Illuminate\Http\Response as IlluminateResponse;
+//use Illuminate\Http\Request;
+//
+//use Illuminate\Http\Exception\HttpResponseException;
+//use JWTAuth;
+//use Tymon\JWTAuth\Exceptions\JWTException;
+//use App\Http\Controllers\Controller;
+//
+//use Illuminate\Http\Response as IlluminateResponse;
 
 
 class ConferencesController extends Controller
@@ -28,7 +28,7 @@ class ConferencesController extends Controller
     {
         //
     }
-    
+ /*   
     // somewhere in your controller
 public function getAuthenticatedUser()
 {
@@ -55,10 +55,13 @@ public function getAuthenticatedUser()
     // the token is valid and we have found the user via the sub claim
     return response()->json(compact('user'));
 }
-
+*/
+    
     //GET FUNCTIONS
     public function get_all() {
         //Get all PUBLIC Conferences
+        
+        
         $all = Conference::all()->where('type', 'public');
         
         return response()->json($all);

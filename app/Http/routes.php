@@ -39,10 +39,10 @@ $app->put('/clients/{id}', 'ClientsController@edit_client');
 //$app->get('/conferences/', ['middleware' => 'auth', function () {
 //    //
 //}], 'ConferencesController@get_all');
-//$app->group(['middleware' => ['jwt.auth']], function($app) {
+//$app->group(['middleware' => ['auth:attendee']], function($app) {
     
-    $app->get('/conferences/', 'ConferencesController@get_all');
-    $app->get('/conferences/{id}/speakers/', 'ConferencesController@get_conference_speakers');
+    $app->get('/conferences/', ['middleware' => 'auth:attendee', 'uses' => 'ConferencesController@get_all']);
+    $app->get('/conferences/{id}/speakers/', ['middleware' => 'auth:attendee', 'uses' => 'ConferencesController@get_conference_speakers']);
 //});    
     
 $app->get('/conferences/{id}', 'ConferencesController@get_id');
@@ -106,6 +106,7 @@ $app->post('/attendees/{id}/changepassword', 'AttendeesController@change_passwor
 $app->get('/attendees', 'AttendeesController@get_all');
 $app->get('/attendees/{id}', 'AttendeesController@get_id');
 $app->get('/attendees/{id}/conferences', 'AttendeesController@get_conferences');
+$app->get('/attendees/logout', 'AttendeesController@logout');
 
 $app->delete('/attendees/{id}', 'AttendeesController@delete_attendee');
 
