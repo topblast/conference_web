@@ -87,6 +87,8 @@ angular.module('starter.services', [])
                             return $http.get(API_LOCATION + 'conferences/' + id);
                         },
 
+
+
 			},
 
 
