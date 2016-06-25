@@ -97,6 +97,7 @@ $app->post('/speakers/register', 'SpeakersController@create_new');
 
 //$app->group(['middleware' => 'jwt.refresh'], function($app) {
 $app->post('/attendees/login', 'AttendeesController@login');
+$app->post('/attendees/logout', 'AttendeesController@logout');
 //});
 $app->post('/auth/refresh-token', ['middleware' => 'jwt.refresh', function() {}]);
 
@@ -106,7 +107,7 @@ $app->post('/attendees/{id}/changepassword', 'AttendeesController@change_passwor
 $app->get('/attendees', 'AttendeesController@get_all');
 $app->get('/attendees/{id}', 'AttendeesController@get_id');
 $app->get('/attendees/{id}/conferences', 'AttendeesController@get_conferences');
-$app->get('/attendees/logout', 'AttendeesController@logout');
+
 
 $app->delete('/attendees/{id}', 'AttendeesController@delete_attendee');
 

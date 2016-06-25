@@ -45,7 +45,8 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
     url: '/home',
     views: {
       'header': {
-          templateUrl: 'templates/header.html'
+          templateUrl: 'templates/header.html',
+          controller: 'HeaderCtrl'
       },
       'main-home': {
         templateUrl: 'templates/main-home.html',
@@ -62,7 +63,8 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
     url: '/:speakerID',
     views: {
        'header': {
-          templateUrl: 'templates/header.html'
+          templateUrl: 'templates/header.html',
+          controller: 'HeaderCtrl'
       }, 
         
       'main-home': {
@@ -93,7 +95,8 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
       url: '/conference/:conferenceID',
        views:{
         'header':{
-            templateUrl: 'templates/conference-header.html'   
+            templateUrl: 'templates/conference-header.html',
+            controller: 'HeaderCtrl'
         },
         'main-home':{
             templateUrl: 'templates/select-conference.html',

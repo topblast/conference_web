@@ -115,11 +115,14 @@ angular.module('starter.services', [])
 					onSuccess(response);
 				}, onError);
 			},
-                        logout: function(onSuccess, onError){
-                                $http.get(API_LOCATION + 'attendees/logout')
+                        logout: function(){
+                                $http.post(API_LOCATION + 'attendees/logout')
                                         .then(function(response){
+                                            alert("Logout Successful!");
                                             
-                                },onError);
+                                }, function(response){
+                                    alert("Logout Unsuccessful!");
+                                });
                         },
 			changepass:  function(id, onSuccess, onError) {
 				var self = this;

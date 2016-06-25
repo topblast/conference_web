@@ -80,16 +80,16 @@ angular.module('starter.controllers', [])
 
     $scope.loading = true;
     
-    Web.Conference.listPresentations()
-/*        $scope.getConID = function (){
-
-        }
-
-*/
-        .success(function(data) {
-          $scope.getConferenceID = data;
-          $scope.loading = false;
-        });
+//    Web.Conference.listPresentations()
+///*        $scope.getConID = function (){
+//
+//        }
+//
+//*/
+//        .success(function(data) {
+//          $scope.getConferenceID = data;
+//          $scope.loading = false;
+//        });
 
 
     $scope.logout=function() {
@@ -102,6 +102,16 @@ angular.module('starter.controllers', [])
 
 
 
+})
+
+.controller('HeaderCtrl', function($scope, Web, $location, $localStorage) {
+    $scope.logout=function() {
+            // remove user from local storage and clear http auth header
+            Web.Attendee.logout();
+            delete $localStorage.currentUser;
+            $http.defaults.headers.common.Authorization = '';
+            $location.path('/login');
+        };
 })
 
 .controller('SelectCtrl', function($scope, $stateParams, Web){
