@@ -32,11 +32,23 @@ $app->put('/clients/{id}', 'ClientsController@edit_client');
 
 
 //conferences
-$app->get('/conferences/', 'ConferencesController@get_all');
+//$app->get('admin/profile', ['middleware' => 'auth', function () {
+//    //
+//}]);
+//
+//$app->get('/conferences/', ['middleware' => 'auth', function () {
+//    //
+//}], 'ConferencesController@get_all');
+//$app->group(['middleware' => ['auth:attendee']], function($app) {
+    
+    $app->get('/conferences/', ['middleware' => 'auth:attendee', 'uses' => 'ConferencesController@get_all']);
+    $app->get('/conferences/{id}/speakers/', ['middleware' => 'auth:attendee', 'uses' => 'ConferencesController@get_conference_speakers']);
+//});    
+    
 $app->get('/conferences/{id}', 'ConferencesController@get_id');
 
 $app->get('/conferences/{id}/presentations/', 'ConferencesController@get_presentations');
-$app->get('/conferences/{id}/speakers/', 'ConferencesController@get_conference_speakers');
+
 $app->get('/conferences/{id}/sponsors/', 'ConferencesController@get_sponsors');
 
 
@@ -75,16 +87,27 @@ Route::get('/speakers/', function() {
 $app->post('/speakers/register', 'SpeakersController@create_new');
 
 
-
+//$app->group(['prefix' => 'projects', 'middleware' => 'jwt.auth'], function($app) {
+//    $app->post('/', 'App\Http\Controllers\ProjectsController@store');
+//    $app->put('/{projectId}', 'App\Http\Controllers\ProjectsController@update');
+//    $app->delete('/{projectId}', 'App\Http\Controllers\ProjectsController@destroy');
+//});
 
 //attendees
+
+//$app->group(['middleware' => 'jwt.refresh'], function($app) {
 $app->post('/attendees/login', 'AttendeesController@login');
+$app->post('/attendees/logout', 'AttendeesController@logout');
+//});
+$app->post('/auth/refresh-token', ['middleware' => 'jwt.refresh', function() {}]);
+
 $app->post('/attendees/register', 'AttendeesController@register');
 $app->post('/attendees/{id}/changepassword', 'AttendeesController@change_password');
 
 $app->get('/attendees', 'AttendeesController@get_all');
 $app->get('/attendees/{id}', 'AttendeesController@get_id');
 $app->get('/attendees/{id}/conferences', 'AttendeesController@get_conferences');
+
 
 $app->delete('/attendees/{id}', 'AttendeesController@delete_attendee');
 

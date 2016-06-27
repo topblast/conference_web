@@ -14,7 +14,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         //
-        \Mlntn\Console\Commands\Serve::class
+        \Mlntn\Console\Commands\Serve::class,
+        'BasicIT\LumenVendorPublish\VendorPublishCommand'
     ];
 
     /**

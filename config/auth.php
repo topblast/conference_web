@@ -2,12 +2,13 @@
 
 return [
     'defaults' => [
-        'guard' => env('AUTH_GUARD', 'client'),
+        'guard' => env('AUTH_GUARD', 'attendee', 'client'),
     ],
     'guards' => [
         'api' => ['driver' => 'api'],
-        'client' => ['driver' => 'basic', 'provider' => 'client'],
-        'attendee' => ['driver' => 'basic', 'provider' => 'attendee']
+        'attendee' => ['driver' => 'jwt-auth', 'provider' => 'attendee'],
+        'client' => ['driver' => 'jwt-auth', 'provider' => 'client'],
+        
     ],
 
     'providers' => [

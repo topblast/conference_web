@@ -1,10 +1,11 @@
 angular.module('starter.controllers', [])
 
-.controller('HomeCtrl', function($scope, Web) {
+.controller('HomeCtrl', function($scope, Web, $localStorage, $location, $http) {
     //$scope.speakers = Web.Speaker.list();
    // alert('Reached here with ' + $scope.speakers);
     // loading variable to show the spinning loading icon
   //  $scope.loading = true;
+  var presentations= [];
    
    $scope.submitSpeaker=function(){
        $scope.loading = true;
@@ -65,32 +66,64 @@ angular.module('starter.controllers', [])
             $scope.conferences = data;
             $scope.loading = false;
 //           // alert('Reached here with ' + $scope.speakers);
+        angular.forEach(data, function(value, key){
+          //  console.log(Web.Conference.listPresentations(key));
+           presentations[key] = Web.Conference.listPresentations(key); 
+        });
         });
    
    $scope.loading = true;
    
-    $scope.selectPres=function(id){
-    Web.Conference.list_presentations(id)
-            .success(function (data){
-                $scope.presentations = data;
-                $scope.loading = false;
-    });
+   $scope.selectPres=function(id){
+       // console.log(Object.keys(presentations[id].$$state.value.data));
+        return presentations[id].$$state.value.data;
+//    Web.Conference.listPresentations(id)
+//            .success(function (data){
+//                $scope.loading = false;
+//                return data;
+//                
+//    }, function(){
+//        alert('Conference id: ' + id);
+//    });
     }
 
 
     $scope.loading = true;
     
-    Web.Conference.listPresentations()
-/*        $scope.getConID = function (){
+//    Web.Conference.listPresentations()
+///*        $scope.getConID = function (){
+//
+//        }
+//
+//*/
+//        .success(function(data) {
+//          $scope.getConferenceID = data;
+//          $scope.loading = false;
+//        });
 
-        }
 
-*/
-        .success(function(data) {
-          $scope.getConferenceID = data;
-          $scope.loading = false;
-        });
+    $scope.logout=function() {
+            // remove user from local storage and clear http auth header
+            Web.Attendee.logout();
+            delete $localStorage.currentUser;
+            $http.defaults.headers.common.Authorization = '';
+            $location.path('/login');
+        };
 
+
+
+})
+
+.controller('HeaderCtrl', function($scope, Web, $location, $localStorage, $http) {
+    $scope.userDetails = $localStorage.currentUser;
+            
+    $scope.logout=function() {
+            // remove user from local storage and clear http auth header
+            Web.Attendee.logout();
+            delete $localStorage.currentUser;
+            $http.defaults.headers.common.Authorization = '';
+            $location.path('/login');
+        };
 })
 
 .controller('SelectCtrl', function($scope, $stateParams, Web){
@@ -124,16 +157,24 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller('LoginCtrl', function($scope, Web, $location) {
+.controller('LoginCtrl', function($scope, Web, $location, $http, $localStorage) {
      $scope.loginAttendee=function()
     {
-        alert('Function entered!');
+        
          $scope.loading = true;
 
 
        Web.Attendee.login($scope.attendeeData, function (response){
                 alert('Login Successful!');
                 $scope.loading = false;
+                //console.log(response.data);
+                //console.log(response.data.user);
+                // store username and token in local storage to keep user logged in between page refreshes
+                $localStorage.currentUser = { username: response.data.user.name, token: response.data.token };
+                 
+                // add jwt token to auth header for all requests made by the $http service
+                   
+                $http.defaults.headers.common.Authorization = 'Bearer ' + response.data.token;
                  $location.path('/main/home');
 
             },
@@ -141,6 +182,8 @@ angular.module('starter.controllers', [])
                 alert('Something went wrong with the login process. Try again later!');
             }
         );
+
+       
     }
 })
 
