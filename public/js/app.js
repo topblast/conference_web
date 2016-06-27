@@ -31,6 +31,9 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
       'header': {
           templateUrl: 'templates/header.html'
       },
+      'side-menu': {
+        templateUrl: 'templates/side-menu.html'
+      },
       'main-home': {
         templateUrl: 'templates/main-home.html',
         controller: 'HomeCtrl'
