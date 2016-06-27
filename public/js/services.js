@@ -87,14 +87,7 @@ angular.module('starter.services', [])
                         },
 
 
-<<<<<<< HEAD
 			}, 
-
-=======
->>>>>>> origin/dev
-
-			},
-*/
 
 
 		Sponsor: {
