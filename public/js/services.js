@@ -74,10 +74,9 @@ angular.module('starter.services', [])
 			},
 
 
-			listPresentations: function(id, onSuccess, onError) { 
+			listPresentations: function(id) { 
 
-
-				return $http.get(API_LOCATION + 'conference/' + id + '/presentations');
+				return $http.get(API_LOCATION + 'conferences/' + id + '/presentations/');
 			},
 
                         
@@ -111,7 +110,7 @@ angular.module('starter.services', [])
 				$http.post(API_LOCATION + 'attendees/login', credentials)
 				.then (function(response){
 					self.user = response;
-                                        alert(self.user.data.token + ' ' + self.user.status);
+                                        //alert(self.user.data.token + ' ' + self.user.status);
 					onSuccess(response);
 				}, onError);
 			},

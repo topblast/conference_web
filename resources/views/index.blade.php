@@ -8,6 +8,7 @@
 
     <link href="css/style.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/tabbedcon.css">
     <link href="templates/registration.css" rel="stylesheet">
     
     <script src="{{URL::asset("public/vendor/angular/angular.min.js")}}"></script> 
@@ -18,6 +19,7 @@
     <script src="js/app.js"></script>
     <script src="js/controllers.js"></script>
     <script src="js/services.js"></script>
+    <script src="js/tabbedcon.js"></script>
     
     <!--jQuery-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

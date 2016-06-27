@@ -13,10 +13,17 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
  
         // redirect to login page if not logged in and trying to access a restricted page
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
-            var publicPages = ['/login', '/forgotpass', '/register'];
-            var restrictedPage = publicPages.indexOf($location.path()) === -1;
+            var publicPages = ['/login', '/forgotpass', '/register']; //Pages that should be accessible when not logged in
+            var restrictedPage = publicPages.indexOf($location.path()) === -1; //Pages that require login access
+            
+            //If a restricted page is accessed without login credentials
             if (restrictedPage && !$localStorage.currentUser) {
-                $location.path('/login');
+                $location.path('/login'); //redirect to the login page
+            }
+            
+            //If a public page is accessed with login credentials
+            if(publicPages && $localStorage.currentUser){
+                $location.path('/main/home'); //redirect to the main homepage
             }
         });
     })
@@ -144,15 +151,13 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
         templateUrl: 'templates/pass-reset.html',
         controller: 'ForgotPassCtrl',
     })
-  
-
 
 
 
   
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/login');
+  $urlRouterProvider.otherwise('/main/home');
 
 });
 
