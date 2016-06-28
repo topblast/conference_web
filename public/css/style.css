@@ -127,11 +127,10 @@ nav li:last-child a { border-bottom: none; }
         opacity: 0.7;
         -webkit-transition: opacity 0.3s;
         transition: opacity 0.3s;
+
+        height: 100%;  /* Full height */
+        position: fixed;  /* Make it stick, even on scroll */
+        overflow: auto; /* Enable scrolling if the sidenav has too much content */
 }
-=======
-    height: 100%;  /* Full height 
-    position: fixed;  /* Make it stick, even on scroll 
-    overflow: auto; /* Enable scrolling if the sidenav has too much content 
-}
-*/
->>>>>>> origin/dev
+
+
