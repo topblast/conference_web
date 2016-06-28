@@ -91,8 +91,7 @@ angular.module('starter.services', [])
                         }
 
 
-
-			},
+			}, 
 
 
 		Sponsor: {

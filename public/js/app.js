@@ -55,6 +55,9 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
           templateUrl: 'templates/header.html',
           controller: 'HeaderCtrl'
       },
+      'side-menu': {
+        templateUrl: 'templates/side-menu.html'
+      },
       'main-home': {
         templateUrl: 'templates/main-home.html',
         controller: 'HomeCtrl'
