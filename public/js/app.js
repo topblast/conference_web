@@ -156,6 +156,13 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
     })
 
 
+.state('changepassword', {
+  url: '/changepass',
+  templateUrl: 'templates/change-password.html',
+  //controller: ChangePassCtrl.  needs to be created
+})
+
+
 
   
 
