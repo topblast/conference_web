@@ -73,7 +73,6 @@ angular.module('starter.services', [])
 
 			},
 
-
                         
                         select: function(id){
                             return $http.get(API_LOCATION + 'conferences/' + id);
