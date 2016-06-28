@@ -41,6 +41,7 @@ for full fixed side menu
     padding: 0;
     width: 25%;
     background-color: #f1f1f1;
+<<<<<<< HEAD
     height: 100%; /* Full height 
     position: fixed; /* Make it stick, even on scroll 
     overflow: auto; /* Enable scrolling if the sidenav has too much content 
@@ -127,3 +128,10 @@ nav li:last-child a { border-bottom: none; }
         -webkit-transition: opacity 0.3s;
         transition: opacity 0.3s;
 }
+=======
+    height: 100%;  /* Full height 
+    position: fixed;  /* Make it stick, even on scroll 
+    overflow: auto; /* Enable scrolling if the sidenav has too much content 
+}
+*/
+>>>>>>> origin/dev

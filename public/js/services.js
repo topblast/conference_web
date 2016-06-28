@@ -85,6 +85,10 @@ angular.module('starter.services', [])
                         select: function(id){
                             return $http.get(API_LOCATION + 'conferences/' + id);
                         },
+                        
+                        selectPresentation: function(id){
+                            return $http.get(API_LOCATION + 'conferences/' + id + '/presentation/');
+                        }
 
 
 			}, 
@@ -116,10 +120,10 @@ angular.module('starter.services', [])
                         logout: function(){
                                 $http.post(API_LOCATION + 'attendees/logout')
                                         .then(function(response){
-                                            alert("Logout Successful!");
+                                           // alert("Logout Successful!");
                                             
                                 }, function(response){
-                                    alert("Logout Unsuccessful!");
+                                    //alert("Logout Unsuccessful!");
                                 });
                         },
 			changepass:  function(id, onSuccess, onError) {

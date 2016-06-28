@@ -48,6 +48,7 @@ $app->put('/clients/{id}', 'ClientsController@edit_client');
 $app->get('/conferences/{id}', 'ConferencesController@get_id');
 
 $app->get('/conferences/{id}/presentations/', 'ConferencesController@get_presentations');
+$app->get('/conferences/{id}/presentation/', 'ConferencesController@select_presentation');
 
 $app->get('/conferences/{id}/sponsors/', 'ConferencesController@get_sponsors');
 

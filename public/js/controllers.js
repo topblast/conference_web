@@ -6,6 +6,7 @@ angular.module('starter.controllers', [])
     // loading variable to show the spinning loading icon
   //  $scope.loading = true;
   var presentations= [];
+  $scope.presentation = [];
    
    $scope.submitSpeaker=function(){
        $scope.loading = true;
@@ -30,7 +31,7 @@ angular.module('starter.controllers', [])
 //                               $scope.loading = false;
 //                   })
 //       });
-   }
+   };
 
    $scope.loading = true;
 
@@ -54,7 +55,7 @@ angular.module('starter.controllers', [])
         alert("Error!!!");
         }
     );
-    }
+    };
 
 //    Web.Conference.list()
 //        .success(function(data) {
@@ -67,28 +68,50 @@ angular.module('starter.controllers', [])
             $scope.loading = false;
 //           // alert('Reached here with ' + $scope.speakers);
         angular.forEach(data, function(value, key){
-          //  console.log(Web.Conference.listPresentations(key));
-           presentations[key] = Web.Conference.listPresentations(key); 
+          console.log(Web.Conference.selectPresentation(value.conference_id).success(function(data){
+        return data;
+
+    }));
+//          if(angular.isUndefined(Web.Conference.selectPresentation(value.conference_id).$$state.value))
+//          {
+//            //console.log(value.conference_id);
+//            $scope.presentation[value.conference_id] = '';
+//          }
+//          
+//          else
+//          {
+ //           console.log(Web.Conference.selectPresentation(value.conference_id).$$state.value);
+            Web.Conference.selectPresentation(value.conference_id).success(function(data){
+            $scope.presentation[value.conference_id] = data;
+
+    });
+  //        }
+          
+           //console.log('This is 77: ' +  $scope.presentation[77]);
         });
         });
    
    $scope.loading = true;
    
+  
+   
    $scope.selectPres=function(id){
-       // console.log(Object.keys(presentations[id].$$state.value.data));
-        return presentations[id].$$state.value.data;
+     $scope.loading = false;
+     console.log(presentations[id].$$state.value.data);
+     
+     return presentations[id].$$state.value.data;
 //    Web.Conference.listPresentations(id)
 //            .success(function (data){
-//                $scope.loading = false;
+
 //                return data;
 //                
 //    }, function(){
 //        alert('Conference id: ' + id);
 //    });
-    }
+    };
 
 
-    $scope.loading = true;
+   // $scope.loading = true;
     
 //    Web.Conference.listPresentations()
 ///*        $scope.getConID = function (){
@@ -130,7 +153,7 @@ angular.module('starter.controllers', [])
     Web.Speaker.select($stateParams.speakerID).success(function(data){
         $scope.speaker = data;
 
-    })
+    });
 })
 
 .controller('ConfCtrl', function($scope, $stateParams, Web){
@@ -154,7 +177,7 @@ angular.module('starter.controllers', [])
         alert("Error!!!");
         }
     );
-    }
+    };
 })
 
 .controller('LoginCtrl', function($scope, Web, $location, $http, $localStorage) {
@@ -184,7 +207,7 @@ angular.module('starter.controllers', [])
         );
 
        
-    }
+    };
 })
 
 .controller('RegCtrl', function($scope, Web, $location) {
@@ -208,7 +231,7 @@ angular.module('starter.controllers', [])
                 alert('Something went wrong with the login process. Try again later!');
             }
         );
-    }
+    };
 })
 
 .controller('ForgotPassCtrl', function($scope, Web, $location) {})

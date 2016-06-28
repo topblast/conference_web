@@ -87,6 +87,13 @@ public function getAuthenticatedUser()
         
     }
     
+    public function select_presentation($id){
+        if(!$cli = Conference::find($id)->presentations->first())
+            return response()->json([], 404);
+        
+        return response()->json($cli);
+    }
+    
     public function get_conference_speakers($id){
         if(!$cli = Conference::find($id)->presentations)
             return response()->json([], 404);
