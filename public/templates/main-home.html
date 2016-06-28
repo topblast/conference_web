@@ -163,16 +163,22 @@ google.maps.event.addDomListener(window, 'load', initialize);
    <p>sfsfewfsf</p>
 </div>-->
 
-<div ng-hide="loading" ng-repeat="conference in conferences">
+<div style="width:75%; margin: auto;" ng-hide="loading" ng-repeat="conference in conferences">
          <h3>Conference {{conference.conference_id}}: {{conference.name}}</h3>   
             
    
-            <div ng-repeat="presentation in selectPres(conference.conference_id)">
+<!--            <div ng-repeat="presentation in selectPres(conference.conference_id)">-->
       
-                <p> <strong>{{presentation.presentation_id}}: {{presentation.title}} </strong> </p> 
-                <p> {{presentation.abstract}} </p>
-                    </div>
-          <a href="#"> See more...</a>
+                <p ng-class="{empty: !(presentation[conference.conference_id])}"> <strong>{{presentation[conference.conference_id].presentation_id || '?'}}: {{presentation[conference.conference_id].title || '?'}} </strong> </p> 
+                
+                <div class="item-expand inactive" ng-class="{empty: !(presentation[conference.conference_id])}">
+                    {{presentation[conference.conference_id].abstract || '?'}} 
+                </div>
+                <a ui-sref="main.conference({conferenceID: {{conference.conference_id}}})">See More</a>
+                
+<!--                <p> {{presentation.abstract}} </p>-->
+<!--                    </div>-->
+<!--          <a href="#"> See more...</a>-->
         </div>
         
 <!--    <p>Conferences go here</p>-->

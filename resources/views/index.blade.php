@@ -9,11 +9,16 @@
     <link href="css/style.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/tabbedcon.css">
+    <link rel="stylesheet" href="css/texthide.css">
     <link href="templates/registration.css" rel="stylesheet">
+    
+    
     
     <script src="{{URL::asset("public/vendor/angular/angular.min.js")}}"></script> 
     <script src="{{URL::asset("public/vendor/angular-ui-router/release/angular-ui-router.min.js")}}"></script> 
     <script src="js/ngStorage.min.js"></script>
+    <script src="{{URL::asset("vendor/angular-sanitize/angular-sanitize.min.js")}}"></script>
+    <script src="{{URL::asset("vendor/angular-read-more/dist/readmore.js")}}"></script>
  
     <!-- your app's js -->
     <script src="js/app.js"></script>
