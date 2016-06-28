@@ -100,29 +100,10 @@ angular.module('starter.controllers', [])
      console.log(presentations[id].$$state.value.data);
      
      return presentations[id].$$state.value.data;
-//    Web.Conference.listPresentations(id)
-//            .success(function (data){
-
-//                return data;
-//                
-//    }, function(){
-//        alert('Conference id: ' + id);
-//    });
     };
 
 
-   // $scope.loading = true;
-    
-//    Web.Conference.listPresentations()
-///*        $scope.getConID = function (){
-//
-//        }
-//
-//*/
-//        .success(function(data) {
-//          $scope.getConferenceID = data;
-//          $scope.loading = false;
-//        });
+
 
 
     $scope.logout=function() {
