@@ -3,7 +3,30 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router'])
+angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router', 'ngStorage', 'angularUtils.directives.dirPagination'])
+
+.run(function ($rootScope, $http, $location, $localStorage) {
+        // keep user logged in after page refresh
+        if ($localStorage.currentUser) {
+            $http.defaults.headers.common.Authorization = 'Bearer ' + $localStorage.currentUser.token;
+        }
+ 
+        // redirect to login page if not logged in and trying to access a restricted page
+        $rootScope.$on('$locationChangeStart', function (event, next, current) {
+            var publicPages = ['/login', '/forgotpass', '/register']; //Pages that should be accessible when not logged in
+            var restrictedPage = publicPages.indexOf($location.path()) === -1; //Pages that require login access
+            
+            //If a restricted page is accessed without login credentials
+            if (restrictedPage && !$localStorage.currentUser) {
+                $location.path('/login'); //redirect to the login page
+            }
+            
+            //If a public page is accessed with login credentials
+            if(publicPages && $localStorage.currentUser){
+                $location.path('/main/home'); //redirect to the main homepage
+            }
+        });
+    })
 
 .config(function($stateProvider, $urlRouterProvider) {
 
@@ -29,7 +52,12 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
     url: '/home',
     views: {
       'header': {
-          templateUrl: 'templates/header.html'
+          templateUrl: 'templates/header.html',
+          controller: 'HeaderCtrl'
+      },
+      'side-menu': {
+        templateUrl: 'templates/side-menu.html',
+        controller: 'HeaderCtrl'
       },
       'main-home': {
         templateUrl: 'templates/main-home.html',
@@ -46,7 +74,8 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
     url: '/:speakerID',
     views: {
        'header': {
-          templateUrl: 'templates/header.html'
+          templateUrl: 'templates/header.html',
+          controller: 'HeaderCtrl'
       }, 
         
       'main-home': {
@@ -77,14 +106,25 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
       url: '/conference/:conferenceID',
        views:{
         'header':{
-            templateUrl: 'templates/conference-header.html'   
+            templateUrl: 'templates/conference-header.html',
+            controller: 'HeaderCtrl'
         },
         'main-home':{
             templateUrl: 'templates/select-conference.html',
             controller: 'ConfCtrl'
         }
      }
-     
+/*
+     .state('main.presentations', {
+       
+       url: '/conference/:conferenceID/presentations',
+        views:{
+          'presentations':{
+            templateUrl: 'main-presentation.html'
+          }
+        }
+     })
+*/     
   })
   
   .state('test', {
@@ -115,14 +155,21 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
         templateUrl: 'templates/pass-reset.html',
         controller: 'ForgotPassCtrl',
     })
-  
 
+
+.state('changepassword', {
+  url: '/changepass',
+  templateUrl: 'templates/change-password.html',
+  //controller: ChangePassCtrl.  needs to be created
+})
 
 
 
   
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/login');
+  $urlRouterProvider.otherwise('/main/home');
 
 });
+
+ 

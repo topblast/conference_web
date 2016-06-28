@@ -10,7 +10,11 @@
         "vlucas/phpdotenv": "~2.2",
         "mlntn/lumen-artisan-serve": "~1",
         "doctrine/dbal": "^2.5",
-        "arubacao/http-basic-auth-guard": "^1.0"
+        "arubacao/http-basic-auth-guard": "^1.0",
+        "tymon/jwt-auth": "1.0.0-alpha1",
+        "basicit/lumen-vendor-publish": "^1.0",
+        "illuminate/routing": "^5.2",
+        "irazasyed/jwt-auth-guard": "^1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -19,7 +23,11 @@
     "autoload": {
         "psr-4": {
             "App\\": "app/"
-        }
+        },
+		
+		"files": [
+      "app/Support/helpers.php"
+		]
     },
     "autoload-dev": {
         "classmap": [

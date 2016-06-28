@@ -1,4 +1,22 @@
 {
-    "name": "angular",
-    
+  "name": "angular",
+  "homepage": "https://github.com/topblast/conference_web",
+  "authors": [
+    "BryanRam <bryan_ram@hotmail.com>"
+  ],
+  "description": "bower file for conference",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/vendor/",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "angular-read-more": "^1.0.5"
+  }
 }
