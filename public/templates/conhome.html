@@ -72,7 +72,7 @@
   </div>
 
   <div id="Paris" class="tabcontent">
-  <!--  <ul style="list-style-type:none">
+    <ul style="list-style-type:none">
     <li>
       <h3>Speaker 1</h3>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
@@ -163,25 +163,7 @@
 
       <a href="#"> See more...</a>
   </li>
-</ul> -->
-
-<div style="width:75%; margin: auto;" ng-hide="loading" dir-paginate="conference in conferences | itemsPerPage: 10">
-         <h3>Conference {{conference.conference_id}}: {{conference.name}}</h3>
-
-
-<!--            <div ng-repeat="presentation in selectPres(conference.conference_id)">-->
-
-                <p ng-class="{empty: !(presentation[conference.conference_id])}"> <strong>{{presentation[conference.conference_id].presentation_id || '?'}}: {{presentation[conference.conference_id].title || '?'}} </strong> </p>
-
-                <div class="item-expand inactive" ng-class="{empty: !(presentation[conference.conference_id])}">
-                    {{presentation[conference.conference_id].abstract || '?'}}
-                </div>
-                <a ui-sref="main.conference({conferenceID: {{conference.conference_id}}})">See More</a>
-
-<!--                <p> {{presentation.abstract}} </p>-->
-<!--                    </div>-->
-<!--          <a href="#"> See more...</a>-->
-        </div>
+</ul>*/
 </div>
 </body>
 </html>
