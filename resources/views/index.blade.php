@@ -8,7 +8,14 @@
 
     <link href="css/style.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="templates/registration.css" rel="stylesheet">
+    <!-- <link href="templates/registration.css" rel="stylesheet"> -->
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+        
+        <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/form-elements.css">
+        <link rel="stylesheet" href="css/styles.css">
+		
+
     
     <script src="{{URL::asset("public/vendor/angular/angular.min.js")}}"></script> 
     <script src="{{URL::asset("public/vendor/angular-ui-router/release/angular-ui-router.min.js")}}"></script> 
@@ -25,6 +32,12 @@
     <script src="js/bootstrap.min.js"></script>
     
     <script src="templates/registration.js"></script>
+	
+	 <!-- Javascript -->
+        
+        <script src="js/jquery.backstretch.min.js"></script>
+        <script src="js/scripts.js"></script>
+	
   </head>
   <body ng-app="starter">
 <!--     <div ui-view="header"></div>-->

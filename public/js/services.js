@@ -102,9 +102,9 @@ angular.module('starter.services', [])
 
 >>>>>>> origin/dev
 <<<<<<< Updated upstream
-			}, */
+			}, 
 
-			},
+			},*/
 
 
 		Sponsor: {
