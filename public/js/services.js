@@ -7,33 +7,33 @@ angular.module('starter.services', [])
                 
                 Client: {
                         login: function(onSuccess, onError){
-
+                            
                         },
                         register: function(onSuccess, onError) {
-
+                            
                         },
-
+                        
                         delete: function(id){
-
+                            
                         },
                 },
-
+                
 		Speaker: {
-
+			
 			list: function(onSuccess, onError) {
 				var self = this;
 				self.user = {};
 				return $http.get(API_LOCATION + 'speakers/');
 			},
-
+                        
                         select: function(id){
                                 return $http.get(API_LOCATION + 'speakers/' + id);
                         },
-
+                        
                         selectConf: function(id){
                             return $http.get(API_LOCATION + 'speakers/' + id + '/conferences');
                         },
-
+                        
 			create: function(speakerData, onSuccess, onError) {
 				var self = this;
 				self.user = {};
@@ -43,14 +43,14 @@ angular.module('starter.services', [])
                                     .then (function(response){
 					self.user = response;
 					onSuccess(response);
-				}, function(response)
+				}, function(response) 
                                 {
                                     onError(response);
                                 });
-
-
+                                
+                                
                         },
-
+                        
                         delete: function(id, onSuccess, onError){
                                 $http.delete(API_LOCATION + 'speakers/' + id)
                                         .then(function (response){
@@ -62,49 +62,32 @@ angular.module('starter.services', [])
                                 });
                         },
 		},
-
+		
 		Conference: {
 			list: function(onSuccess, onError) {
 				var self = this;
-				self.user = {};
+                                //alert(self.user);
+				//self.user = {};
+                               // $http.post(API_LOCATION + 'auth/refresh-token');
 				return $http.get(API_LOCATION + 'conferences/');
 
 			},
 
-
-			listPresentations: function(id, onSuccess, onError) {
-
-
-				return $http.get(API_LOCATION + 'conference/' + id + '/presentations');
-
-			}
-
-					},
-/*
-		Presentation: {
-			list: function(onSuccess, onError, id) {
-				var self = this;
-				self.user = {};
-				return $http.get(API_LOCATION + 'conferences/' + id + '/presentations/');
-//				.then (function(response){
-//					self.user = response;
-//					onSuccess(response);
-//				}, onError);
-=======
-			},
-
-
-
-
+                        
                         select: function(id){
                             return $http.get(API_LOCATION + 'conferences/' + id);
                         },
+                        
+                        selectPresentation: function(id){
+                            return $http.get(API_LOCATION + 'conferences/' + id + '/presentation/');
+                        }
 
->>>>>>> origin/dev
-<<<<<<< Updated upstream
+
 			}, 
 
-			},*/
+			
+
+	
 
 
 		Sponsor: {
@@ -117,7 +100,7 @@ angular.module('starter.services', [])
 					onSuccess(response);
 				}, onError);
 			},
-
+			
 		},
 		Attendee:	{
 			login: function(credentials, onSuccess, onError) {
@@ -126,9 +109,19 @@ angular.module('starter.services', [])
 				$http.post(API_LOCATION + 'attendees/login', credentials)
 				.then (function(response){
 					self.user = response;
+                                        //alert(self.user.data.token + ' ' + self.user.status);
 					onSuccess(response);
 				}, onError);
 			},
+                        logout: function(){
+                                $http.post(API_LOCATION + 'attendees/logout')
+                                        .then(function(response){
+                                           // alert("Logout Successful!");
+                                            
+                                }, function(response){
+                                    //alert("Logout Unsuccessful!");
+                                });
+                        },
 			changepass:  function(id, onSuccess, onError) {
 				var self = this;
 				self.user = {};
@@ -168,3 +161,5 @@ angular.module('starter.services', [])
 		}
 	}
 });
+			
+
