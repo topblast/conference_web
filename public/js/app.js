@@ -157,16 +157,27 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
     })
 
 
-.state('changepassword', {
-  url: '/changepass',
-  templateUrl: 'templates/change-password.html',
-  //controller: ChangePassCtrl.  needs to be created
-})
-
-
+ .state('help', {
+        url:'/help',
+        templateUrl: 'templates/help.html',
+        //controller: 'ForgotPassCtrl',
+    })
 
   
 
+.state('report', {
+        url:'/report',
+        templateUrl: 'templates/report.html',
+        //controller: 'ForgotPassCtrl',
+    })
+  
+  
+.state('change-password', {
+        url:'/change-password',
+        templateUrl: 'templates/change-password.html',
+        //controller: 'ForgotPassCtrl',
+    })
+  
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/main/home');
 
