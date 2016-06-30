@@ -155,7 +155,7 @@ class AttendeesController extends Controller
         if(!$pEdit = Attendee::find($id))
             return response()->json([], 404);
         
-        $pEdit->salted_password = $request->input('salted_password');
+        $pEdit->salted_password = $request->input('password');
         $pEdit->save();
         
         return response()->json("Password changed successfully!");

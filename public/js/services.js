@@ -6,11 +6,20 @@ angular.module('starter.services', [])
 		user: {},
                 
                 Client: {
-                        login: function(onSuccess, onError){
-                            
+                        login: function(credentials, onSuccess, onError){
+                            $http.post(API_LOCATION + 'clients/login', credentials)
+				.then (function(response){
+					self.user = response;
+                                        //alert(self.user.data.token + ' ' + self.user.status);
+					onSuccess(response);
+				}, onError);
                         },
-                        register: function(onSuccess, onError) {
-                            
+                        register: function(credentials, onSuccess, onError) {
+                            $http.post(API_LOCATION + 'clients/register', credentials)
+				.then (function(response){
+					self.user = response;
+					onSuccess(response);
+				}, onError);
                         },
                         
                         delete: function(id){

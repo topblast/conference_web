@@ -13,8 +13,9 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
  
         // redirect to login page if not logged in and trying to access a restricted page
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
-            var publicPages = ['/login', '/forgotpass', '/register']; //Pages that should be accessible when not logged in
-            var restrictedPage = publicPages.indexOf($location.path()) === -1; //Pages that require login access
+            var loginPages = ['/login', '/forgotpass', '/register', '/client/login', '/client/register']; //Pages that should be accessible when not logged in
+            var publicPages = ['/public']; //Pages that are accessible either logged in or not
+            var restrictedPage = loginPages.indexOf($location.path()) === -1; //Pages that require login access
             
             //If a restricted page is accessed without login credentials
             if (restrictedPage && !$localStorage.currentUser) {
@@ -22,7 +23,7 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
             }
             
             //If a public page is accessed with login credentials
-            if(publicPages && $localStorage.currentUser){
+            if(loginPages && $localStorage.currentUser){
                 $location.path('/main/home'); //redirect to the main homepage
             }
         });
@@ -141,12 +142,29 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
       templateUrl: 'templates/login.html',
       controller: 'LoginCtrl',
     })
-
+    
+    .state('client-login', {
+      url: '/client/login',
+      templateUrl: 'templates/client-login.html',
+      controller: 'LoginClientCtrl'
+    })
+    
+    .state('client-profile', {
+      url: '/client/profile',
+      templateUrl: 'templates/client-profile.html'
+    })
+    
 
     .state('register', {
       url: '/register',
       templateUrl: 'templates/registration.html',
       controller: 'RegCtrl',
+    })
+    
+     .state('client-register', {
+      url: '/client/register',
+      templateUrl: 'templates/client-registration.html',
+      controller: 'RegClientCtrl',
     })
 
     

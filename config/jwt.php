@@ -125,7 +125,7 @@ return [
     |
     */
 
-    'user' => 'App\Models\Attendee',
+    'user' => ['App\Models\Client', 'App\Models\Attendee'],
 
     /*
     |--------------------------------------------------------------------------
@@ -137,7 +137,7 @@ return [
     |
     */
 
-    'identifier' => 'attendee_id',
+    'identifier' => ['client_id', 'attendee_id'],
 
     /*
     |--------------------------------------------------------------------------

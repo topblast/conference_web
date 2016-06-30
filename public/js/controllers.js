@@ -67,28 +67,28 @@ angular.module('starter.controllers', [])
             $scope.conferences = data;
             $scope.loading = false;
 //           // alert('Reached here with ' + $scope.speakers);
-        angular.forEach(data, function(value, key){
-          console.log(Web.Conference.selectPresentation(value.conference_id).success(function(data){
-        return data;
+            angular.forEach(data, function(value, key){
+    //          console.log(Web.Conference.selectPresentation(value.conference_id).success(function(data){
+    //        return data;
+    //
+    //    }));
+    //          if(angular.isUndefined(Web.Conference.selectPresentation(value.conference_id).$$state.value))
+    //          {
+    //            //console.log(value.conference_id);
+    //            $scope.presentation[value.conference_id] = '';
+    //          }
+    //          
+    //          else
+    //          {
+     //           console.log(Web.Conference.selectPresentation(value.conference_id).$$state.value);
+                Web.Conference.selectPresentation(value.conference_id).success(function(data){
+                $scope.presentation[value.conference_id] = data;
 
-    }));
-//          if(angular.isUndefined(Web.Conference.selectPresentation(value.conference_id).$$state.value))
-//          {
-//            //console.log(value.conference_id);
-//            $scope.presentation[value.conference_id] = '';
-//          }
-//          
-//          else
-//          {
- //           console.log(Web.Conference.selectPresentation(value.conference_id).$$state.value);
-            Web.Conference.selectPresentation(value.conference_id).success(function(data){
-            $scope.presentation[value.conference_id] = data;
+                });
+      //        }
 
-    });
-  //        }
-          
-           //console.log('This is 77: ' +  $scope.presentation[77]);
-        });
+               //console.log('This is 77: ' +  $scope.presentation[77]);
+            });
         });
    
    $scope.loading = true;
@@ -210,6 +210,36 @@ angular.module('starter.controllers', [])
     };
 })
 
+.controller('LoginClientCtrl', function($scope, Web, $location, $http, $localStorage) {
+     $scope.loginClient=function()
+    {
+        
+         $scope.loading = true;
+
+
+       Web.Client.login($scope.clientData, function (response){
+                alert('Login Successful!');
+                $scope.loading = false;
+                //console.log(response.data);
+                //console.log(response.data.user);
+                // store username and token in local storage to keep user logged in between page refreshes
+                $localStorage.currentUser = { username: response.data.user.name, token: response.data.token };
+                 
+                // add jwt token to auth header for all requests made by the $http service
+                   
+                $http.defaults.headers.common.Authorization = 'Bearer ' + response.data.token;
+                 $location.path('/client/profile');
+
+            },
+            function(response){
+                alert('Something went wrong with the login process. Try again later!');
+            }
+        );
+
+       
+    };
+})
+
 .controller('RegCtrl', function($scope, Web, $location) {
      $scope.submitAttendee=function()
     {
@@ -229,6 +259,30 @@ angular.module('starter.controllers', [])
             },
             function(response){
                 alert('Something went wrong with the login process. Try again later!');
+            }
+        );
+    };
+})
+
+.controller('RegClientCtrl', function($scope, Web, $location) {
+     $scope.submitClient=function()
+    {
+
+         $scope.loading = true;
+
+         if($scope.clientData.password != $scope.pword)
+         {
+             alert("passwords don't match!");
+             return;
+         }
+
+       Web.Client.register($scope.clientData, function (response){
+                alert('Client added!');
+                 $location.path('/client/login');
+                
+            },
+            function(response){
+                alert('Something went wrong with the registration process. Try again later!');
             }
         );
     };

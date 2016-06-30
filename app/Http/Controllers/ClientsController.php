@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
+use Illuminate\Http\Exception\HttpResponseException;
+use JWTAuth;
+use Tymon\JWTAuth\Exceptions\JWTException;
+use App\Http\Controllers\Controller;
+
+use Illuminate\Http\Response as IlluminateResponse;
 
 class ClientsController extends Controller
 {
@@ -22,29 +28,37 @@ class ClientsController extends Controller
 
     //LOGIN FUNCTION
     public function login(Request $request) {
-        $result = $this->validate($request, [
+        $this->validate($request, [
             'email' => 'required|email',
-            'password' => 'required'
+            'password' => 'required',
+          
         ]);
 
-        if (isset($result->error))
-        {
-            return response()->json([
-                'error'=> [
-                    'message' => 'Verification Failed',
-                    'result' => $result->error
-                ]
-            ], IlluminateResponse::HTTP_BAD_REQUEST);
-        }
+       
 
         $credentials = $request->only('email', 'password');
 
-        if (!Auth::guard('client')->attempt($credentials))
+       try
         {
-            return response()->json(['error' => 'invalid_credentials'], 404);
+             
+              // attempt to verify the credentials and create a token for the user
+            if (! $token = JWTAuth::attempt($credentials)) {
+                
+                return response()->json(['error' => 'invalid_credentials'], 401);
+            }
+              
+             
         }
-
-        return response()->json(Auth::guard('client')->user());
+        catch (JWTException $e)
+        {
+            // something went wrong whilst attempting to encode the token
+            return response()->json(['error' => 'could_not_create_token'], 500);
+        }
+        
+        $user = Auth::user(); //authenticate user with successfully generated token
+        
+        // all good so return the token and user credentials
+        return response()->json(compact('user','token'));
     }
 
     //REGISTER FUNCTION
@@ -53,7 +67,7 @@ class ClientsController extends Controller
         $result = $this->validate($request,[
             'contact_name' => 'required',
             'email' => 'required|email',
-            'password' => 'required|min:8|regex' . $regex,
+            'password' => 'required|min:8|regex:' . $regex,
             'organisation' => 'required',
             'address1' => 'required',
             'city' => 'required',
@@ -158,6 +172,11 @@ class ClientsController extends Controller
         return response()->json($edit);
     }
 
+    //Logout
+    public function logout(){
+        //invalidate generated token
+        Auth::logout();
+    }
    
     
 }
