@@ -12,21 +12,21 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
         }
  
         // redirect to login page if not logged in and trying to access a restricted page
-        $rootScope.$on('$locationChangeStart', function (event, next, current) {
-            var loginPages = ['/login', '/forgotpass', '/register', '/client/login', '/client/register']; //Pages that should be accessible when not logged in
-            var publicPages = ['/public']; //Pages that are accessible either logged in or not
-            var restrictedPage = loginPages.indexOf($location.path()) === -1; //Pages that require login access
-            
-            //If a restricted page is accessed without login credentials
-            if (restrictedPage && !$localStorage.currentUser) {
-                $location.path('/login'); //redirect to the login page
-            }
-            
-            //If a public page is accessed with login credentials
-            if(loginPages && $localStorage.currentUser){
-                $location.path('/main/home'); //redirect to the main homepage
-            }
-        });
+//        $rootScope.$on('$locationChangeStart', function (event, next, current) {
+//            var loginPages = ['/login', '/forgotpass', '/register', '/client/login', '/client/register']; //Pages that should be accessible when not logged in
+//            var publicPages = ['/public']; //Pages that are accessible either logged in or not
+//            var restrictedPage = loginPages.indexOf($location.path()) === -1; //Pages that require login access
+//            
+//            //If a restricted page is accessed without login credentials
+//            if (restrictedPage && !$localStorage.currentUser) {
+//                $location.path('/login'); //redirect to the login page
+//            }
+//            
+//            //If a public page is accessed with login credentials
+//            if(loginPages && $localStorage.currentUser){
+//                $location.path('/main/home'); //redirect to the main homepage
+//            }
+//        });
     })
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -134,13 +134,17 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
     controller: 'HomeCtrl'
        
   })
-
+  
+  .state('client-profile', {
+      url: '/client/profile',
+      templateUrl: 'templates/client-profile.html'
+    })
 
 
     .state('login', {
       url: '/login',
       templateUrl: 'templates/login.html',
-      controller: 'LoginCtrl',
+      controller: 'LoginCtrl'
     })
     
     .state('client-login', {
@@ -149,35 +153,50 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
       controller: 'LoginClientCtrl'
     })
     
-    .state('client-profile', {
-      url: '/client/profile',
-      templateUrl: 'templates/client-profile.html'
-    })
+    
     
 
     .state('register', {
       url: '/register',
       templateUrl: 'templates/registration.html',
-      controller: 'RegCtrl',
+      controller: 'RegCtrl'
     })
     
      .state('client-register', {
       url: '/client/register',
       templateUrl: 'templates/client-registration.html',
-      controller: 'RegClientCtrl',
+      controller: 'RegClientCtrl'
     })
 
     
     .state('forgotpassword', {
         url:'/forgotpass',
         templateUrl: 'templates/pass-reset.html',
-        controller: 'ForgotPassCtrl',
+        controller: 'ForgotPassCtrl'
     })
 
 
+ .state('help', {
+        url:'/help',
+        templateUrl: 'templates/help.html'
+        //controller: 'ForgotPassCtrl',
+    })
 
   
 
+.state('report', {
+        url:'/report',
+        templateUrl: 'templates/report.html'
+        //controller: 'ForgotPassCtrl',
+    })
+  
+  
+.state('change-password', {
+        url:'/change-password',
+        templateUrl: 'templates/change-password.html'
+        //controller: 'ForgotPassCtrl',
+    });
+  
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/main/home');
 

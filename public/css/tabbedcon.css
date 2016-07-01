@@ -36,4 +36,12 @@ ul.tab li a:focus, .active {background-color: #ccc;}
    border-top: none;
 }
 
+.tab_con {
+   display: none;
+   /*padding: 6px 12px;*/
+   border: 1px solid #ccc;
+   border-top: none;
+}
+
+
 ul li {border: 1px solid #ccc;}

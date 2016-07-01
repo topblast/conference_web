@@ -82,14 +82,6 @@ angular.module('starter.services', [])
 
 			},
 
-
-			listPresentations: function(id) { 
-
-				return $http.get(API_LOCATION + 'conferences/' + id + '/presentations/');
-			},
-
-                        
-                     
                         
                         select: function(id){
                             return $http.get(API_LOCATION + 'conferences/' + id);
@@ -101,6 +93,10 @@ angular.module('starter.services', [])
 
 
 			}, 
+
+			
+
+	
 
 
 		Sponsor: {

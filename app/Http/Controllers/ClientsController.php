@@ -42,7 +42,7 @@ class ClientsController extends Controller
         {
              
               // attempt to verify the credentials and create a token for the user
-            if (! $token = JWTAuth::attempt($credentials)) {
+            if (! $token = Auth::guard('client')->attempt($credentials)) {
                 
                 return response()->json(['error' => 'invalid_credentials'], 401);
             }
@@ -55,7 +55,7 @@ class ClientsController extends Controller
             return response()->json(['error' => 'could_not_create_token'], 500);
         }
         
-        $user = Auth::user(); //authenticate user with successfully generated token
+        $user = Auth::guard('client')->user(); //authenticate user with successfully generated token
         
         // all good so return the token and user credentials
         return response()->json(compact('user','token'));

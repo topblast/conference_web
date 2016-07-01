@@ -2,7 +2,7 @@
 
 return [
     'defaults' => [
-        'guard' => env('AUTH_GUARD', 'attendee', 'client'),
+        'guard' => env('AUTH_GUARD', 'attendee'),
     ],
     'guards' => [
         'api' => ['driver' => 'api'],

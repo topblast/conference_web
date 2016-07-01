@@ -1,48 +1,101 @@
-<!--
-<!DOCTYPE html>
-<html>
+<!-- <!DOCTYPE html>
+<html lang="en">
+
     <head>
-        <title> Login </title>
-        <link rel="stylesheet" href="../css/bootstrap.min.css">
-            <link rel="stylesheet" href="../css/style.css">
-            </head><body>-->
-            <!--<div id="logo-holder"><img src="" alt="Logo" class="img-circle" height="150" width="150" id="Logo-Img"><br></br>-->
-<div class="container-fluid">
-            <style>
-.center {
-    text-align: center;
-    }
-</style>
-            <div class="center" id="logo-holder">
-                <a class="brand" style="margin: 0; float: none; text-align:center" href="#">
-                    <img src="../img/Logo_TV_2015.png" height = "140" width ="133" align ="middle"/>
-                </a>
-            </div>
-            <section>
-                
-                    <form ng-submit="loginAttendee()" class="form-horizontal">
-                        <div class="form-group">
-                            <div class="col-sm-4 col-sm-offset-4">
-                                <input type="email" name="email" class="form-control" placeholder="Email" ng-model="attendeeData.email">
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Bootstrap Login Form Template</title>
+
+        <!-- CSS 
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="assets/css/form-elements.css">
+        <link rel="stylesheet" href="assets/css/style.css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// 
+       [if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]
+
+         Favicon and touch icons
+        <link rel="shortcut icon" href="assets/ico/favicon.png">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+
+    </head>
+
+    <body> -->
+
+        <!-- Top content -->
+        <div class="top-content">
+            
+            <div class="inner-bg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-8 col-sm-offset-2 text">
+                            <h1><strong>Website Name</strong> Login </h1>
+                            <div class="description">
+                                <p>
+                                    <strong>LOGO</strong>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3 form-box">
+                            <div class="form-top">
+                                <div class="form-top-left">
+                                    <h3>Login to our site</h3>
+                                    <p>Enter your email address and password to log on:</p>
+                                </div> 
+                                <div class="form-top-right">
+                                    <i class="fa fa-lock"></i>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="col-sm-4 col-sm-offset-4">
-                                    <input type="password" name="password" class="form-control" placeholder="Password" ng-model="attendeeData.password">
+                            <div class="form-bottom">
+                                <form ng-submit="loginAttendee()" role="form" action="" method="post" class="login-form">
+                                    <div class="form-group">
+                                        <label class="sr-only" for="form-email">Email</label>
+                                        <input type="text" name="form-email" placeholder="Email..." class="form-email form-control" id="form-email" ng-model="attendeeData.email">
                                     </div>
-                                </div>
-                                <div style="padding-left:6px;" class="col-sm-4 col-sm-offset-4">
-                                        <input type="submit"  class="btn btn-default" value="Log in" >
-                                        
+                                    <div class="form-group">
+                                        <label class="sr-only" for="form-password">Password</label>
+                                        <input type="password" name="form-password" placeholder="Password..." class="form-password form-control" id="form-password" ng-model="attendeeData.password">
+                                    </div>
+                                    <button type="submit" class="btn">Sign in</button>
                                     
-                                            <a ui-sref="register" class="btn btn-default " role="button">Sign up</a>
-                                        </div>
-                                </form>
-                                <div class="col-sm-4 col-sm-offset-4" style="padding-left:6px;">
+                                    <button ui-sref="register" type= "submit" class="btn">Sign up</button>
+
+                                      <div >
                                     <p>  Have you forgotten your username or password? 
                                         <a ui-sref="forgotpassword"> Click here</a>
                                     </p>
                                 </div>
-                            </section>
+                                </form>
+
+                            </div>
+                        </div>
                     </div>
-                        <!--    </body></html>-->
+                    
+                </div>
+            </div>
+            
+        </div>
+
+
+       
+        
+        <!--[if lt IE 10]>
+            <script src="assets/js/placeholder.js"></script>
+        <![endif]-->
+
+ <!--    </body>
+
+</html> -->

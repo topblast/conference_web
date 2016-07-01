@@ -5,7 +5,7 @@ function submitForm(form){
   var pword = form.confirm_pword.value;
 
   if (password!=pword) {
-    document.getElementById("error_msg1").innerHTML = "Passords do not match.";
+    document.getElementById("error_msg1").innerHTML = "Passwords do not match.";
   }
 
 

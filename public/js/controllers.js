@@ -100,29 +100,10 @@ angular.module('starter.controllers', [])
      console.log(presentations[id].$$state.value.data);
      
      return presentations[id].$$state.value.data;
-//    Web.Conference.listPresentations(id)
-//            .success(function (data){
-
-//                return data;
-//                
-//    }, function(){
-//        alert('Conference id: ' + id);
-//    });
     };
 
 
-   // $scope.loading = true;
-    
-//    Web.Conference.listPresentations()
-///*        $scope.getConID = function (){
-//
-//        }
-//
-//*/
-//        .success(function(data) {
-//          $scope.getConferenceID = data;
-//          $scope.loading = false;
-//        });
+
 
 
     $scope.logout=function() {
@@ -218,12 +199,12 @@ angular.module('starter.controllers', [])
 
 
        Web.Client.login($scope.clientData, function (response){
-                alert('Login Successful!');
+                alert('Login Successful! ' + response.data.user.contact_name);
                 $scope.loading = false;
                 //console.log(response.data);
                 //console.log(response.data.user);
                 // store username and token in local storage to keep user logged in between page refreshes
-                $localStorage.currentUser = { username: response.data.user.name, token: response.data.token };
+                $localStorage.currentUser = { username: response.data.user.contact_name, token: response.data.token };
                  
                 // add jwt token to auth header for all requests made by the $http service
                    
