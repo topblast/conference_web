@@ -84,7 +84,7 @@ nav li:last-child a { border-bottom: none; }
 	width: 240px;
 	height: 100%;
 	position: absolute;
-	background: #D9C9A3;
+	background: #00A5CC;
 	left: -240px;
 	transition: all .3s ease-in-out;
 	-webkit-transition: all .3s ease-in-out;
@@ -95,7 +95,7 @@ nav li:last-child a { border-bottom: none; }
 }
 .menu-icon {
 	padding: 10px 20px;
-	background: #E5DAC0;
+	background: #00A5CC;
 	color: #987D3E;
 	cursor: pointer;
 	float: left;
@@ -105,7 +105,7 @@ nav li:last-child a { border-bottom: none; }
 }
 #menuToggle { display: none; }
 
-#menuToggle:checked ~ .menu { position: absolute; left: 0; }
+#menuToggle:checked ~ .menu { position: absolute; left: 0; color: #80d2ff; }
 
 .c-mask {
       position: fixed;
