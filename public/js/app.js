@@ -204,7 +204,104 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
         url:'/change-password',
         templateUrl: 'templates/change-password.html'
         //controller: 'ForgotPassCtrl',
-    });
+    })
+
+//WARRENS TESTING!!!!!!!!!!
+//WARRENS TESTING!!!!!!!!!!
+//WARRENS TESTING!!!!!!!!!!
+//WARRENS TESTING!!!!!!!!!!
+//WARRENS TESTING!!!!!!!!!!
+//WARRENS TESTING!!!!!!!!!!
+//WARRENS TESTING!!!!!!!!!!
+//WARRENS TESTING!!!!!!!!!!
+
+.state('maintest', {
+    url: '/maintest',
+    abstract: true,
+    templateUrl: '/templates/maintest.html' 
+    
+    
+    
+  })
+
+.state('maintest.public', {
+  url: '/public',
+  views: {
+    'maintestbody': {
+      templateUrl: 'templates/maintestpublic.html'
+    }
+  }
+})
+
+.state('maintest.private', {
+  url: '/private',
+  abstract: true,
+  views: {
+    'maintestbody': {
+      templateUrl: 'templates/contest.html'
+    }
+  }
+})
+
+
+
+
+
+
+
+
+/*.state('contest', {
+    url: '/contest',
+    abstract: true,
+    templateUrl: '/templates/contest.html'  
+    
+    
+  })*/
+  
+  
+
+  // Each tab has its own nav history stack:
+
+  .state('maintest.private.schedule', {
+    url: '/schedule',
+    views: {
+      'Page_Body': {
+          templateUrl: 'templates/Schedule.html',
+          //controller: 'HeaderCtrl'
+      }
+    }
+  })
+
+    .state('maintest.private.speakers', {
+    url: '/speakers',
+    views: {
+      'Page_Body': {
+          templateUrl: 'templates/Speakers.html',
+          //controller: 'HeaderCtrl'
+      }
+    }
+  })
+    .state('maintest.private.map', {
+    url: '/map',
+    views: {
+      'Page_Body': {
+          templateUrl: 'templates/map.html',
+          //controller: 'HeaderCtrl'
+      }
+    }
+  })
+
+    .state('maintest.private.about', {
+    url: '/about',
+    views: {
+      'Page_Body': {
+          templateUrl: 'templates/about.html',
+          //controller: 'HeaderCtrl'
+      }
+    }
+  })      
+
+;
   
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/login');
