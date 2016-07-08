@@ -36,6 +36,7 @@ nav a {
 nav a:hover { background: #1ad5ff; color: #FFF; }
 nav li:last-child a { border-bottom: none; }
 
+
 /*-----------------------------------------*/
 
 .menu {
@@ -49,6 +50,7 @@ nav li:last-child a { border-bottom: none; }
 	-moz-transition: all .3s ease-in-out;
 	-ms-transition: all .3s ease-in-out;
 	-o-transition: all .3s ease-in-out;
+    z-index: 4;
 }
 .menu-icon {
 	padding: 10px 20px;
@@ -64,6 +66,7 @@ nav li:last-child a { border-bottom: none; }
 
 #menuToggle:checked ~ .menu { position: absolute; left: 0; }
 
+/*
 .c-mask {
       position: fixed;
         z-index: 100;
@@ -85,18 +88,18 @@ nav li:last-child a { border-bottom: none; }
         -webkit-transition: opacity 0.3s;
         transition: opacity 0.3s;
 
-        height: 100%;  /* Full height */
-        position: fixed;  /* Make it stick, even on scroll */
-        overflow: auto; /* Enable scrolling if the sidenav has too much content */
+        height: 100%;  /* Full height *
+        position: fixed;  /* Make it stick, even on scroll *
+        overflow: auto; /* Enable scrolling if the sidenav has too much content *
 }
-
+*/
 /*sub-menu*/
 .menu ul li:hover > ul { 
-        left: 200px; 
-        -webkit-transition: left 200ms ease-in;
-        -moz-transition: left 200ms ease-in;
-        -ms-transition: left 200ms ease-in;
-        transition: left 200ms ease-in; 
+        left: 240px; 
+        -webkit-transition: left 0ms ease-in;
+        -moz-transition: left 0ms ease-in;
+        -ms-transition: left 0ms ease-in;
+        transition: left 0ms ease-in; 
 }
 
 .menu ul li > ul { 
@@ -106,12 +109,10 @@ nav li:last-child a { border-bottom: none; }
     left: -220px; 
     min-width: 200px;  
     height: 100%; 
-    -webkit-transition: left 200ms ease-in; 
-    -moz-transition: left 200ms ease-in; 
-    -ms-transition: left 200ms ease-in; 
-    transition: left 200ms ease-in;
+    -webkit-transition: left 0ms ease-in; 
+    -moz-transition: left 0ms ease-in; 
+    -ms-transition: left 0ms ease-in; 
+    transition: left 0ms ease-in;
 } 
-
-.submenu {z-index: 1;}
 
 .menu ul li > ul li a:hover { background-color:#2e2e2e; }
