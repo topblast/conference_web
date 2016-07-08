@@ -128,6 +128,10 @@ angular.module('starter.controllers', [])
             $http.defaults.headers.common.Authorization = '';
             $location.path('/login');
         };
+
+    $scope.showHelpModal=function($scope) {
+        $scope.showModal = true;
+    };
 })
 
 .controller('SelectCtrl', function($scope, $stateParams, Web){
@@ -277,10 +281,11 @@ angular.module('starter.controllers', [])
   $scope.settings = {
     enableFriends: true
   };
-})
+});
 
+/*
 //POPUP CONTROLLER FOR HELP AND REPORT BUG
-.controller('PopUpCtrl', function($scope, $uibModal, $log) {
+.controller('ModalCtrl', function($scope, $uibModal, $log) {
     $scope.animationsEnabled = true;
 
     $scope.items = ['item1', 'item2', 'item3'];
@@ -325,4 +330,4 @@ angular.module('starter.controllers', [])
   $scope.cancel = function () {
     $uibModalInstance.dismiss('cancel');
   };
-});
+});*/

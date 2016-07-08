@@ -14,41 +14,6 @@ main {
     margin-bottom:30px;
 } 
 
-/*Side Menu
-.sidemenu > ul{
-    list-style-type: none;
-    margin: 0;
-    padding:0;
-    width: 25em;
-}
-
-.sidemenu > ul li a {
-    display: block;
-    background-color: aqua;
-}
-
-/*
-for active coloring
-.sidemenu > ul li a.active {
-    background-color: #4CAF50;
-    color: white;
-}
-
-for full fixed side menu
-.sidemenu > ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    width: 25%;
-    background-color: #f1f1f1;
-<<<<<<< HEAD
-    height: 100%; /* Full height 
-    position: fixed; /* Make it stick, even on scroll 
-    overflow: auto; /* Enable scrolling if the sidenav has too much content 
-}
-
-*/
-
 * { padding: 0; margin: 0; }
 body { font-family: sans-serif; }
 a { text-decoration: none; color: #00A5CC; }
@@ -60,22 +25,15 @@ header {
 	margin: auto;
 	border-bottom: 1px solid #EEE;
 }
-#brand {
-	float: left;
-	line-height: 50px;
-	color: #E5DAC0;
-	font-size: 25px;
-	font-weight: bolder;
-   margin: 0 0 0 6px;
-}
+
 nav { width: 100%; text-align: center; }
 nav a { 
 	display: block; 
 	padding: 15px 0;
-	border-bottom: 1px solid #C3AA6E;
-	color: #F0EADC;
+	border-bottom: 1px solid #fff;
+	color: #fff;
 }
-nav a:hover { background: #E5DAC0; color: #FFF; }
+nav a:hover { background: #1ad5ff; color: #FFF; }
 nav li:last-child a { border-bottom: none; }
 
 /*-----------------------------------------*/
@@ -91,12 +49,11 @@ nav li:last-child a { border-bottom: none; }
 	-moz-transition: all .3s ease-in-out;
 	-ms-transition: all .3s ease-in-out;
 	-o-transition: all .3s ease-in-out;
-	
 }
 .menu-icon {
 	padding: 10px 20px;
 	background: #00A5CC;
-	color: #987D3E;
+	color: #fff;
 	cursor: pointer;
 	float: left;
     clear: both;
@@ -105,7 +62,7 @@ nav li:last-child a { border-bottom: none; }
 }
 #menuToggle { display: none; }
 
-#menuToggle:checked ~ .menu { position: absolute; left: 0; color: #80d2ff; }
+#menuToggle:checked ~ .menu { position: absolute; left: 0; }
 
 .c-mask {
       position: fixed;
@@ -133,4 +90,28 @@ nav li:last-child a { border-bottom: none; }
         overflow: auto; /* Enable scrolling if the sidenav has too much content */
 }
 
+/*sub-menu*/
+.menu ul li:hover > ul { 
+        left: 200px; 
+        -webkit-transition: left 200ms ease-in;
+        -moz-transition: left 200ms ease-in;
+        -ms-transition: left 200ms ease-in;
+        transition: left 200ms ease-in; 
+}
 
+.menu ul li > ul { 
+    position: absolute; 
+    background-color: #333; 
+    top: 0; 
+    left: -220px; 
+    min-width: 200px;  
+    height: 100%; 
+    -webkit-transition: left 200ms ease-in; 
+    -moz-transition: left 200ms ease-in; 
+    -ms-transition: left 200ms ease-in; 
+    transition: left 200ms ease-in;
+} 
+
+.submenu {z-index: 1;}
+
+.menu ul li > ul li a:hover { background-color:#2e2e2e; }
