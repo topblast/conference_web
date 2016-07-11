@@ -17,7 +17,7 @@
         <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/tabbedcon.css">
     <link rel="stylesheet" href="css/texthide.css">
-    <link href="templates/registration.css" rel="stylesheet">
+    <link href="css/registration.css" rel="stylesheet">
     
     
     
@@ -33,6 +33,7 @@
     <script src="js/tabbedcon.js"></script>
     
     <!--jQuery-->
+<!--      <script src="templates/assets/js/jquery-1.11.1.min.js"></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     
     <!--Bootstrap-->

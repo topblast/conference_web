@@ -67,28 +67,28 @@ angular.module('starter.controllers', [])
             $scope.conferences = data;
             $scope.loading = false;
 //           // alert('Reached here with ' + $scope.speakers);
-        angular.forEach(data, function(value, key){
-          console.log(Web.Conference.selectPresentation(value.conference_id).success(function(data){
-        return data;
+            angular.forEach(data, function(value, key){
+    //          console.log(Web.Conference.selectPresentation(value.conference_id).success(function(data){
+    //        return data;
+    //
+    //    }));
+    //          if(angular.isUndefined(Web.Conference.selectPresentation(value.conference_id).$$state.value))
+    //          {
+    //            //console.log(value.conference_id);
+    //            $scope.presentation[value.conference_id] = '';
+    //          }
+    //          
+    //          else
+    //          {
+     //           console.log(Web.Conference.selectPresentation(value.conference_id).$$state.value);
+                Web.Conference.selectPresentation(value.conference_id).success(function(data){
+                $scope.presentation[value.conference_id] = data;
 
-    }));
-//          if(angular.isUndefined(Web.Conference.selectPresentation(value.conference_id).$$state.value))
-//          {
-//            //console.log(value.conference_id);
-//            $scope.presentation[value.conference_id] = '';
-//          }
-//          
-//          else
-//          {
- //           console.log(Web.Conference.selectPresentation(value.conference_id).$$state.value);
-            Web.Conference.selectPresentation(value.conference_id).success(function(data){
-            $scope.presentation[value.conference_id] = data;
+                });
+      //        }
 
-    });
-  //        }
-          
-           //console.log('This is 77: ' +  $scope.presentation[77]);
-        });
+               //console.log('This is 77: ' +  $scope.presentation[77]);
+            });
         });
    
    $scope.loading = true;
@@ -128,6 +128,10 @@ angular.module('starter.controllers', [])
             $http.defaults.headers.common.Authorization = '';
             $location.path('/login');
         };
+
+    $scope.showHelpModal=function($scope) {
+        $scope.showModal = true;
+    };
 })
 
 .controller('SelectCtrl', function($scope, $stateParams, Web){
@@ -170,6 +174,9 @@ angular.module('starter.controllers', [])
 
        Web.Attendee.login($scope.attendeeData, function (response){
                 alert('Login Successful!');
+                console.log(response);
+                console.log(response.data);
+                console.log(response.data.user);
                 $scope.loading = false;
                 //console.log(response.data);
                 //console.log(response.data.user);
@@ -180,6 +187,36 @@ angular.module('starter.controllers', [])
                    
                 $http.defaults.headers.common.Authorization = 'Bearer ' + response.data.token;
                  $location.path('/main/home');
+
+            },
+            function(response){
+                alert('Something went wrong with the login process. Try again later!');
+            }
+        );
+
+       
+    };
+})
+
+.controller('LoginClientCtrl', function($scope, Web, $location, $http, $localStorage) {
+     $scope.loginClient=function()
+    {
+        
+         $scope.loading = true;
+
+
+       Web.Client.login($scope.clientData, function (response){
+                alert('Login Successful! ' + response.data.user.contact_name);
+                $scope.loading = false;
+                //console.log(response.data);
+                //console.log(response.data.user);
+                // store username and token in local storage to keep user logged in between page refreshes
+                $localStorage.currentUser = { username: response.data.user.contact_name, token: response.data.token };
+                 
+                // add jwt token to auth header for all requests made by the $http service
+                   
+                $http.defaults.headers.common.Authorization = 'Bearer ' + response.data.token;
+                 $location.path('/client/profile');
 
             },
             function(response){
@@ -215,6 +252,30 @@ angular.module('starter.controllers', [])
     };
 })
 
+.controller('RegClientCtrl', function($scope, Web, $location) {
+     $scope.submitClient=function()
+    {
+
+         $scope.loading = true;
+
+         if($scope.clientData.password != $scope.pword)
+         {
+             alert("passwords don't match!");
+             return;
+         }
+
+       Web.Client.register($scope.clientData, function (response){
+                alert('Client added!');
+                 $location.path('/client/login');
+                
+            },
+            function(response){
+                alert('Something went wrong with the registration process. Try again later!');
+            }
+        );
+    };
+})
+
 .controller('ForgotPassCtrl', function($scope, Web, $location) {})
 
 .controller('MainCtrl', function($scope) {})
@@ -224,3 +285,52 @@ angular.module('starter.controllers', [])
     enableFriends: true
   };
 });
+
+/*
+//POPUP CONTROLLER FOR HELP AND REPORT BUG
+.controller('ModalCtrl', function($scope, $uibModal, $log) {
+    $scope.animationsEnabled = true;
+
+    $scope.items = ['item1', 'item2', 'item3'];
+
+     $scope.open = function (size) {
+
+    var modalInstance = $uibModal.open({   //to be edited 
+      animation: $scope.animationsEnabled,
+      templateUrl: 'myModalContent.html',
+      controller: 'ModalInstanceCtrl',
+      size: size,
+      resolve: {
+        items: function () {
+          return $scope.items;
+        }
+      }
+    });
+    modalInstance.result.then(function (selectedItem) {
+      $scope.selected = selectedItem;
+    }, function () {
+      $log.info('Modal dismissed at: ' + new Date());  //logs change
+    });
+  };
+
+  $scope.toggleAnimation = function () {
+    $scope.animationsEnabled = !$scope.animationsEnabled;  //for toggling animation.
+  };
+
+})
+
+.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, items) {
+
+  $scope.items = items;
+  $scope.selected = {
+    item: $scope.items[0]
+  };
+
+  $scope.ok = function () {
+    $uibModalInstance.close($scope.selected.item); //passes selected item. can be used for conference_id selections
+  };
+
+  $scope.cancel = function () {
+    $uibModalInstance.dismiss('cancel');
+  };
+});*/

@@ -46,7 +46,7 @@ class AttendeesController extends Controller
         {
 
               // attempt to verify the credentials and create a token for the user
-            if (! $token = JWTAuth::attempt($credentials)) {
+            if (! $token = Auth::attempt($credentials)) {
 
                 return response()->json(['error' => 'invalid_credentials'], 401);
             }
@@ -156,7 +156,9 @@ class AttendeesController extends Controller
         if(!$pEdit = Attendee::find($id))
             return response()->json([], 404);
 
-        $pEdit->salted_password = $request->input('salted_password');
+        
+        $pEdit->password = $request->input('password');
+
         $pEdit->save();
 
         return response()->json("Password changed successfully!");

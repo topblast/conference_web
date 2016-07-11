@@ -1,0 +1,22 @@
+<div class="sidemenu">
+<ul>
+    <li><a>Profile</a></li>
+    <li><a ui-sref="main.home">My Conferences</a></li>
+        <ul><li>sub-menu containing list of conferences</li></ul>
+    <li><a ui-sref="forgotpassword">Change Password</a></li>
+    <li><a>Help</a></li>
+    <li><a>Report Bug</a></li>
+    <li><form ng-submit="logout()">
+               
+            <input type="submit" class="btn btn-default" value="Logout"> 
+                      
+        </form></li>
+</ul>
+
+</div>
+
+
+<!--Menu must have dynamic sub-menu for when new conferences are added to users profile
+
+will have to add controller to get conferences
+-->

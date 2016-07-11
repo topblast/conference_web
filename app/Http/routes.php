@@ -22,8 +22,8 @@ $app->post('/clients/login', 'ClientsController@login');
 $app->post('/clients/register', 'ClientsController@register');
 $app->post('/clients/{id}/changepassword', 'ClientsController@change_password');
 
-$app->get('/clients', 'ClientsController@get_all');
-$app->get('/clients/{id}', 'ClientsController@get_id');
+$app->get('/clients', ['middleware' => 'auth:client', 'uses' => 'ClientsController@get_all']);
+$app->get('/clients/{id}', ['middleware' => 'auth:client', 'uses' => 'ClientsController@get_id']);
 
 //put
 $app->delete('/clients/{id}', 'ClientsController@delete_client');
@@ -47,10 +47,10 @@ $app->put('/clients/{id}', 'ClientsController@edit_client');
     
 $app->get('/conferences/{id}', 'ConferencesController@get_id');
 
-$app->get('/conferences/{id}/presentations/', 'ConferencesController@get_presentations');
-$app->get('/conferences/{id}/presentation/', 'ConferencesController@select_presentation');
+$app->get('/conferences/{id}/presentations/', ['middleware' => 'auth:attendee', 'uses' => 'ConferencesController@get_presentations']);
+$app->get('/conferences/{id}/presentation/', ['middleware' => 'auth:attendee', 'uses' => 'ConferencesController@select_presentation']);
 
-$app->get('/conferences/{id}/sponsors/', 'ConferencesController@get_sponsors');
+$app->get('/conferences/{id}/sponsors/', ['middleware' => 'auth:attendee', 'uses' => 'ConferencesController@get_sponsors']);
 
 
 
@@ -71,7 +71,7 @@ $app->put('/conferences/{id}', 'ConferencesController@edit_conferences');
 
 //speakers
 $app->get('/speakers/', 'SpeakersController@get_all');
-$app->get('/speakers/{id}', 'SpeakersController@get_id');
+$app->get('/speakers/{id}', ['middleware' => 'auth:attendee', 'uses' => 'SpeakersController@get_id']);
 $app->get('/speakers/{id}/presentations', 'SpeakersController@get_presentations');
 
 $app->get('/speakers/{id}/conferences', 'SpeakersController@get_conference_speakers');

@@ -3,12 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Auth\Authenticatable;
-use Illuminate\Contracts\Auth\Authenticatable as AuthContract;
+use Laravel\Lumen\Auth\Authorizable;
+use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
+use Tymon\JWTAuth\Contracts\JWTSubject as JWTSubject;
+use Illuminate\Contracts\Auth\Authenticatable;
 
-class Client extends Model implements AuthContract {
+class Client extends Model implements JWTSubject, Authenticatable {
     
-    use Authenticatable;
+    use AuthenticatableTrait, Authorizable;
 
     protected $primaryKey = 'client_id';
 
@@ -30,5 +32,23 @@ class Client extends Model implements AuthContract {
     public function conferences()
     {
         return $this->hasMany('App\Models\Conference');
+    }
+    
+    /**
+     * Get the identifier that will be stored in the subject claim of the JWT
+     *
+     * @return mixed
+     */
+    public function getJWTIdentifier(){
+        return $this->getKey();
+    }
+
+    /**
+     * Return a key value array, containing any custom claims to be added to the JWT
+     *
+     * @return array
+     */
+    public function getJWTCustomClaims(){
+        return [];
     }
 }
