@@ -12,8 +12,8 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
         }
  
         // redirect to login page if not logged in and trying to access a restricted page
-        $rootScope.$on('$locationChangeStart', function (event, next, current) {
-            var publicPages = ['/login', '/forgotpass', '/register']; //Pages that should be accessible when not logged in
+        /*$rootScope.$on('$locationChangeStart', function (event, next, current) {
+            var publicPages = ['/login', '/forgotpass', '/register','/help','/report']; //Pages that should be accessible when not logged in
             var restrictedPage = publicPages.indexOf($location.path()) === -1; //Pages that require login access
             
             //If a restricted page is accessed without login credentials
@@ -25,7 +25,7 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
             if(publicPages && $localStorage.currentUser){
                 $location.path('/main/home'); //redirect to the main homepage
             }
-        });
+        });*/
     })
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -177,7 +177,35 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
         templateUrl: 'templates/change-password.html',
         //controller: 'ForgotPassCtrl',
     })
+.state('user', {
+        url:'/user',
+        templateUrl: 'templates/user.html',
+        //controller: 'ForgotPassCtrl',
+    })
+
+.state('speaker bio', {
+        url:'/speaker',
+        templateUrl: 'templates/speaker bio.html'
+        //controller: 'ForgotPassCtrl',
+    })
+
+.state('private conferences', {
+        url:'/private',
+        templateUrl: 'templates/private conferences.html'
+        //controller: 'ForgotPassCtrl',
+    })
+
+.state('conhome', {
+        url:'/conhome',
+        templateUrl: 'templates/conhome.html'
+        //controller: 'ForgotPassCtrl',
+    })
   
+  .state('tabbed con', {
+        url:'/tabbed',
+        templateUrl: 'templates/tabbed con.html'
+        //controller: 'ForgotPassCtrl',
+    })
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/main/home');
 

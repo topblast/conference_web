@@ -1,38 +1,54 @@
-<!DOCTYPE html>
-<html>
-<head> 
-<title> User Profile</title>
 
-<meta name="viewport" content="width=device-width initial-scale=1.0">
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="tyles.css" rel="stylesheet">
+<div class="top-content">
+            
+            <div class="inner-bg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-8 col-sm-offset-2 text">
+                            
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3 form-box">
+                       
+                                <form ng-submit="loginAttendee()" role="form" action="" method="post" class="login-form">
+                                <img src="images/profileph.png" class="img-responsive"  style="width: 150px;
+                                 margin: auto;">
+                                <div class="form-group">
+                                 <button type="submit" class="btn btn-block">Edit Photo</button>
+                                </div>
+                                 <div class="form-group">
+                                       
+                                        <input type="text" name="form-name" placeholder="Name..." class="form-name form-control" id="form-name" ng-model="attendeeData.name">
+                                    </div>
+                                    
+                                   <div class = "form-group">
+                                        <input type="text" name="form-Attraction/Organization" placeholder="Attraction/Organization..." class="form-Attraction/Organization form-control" id="form-Attraction/Organization" ng-model="attendeeData.Attraction/Organization">
+                                    </div>
 
-</head>
+                                        <div class="form-group">
+                                        <label class="sr-only" for="form-email">Email</label>
+                                        <input type="text" name="form-email" placeholder="Email..." class="form-email form-control" id="form-email" ng-model="attendeeData.email">
+                                    </div>
 
-<form>
-<img src="images/profileph.png" class="img-responsive"  style="width: 150px;
-    margin: auto;">
+                                         <div class="form-group">
+                                <div>
+                                    <textarea id = "comment" type="comment" name="comment" class="form-control" placeholder="Whats your Story?" rows="3" ng-model="attendeeData.comment"></textarea>
+                                    </div>
+                                </div>
+                                    
+                                  <button type="submit" class="btn btn-block">Edit Details</button>
 
-  <button type="submit" class="btn btn-default">Edit Photo</button>
- <div class="form-group">
-    <label for="InputName"></label>
-    <input type="name" class="form-control" id="InputName" placeholder="Name">
-  </div>
-  <div class="form-group">
-    <label for="attractions"></label>
-    <input type="text" class="form-control" id="attarctions" placeholder="Attraction/Organization">
-  </div>
-  <div class="form-group">
-    <label for="useremail"></label>
-    <input type="email" class="form-control" id="useremail" placeholder="Email">
-  </div>
-  
-   <div class="form-group">
-    <label for="story"></label>
-    <input type="text" class="form-control" id="story" placeholder="What's your story?">
-  </div>
-  
-  </div>
-  <button type="submit" class="btn btn-default">Edit Details</button>
-</form>
-</html>
+                                </form>
+
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+
+

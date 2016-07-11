@@ -69,9 +69,16 @@
                                         <label class="sr-only" for="form-password">Password</label>
                                         <input type="password" name="form-password" placeholder="Password..." class="form-password form-control" id="form-password" ng-model="attendeeData.password">
                                     </div>
+                                         <div class="form-group">
+                                <div class="col-sm-offset-1">
+           <label class="checkbox" id = "checklable">
+              <input type="checkbox" value="remember-me" style ="position: relative;"> Remember me
+           </label>
+          </div>
+                                </div>
                                     <button type="submit" class="btn">Sign in</button>
                                     
-                                    <button ui-sref="register" type= "submit" class="btn">Sign up</button>
+                                    <button ui-sref="register" type= "submit" class="btn btn-block">Sign up</button>
 
                                       <div >
                                     <p>  Have you forgotten your username or password? 

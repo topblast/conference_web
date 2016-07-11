@@ -25,8 +25,6 @@
     <script src="{{URL::asset("public/vendor/angular-ui-router/release/angular-ui-router.min.js")}}"></script> 
     <script src="{{URL::asset("vendor/angularUtils-pagination/dirPagination.js")}}"></script>
     <script src="js/ngStorage.min.js"></script>
-<!--    <script src="{{URL::asset("vendor/angular-sanitize/angular-sanitize.min.js")}}"></script>
-    <script src="{{URL::asset("vendor/angular-read-more/dist/readmore.js")}}"></script>-->
  
     <!-- your app's js -->
     <script src="js/app.js"></script>

@@ -18,5 +18,8 @@
   ],
   "devDependencies": {
     "angular-read-more": "^1.0.5"
+  },
+  "dependencies": {
+    "angular-bootstrap-checkbox": "^0.5.0"
   }
 }
