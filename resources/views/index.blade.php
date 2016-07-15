@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html style="min-height: 100vh;">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
@@ -20,10 +20,12 @@
     <link href="css/registration.css" rel="stylesheet">
     
     
-    
+    <!--bower components -->
     <script src="{{URL::asset("public/vendor/angular/angular.min.js")}}"></script> 
     <script src="{{URL::asset("public/vendor/angular-ui-router/release/angular-ui-router.min.js")}}"></script> 
     <script src="{{URL::asset("vendor/angularUtils-pagination/dirPagination.js")}}"></script>
+    <script src="{{URL::asset("vendor/ng-backstretch/dist/ng-backstretch.js")}}"></script>
+    
     <script src="js/ngStorage.min.js"></script>
 <!--    <script src="{{URL::asset("vendor/angular-sanitize/angular-sanitize.min.js")}}"></script>
     <script src="{{URL::asset("vendor/angular-read-more/dist/readmore.js")}}"></script>-->
@@ -47,13 +49,23 @@
         
         <script src="js/jquery.backstretch.min.js"></script>
         <script src="js/scripts.js"></script>
-	
+<!--        <style>
+            .bgimg{
+                 width: 100%;
+                 height:100%;
+    background-position: center center;
+            }
+            
+        </style>-->
   </head>
-  <body ng-app="starter">
+  <body ng-app="starter" style="min-height: 100vh;">
 <!--     <div ui-view="header"></div>-->
-      <div ui-view>
-          
-      </div>
+<!--      <div ng-controller="bgCtrl" backstretch backstretch-images="bgImage">-->
+            <div ui-view style="min-height: 100vh;">
+
+            </div>
+           
+<!--      </div>-->
 <!--      <div ui-view="footer"></div>-->
   </body>
 </html>

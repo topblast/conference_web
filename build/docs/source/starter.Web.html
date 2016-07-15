@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <base href="../">
+    <title>JSDoc: source : services.js</title>
+    <link href="css/prettify-tomorrow.css" type="text/css" rel="stylesheet">
+    <link href="css/site.css" type="text/css" rel="stylesheet">
+  </head>
+  <body ng-app="">
+    <nav id="toc">
+      <input placeholder="Filter" id="filter-input" class="col12 block field" type="text">
+      <div class="nav-wrapper">
+      <h2><a href="index.html">Index</a></h2>
+      <ul class="module">
+        <!-- starter -->
+        <h2 class="module">
+          <a chref="" ng-click="modulestarter = !modulestarter">
+            module: starter
+          </a>
+          <i ng-cloak="" ng-show="modulestarter">+</i>
+        </h2>
+        <li id="starter" ng-hide="modulestarter">
+          <ul class="group">
+            <h2>
+              <a href="" ng-click="startercontroller = !startercontroller">
+                controller
+              </a>
+              <i ng-cloak="" ng-show="startercontroller">+</i>
+            </h2>
+            <ul ng-hide="startercontroller">
+              <li>
+                <a href="starter.HeaderCtrl.html">HeaderCtrl</a>
+              </li><li>
+                <a href="starter.HomeCtrl.html">HomeCtrl</a>
+              </li><li>
+                <a href="starter.SelectCtrl.html">SelectCtrl</a>
+              </li>
+            </ul>
+          </ul><ul class="group">
+            <h2>
+              <a href="" ng-click="starterdirective = !starterdirective">
+                directive
+              </a>
+              <i ng-cloak="" ng-show="starterdirective">+</i>
+            </h2>
+            <ul ng-hide="starterdirective">
+              <li>
+                <a href="starter.services.html">services</a>
+              </li>
+            </ul>
+          </ul><ul class="group">
+            <h2>
+              <a href="" ng-click="starterservice = !starterservice">
+                service
+              </a>
+              <i ng-cloak="" ng-show="starterservice">+</i>
+            </h2>
+            <ul ng-hide="starterservice">
+              <li>
+                <a href="starter.Web.html">Web</a>
+              </li>
+            </ul>
+          </ul>
+        </li>
+      </ul><ul class="module">
+        <!-- starter_services__eb -->
+        <h2 class="module">
+          <a chref="" ng-click="modulestarter_services__eb = !modulestarter_services__eb">
+            module: starter.services.Web
+          </a>
+          <i ng-cloak="" ng-show="modulestarter_services__eb">+</i>
+        </h2>
+        <li id="starter.services.Web" ng-hide="modulestarter_services__eb">
+          <ul class="group">
+            <h2>
+              <a href="" ng-click="starter_services__ebservice = !starter_services__ebservice">
+                service
+              </a>
+              <i ng-cloak="" ng-show="starter_services__ebservice">+</i>
+            </h2>
+            <ul ng-hide="starter_services__ebservice">
+              <li>
+                <a href="starter.services.Web.Attendee.html">Attendee</a>
+              </li><li>
+                <a href="starter.services.Web.Client.html">Client</a>
+              </li><li>
+                <a href="starter.services.Web.Conference.html">Conference</a>
+              </li><li>
+                <a href="starter.services.Web.Speaker.html">Speaker</a>
+              </li><li>
+                <a href="starter.services.Web.Sponsor.html">Sponsor</a>
+              </li>
+            </ul>
+          </ul>
+        </li>
+      </ul>
+      </div>
+    </nav>
+    <div id="content" class="page-wrap">
+      <h1 class="title">
+        source : services.js
+      </h1>
+      <div id="main" class="big-container">
+        <!-- source code html -->
+        <article>
+          <pre class="prettyprint source linenums"><code>/** * @memberof starter * @ngdoc directive * @name starter.services *  */angular.module('starter.services', [])/** * @memberof starter * @ngdoc service * @name Web * @param $http {service} AngularJS' ng http service * @returns {services_L13.servicesAnonym$1} */.factory('Web', function($http){	var API_LOCATION = 'http://localhost:8000/';	return {		user: {},                /**                 * @memberof starter                 * @ngdoc service                 * @name services.Web.Client                 * @description A list of functions dealing with the clients table                 */                Client: {                        /**                         * @ngdoc service                         * @name services.Web.Client.login                         * @method login                         *  . Calls API route for client login, passing the user's credentials as parameters.                         * @memberof starter                         * @param credentials {type} the clients login credentials: email and password.                         * @param onSuccess {type} response to return if login function is successful.                         * @param onError {type} response to return if login function fails.                         * @returns {undefined}                         */                        login: function(credentials, onSuccess, onError){                            $http.post(API_LOCATION + 'clients/login', credentials)				.then (function(response){					self.user = response;                                        //alert(self.user.data.token + ' ' + self.user.status);					onSuccess(response);				}, onError);                        },                        /**                         * @memberof starter                         * @ngdoc service                         * @method register                         * . Calls API route for client registration, passing the user's credentials as parameters.                          * @param credentials {type} the clients login credentials: email and password.                         * @param onSuccess {type} response to return if login function is successful.                         * @param onError {type} response to return if login function fails.                         * @returns {undefined}                         */                        register: function(credentials, onSuccess, onError) {                            $http.post(API_LOCATION + 'clients/register', credentials)				.then (function(response){					self.user = response;					onSuccess(response);				}, onError);                        },                        /**                         * @memberof starter                         * @ngdoc service                         * @method delete                         * @param {type} id                         * @returns {undefined}                         */                        delete: function(id){                        },                },                /**                 * @memberof starter                 * @ngdoc service                 * @name services.Web.Speaker                 * @description A list of functions dealing with the speakers table                 */		Speaker: {			list: function(onSuccess, onError) {				var self = this;				self.user = {};				return $http.get(API_LOCATION + 'speakers/');			},                        select: function(id){                                return $http.get(API_LOCATION + 'speakers/' + id);                        },                        selectConf: function(id){                            return $http.get(API_LOCATION + 'speakers/' + id + '/conferences');                        },			create: function(speakerData, onSuccess, onError) {				var self = this;				self.user = {};                                speakerData.type = 'keynote';				//return $http.post(API_LOCATION + 'speakers', speakerData);                                $http.post(API_LOCATION + 'speakers/register', speakerData)                                    .then (function(response){					self.user = response;					onSuccess(response);				}, function(response)                                 {                                    onError(response);                                });                        },                        delete: function(id, onSuccess, onError){                                $http.delete(API_LOCATION + 'speakers/' + id)                                        .then(function (response){                                            self.user = response;                                            onSuccess(response);                                }, function(response)                                {                                    onError(response);                                });                        },		},		/**                 * @memberof starter                 * @ngdoc service                 * @name services.Web.Conference                 * @description A list of functions dealing with the conferences table                 */		Conference: {			list: function(onSuccess, onError) {				var self = this;                                //alert(self.user);				//self.user = {};                               // $http.post(API_LOCATION + 'auth/refresh-token');				return $http.get(API_LOCATION + 'conferences/');			},                        select: function(id){                            return $http.get(API_LOCATION + 'conferences/' + id);                        },                        selectPresentation: function(id){                            return $http.get(API_LOCATION + 'conferences/' + id + '/presentation/');                        },                        selectPresentations: function(id){                            return $http.get(API_LOCATION + 'conferences/' + id + '/presentations/');                        }			},                 /**                 * @memberof starter                 * @ngdoc service                 * @name services.Web.Sponsor                 * @description A list of functions dealing with the sponsors table                 */		Sponsor: {			list: function(onSuccess, onError) {				var self = this;				self.user = {};				$http.get(API_LOCATION + 'sponsors')				.then (function(response){					self.user = response;					onSuccess(response);				}, onError);			},		},                /**                 * @memberof starter                 * @ngdoc service                 * @name services.Web.Attendee                 * @description A list of functions dealing with the attendees table                 */		Attendee:	{                        /**                         * Calls API route for client login, passing the user's credentials as parameters.                         * @memberof starter                         * @method login                         * @param {type} credentials the clients login credentials: email and password.                         * @param {type} onSuccess response to return if login function is successful.                         * @param {type} onError response to return if login function fails.                         * @returns {undefined}                         */			login: function(credentials, onSuccess, onError) {				//var self = this;				//self.user = {};				$http.post(API_LOCATION + 'attendees/login', credentials)				.then (function(response){					//self.user = response;                                        //alert(self.user.data.token + ' ' + self.user.status);					onSuccess(response);				}, onError);			},                        /**                         * Calls API route for attendee logout                         * @memberof starter                         * @method logout                         * @returns {undefined}                         */                        logout: function(){                                $http.post(API_LOCATION + 'attendees/logout')                                        .then(function(response){                                           // alert("Logout Successful!");                                }, function(response){                                    //alert("Logout Unsuccessful!");                                });                        },                        /**                         * Calls API route for changing attendee password.                         * @memberof starter                         * @method changepass                         * @param {type} id attendee's id                         * @param {type} onSuccess                         * @param {type} onError                         * @returns {undefined}                         */			changepass:  function(id, onSuccess, onError) {				var self = this;				self.user = {};				$http.post(API_LOCATION + 'attendees/{id}/changepassword', id)				.then (function(response){					self.user = response;					onSuccess(response);				}, onError);			},                        /**                         * Calls API route for an attendee's forgotten password                         * @memberof starter                         * @method forgotpass                         * @param {type} email the attendee's email                         * @param {type} onSuccess                          * @param {type} onError                         * @returns {undefined}                         */                        forgotpass: function(email, onSuccess, onError){                                $http.post(API_LOCATION + 'attendees/' + email + '/forgotpassword')				.then (function(response){				//	self.user = response;					onSuccess(response);				}, onError);                        },			register: function(credentials, onSuccess, onError) {				var self = this;				self.user = {};				$http.post(API_LOCATION + 'attendees/register', credentials)				.then (function(response){					self.user = response;					onSuccess(response);				}, onError);			},			deleteAccount: function(credentials, onSuccess, onError) {				var self = this;				self.user = {};				$http.delete(API_LOCATION + 'attendees/{id}', credentials)				.then (function(response){					self.user = response;					onSuccess(response);				}, onError);			},			update: function(id, onSuccess, onError) {				var self = this;				self.user = {};				$http.put(API_LOCATION + 'attendees/{id}', id)				.then (function(response){					self.user = response;					onSuccess(response);				}, onError);			},                        getConferences: function(id, onSuccess, onError){                             return $http.get(API_LOCATION + 'attendees/' + id + '/conferences');                        }		}	}});</code></pre>
+        </article>
+        <!-- index.html -->
+        <!-- class files -->
+      </div>
+      <footer style="clear:both">
+        Documentation generated by
+        <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a>
+        using
+        <a href="https://github.com/allenhwkim/angular-jsdoc">Angular-JSDoc template</a>
+      </footer>
+    </div>
+    <script src="js/prettify.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/site.js"></script>
+    <!--%= prettyJson %-->
+    <script>
+      prettyPrint();
+      var lineNo = window.location.hash.match(/#line([0-9]+)$/);
+      lineNo && document.querySelector("ol li:nth-child("+(lineNo[1])+")").scrollIntoView();
+    </script>
+  </body>
+</html>

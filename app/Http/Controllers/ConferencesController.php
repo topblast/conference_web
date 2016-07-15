@@ -98,6 +98,8 @@ public function getAuthenticatedUser()
         if(!$cli = Conference::find($id)->presentations)
             return response()->json([], 404);
         
+        
+        //refer to http://stackoverflow.com/questions/25714273/laravel-querying-and-accessing-child-objects-in-nested-relationship-with-where
         $cli = Conference::with([
             'presentations'=> function ($q) use ($id){
         $q->where('conference_id', $id); //constraint on child

@@ -14,8 +14,19 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Response as IlluminateResponse;
+use Illuminate\Support\Facades\Mail;
 
-
+/**
+  * A summary informing the user what the associated element does.
+  *
+  * A *description*, that can span multiple lines, to go _in-depth_ into the details of this element
+  * and to provide some background information or textual references.
+  *
+  * @param string $myArgument With a *description* of this argument, these may also
+  *    span multiple lines.
+  *
+  * @return void
+  */
 class AttendeesController extends Controller
 {
     /**
@@ -30,7 +41,14 @@ class AttendeesController extends Controller
 
 
    
-
+    /**
+     * Function to handle an attendee logging in
+     * @param Request $request 
+     * Takes POST request
+     * 
+     * @return type
+     * Returns a user token in the form of JSON data
+     */
     public function login(Request $request) {
         $this->validate($request, [
             'email' => 'required|email',
@@ -68,7 +86,11 @@ class AttendeesController extends Controller
 
     }
 
-
+    /**
+     * 
+     * @param Request $request
+     * @return type
+     */
     public function register(Request $request){
         $regex = '/(?=.*[0-9])(?=.*[A-Z])(?=.*).{8,}/'; //at least 8 characters including at least 1 Uppercase and 1 digit required
         $result = $this->validate($request,[
@@ -111,6 +133,10 @@ class AttendeesController extends Controller
     }
 
     //GET FUNCTIONS
+    /**
+     * 
+     * @return type
+     */
     public function get_all() {
 
         $all = Attendee::all();
@@ -119,6 +145,11 @@ class AttendeesController extends Controller
     }
 
     //GET BY ID FUNCTION
+    /**
+     * 
+     * @param type $id
+     * @return type
+     */
     public function get_id($id) {
         if(!$cli = Attendee::find($id))
             return response()->json([], 404);
@@ -127,8 +158,13 @@ class AttendeesController extends Controller
     }
 
     //Logout
+    /**
+     * Function to handle attendee logging out
+     */
     public function logout(){
-        //invalidate generated token
+        /**
+         * invalidate generated token
+         */
         Auth::logout();
     }
 
@@ -152,6 +188,12 @@ class AttendeesController extends Controller
 
 
     //CHANGE PASSWORD FUNCTION
+    /**
+     * 
+     * @param type $id
+     * @param Request $request
+     * @return type
+     */
     public function change_password($id, Request $request){
         if(!$pEdit = Attendee::find($id))
             return response()->json([], 404);
@@ -166,7 +208,11 @@ class AttendeesController extends Controller
 
 
     //DELETE FUNCTION
-
+    /**
+     * 
+     * @param type $id
+     * @return type
+     */
     public function delete_attendee($id){
         if (!$del  = Attendee::find($id))
             return response()->json([], 404);
@@ -178,6 +224,12 @@ class AttendeesController extends Controller
 
 
         //PUT FUNCTION
+    /**
+     * 
+     * @param Request $request
+     * @param type $id
+     * @return type
+     */
     public function edit_attendee(Request $request,$id){
         if (!$edit  = Attendee::find($id))
             return response()->json($del);
@@ -192,9 +244,30 @@ class AttendeesController extends Controller
 
         return response()->json($edit);
     }
+    
+    /**
+     * 
+     * @param type $email
+     */
+    public function forgot_password($email){
+       // dd(config("mail"));
+        //dd(config("mail.from.address"));
+        
+        Mail::send(['text' => 'email'], ['email' => $email], function($message) use($email)
+        {
+            $message->from(config("mail.from.address"), 'Bradley Ramsay');
+
+            $message->to($email)->subject('Forgot Password');
+        });
+    }
 
 
     //GET CONFERENCES FUNCTION
+    /**
+     * 
+     * @param type $id
+     * @return type
+     */
     public function get_conferences($id){
         if (!$cli = Attendee::find($id))
             return response()->json([], 404);
@@ -202,5 +275,6 @@ class AttendeesController extends Controller
         return response()->json($cli->conferences);
     }
 
+    
 
 }

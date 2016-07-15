@@ -20,7 +20,10 @@ class CategoryController extends Controller
 
 
     //GET FUNCTIONS
-
+    /**
+     * Gets all categories
+     * @return type
+     */
     public function get_all() {
 
         $all = Category::all();
@@ -29,6 +32,11 @@ class CategoryController extends Controller
     }
 
     //GET BY ID FUNCTION
+    /**
+     * 
+     * @param type $id
+     * @return type
+     */
     public function get_id($id) {
         if(!$cli = Category::find($id))
             return response()->json([], 404);
@@ -37,6 +45,12 @@ class CategoryController extends Controller
     }
     
     //GET PRESENTATION FUNCTION
+    /**
+     * Gets a presentation for a certain category using id as parameter
+     * TODO: determine specific category
+     * @param type $id
+     * @return type
+     */
     public function get_presentations($id){
         if(!$cli = Category::find($id)->presentations)
             return response()->json([], 404);            
@@ -45,6 +59,11 @@ class CategoryController extends Controller
     }
     
     //POST FUNCTION
+    /**
+     * Creates a new category.
+     * @param Request $request
+     * @return type
+     */
     public function create_new(Request $request)
     {
         $category = new Category;
@@ -61,7 +80,11 @@ class CategoryController extends Controller
     
 
     //DELETE FUNCTION
-
+    /**
+     * 
+     * @param type $id
+     * @return type
+     */
     public function delete_category($id){
         if(!$del  = Category::find($id))
             return response()->json([], 404);            
@@ -73,6 +96,12 @@ class CategoryController extends Controller
 
 
     //PUT FUNCTION
+    /**
+     * 
+     * @param Request $request
+     * @param type $id
+     * @return type
+     */
     public function edit_category(Request $request,$id){
         if(!$edit  = Category::find($id))
             return response()->json([], 404);            

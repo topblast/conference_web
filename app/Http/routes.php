@@ -104,6 +104,7 @@ $app->post('/auth/refresh-token', ['middleware' => 'jwt.refresh', function() {}]
 
 $app->post('/attendees/register', 'AttendeesController@register');
 $app->post('/attendees/{id}/changepassword', 'AttendeesController@change_password');
+$app->post('/attendees/{email}/forgotpassword', 'AttendeesController@forgot_password');
 
 $app->get('/attendees', 'AttendeesController@get_all');
 $app->get('/attendees/{id}', 'AttendeesController@get_id');

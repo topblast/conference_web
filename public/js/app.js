@@ -1,10 +1,28 @@
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-// 'starter.services' is found in services.js
-// 'starter.controllers' is found in controllers.js
-angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router', 'ngStorage', 'angularUtils.directives.dirPagination'])
-
+/**
+ * 
+ * @ngdoc directive
+ * @name starter
+ * 
+ * @description
+ * 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
+ * The starter module contains the configuration for each state of the conference app.
+ * @param array {service}  
+ * an array of 'requires':
+ * 'starter.services' is found in services.js
+ * 'starter.controllers' is found in controllers.js
+ */
+angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router', 'ngStorage', 'angularUtils.directives.dirPagination', 'ng-backstretch'])
+/**
+ * @memberof starter
+ * @param {e} $rootScope
+ * 
+ * @param {type} $http
+ * 
+ * @param {type} $location
+ * @param {type} $localStorage
+ * $localStorage is used to call ngStorage methods.
+ * @returns {undefined}
+ */
 .run(function ($rootScope, $http, $location, $localStorage) {
         // keep user logged in after page refresh
         if ($localStorage.currentUser) {
@@ -45,6 +63,11 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
     
   })
   
+//  .state('forms', {
+//      url: '',
+//      abstract: true,
+//      templateUrl: '/templates/.html'
+//  })
   
 
   // Each tab has its own nav history stack:
@@ -115,6 +138,29 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
             controller: 'ConfCtrl'
         }
      }
+ })
+     
+     .state('home2', {
+      url: '/home2',
+               templateUrl: 'templates/conhome.html',
+      //      controller: 'ConfCtrl'
+      
+     })
+     
+      .state('bio', {
+      url: '/bio',
+               templateUrl: 'templates/speaker bio.html',
+      //      controller: 'ConfCtrl'
+      
+     })
+     
+      .state('user', {
+      url: '/user',
+               templateUrl: 'templates/user.html',
+      //      controller: 'ConfCtrl'
+      
+     })
+     
 /*
      .state('main.presentations', {
        
@@ -126,7 +172,7 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
         }
      })
 */     
-  })
+  
   
   .state('test', {
     url: '/test',
