@@ -30,6 +30,7 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
         }
  
         // redirect to login page if not logged in and trying to access a restricted page
+
 //        $rootScope.$on('$locationChangeStart', function (event, next, current) {
 //            var loginPages = ['/login', '/forgotpass', '/register', '/client/login', '/client/register']; //Pages that should be accessible when not logged in
 //            var publicPages = ['/public']; //Pages that are accessible either logged in or not
@@ -45,6 +46,7 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
 //                $location.path('/main/home'); //redirect to the main homepage
 //            }
 //        });
+
     })
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -79,17 +81,18 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
           templateUrl: 'templates/header.html',
           controller: 'HeaderCtrl'
       },
-      'side-menu': {
-        templateUrl: 'templates/side-menu.html',
-        controller: 'HeaderCtrl'
-      },
       'main-home': {
         templateUrl: 'templates/main-home.html',
         controller: 'HomeCtrl'
       },
-      
       'footer': {
           templateUrl: 'templates/footer.html'
+      },
+      'help': {
+        templateUrl: 'templates/help.html'
+      },
+      'report': {
+        templateUrl: 'templates/report.html'
       }
     }
   })
@@ -105,6 +108,12 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
       'main-home': {
         templateUrl: 'templates/test.html',
         controller: 'SelectCtrl'
+      },
+      'help': {
+        templateUrl: 'templates/help.html'
+      },
+      'report': {
+        templateUrl: 'templates/report.html'
       }
     }
   })
@@ -115,6 +124,12 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
       'main-home': {
         templateUrl: 'templates/test.html',
         controller: 'SelectCtrl'
+      },
+      'help': {
+        templateUrl: 'templates/help.html'
+      },
+      'report': {
+        templateUrl: 'templates/report.html'
       }
     }
   })
@@ -136,30 +151,18 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
         'main-home':{
             templateUrl: 'templates/select-conference.html',
             controller: 'ConfCtrl'
-        }
+        },
+      'help': {
+        templateUrl: 'templates/help.html'
+      },
+      'report': {
+        templateUrl: 'templates/report.html'
+      }
      }
- })
+
+    })
      
-     .state('home2', {
-      url: '/home2',
-               templateUrl: 'templates/conhome.html',
-      //      controller: 'ConfCtrl'
-      
-     })
-     
-      .state('bio', {
-      url: '/bio',
-               templateUrl: 'templates/speaker bio.html',
-      //      controller: 'ConfCtrl'
-      
-     })
-     
-      .state('user', {
-      url: '/user',
-               templateUrl: 'templates/user.html',
-      //      controller: 'ConfCtrl'
-      
-     })
+    
      
 /*
      .state('main.presentations', {
@@ -241,10 +244,136 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
         url:'/change-password',
         templateUrl: 'templates/change-password.html'
         //controller: 'ForgotPassCtrl',
-    });
+    })
+
+.state('user', {
+        url:'/user',
+        templateUrl: 'templates/user.html',
+        //controller: 'ForgotPassCtrl',
+    })
+
+.state('speaker bio', {
+        url:'/speaker',
+        templateUrl: 'templates/speaker bio.html'
+        //controller: 'ForgotPassCtrl',
+    })
+
+.state('private conferences', {
+        url:'/private',
+        templateUrl: 'templates/private conferences.html'
+        //controller: 'ForgotPassCtrl',
+    })
+
+.state('conhome', {
+        url:'/conhome',
+        templateUrl: 'templates/conhome.html'
+        //controller: 'ForgotPassCtrl',
+    })
+
+
+//WARRENS TESTING!!!!!!!!!!
+//WARRENS TESTING!!!!!!!!!!
+//WARRENS TESTING!!!!!!!!!!
+//WARRENS TESTING!!!!!!!!!!
+//WARRENS TESTING!!!!!!!!!!
+//WARRENS TESTING!!!!!!!!!!
+//WARRENS TESTING!!!!!!!!!!
+//WARRENS TESTING!!!!!!!!!!
+
+.state('maintest', {
+    url: '/maintest',
+    abstract: true,
+    templateUrl: '/templates/maintest.html' 
+    
+    
+    
+  })
+
+.state('maintest.public', {
+  url: '/public',
+  views: {
+    'maintestbody': {
+      templateUrl: 'templates/maintestpublic.html'
+    }
+  }
+})
+
+.state('maintest.private', {
+  url: '/private',
+  abstract: true,
+  views: {
+    'maintestbody': {
+      templateUrl: 'templates/contest.html'
+    }
+  }
+})
+
+
+
+
+
+
+
+
+/*.state('contest', {
+    url: '/contest',
+    abstract: true,
+    templateUrl: '/templates/contest.html'  
+    
+    
+  })*/
   
+  
+
+  // Each tab has its own nav history stack:
+
+  .state('maintest.private.schedule', {
+    url: '/schedule',
+    views: {
+      'Page_Body': {
+          templateUrl: 'templates/Schedule.html',
+          //controller: 'HeaderCtrl'
+      }
+    }
+  })
+
+    .state('maintest.private.speakers', {
+    url: '/speakers',
+    views: {
+      'Page_Body': {
+          templateUrl: 'templates/Speakers.html',
+          //controller: 'HeaderCtrl'
+      }
+    }
+  })
+    .state('maintest.private.map', {
+    url: '/map',
+    views: {
+      'Page_Body': {
+          templateUrl: 'templates/map.html',
+          //controller: 'HeaderCtrl'
+      }
+    }
+  })
+
+    .state('maintest.private.about', {
+    url: '/about',
+    views: {
+      'Page_Body': {
+          templateUrl: 'templates/about.html',
+          //controller: 'HeaderCtrl'
+      }
+    }
+  })      
+
+  
+  .state('tabbed con', {
+        url:'/tabbed',
+        templateUrl: 'templates/tabbed con.html'
+        //controller: 'ForgotPassCtrl',
+    })
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/main/home');
+  $urlRouterProvider.otherwise('/login');
 
 });
 

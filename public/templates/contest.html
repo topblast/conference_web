@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="../css/tabbedcon.css">
+</head>
+
+<body>
+  <script src="../js/conhome.js"></script>
+  <script src="../js/tabbedcon.js"></script>
+
+  <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBD4TjGeZXKw7fWYR8X0UGfHAIvQqzUmF0"></script>
+  <script>
+  function initialize() {
+    var mapProp = {
+      center:new google.maps.LatLng(51.508742,-0.120850),
+      zoom:5,
+      mapTypeId:google.maps.MapTypeId.ROADMAP
+    };
+    var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+  }
+  google.maps.event.addDomListener(window, 'load', initialize);
+  </script>
+
+
+
+  <ul class="tab">
+   <li><a href="#/maintest/private/schedule" class="tablinks active" onclick="openTab(event)">Schedule</a></li>
+   <li><a href="#/maintest/private/speakers" class="tablinks" onclick="openTab(event)">Speakers</a></li>
+   <li><a href="#/maintest/private/map" class="tablinks" onclick="openTab(event)">Map</a></li>
+   <li><a href="#/maintest/private/about" class="tablinks" onclick="openTab(event)">About</a></li>
+  </ul>
+
+  <div ui-view="Page_Body">
+
+
+
+    
+  </div>
+
+</body>
+</html>

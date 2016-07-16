@@ -1,6 +1,6 @@
 <div> 
 
-    <input type="checkbox" id="menuToggle"><label for="menuToggle" class="menu-icon">&#9776;</label> ||| <a ui-sref="main.home">Home</a> | <a ui-sref="main.home-speakers({speakerID: 5})">Speakers</a> | <a ui-sref="main.conference({conferenceID:3})">Tester</a> |
+    <input type="checkbox" id="menuToggle"><label for="menuToggle" class="menu-icon">&#9776;</label> <a ui-sref="main.home">Home</a> | <a ui-sref="main.home-speakers({speakerID: 5})">Speakers</a> | <a ui-sref="main.conference({conferenceID:3})">Tester</a> |
 
     
     <p>Welcome {{userDetails.username}}!</p>
@@ -8,18 +8,24 @@
 
 <nav class="menu">
     <ul>
-        <li><a ui-sref="">Profile</a>
+        <li><a>Profile</a>
         <li><a ui-sref="main.home">My Conferences</a>
-            <!-- <ul><li>sub-menu containing list of conferences</li></ul> -->
-        <li><a ui-sref="">Change Password</a>
-        <li><a ui-sref="" ng-click="logout()">Logout</a>
-        <li><a ui-sref="" data-toggle="modal" data-target="#helpModal">Help</a>
-        <li><a ui-sref="" data-toggle="modal" data-target="#bugModal">Report Bug</a>
+                <ul class="submenu">
+                    <li><a ui-sref="">conference1</a></li>
+                    <li><a ui-sref="">conference2</a></li>
+                    <li><a ui-sref="">conference3</a></li>
+                </ul>
+        <li><a>Change Password</a>
+        <li><a ng-click="logout()">Logout</a>
+        <li><a data-toggle="modal" data-target="#helpModal">Help</a>
+        <li><a data-toggle="modal" data-target="#bugModal">Report Bug</a>
+
     </ul>
 </nav>
 
-<div id="c-mask" class="c-mask"></div>
+<div id="c-mask" class="c-mask"></div> <!-- to be used to darken page when side menu is opened -->
 
+  
     
 
 <!-- Help Modal -->
@@ -54,13 +60,14 @@
         <div class="modal-footer">
           <button class="btn btn-default"> Send</button> 
 
-                                             <button id="cancel" name="cancel" class="btn " value="1">Cancel</button>
-                                        </div>
+          <button id="cancel" name="cancel" class="btn " data-dismiss="modal">Cancel</button>
+        </div>
         </div>
       </div>
       
     </div>
 </div>
+
 
 
   <!-- Report Bug Modal -->
@@ -95,8 +102,8 @@
         <div class="modal-footer">
           <button class="btn btn-default"> Send</button> 
 
-                                             <button id="cancel" name="cancel" class="btn " value="1">Cancel</button>
-                                        </div>
+          <button id="cancel" name="cancel" class="btn " data-dismiss="modal">Cancel</button>
+        </div>
         </div>
       </div>
       

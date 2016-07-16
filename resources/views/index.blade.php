@@ -27,8 +27,6 @@
     <script src="{{URL::asset("vendor/ng-backstretch/dist/ng-backstretch.js")}}"></script>
     
     <script src="js/ngStorage.min.js"></script>
-<!--    <script src="{{URL::asset("vendor/angular-sanitize/angular-sanitize.min.js")}}"></script>
-    <script src="{{URL::asset("vendor/angular-read-more/dist/readmore.js")}}"></script>-->
  
     <!-- your app's js -->
     <script src="js/app.js"></script>

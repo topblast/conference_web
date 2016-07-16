@@ -143,6 +143,10 @@ angular.module('starter.controllers', [])
             $http.defaults.headers.common.Authorization = '';
             $location.path('/login');
         };
+
+    $scope.showHelpModal=function($scope) {
+        $scope.showModal = true;
+    };
 })
 
 /**
@@ -224,6 +228,9 @@ angular.module('starter.controllers', [])
 
        Web.Attendee.login($scope.attendeeData, function (response){
                 alert('Login Successful!');
+                console.log(response);
+                console.log(response.data);
+                console.log(response.data.user);
                 $scope.loading = false;
                 //console.log(response.data);
                 //console.log(response.data.user);
@@ -391,3 +398,52 @@ angular.module('starter.controllers', [])
     enableFriends: true
   };
 });
+
+/*
+//POPUP CONTROLLER FOR HELP AND REPORT BUG
+.controller('ModalCtrl', function($scope, $uibModal, $log) {
+    $scope.animationsEnabled = true;
+
+    $scope.items = ['item1', 'item2', 'item3'];
+
+     $scope.open = function (size) {
+
+    var modalInstance = $uibModal.open({   //to be edited 
+      animation: $scope.animationsEnabled,
+      templateUrl: 'myModalContent.html',
+      controller: 'ModalInstanceCtrl',
+      size: size,
+      resolve: {
+        items: function () {
+          return $scope.items;
+        }
+      }
+    });
+    modalInstance.result.then(function (selectedItem) {
+      $scope.selected = selectedItem;
+    }, function () {
+      $log.info('Modal dismissed at: ' + new Date());  //logs change
+    });
+  };
+
+  $scope.toggleAnimation = function () {
+    $scope.animationsEnabled = !$scope.animationsEnabled;  //for toggling animation.
+  };
+
+})
+
+.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, items) {
+
+  $scope.items = items;
+  $scope.selected = {
+    item: $scope.items[0]
+  };
+
+  $scope.ok = function () {
+    $uibModalInstance.close($scope.selected.item); //passes selected item. can be used for conference_id selections
+  };
+
+  $scope.cancel = function () {
+    $uibModalInstance.dismiss('cancel');
+  };
+});*/

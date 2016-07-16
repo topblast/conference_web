@@ -1,7 +1,4 @@
-
-
-
-		
+	
                 
       <!--=========================NEW COMMENT FORM =============================================== -->
 <!--    <form ng-submit="submitSpeaker()">  
@@ -61,7 +58,7 @@
          <h3>Conference {{conference.conference_id}}: {{conference.name}}</h3>   
             
    
-<!--            <div ng-repeat="presentation in selectPres(conference.conference_id)">-->
+
       
                 <p ng-class="{empty: !(presentation[conference.conference_id])}"> <strong>{{presentation[conference.conference_id].presentation_id || '?'}}: {{presentation[conference.conference_id].title || '?'}} </strong> </p> 
                 
@@ -70,39 +67,6 @@
                 </div>
                 <a ui-sref="main.conference({conferenceID: {{conference.conference_id}}})">See More</a>
                 
-<!--                <p> {{presentation.abstract}} </p>-->
-<!--                    </div>-->
-<!--          <a href="#"> See more...</a>-->
+
         </div>
         <dir-pagination-controls></dir-pagination-controls>
-<!--    <p>Conferences go here</p>-->
-    
-    <!-- LOADING ICON =============================================== -->
-    <!-- show loading icon if the loading variable is set to true -->
-<!--    <p class="text-center" ng-show="loading"><span class="fa fa-meh-o fa-5x fa-spin"></span></p>
-     
-    
-        <div ng-hide="loading" ng-repeat="conference in conferences">
-            {{conference.conference_id}} {{conference.name}}
-
-        </div>-->
-               
-        <!--
-            <p>presentation goes here</p>
-                <div ng-repeat="presentation in getConferenceID(conference.id)">
-            <!--<div ng-repeat="presentation in presentations" ng-init="selectPres(conference.conference_id)">-->
-                  <!--  {{presentation.presentation_id}} {{presentation.title}}
-                    </div>
-
-        </div>
-       -->
-  
-
-
-
-               
-
-                  
-
-
-
