@@ -228,9 +228,7 @@ angular.module('starter.controllers', [])
 
        Web.Attendee.login($scope.attendeeData, function (response){
                 alert('Login Successful!');
-                console.log(response);
-                console.log(response.data);
-                console.log(response.data.user);
+               
                 $scope.loading = false;
                 //console.log(response.data);
                 //console.log(response.data.user);

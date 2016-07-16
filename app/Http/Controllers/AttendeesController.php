@@ -17,15 +17,10 @@ use Illuminate\Http\Response as IlluminateResponse;
 use Illuminate\Support\Facades\Mail;
 
 /**
-  * A summary informing the user what the associated element does.
+  * Controller for the Attendee Model
   *
-  * A *description*, that can span multiple lines, to go _in-depth_ into the details of this element
-  * and to provide some background information or textual references.
+  * *AttendeesController* is a controller for the Attendee Model, which is the data model for the attendees table.
   *
-  * @param string $myArgument With a *description* of this argument, these may also
-  *    span multiple lines.
-  *
-  * @return void
   */
 class AttendeesController extends Controller
 {

@@ -10,8 +10,8 @@ use Illuminate\Http\Request;
 /**
   * Controller for the Speaker Model.
   *
-  * *SpeakersController* is a _controller_ for the Speaker Model, which is the data model for the speakers table.
-  *
+  * *SpeakersController* is a controller for the Speaker Model, which is the data model for the speakers table.
+  * 
   */
 class SpeakersController extends Controller
 {

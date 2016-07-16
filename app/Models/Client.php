@@ -8,6 +8,13 @@ use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
 use Tymon\JWTAuth\Contracts\JWTSubject as JWTSubject;
 use Illuminate\Contracts\Auth\Authenticatable;
 
+/**
+ * Client Model.
+ * 
+ * The Client model for the clients table.
+ * 
+ * @filesource
+ */
 class Client extends Model implements JWTSubject, Authenticatable {
     
     use AuthenticatableTrait, Authorizable;

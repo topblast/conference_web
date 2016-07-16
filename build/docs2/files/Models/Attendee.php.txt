@@ -9,7 +9,13 @@ use Tymon\JWTAuth\Contracts\JWTSubject as JWTSubject;
 use Illuminate\Contracts\Auth\Authenticatable;
 //use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 
-
+/**
+ * Attendee model.
+ * 
+ * The Attendee model for the attendees table.
+ * 
+ * @filesource
+ */
 class Attendee extends Model implements JWTSubject, Authenticatable{
     use AuthenticatableTrait, Authorizable;
 

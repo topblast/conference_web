@@ -4,6 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Conference Model.
+ * 
+ * The model for the conferences table
+ * @filesource
+ */
 class Conference extends Model{
     protected $primaryKey="conference_id";
 

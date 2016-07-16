@@ -6,6 +6,12 @@ use App\Models\Category;
 use App\Models\Presentation;
 use Illuminate\Http\Request;
 
+/**
+ * Controller for the Category Model.
+ * 
+ * *CategoryController* is a controller for the Category Model, which is the data model for the categories table. 
+ * @filesource
+ */
 class CategoryController extends Controller
 {
     /**
@@ -21,8 +27,9 @@ class CategoryController extends Controller
 
     //GET FUNCTIONS
     /**
-     * Gets all categories
+     * Gets all categories.
      * @return type
+     * Returns category details as JSON data.
      */
     public function get_all() {
 
@@ -33,9 +40,10 @@ class CategoryController extends Controller
 
     //GET BY ID FUNCTION
     /**
-     * 
+     * Gets a category based on id
      * @param type $id
      * @return type
+     * Returns category details as JSON data if successful, 404 and empty JSON array if unsuccessful.
      */
     public function get_id($id) {
         if(!$cli = Category::find($id))
@@ -46,10 +54,10 @@ class CategoryController extends Controller
     
     //GET PRESENTATION FUNCTION
     /**
-     * Gets a presentation for a certain category using id as parameter
-     * TODO: determine specific category
+     * Gets all presentations related to a category using id as parameter
      * @param type $id
      * @return type
+     * Returns presentations as JSON data if successful, 404 and empty JSON array if unsuccessful
      */
     public function get_presentations($id){
         if(!$cli = Category::find($id)->presentations)
@@ -59,10 +67,12 @@ class CategoryController extends Controller
     }
     
     //POST FUNCTION
-    /**
+     /**
      * Creates a new category.
      * @param Request $request
+     * The POST request
      * @return type
+     * returns category details as JSON data.
      */
     public function create_new(Request $request)
     {
@@ -81,9 +91,10 @@ class CategoryController extends Controller
 
     //DELETE FUNCTION
     /**
-     * 
+     * Deletes an existing category based on id
      * @param type $id
      * @return type
+     * Returns category details as JSON data if successful, 404 error and an empty JSON array if unsuccessful.
      */
     public function delete_category($id){
         if(!$del  = Category::find($id))
@@ -97,10 +108,12 @@ class CategoryController extends Controller
 
     //PUT FUNCTION
     /**
-     * 
+     * Edits an existing category
      * @param Request $request
+     * The PUT request.
      * @param type $id
      * @return type
+     * Returns edited category details as JSON data, or a 404 error if the requested category cannot be found.
      */
     public function edit_category(Request $request,$id){
         if(!$edit  = Category::find($id))
