@@ -87,13 +87,8 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
       },
       'footer': {
           templateUrl: 'templates/footer.html'
-      },
-      'help': {
-        templateUrl: 'templates/help.html'
-      },
-      'report': {
-        templateUrl: 'templates/report.html'
       }
+      
     }
   })
   
@@ -108,13 +103,8 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
       'main-home': {
         templateUrl: 'templates/test.html',
         controller: 'SelectCtrl'
-      },
-      'help': {
-        templateUrl: 'templates/help.html'
-      },
-      'report': {
-        templateUrl: 'templates/report.html'
       }
+      
     }
   })
 
@@ -151,13 +141,8 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
         'main-home':{
             templateUrl: 'templates/select-conference.html',
             controller: 'ConfCtrl'
-        },
-      'help': {
-        templateUrl: 'templates/help.html'
-      },
-      'report': {
-        templateUrl: 'templates/report.html'
-      }
+        }
+     
      }
 
     })
