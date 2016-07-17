@@ -1,10 +1,10 @@
 /**
  * 
- * @ngdoc directive
+ * @ngdoc module
  * @name starter
  * 
  * @description
- * 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
+ * 'starter' is the name of this angular module example (also set in a '<body>' attribute in index.html)
  * The starter module contains the configuration for each state of the conference app.
  * @param array {service}  
  * an array of 'requires':
@@ -14,6 +14,9 @@
 angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router', 'ngStorage', 'angularUtils.directives.dirPagination', 'ng-backstretch'])
 /**
  * @memberof starter
+ * @ngdoc run
+ * @name run
+ * @desc determines actions to take when the run event of the application is called
  * @param {e} $rootScope
  * 
  * @param {type} $http
@@ -49,14 +52,32 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
 
     })
 
+/**
+ * @memberof starter
+ * @ngdoc config
+ * @name states
+ * @desc Contains all the states for the application.
+ * @param {type} $stateProvider
+ * @param {type} $urlRouterProvider
+ * @returns {undefined}
+ */
+
 .config(function($stateProvider, $urlRouterProvider) {
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
+  
+  
   $stateProvider
-
+  /**
+   * @memberof states
+   * @name main
+   * @ngdoc state
+   * @desc The abstract state for main.
+   * This is the parent state that will be called for all states related to main
+   */
   .state('main', {
     url: '/main',
     abstract: true,
@@ -73,7 +94,13 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
   
 
   // Each tab has its own nav history stack:
-
+  /**
+   * @memberof states
+   * @name main.home
+   * @ngdoc state
+   * @desc Child state of main.
+   * This is the state for the main homepage when the attendee successfully logs in
+   */
   .state('main.home', {
     url: '/home',
     views: {
@@ -91,7 +118,14 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
       
     }
   })
-  
+
+  /**
+   * @memberof states
+   * @name main.home-speakers
+   * @ngdoc state
+   * @desc The child state for main.
+   * This is the state that will display a speaker's profile
+   */  
    .state('main.home-speakers', {
     url: '/:speakerID',
     views: {
@@ -108,6 +142,13 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
     }
   })
 
+    /**
+   * @memberof states
+   * @name main.home-presentations
+   * @ngdoc state
+   * @desc Child state of main.
+   * This displays the presentations for a specific conference
+   */
     .state('main.home-presentations', {
     url: '/:conferenceID',
     views: {
@@ -124,6 +165,13 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
     }
   })
   
+  /**
+   * @memberof states
+   * @name main.test
+   * @ngdoc state
+   * @desc Child state of main.
+   * Test state for development purposes
+   */
   .state('main.test', {
     url: '/test',
     templateUrl: 'templates/test.html',
@@ -131,6 +179,13 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
        
   })
   
+  /**
+   * @memberof states
+   * @name main.conference
+   * @ngdoc state
+   * @desc Child state of main.
+   * This displays the details of a specific conference
+   */
   .state('main.conference', {
       url: '/conference/:conferenceID',
        views:{
@@ -169,18 +224,38 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
        
   })
   
+  /**
+   * @memberof states
+   * @name client-profile
+   * @ngdoc state
+   * @desc 
+   * This state displays the client's/user's profile
+   */
   .state('client-profile', {
       url: '/client/profile',
       templateUrl: 'templates/client-profile.html'
     })
 
-
+  /**
+   * @memberof states
+   * @name login
+   * @ngdoc state
+   * @desc 
+   * This state displays the login page and handles the attendee logging in. 
+   */
     .state('login', {
       url: '/login',
       templateUrl: 'templates/login.html',
       controller: 'LoginCtrl'
     })
     
+  /**
+   * @memberof states
+   * @name client-login
+   * @ngdoc state
+   * @desc 
+   * This state displays the client's login page and handles the client logging in. 
+   */
     .state('client-login', {
       url: '/client/login',
       templateUrl: 'templates/client-login.html',
@@ -189,7 +264,13 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
     
     
     
-
+   /**
+    * @memberof states
+    * @name register
+    * @ngdoc state
+    * @desc 
+    * This state displays the registration page and handles the attendee creating a new account. 
+    */
     .state('register', {
       url: '/register',
       templateUrl: 'templates/registration.html',
@@ -202,7 +283,13 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
       controller: 'RegClientCtrl'
     })
 
-    
+   /**
+    * @memberof states
+    * @name forgotpassword
+    * @ngdoc state
+    * @desc 
+    * This state displays the forgot password page. 
+    */
     .state('forgotpassword', {
         url:'/forgotpass',
         templateUrl: 'templates/pass-reset.html',

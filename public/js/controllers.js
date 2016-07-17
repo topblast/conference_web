@@ -1,5 +1,6 @@
 /**
  * @memberof starter
+ * @ngdoc module
  * @name starter.controllers
  * 
  * 

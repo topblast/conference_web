@@ -22,12 +22,12 @@
         <li id="undefined" ng-hide="moduleundefined">
           <ul class="group">
             <h2>
-              <a href="" ng-click="undefineddirective = !undefineddirective">
-                directive
+              <a href="" ng-click="undefinedmodule = !undefinedmodule">
+                module
               </a>
-              <i ng-cloak="" ng-show="undefineddirective">+</i>
+              <i ng-cloak="" ng-show="undefinedmodule">+</i>
             </h2>
-            <ul ng-hide="undefineddirective">
+            <ul ng-hide="undefinedmodule">
               <li>
                 <a href="starter.html">starter</a>
               </li>
@@ -73,14 +73,40 @@
             </ul>
           </ul><ul class="group">
             <h2>
-              <a href="" ng-click="starterdirective = !starterdirective">
-                directive
+              <a href="" ng-click="startermodule = !startermodule">
+                module
               </a>
-              <i ng-cloak="" ng-show="starterdirective">+</i>
+              <i ng-cloak="" ng-show="startermodule">+</i>
             </h2>
-            <ul ng-hide="starterdirective">
+            <ul ng-hide="startermodule">
               <li>
+                <a href="starter.controllers.html">controllers</a>
+              </li><li>
                 <a href="starter.services.html">services</a>
+              </li>
+            </ul>
+          </ul><ul class="group">
+            <h2>
+              <a href="" ng-click="starterrun = !starterrun">
+                run
+              </a>
+              <i ng-cloak="" ng-show="starterrun">+</i>
+            </h2>
+            <ul ng-hide="starterrun">
+              <li>
+                <a href="starter.run.html">run</a>
+              </li>
+            </ul>
+          </ul><ul class="group">
+            <h2>
+              <a href="" ng-click="starterconfig = !starterconfig">
+                config
+              </a>
+              <i ng-cloak="" ng-show="starterconfig">+</i>
+            </h2>
+            <ul ng-hide="starterconfig">
+              <li>
+                <a href="starter.states.html">states</a>
               </li>
             </ul>
           </ul>
@@ -96,12 +122,12 @@
         <li id="starter.services" ng-hide="modulestarter_services">
           <ul class="group">
             <h2>
-              <a href="" ng-click="starter_servicesservice = !starter_servicesservice">
-                service
+              <a href="" ng-click="starter_servicesfactory = !starter_servicesfactory">
+                factory
               </a>
-              <i ng-cloak="" ng-show="starter_servicesservice">+</i>
+              <i ng-cloak="" ng-show="starter_servicesfactory">+</i>
             </h2>
-            <ul ng-hide="starter_servicesservice">
+            <ul ng-hide="starter_servicesfactory">
               <li>
                 <a href="starter.services.Web.html">Web</a>
               </li>
@@ -109,32 +135,96 @@
           </ul>
         </li>
       </ul><ul class="module">
-        <!-- starter_services__eb -->
+        <!-- states -->
         <h2 class="module">
-          <a chref="" ng-click="modulestarter_services__eb = !modulestarter_services__eb">
-            module: starter.services.Web
+          <a chref="" ng-click="modulestates = !modulestates">
+            module: states
           </a>
-          <i ng-cloak="" ng-show="modulestarter_services__eb">+</i>
+          <i ng-cloak="" ng-show="modulestates">+</i>
         </h2>
-        <li id="starter.services.Web" ng-hide="modulestarter_services__eb">
+        <li id="states" ng-hide="modulestates">
           <ul class="group">
             <h2>
-              <a href="" ng-click="starter_services__ebservice = !starter_services__ebservice">
+              <a href="" ng-click="statesstate = !statesstate">
+                state
+              </a>
+              <i ng-cloak="" ng-show="statesstate">+</i>
+            </h2>
+            <ul ng-hide="statesstate">
+              <li>
+                <a href="states.client-login.html">client-login</a>
+              </li><li>
+                <a href="states.client-profile.html">client-profile</a>
+              </li><li>
+                <a href="states.forgotpassword.html">forgotpassword</a>
+              </li><li>
+                <a href="states.login.html">login</a>
+              </li><li>
+                <a href="states.main.html">main</a>
+              </li><li>
+                <a href="states.register.html">register</a>
+              </li>
+            </ul>
+          </ul>
+        </li>
+      </ul><ul class="module">
+        <!-- states_main -->
+        <h2 class="module">
+          <a chref="" ng-click="modulestates_main = !modulestates_main">
+            module: states.main
+          </a>
+          <i ng-cloak="" ng-show="modulestates_main">+</i>
+        </h2>
+        <li id="states.main" ng-hide="modulestates_main">
+          <ul class="group">
+            <h2>
+              <a href="" ng-click="states_mainstate = !states_mainstate">
+                state
+              </a>
+              <i ng-cloak="" ng-show="states_mainstate">+</i>
+            </h2>
+            <ul ng-hide="states_mainstate">
+              <li>
+                <a href="states.main.conference.html">conference</a>
+              </li><li>
+                <a href="states.main.home.html">home</a>
+              </li><li>
+                <a href="states.main.home-presentations.html">home-presentations</a>
+              </li><li>
+                <a href="states.main.home-speakers.html">home-speakers</a>
+              </li><li>
+                <a href="states.main.test.html">test</a>
+              </li>
+            </ul>
+          </ul>
+        </li>
+      </ul><ul class="module">
+        <!-- _eb -->
+        <h2 class="module">
+          <a chref="" ng-click="module_eb = !module_eb">
+            module: Web
+          </a>
+          <i ng-cloak="" ng-show="module_eb">+</i>
+        </h2>
+        <li id="Web" ng-hide="module_eb">
+          <ul class="group">
+            <h2>
+              <a href="" ng-click="_ebservice = !_ebservice">
                 service
               </a>
-              <i ng-cloak="" ng-show="starter_services__ebservice">+</i>
+              <i ng-cloak="" ng-show="_ebservice">+</i>
             </h2>
-            <ul ng-hide="starter_services__ebservice">
+            <ul ng-hide="_ebservice">
               <li>
-                <a href="starter.services.Web.Attendee.html">Attendee</a>
+                <a href="Web.Attendee.html">Attendee</a>
               </li><li>
-                <a href="starter.services.Web.Client.html">Client</a>
+                <a href="Web.Client.html">Client</a>
               </li><li>
-                <a href="starter.services.Web.Conference.html">Conference</a>
+                <a href="Web.Conference.html">Conference</a>
               </li><li>
-                <a href="starter.services.Web.Speaker.html">Speaker</a>
+                <a href="Web.Speaker.html">Speaker</a>
               </li><li>
-                <a href="starter.services.Web.Sponsor.html">Sponsor</a>
+                <a href="Web.Sponsor.html">Sponsor</a>
               </li>
             </ul>
           </ul>
@@ -148,7 +238,7 @@
       </h3>
       <h1 class="title">
         HeaderCtrl
-        <a class="name-link signature-attributes" href="source/starter.HeaderCtrl.html#line124">source</a>
+        <a class="name-link signature-attributes" href="source/starter.HeaderCtrl.html#line125">source</a>
       </h1>
       <div id="main" class="big-container">
         <!-- source code html -->

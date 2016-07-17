@@ -22,12 +22,12 @@
         <li id="undefined" ng-hide="moduleundefined">
           <ul class="group">
             <h2>
-              <a href="" ng-click="undefineddirective = !undefineddirective">
-                directive
+              <a href="" ng-click="undefinedmodule = !undefinedmodule">
+                module
               </a>
-              <i ng-cloak="" ng-show="undefineddirective">+</i>
+              <i ng-cloak="" ng-show="undefinedmodule">+</i>
             </h2>
-            <ul ng-hide="undefineddirective">
+            <ul ng-hide="undefinedmodule">
               <li>
                 <a href="starter.html">starter</a>
               </li>
@@ -73,14 +73,40 @@
             </ul>
           </ul><ul class="group">
             <h2>
-              <a href="" ng-click="starterdirective = !starterdirective">
-                directive
+              <a href="" ng-click="startermodule = !startermodule">
+                module
               </a>
-              <i ng-cloak="" ng-show="starterdirective">+</i>
+              <i ng-cloak="" ng-show="startermodule">+</i>
             </h2>
-            <ul ng-hide="starterdirective">
+            <ul ng-hide="startermodule">
               <li>
+                <a href="starter.controllers.html">controllers</a>
+              </li><li>
                 <a href="starter.services.html">services</a>
+              </li>
+            </ul>
+          </ul><ul class="group">
+            <h2>
+              <a href="" ng-click="starterrun = !starterrun">
+                run
+              </a>
+              <i ng-cloak="" ng-show="starterrun">+</i>
+            </h2>
+            <ul ng-hide="starterrun">
+              <li>
+                <a href="starter.run.html">run</a>
+              </li>
+            </ul>
+          </ul><ul class="group">
+            <h2>
+              <a href="" ng-click="starterconfig = !starterconfig">
+                config
+              </a>
+              <i ng-cloak="" ng-show="starterconfig">+</i>
+            </h2>
+            <ul ng-hide="starterconfig">
+              <li>
+                <a href="starter.states.html">states</a>
               </li>
             </ul>
           </ul>
@@ -96,12 +122,12 @@
         <li id="starter.services" ng-hide="modulestarter_services">
           <ul class="group">
             <h2>
-              <a href="" ng-click="starter_servicesservice = !starter_servicesservice">
-                service
+              <a href="" ng-click="starter_servicesfactory = !starter_servicesfactory">
+                factory
               </a>
-              <i ng-cloak="" ng-show="starter_servicesservice">+</i>
+              <i ng-cloak="" ng-show="starter_servicesfactory">+</i>
             </h2>
-            <ul ng-hide="starter_servicesservice">
+            <ul ng-hide="starter_servicesfactory">
               <li>
                 <a href="starter.services.Web.html">Web</a>
               </li>
@@ -148,7 +174,7 @@
       </h3>
       <h1 class="title">
         Conference
-        <a class="name-link signature-attributes" href="source/starter.services.Web.Conference.html#line168">source</a>
+        <a class="name-link signature-attributes" href="source/starter.services.Web.Conference.html#line167">source</a>
       </h1>
       <div id="main" class="big-container">
         <!-- source code html -->
@@ -310,7 +336,7 @@
     <dd>
       <div class="description">
         <span>
-          <p>Gets details on all presentations held at a specific conference.</p>
+          <p>Gets details on the first presentation at a specific conference.</p>
         </span>
       </div>
       <div>
@@ -369,7 +395,7 @@
     <dd>
       <div class="description">
         <span>
-          <p>Gets details on the first presentation at a specific conference.</p>
+          <p>Gets details on all presentations held at a specific conference.</p>
         </span>
       </div>
       <div>

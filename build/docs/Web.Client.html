@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>JSDoc: LoginClientCtrl</title>
+    <title>JSDoc: Client</title>
     <link href="css/prettify-tomorrow.css" type="text/css" rel="stylesheet">
     <link href="css/site.css" type="text/css" rel="stylesheet">
   </head>
@@ -234,11 +234,11 @@
     </nav>
     <div id="content" class="page-wrap">
       <h3 style="float:right; color:#ccc">
-        Angular controller
+        Angular service
       </h3>
       <h1 class="title">
-        LoginClientCtrl
-        <a class="name-link signature-attributes" href="source/starter.LoginClientCtrl.html#line256">source</a>
+        Client
+        <a class="name-link signature-attributes" href="source/Web.Client.html#line29">source</a>
       </h1>
       <div id="main" class="big-container">
         <!-- source code html -->
@@ -249,80 +249,265 @@
   <ul class="chips">
   </ul>
   <div class="clearfix"></div>
-  <div class="details"></div>
-  <div>
-    <h4>Parameters</h4>
-    <table class="params">
-      <thead>
-        <tr><th>Name</th><th>Type</th><th class="last">Description</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="name" nowrap="">
-            <a id="$scope"></a>
-            $scope
-          </td>
-          <td class="type"><span class="param-type">
-            <a href="type.html">type</a>
-          </span></td>
-          <td class="description last">
-            <span>
-              <p>controller scope</p>
-            </span>
-          </td>
-        </tr><tr>
-          <td class="name" nowrap="">
-            <a id="Web"></a>
-            Web
-          </td>
-          <td class="type"><span class="param-type">
-            <a href="type.html">type</a>
-          </span></td>
-          <td class="description last">
-            <span>
-              <p>factory service that holds all the table-specific services for the conference</p>
-            </span>
-          </td>
-        </tr><tr>
-          <td class="name" nowrap="">
-            <a id="$location"></a>
-            $location
-          </td>
-          <td class="type"><span class="param-type">
-            <a href="type.html">type</a>
-          </span></td>
-          <td class="description last">
-          </td>
-        </tr><tr>
-          <td class="name" nowrap="">
-            <a id="$http"></a>
-            $http
-          </td>
-          <td class="type"><span class="param-type">
-            <a href="type.html">type</a>
-          </span></td>
-          <td class="description last">
-            <span>
-              <p>promise http</p>
-            </span>
-          </td>
-        </tr><tr>
-          <td class="name" nowrap="">
-            <a id="$localStorage"></a>
-            $localStorage
-          </td>
-          <td class="type"><span class="param-type">
-            <a href="type.html">type</a>
-          </span></td>
-          <td class="description last">
-            <span>
-              <p>ngStorage localStorage</p>
-            </span>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="description">
+    <h4>Description</h4>
+    <p>A list of methods dealing with the clients table</p>
   </div>
+  <div class="details"></div>
+</div>
+<div class="functions">
+  <h3 class="subsection-title">Methods</h3>
+  <dl>
+    <dt>
+      <a href="" class="name-link" id="delete">
+        <h4 class="name">
+          delete
+          <span class="signature">(id)</span>
+          <span class="type-signature">
+            -&gt; undefined
+          </span>
+        </h4>
+      </a>
+    </dt>
+    <dd>
+      <div class="description">
+        <span>
+          <p>Deletes client from database.</p>
+        </span>
+      </div>
+      <div>
+        <h4>Parameters</h4>
+        <table class="params">
+          <thead>
+            <tr><th>Name</th><th>Type</th><th class="last">Description</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="name">id</td>
+              <td class="type"><span class="param-type">
+                <a href="type.html">type</a>
+              </span></td>
+              <td class="description last">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h4>Returns</h4>
+        <table class="params">
+          <thead>
+            <tr><th>Type</th><th class="last">Description</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="type">
+                <span class="param-type">
+                  undefined
+                </span>
+              </td>
+              <td class="description last">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </dd>
+  </dl><dl>
+    <dt>
+      <a href="" class="name-link" id="delete">
+        <h4 class="name">
+          delete
+        </h4>
+      </a>
+    </dt>
+    <dd>
+      <div class="description">
+      </div>
+    </dd>
+  </dl><dl>
+    <dt>
+      <a href="" class="name-link" id="login">
+        <h4 class="name">
+          login
+        </h4>
+      </a>
+    </dt>
+    <dd>
+      <div class="description">
+      </div>
+    </dd>
+  </dl><dl>
+    <dt>
+      <a href="" class="name-link" id="login">
+        <h4 class="name">
+          login
+          <span class="signature">(credentials, onSuccess, onError)</span>
+          <span class="type-signature">
+            -&gt; undefined
+          </span>
+        </h4>
+      </a>
+    </dt>
+    <dd>
+      <div class="description">
+        <span>
+          <p>Calls API route for client login, passing the user's credentials as parameters.</p>
+        </span>
+      </div>
+      <div>
+        <h4>Parameters</h4>
+        <table class="params">
+          <thead>
+            <tr><th>Name</th><th>Type</th><th class="last">Description</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="name">credentials</td>
+              <td class="type"><span class="param-type">
+                <a href="type.html">type</a>
+              </span></td>
+              <td class="description last">
+                <span>
+                  <p>the clients login credentials: email and password.</p>
+                </span>
+              </td>
+            </tr><tr>
+              <td class="name">onSuccess</td>
+              <td class="type"><span class="param-type">
+                <a href="type.html">type</a>
+              </span></td>
+              <td class="description last">
+                <span>
+                  <p>response to return if login function is successful.</p>
+                </span>
+              </td>
+            </tr><tr>
+              <td class="name">onError</td>
+              <td class="type"><span class="param-type">
+                <a href="type.html">type</a>
+              </span></td>
+              <td class="description last">
+                <span>
+                  <p>response to return if login function fails.</p>
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h4>Returns</h4>
+        <table class="params">
+          <thead>
+            <tr><th>Type</th><th class="last">Description</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="type">
+                <span class="param-type">
+                  undefined
+                </span>
+              </td>
+              <td class="description last">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </dd>
+  </dl><dl>
+    <dt>
+      <a href="" class="name-link" id="register">
+        <h4 class="name">
+          register
+          <span class="signature">(credentials, onSuccess, onError)</span>
+          <span class="type-signature">
+            -&gt; undefined
+          </span>
+        </h4>
+      </a>
+    </dt>
+    <dd>
+      <div class="description">
+        <span>
+          <p>Calls API route for client registration, passing the user's credentials as parameters.</p>
+        </span>
+      </div>
+      <div>
+        <h4>Parameters</h4>
+        <table class="params">
+          <thead>
+            <tr><th>Name</th><th>Type</th><th class="last">Description</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="name">credentials</td>
+              <td class="type"><span class="param-type">
+                <a href="type.html">type</a>
+              </span></td>
+              <td class="description last">
+                <span>
+                  <p>the clients login credentials: email and password.</p>
+                </span>
+              </td>
+            </tr><tr>
+              <td class="name">onSuccess</td>
+              <td class="type"><span class="param-type">
+                <a href="type.html">type</a>
+              </span></td>
+              <td class="description last">
+                <span>
+                  <p>response to return if login function is successful.</p>
+                </span>
+              </td>
+            </tr><tr>
+              <td class="name">onError</td>
+              <td class="type"><span class="param-type">
+                <a href="type.html">type</a>
+              </span></td>
+              <td class="description last">
+                <span>
+                  <p>response to return if login function fails.</p>
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h4>Returns</h4>
+        <table class="params">
+          <thead>
+            <tr><th>Type</th><th class="last">Description</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="type">
+                <span class="param-type">
+                  undefined
+                </span>
+              </td>
+              <td class="description last">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </dd>
+  </dl><dl>
+    <dt>
+      <a href="" class="name-link" id="register">
+        <h4 class="name">
+          register
+        </h4>
+      </a>
+    </dt>
+    <dd>
+      <div class="description">
+      </div>
+    </dd>
+  </dl>
 </div></div>
         </div>
       </div>

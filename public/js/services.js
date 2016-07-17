@@ -1,6 +1,6 @@
 /**
  * @memberof starter
- * @ngdoc directive
+ * @ngdoc module
  * @name starter.services
  * 
  */
@@ -9,7 +9,7 @@ angular.module('starter.services', [])
 
 /**
  * @memberof starter.services
- * @ngdoc service
+ * @ngdoc factory
  * @name Web
  * @desc Contains services for each table in the database.
  *  Each service has methods.
@@ -22,16 +22,15 @@ angular.module('starter.services', [])
 	return {
 		user: {},
                 /**
-                 * @memberof starter.services.Web
+                 * @memberof Web
                  * @ngdoc service
-                 * @name Client
                  * @description A list of methods dealing with the clients table
                  */
                 Client: {
                         /**
                          * Calls API route for client login, passing the user's credentials as parameters.
                          * @method login
-                         * @memberof starter.services.Web.Client
+                         * @memberof Web.Client
                          * @param credentials {type} the clients login credentials: email and password.
                          * @param onSuccess {type} response to return if login function is successful.
                          * @param onError {type} response to return if login function fails.
@@ -48,7 +47,7 @@ angular.module('starter.services', [])
                         
                         /**
                          * Calls API route for client registration, passing the user's credentials as parameters.
-                         * @memberof starter.services.Web.Client
+                         * @memberof Web.Client
                          * @method register 
                          * @param credentials {type} the clients login credentials: email and password.
                          * @param onSuccess {type} response to return if login function is successful.
@@ -64,7 +63,7 @@ angular.module('starter.services', [])
                         },
                         /**
                          * Deletes client from database.
-                         * @memberof starter.services.Web.Client
+                         * @memberof Web.Client
                          * @ngdoc service
                          * @method delete
                          * @param {type} id
@@ -75,7 +74,7 @@ angular.module('starter.services', [])
                         },
                 },
                 /**
-                 * @memberof starter.services.Web
+                 * @memberof Web
                  * @ngdoc service
                  * @name Speaker
                  * @description A list of methods dealing with the speakers table
@@ -83,7 +82,7 @@ angular.module('starter.services', [])
 		Speaker: {
 			/**
                          * Gets details on all speakers.
-                         * @memberof starter.services.Web.Speaker
+                         * @memberof Web.Speaker
                          * @method list 
                          * @param onSuccess {type} response to return if method is successful.
                          * @param onError {type} response to return if method fails.
@@ -97,7 +96,7 @@ angular.module('starter.services', [])
                         
                         /**
                          * Gets details on all speakers.
-                         * @memberof starter.services.Web.Speaker
+                         * @memberof Web.Speaker
                          * @method select 
                          * @param onSuccess {type} response to return if method is successful.
                          * @param onError {type} response to return if method fails.
@@ -109,7 +108,7 @@ angular.module('starter.services', [])
                         
                         /**
                          * Gets details on a conference the speaker is presenting for.
-                         * @memberof starter.services.Web.Speaker
+                         * @memberof Web.Speaker
                          * @method selectConf 
                          * @param id {type} the conference's id.
                          * @returns {undefined}
@@ -121,7 +120,7 @@ angular.module('starter.services', [])
                         
                         /**
                          * Creates a new speaker.
-                         * @memberof starter.services.Web.Speaker
+                         * @memberof Web.Speaker
                          * @method create
                          * @param speakerData (type) form data containing the speaker's details. 
                          * @param onSuccess {type} response to return if method is successful.
@@ -147,7 +146,7 @@ angular.module('starter.services', [])
                         
                         /**
                          * Deletes a speaker.
-                         * @memberof starter.services.Web.Speaker
+                         * @memberof Web.Speaker
                          * @method delete
                          * @param id (type) the speaker's id. 
                          * @param onSuccess {type} response to return if method is successful.
@@ -166,7 +165,7 @@ angular.module('starter.services', [])
                         },
 		},
 		/**
-                 * @memberof starter.services.Web
+                 * @memberof Web
                  * @ngdoc service
                  * @name Conference
                  * @description A list of methods dealing with the conferences table
@@ -174,7 +173,7 @@ angular.module('starter.services', [])
 		Conference: {
                         /**
                          * Gets details on all public conferences.
-                         * @memberof starter.services.Web.Conference
+                         * @memberof Web.Conference
                          * @method list 
                          * @param onSuccess {type} response to return if method is successful.
                          * @param onError {type} response to return if method fails.
@@ -191,7 +190,7 @@ angular.module('starter.services', [])
 
                         /**
                          * Gets details on a specific conferences based on id.
-                         * @memberof starter.services.Web.Conference
+                         * @memberof Web.Conference
                          * @method select 
                          * @param id {type} the conference's id.
                          * @returns {undefined}
@@ -202,7 +201,7 @@ angular.module('starter.services', [])
                         
                         /**
                          * Gets details on the first presentation at a specific conference.
-                         * @memberof starter.services.Web.Conference
+                         * @memberof Web.Conference
                          * @method selectPresentation
                          * @param id {type} the conference's id.
                          * @returns {undefined}
@@ -213,7 +212,7 @@ angular.module('starter.services', [])
                         
                         /**
                          * Gets details on all presentations held at a specific conference.
-                         * @memberof starter.services.Web.Conference
+                         * @memberof Web.Conference
                          * @method selectPresentation
                          * @param id {type} the conference's id.
                          * @returns {undefined}
@@ -229,7 +228,7 @@ angular.module('starter.services', [])
 	
 
                 /**
-                 * @memberof starter.services.Web
+                 * @memberof Web
                  * @ngdoc service
                  * @name Sponsor
                  * @description A list of methods dealing with the sponsors table
@@ -237,7 +236,7 @@ angular.module('starter.services', [])
 		Sponsor: {
                         /**
                          * Gets details on all sponsors.
-                         * @memberof starter.services.Web.Sponsor
+                         * @memberof web.Sponsor
                          * @method list 
                          * @param onSuccess {type} response to return if method is successful.
                          * @param onError {type} response to return if method fails.
@@ -255,7 +254,7 @@ angular.module('starter.services', [])
 			
 		},
                 /**
-                 * @memberof starter.services.Web
+                 * @memberof Web
                  * @ngdoc service
                  * @name Attendee
                  * @description A list of methods dealing with the attendees table. 
@@ -263,7 +262,7 @@ angular.module('starter.services', [])
 		Attendee:	{
                         /**
                          * Attempts to login the client, passing the user's credentials as parameters.
-                         * @memberof starter.services.Web.Attendee
+                         * @memberof Web.Attendee
                          * @method login
                          * @param {type} credentials the clients login credentials: email and password.
                          * @param {type} onSuccess response to return if login function is successful.
@@ -282,7 +281,7 @@ angular.module('starter.services', [])
 			},
                         /**
                          * Calls API route for attendee logout
-                         * @memberof starter.services.Web.Attendee
+                         * @memberof Web.Attendee
                          * @method logout
                          * @returns {undefined}
                          */
@@ -297,7 +296,7 @@ angular.module('starter.services', [])
                         },
                         /**
                          * Calls API route for changing attendee password.
-                         * @memberof starter.services.Web.Attendee
+                         * @memberof Web.Attendee
                          * @method changepass
                          * @param {type} id attendee's id
                          * @param {type} onSuccess
@@ -315,7 +314,7 @@ angular.module('starter.services', [])
 			},
                         /**
                          * Calls API route for an attendee's forgotten password
-                         * @memberof starter.services.Web.Attendee
+                         * @memberof Web.Attendee
                          * @method forgotpass
                          * @param {type} email the attendee's email
                          * @param {type} onSuccess 
@@ -332,7 +331,7 @@ angular.module('starter.services', [])
                         
                         /**
                          * Registers a new account for the attendee
-                         * @memberof starter.services.Web.Attendee
+                         * @memberof Web.Attendee
                          * @method register
                          * @param {type} credentials the attendee's credentials (email, username, password)
                          * @param {type} onSuccess 
@@ -351,7 +350,7 @@ angular.module('starter.services', [])
                         
                         /**
                          * Deletes an attendee's account
-                         * @memberof starter.services.Web.Attendee
+                         * @memberof Web.Attendee
                          * @method deleteAccount
                          * @param {type} id the attendee's id
                          * @param {type} onSuccess 
@@ -370,7 +369,7 @@ angular.module('starter.services', [])
                         
                         /**
                          * Updates an attendee's details
-                         * @memberof starter.services.Web.Attendee
+                         * @memberof Web.Attendee
                          * @method update
                          * @param {type} email the attendee's email
                          * @param {type} onSuccess 
@@ -389,7 +388,7 @@ angular.module('starter.services', [])
                         
                         /**
                          * Returns a json array of the conferences the attendee is signed up for upon success, an empty array and 404 error upon failure
-                         * @memberof starter.services.Web.Attendee
+                         * @memberof Web.Attendee
                          * @method getConferences
                          * @param {type} id the attendee's id
                          * @param {type} onSuccess 
