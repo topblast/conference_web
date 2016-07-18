@@ -277,6 +277,13 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
       controller: 'RegCtrl'
     })
     
+    /**
+    * @memberof states
+    * @name client-register
+    * @ngdoc state
+    * @desc 
+    * This state displays the client's registration page and handles the client creating a new account. 
+    */
      .state('client-register', {
       url: '/client/register',
       templateUrl: 'templates/client-registration.html',
@@ -311,11 +318,18 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
         //controller: 'ForgotPassCtrl',
     })
   
-  
+  /**
+    * @memberof states
+    * @name change-password
+    * @ngdoc state
+    * @desc 
+    * This state displays the change password page. 
+    */
 .state('change-password', {
         url:'/change-password',
         templateUrl: 'templates/change-password.html'
         //controller: 'ForgotPassCtrl',
+        //TODO: add controller for change password.
     })
 
 .state('user', {
@@ -329,8 +343,16 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
         templateUrl: 'templates/speaker bio.html'
         //controller: 'ForgotPassCtrl',
     })
-
-.state('private conferences', {
+    
+   /**
+    * @memberof states
+    * @name private-conferences
+    * @ngdoc state
+    * @desc 
+    * This state displays the registration page and handles the attendee creating a new account.
+    * @todo add controller for private conferences
+    */
+.state('private-conferences', {
         url:'/private',
         templateUrl: 'templates/private conferences.html'
         //controller: 'ForgotPassCtrl',

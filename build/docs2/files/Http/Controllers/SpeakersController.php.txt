@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * SpeakersController.php
+ */
 namespace App\Http\Controllers;
 
 use App\Models\Speaker;
@@ -11,7 +13,7 @@ use Illuminate\Http\Request;
   * Controller for the Speaker Model.
   *
   * *SpeakersController* is a controller for the Speaker Model, which is the data model for the speakers table.
-  * @filesource
+  * 
   */
 class SpeakersController extends Controller
 {
@@ -111,7 +113,7 @@ class SpeakersController extends Controller
     
     //DELETE FUNCTION
     /**
-     * 
+     * Deletes speaker from the speakers table.
      * @param type $id
      * @return type
      */

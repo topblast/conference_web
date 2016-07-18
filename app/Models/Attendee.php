@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Attendee.php
+ */
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -31,20 +33,36 @@ class Attendee extends Model implements JWTSubject, Authenticatable{
         'password',
     ];
     
+    /**
+     * Establishes a many-to-many relationship with conferences table
+     * @return type
+     */
     public function conferences(){
         return $this->belongsToMany('App\Models\Conference', 'conference_attendees');
     }
     
+    /**
+     * Establishes a one-to-many relationship with chatlogs table
+     * @return type
+     */
     public function chats()
     {
         return $this->hasMany('App\Models\Chatlog');
     }
     
+    /**
+     * Establishes a one-to-many relationship with whitelists table
+     * @return type
+     */
     public function whitelist()
     {
         return $this->hasMany('App\Models\Whitelist');
     }
     
+    /**
+     * Establishes a one-to-many relationship with blacklists table
+     * @return type
+     */
     public function blacklist()
     {
         return $this->hasMany('App\Models\Blacklist');

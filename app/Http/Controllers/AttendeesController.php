@@ -1,4 +1,7 @@
 <?php
+/**
+ * AttendeesController.php
+ */
 
 namespace App\Http\Controllers;
 
@@ -43,6 +46,7 @@ class AttendeesController extends Controller
      * 
      * @return type
      * Returns a user token in the form of JSON data
+     * @todo Add checks for when user logs in with a remember token
      */
     public function login(Request $request) {
         $this->validate($request, [

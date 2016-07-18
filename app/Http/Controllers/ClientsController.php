@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * ClientsController.php
+ */
 namespace App\Http\Controllers;
 
 use App\Models\Client;
@@ -37,6 +39,7 @@ class ClientsController extends Controller
      * @param Request $request
      * The POST request
      * @return type
+     * @todo Add checks for when user logs in with a remember token
      */
     public function login(Request $request) {
         $this->validate($request, [

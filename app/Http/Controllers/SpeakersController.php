@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * SpeakersController.php
+ */
 namespace App\Http\Controllers;
 
 use App\Models\Speaker;
@@ -111,7 +113,7 @@ class SpeakersController extends Controller
     
     //DELETE FUNCTION
     /**
-     * 
+     * Deletes speaker from the speakers table.
      * @param type $id
      * @return type
      */
