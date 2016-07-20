@@ -5,36 +5,36 @@ main {
 	padding-right:10%;
     padding-top:10%;
     padding-bottom:20%;
-    
+
 }
 
 
 
 #logo-holder{
     margin-bottom:30px;
-} 
+}
 
 * { padding: 0; margin: 0; }
 body { font-family: sans-serif; }
 a { text-decoration: none; color: #00A5CC; }
 li { list-style-type: none; }
 
-header { 
-	width: 100%; 
-	height: 50px; 
+header {
+	width: 100%;
+	height: 50px;
 	margin: auto;
 	border-bottom: 1px solid #EEE;
 }
 
 nav { width: 100%; text-align: center; }
-nav a { 
-	display: block; 
+nav a {
+	display: block;
 	padding: 15px 0;
 	border-bottom: 1px solid #fff;
 	color: #fff;
 }
 nav a:hover { background: #1ad5ff; color: #FFF; }
-nav li:last-child a { border-bottom: none; }
+/*nav li:last-child a { border-bottom: none; }*/
 
 
 /*-----------------------------------------*/
@@ -42,7 +42,7 @@ nav li:last-child a { border-bottom: none; }
 .menu {
 	width: 240px;
 	height: 100%;
-	position: absolute;
+  position: absolute;
 	background: #00A5CC;
 	left: -240px;
 	transition: all .3s ease-in-out;
@@ -50,7 +50,6 @@ nav li:last-child a { border-bottom: none; }
 	-moz-transition: all .3s ease-in-out;
 	-ms-transition: all .3s ease-in-out;
 	-o-transition: all .3s ease-in-out;
-    z-index: 4;
 }
 .menu-icon {
 	padding: 10px 20px;
@@ -58,7 +57,7 @@ nav li:last-child a { border-bottom: none; }
 	color: #fff;
 	cursor: pointer;
 	float: left;
-    clear: both;
+  clear: both;
 	margin: 6px 6px 0 0;
 	border-radius: 5px;
 }
@@ -94,25 +93,28 @@ nav li:last-child a { border-bottom: none; }
 }
 */
 /*sub-menu*/
-.menu ul li:hover > ul { 
-        left: 240px; 
-        -webkit-transition: left 0ms ease-in;
-        -moz-transition: left 0ms ease-in;
-        -ms-transition: left 0ms ease-in;
-        transition: left 0ms ease-in; 
+.menu ul li:hover > ul {
+        visibility: visible;
+        opacity: 1;
+        -webkit-transition: opacity 750ms ease;
+        -moz-transition: opacity 750ms ease;
+        -ms-transition: opacity 750ms ease;
+        transition: opacity 750ms ease;
 }
 
-.menu ul li > ul { 
-    position: absolute; 
-    background-color: #333; 
-    top: 0; 
-    left: -220px; 
-    min-width: 200px;  
-    height: 100%; 
-    -webkit-transition: left 0ms ease-in; 
-    -moz-transition: left 0ms ease-in; 
-    -ms-transition: left 0ms ease-in; 
-    transition: left 0ms ease-in;
-} 
+.menu ul li > ul {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  background-color: #333;
+  top: 0;
+  left: 240px;
+  min-width: 200px;
+  height: 100%;
+  -webkit-transition: opacity 650ms ease;
+  -moz-transition: opacity 650ms ease;
+  -ms-transition: opacity 650ms ease;
+  transition: opacity 650ms ease;
+}
 
-.menu ul li > ul li a:hover { background-color:#2e2e2e; }
+/*.menu ul li > ul li a:hover { background-color:#2e2e2e; }*/
