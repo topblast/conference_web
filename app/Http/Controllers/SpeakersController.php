@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * SpeakersController.php
+ */
 namespace App\Http\Controllers;
 
 use App\Models\Speaker;
@@ -7,6 +9,12 @@ use App\Models\Presentation;
 
 use Illuminate\Http\Request;
 
+/**
+  * Controller for the Speaker Model.
+  *
+  * *SpeakersController* is a controller for the Speaker Model, which is the data model for the speakers table.
+  * 
+  */
 class SpeakersController extends Controller
 {
     /**
@@ -21,7 +29,10 @@ class SpeakersController extends Controller
     
     
     //GET FUNCTIONS
-    
+    /**
+     * Gets all speakers in the model.
+     * @return type
+     */
     public function get_all() {
 
         $all = Speaker::all();
@@ -31,6 +42,11 @@ class SpeakersController extends Controller
     
     
     //GET BY ID FUNCTION
+    /**
+     * Gets one speaker based on id.
+     * @param type $id
+     * @return type
+     */
     public function get_id($id) {
         if(!$cli = Speaker::find($id))
             return response()->json([], 404);
@@ -39,6 +55,11 @@ class SpeakersController extends Controller
     }
     
     //GET for Speaker Presentations
+    /**
+     * Gets all presentations a speaker is giving, based on the speaker's id.
+     * @param type $id
+     * @return type
+     */
     public function get_presentations($id){
         if(!$cli = Speaker::find($id))
             return response()->json([], 404);
@@ -49,6 +70,11 @@ class SpeakersController extends Controller
         return response()->json($cli);
     }
     
+    /**
+     * Gets all speakers for a specific conference, based on the conference's id.
+     * @param type $id
+     * @return type
+     */
     public function get_conference_speakers($id){
         $cli = Speaker::whereHas('presentations', function($q) use ($id){
         
@@ -60,6 +86,11 @@ class SpeakersController extends Controller
     }
 
     //POST FUNCTION
+    /**
+     * creates a new Speaker in the speaker's table.
+     * @param Request $request
+     * @return type
+     */
     public function create_new(Request $request){
         $speaker = new Speaker;
         
@@ -81,6 +112,11 @@ class SpeakersController extends Controller
     }
     
     //DELETE FUNCTION
+    /**
+     * Deletes speaker from the speakers table.
+     * @param type $id
+     * @return type
+     */
      public function delete_speaker($id)
     {
         if (!$del  = Speaker::find($id))

@@ -1,9 +1,14 @@
 <?php
-
+/**
+ * Category.php
+ */
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @filesource
+ */
 class Category extends Model{
     protected $primaryKey="category_id";
 

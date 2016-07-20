@@ -1,0 +1,37 @@
+{
+  "name": "ng-backstretch",
+  "version": "0.1.3-beta",
+  "homepage": "https://github.com/rprovost/ng-backstretch",
+  "authors": [
+    "Ryan Provost <ryan@aboutryan.com>"
+  ],
+  "description": "A native Angular directive derived from the jQuery Backstretch plugin (http://srobbin.com/jquery-plugins/backstretch)",
+  "keywords": [
+    "angular",
+    "modules"
+  ],
+  "main": [
+    "dist/ng-backstretch.min.js",
+    "dist/ng-backstretch.min.js.map"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "devDependencies": {
+    "angular": "~1.3.7",
+    "angular-mocks": "~1.3.9"
+  },
+  "_release": "0.1.3-beta",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.1.3-beta",
+    "commit": "3cd0da02ac8e734eafc975195669964c96103d91"
+  },
+  "_source": "https://github.com/rprovost/ng-backstretch.git",
+  "_target": "^0.1.3-beta",
+  "_originalSource": "ng-backstretch",
+  "_direct": true
+}

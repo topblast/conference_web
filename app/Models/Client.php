@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Client.php
+ */
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -8,6 +10,13 @@ use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
 use Tymon\JWTAuth\Contracts\JWTSubject as JWTSubject;
 use Illuminate\Contracts\Auth\Authenticatable;
 
+/**
+ * Client Model.
+ * 
+ * The Client model for the clients table.
+ * 
+ * @filesource
+ */
 class Client extends Model implements JWTSubject, Authenticatable {
     
     use AuthenticatableTrait, Authorizable;
@@ -28,7 +37,11 @@ class Client extends Model implements JWTSubject, Authenticatable {
     protected $hidden = [
         'password',
     ];
-
+    
+    /**
+     * Establishes a one-to-many relationship with conferences table
+     * @return type
+     */
     public function conferences()
     {
         return $this->hasMany('App\Models\Conference');

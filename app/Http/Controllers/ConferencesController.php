@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * ConferencesController.php
+ */
 namespace App\Http\Controllers;
 
 use App\Models\Conference;
@@ -7,16 +9,11 @@ use App\Models\Presentation;
 use App\Models\Sponsor;
 use App\Models\Blacklist;
 
-//use Illuminate\Http\Request;
-//
-//use Illuminate\Http\Exception\HttpResponseException;
-//use JWTAuth;
-//use Tymon\JWTAuth\Exceptions\JWTException;
-//use App\Http\Controllers\Controller;
-//
-//use Illuminate\Http\Response as IlluminateResponse;
 
-
+/**
+ * Controller for the conferences table.
+ * @filesource
+ */
 class ConferencesController extends Controller
 {
     /**
@@ -58,6 +55,11 @@ public function getAuthenticatedUser()
 */
     
     //GET FUNCTIONS
+    /**
+     * Gets all public conferences.
+     * @return type
+     * Returns all conference details in the form of JSON data
+     */
     public function get_all() {
         //Get all PUBLIC Conferences
         
@@ -69,6 +71,12 @@ public function getAuthenticatedUser()
 
 
     //GET ID FUNCTION
+    /**
+     * Gets a specific conference by its id.
+     * @param type $id
+     * @return type
+     * Returns the details of that conference in the form of JSON data
+     */
     public function get_id($id) {
         if(!$cli = Conference::find($id))
             return response()->json([], 404);
@@ -78,6 +86,13 @@ public function getAuthenticatedUser()
     
     
     //GET PRESENTATION BY ID FUNCTION
+    /**
+     * Gets all presentations related to a conference.
+     * @param type $id
+     * The conference's id.
+     * @return type
+     * Returns those presentations as JSON data
+     */
     public function get_presentations($id){
         if(!$cli = Conference::find($id)->presentations)
             return response()->json([], 404);
@@ -87,6 +102,13 @@ public function getAuthenticatedUser()
         
     }
     
+    /**
+     * Gets the first presentation at a conference
+     * @param type $id
+     * The conference's id
+     * @return type
+     * Returns that presentation as JSON data
+     */
     public function select_presentation($id){
         if(!$cli = Conference::find($id)->presentations->first())
             return response()->json([], 404);
@@ -94,10 +116,19 @@ public function getAuthenticatedUser()
         return response()->json($cli);
     }
     
+    /**
+     * Gets all speakers related to a conference.
+     * @param type $id
+     * The conference's id
+     * @return type
+     * Returns those speakers as JSON data
+     */
     public function get_conference_speakers($id){
         if(!$cli = Conference::find($id)->presentations)
             return response()->json([], 404);
         
+        
+        //refer to http://stackoverflow.com/questions/25714273/laravel-querying-and-accessing-child-objects-in-nested-relationship-with-where
         $cli = Conference::with([
             'presentations'=> function ($q) use ($id){
         $q->where('conference_id', $id); //constraint on child
@@ -119,6 +150,13 @@ public function getAuthenticatedUser()
     
     
     //GET SPONSORS FUNCTION
+    /**
+     * Gets all sponsors related to a conference
+     * @param type $id
+     * The conference's id
+     * @return type
+     * Returns those sponsors as JSON data
+     */
     public function get_sponsors($id){
          if(!$cli = Conference::find($id)->sponsors)
             return response()->json([], 404);
@@ -128,6 +166,13 @@ public function getAuthenticatedUser()
     
     
     //POST FUNCTIONS
+    /**
+     * attempts to register a new conference
+     * @param \App\Http\Controllers\Request $request
+     * The POST request with conference details
+     * @return type
+     * Returns the conference as a JSON object if successful, error message if unsuccessful
+     */
      public function register( Request $request){
         //Requires Client Authentication
          //Handles Payment
@@ -150,6 +195,15 @@ public function getAuthenticatedUser()
     
     
     //CREATE NEW PRESENTATION FUNCTION
+    /**
+     * Creates a new presentation for the conference
+     * @param \App\Http\Controllers\Request $request
+     * The POST request with presentation details
+     * @param type $id
+     * The conference's id
+     * @return type
+     * Returns conference as JSON object
+     */
     public function create_new_presentation(Request $request, $id){
        if(!$conference = Conference::find($id))
             return response()->json([], 404);
@@ -168,6 +222,15 @@ public function getAuthenticatedUser()
     
     
     //CREATE SPONSOR ID FUNCTION
+    /**
+     * Creates a new sponsor for the conference.
+     * @param \App\Http\Controllers\Request $request
+     * The POST request with sponsor details
+     * @param type $id
+     * The conference's id
+     * @return type
+     * Returns conference as JSON object
+     */
     public function create_new_sponsor(Request $request, $id){
        if(!$conference = Conference::find($id))
             return response()->json([], 404);
@@ -219,7 +282,16 @@ public function getAuthenticatedUser()
     
     
     //DELETE FUNCTION
-    public function delete_conference($id){
+    /**
+     * Deletes a conference
+     * @param \App\Http\Controllers\Request $request
+     * The DELETE request
+     * @param type $id
+     * The conference's id
+     * @return type
+     * Returns conference details as JSON data
+     */
+    public function delete_conference(Request $request, $id){
         if(!$del  = Conference::find($id))
             return response()->json([], 404);
  
@@ -229,6 +301,14 @@ public function getAuthenticatedUser()
     }
     
     //DELETE PRESENTATION BY ID FUNCTION
+    /**
+     * Deletes a presentation related to a conference
+     * @param \App\Http\Controllers\Request $request
+     * The DELETE request
+     * @param type $id
+     * @return type
+     * Returns presentation details as JSON data
+     */
     public function delete_presentation(Request $request, $id)
     {
         $presentationid = $request->input('presentation_id');
@@ -242,6 +322,15 @@ public function getAuthenticatedUser()
     }
     
     //DELETE SPONSOR BY ID FUNCTION
+    /**
+     * Deletes a sponsor related to a conference.
+     * @param type $id
+     * The conference's id
+     * @param \App\Http\Controllers\Request $request
+     * The DELETE request
+     * @return type
+     * Returns sponsor details as JSON data
+     */
     public function delete_sponsor($id, Request $request){
         $sponsorid = $request->input('sponsor_id');
         
@@ -280,6 +369,15 @@ public function getAuthenticatedUser()
 
 
     //PUT FUNCTION
+    /**
+     * Edits an existing conference
+     * @param \App\Http\Controllers\Request $request
+     * The PUT request
+     * @param type $id
+     * The conference's id
+     * @return type
+     * Returns the edited conference's details as JSON data
+     */
     public function edit_conference(Request $request,$id){
         if(!$edit  = Conference::find($id))
             return response()->json([], 404);

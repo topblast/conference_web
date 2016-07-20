@@ -1,3 +1,59 @@
+	
+                
+      <!--=========================NEW COMMENT FORM =============================================== -->
+<!--    <form ng-submit="submitSpeaker()">  
+        ng-submit will disable the default form action and use our function 
+    
+         NAME 
+        <div class="form-group">
+            <input type="text" class="form-control input-sm" name="name" ng-model="speakerData.name" placeholder="Name">
+        </div>
+    
+         EMAIL 
+        <div class="form-group">
+            <input type="email" class="form-control input-lg" name="email" ng-model="speakerData.email" placeholder="Email">
+        </div>
+         
+         AFFILIATION 
+        <div class="form-group">
+            <input type="text" class="form-control input-lg" name="affiliation" ng-model="speakerData.affiliation" placeholder="Affiliation">
+        </div>
+         
+         TELEPHONE 
+        <div class="form-group">
+            <input type="tel" class="form-control input-lg" name="telephone" ng-model="speakerData.telephone" placeholder="123-4567">
+        </div>
+         
+         IMAGE 
+        <div class="form-group">
+            <input type="text" class="form-control input-lg" name="comment" ng-model="speakerData.image_path" placeholder=".jpg">
+        </div>
+         
+         PRESID
+         <div class="form-group">
+            <input type="number" class="form-control input-lg" name="comment" ng-model="speakerData.presentation_id" placeholder=".jpg">
+        </div>
+         
+        
+    
+         SUBMIT BUTTON 
+        <div class="form-group text-right">   
+            <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+        </div>
+    </form>-->
+                
+<!--
+      <p>Speakers go here</p>
+        <div ng-repeat="speaker in speakers">
+	   {{speaker.speaker_id}} {{speaker.name}}
+           <p><a href="#" ng-if="speaker" ng-click="deleteSpeaker(speaker.speaker_id)" class="text-muted">Delete</a></p>
+	</div>
+
+    -->
+    
+   
+<div backstretch backstretch-images="bgImage"></div>
+
 <div style="width:75%; margin: auto;" ng-hide="loading" dir-paginate="conference in conferences | itemsPerPage: 10">
          <h3>Conference {{conference.conference_id}}: {{conference.name}}</h3>   
             
@@ -14,12 +70,3 @@
 
         </div>
         <dir-pagination-controls></dir-pagination-controls>
-
-
-
-               
-
-                  
-
-
-

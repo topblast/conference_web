@@ -1,9 +1,14 @@
 <?php
-
+/**
+ * Blacklist.php
+ */
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @filesource
+ */
 class Blacklist extends Model{
     protected $table = 'blacklist';
     

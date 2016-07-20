@@ -14,7 +14,9 @@
         "tymon/jwt-auth": "1.0.0-alpha1",
         "basicit/lumen-vendor-publish": "^1.0",
         "illuminate/routing": "^5.2",
-        "irazasyed/jwt-auth-guard": "^1.0"
+        "irazasyed/jwt-auth-guard": "^1.0",
+        "illuminate/mail": "^5.2",
+        "guzzlehttp/guzzle": "^6.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

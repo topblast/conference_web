@@ -4,6 +4,7 @@ CSS Conference Application Web &amp; Server Implementation
 #Requirements
 - PHP 7.x
 - Composer
+- Lumen Framework
 
 #How To Run
 1. Navigate to the project directory.
@@ -120,6 +121,11 @@ Presentation Speaker
 - Speaker ID [fk]
 - Presentation ID [fk]
 - Speaker Type {Keynote, Discussant}
+
+## Source Code Documentation
+Documentation for the front-end can be found at ` ./builds/docs `. Click on the index.html file.
+
+Documentation for the back-end can be found at ` ./builds/docs2 `. Click on the index.html file.
 
 ## Official Documentation
 

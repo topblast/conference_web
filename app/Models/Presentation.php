@@ -4,6 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Presentation model.
+ * 
+ * The model for the presentations table.
+ * @filesource
+ */
 class Presentation extends Model {
     protected $primaryKey="presentation_id";
 

@@ -4,6 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * The Room model.
+ * 
+ * The model for the rooms table.
+ * @filesource
+ */
 class Room extends Model {
     protected $primaryKey="room_id";
 

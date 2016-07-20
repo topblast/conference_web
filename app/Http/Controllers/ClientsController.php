@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * ClientsController.php
+ */
 namespace App\Http\Controllers;
 
 use App\Models\Client;
@@ -14,6 +16,11 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Response as IlluminateResponse;
 
+/**
+ * Controller for the clients table.
+ * 
+ * 
+ */
 class ClientsController extends Controller
 {
     /**
@@ -27,6 +34,13 @@ class ClientsController extends Controller
     }
 
     //LOGIN FUNCTION
+    /**
+     * Attempts to login the client
+     * @param Request $request
+     * The POST request
+     * @return type
+     * @todo Add checks for when user logs in with a remember token
+     */
     public function login(Request $request) {
         $this->validate($request, [
             'email' => 'required|email',
@@ -62,6 +76,12 @@ class ClientsController extends Controller
     }
 
     //REGISTER FUNCTION
+    /**
+     * Attempts to register the client
+     * @param Request $request
+     * The POST request
+     * @return type
+     */
     public function register(Request $request){
          $regex = '/(?=.*[0-9])(?=.*[A-Z])(?=.*).{8,}/'; //at least 8 characters including at least 1 Uppercase and 1 digit required
         $result = $this->validate($request,[
@@ -111,6 +131,10 @@ class ClientsController extends Controller
     }
 
     //GET FUNCTIONS
+    /**
+     * Gets all clients
+     * @return type
+     */
     public function get_all() {
         if(!$all = Client::all())
             return response()->json([], 404);
@@ -119,6 +143,11 @@ class ClientsController extends Controller
     }
 
     //GET BY ID FUNCTION
+    /**
+     * Gets client by id
+     * @param type $id
+     * @return type
+     */
     public function get_id($id) {
         if(!$cli = Client::find($id))
             return response()->json([], 404);
@@ -128,7 +157,14 @@ class ClientsController extends Controller
     
     
     
-    //POST FUNCTIONS    
+    //PUT FUNCTIONS    
+    /**
+     * Changes a client's password. Function may not be necessary depending on how Lumen handles password resets.
+     * @param type $id
+     * @param Request $request
+     * The PUT request
+     * @return type
+     */
     public function change_password($id, Request $request){
         if(!$pEdit = Client::find($id))
             return response()->json([], 404);
@@ -141,7 +177,14 @@ class ClientsController extends Controller
     }
 
     //DELETE FUNCTION
-    public function delete_client($id){
+   /**
+    * Deletes a client using id as parameter
+    * @param Request $request
+    * The DELETE request
+    * @param type $id
+    * @return type
+    */
+    public function delete_client(Request $request, $id){
         if(!$del  = Client::find($id))
             return response()->json([], 404);
  
@@ -151,6 +194,13 @@ class ClientsController extends Controller
     }
 
     //PUT FUNCTION
+    /**
+     * Edits a client's details
+     * @param type $id
+     * @param Request $request
+     * The PUT request
+     * @return type
+     */
     public function edit_client($id, Request $request){
         if(!$edit  = Client::find($id))
             return response()->json([], 404);
@@ -173,6 +223,9 @@ class ClientsController extends Controller
     }
 
     //Logout
+    /**
+     * Logs out the client
+     */
     public function logout(){
         //invalidate generated token
         Auth::logout();
