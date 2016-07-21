@@ -93,28 +93,23 @@ nav a:hover { background: #1ad5ff; color: #FFF; }
 }
 */
 /*sub-menu*/
-.menu ul li:hover > ul {
-        visibility: visible;
+.menu ul li:hover ul {
         opacity: 1;
-        -webkit-transition: opacity 750ms ease;
-        -moz-transition: opacity 750ms ease;
-        -ms-transition: opacity 750ms ease;
-        transition: opacity 750ms ease;
+        left: 240px
 }
 
-.menu ul li > ul {
-  visibility: hidden;
+.menu ul li ul {
   opacity: 0;
   position: absolute;
   background-color: #333;
   top: 0;
-  left: 240px;
+  left: -240px;
   min-width: 200px;
   height: 100%;
-  -webkit-transition: opacity 650ms ease;
-  -moz-transition: opacity 650ms ease;
-  -ms-transition: opacity 650ms ease;
-  transition: opacity 650ms ease;
+  -webkit-transition: opacity 450ms ease-in;
+  -moz-transition: opacity 450ms ease-in;
+  -ms-transition: opacity 450ms ease-in;
+  transition: opacity 450ms ease-in;
 }
 
 /*.menu ul li > ul li a:hover { background-color:#2e2e2e; }*/
