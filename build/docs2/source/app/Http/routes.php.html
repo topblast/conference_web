@@ -1,0 +1,184 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+/**
+ * Application Routes
+ * 
+ * Here is where you can register all of the routes for an application.
+ */
+/*
+|--------------------------------------------------------------------------
+| Application Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register all of the routes for an application.
+| It is a breeze. Simply tell Lumen the URIs it should respond to
+| and give it the Closure to call when that URI is requested.
+|
+*/
+
+/**
+ * We're not going to be using this route since we're implementing a REST API
+ */
+$app-&gt;get('/', function () use ($app) {
+    //return $app-&gt;version();
+    return view('index');
+});
+
+
+//client
+/**
+ * These routes perform actions related to clients
+ */
+$app-&gt;post('/clients/login', 'ClientsController@login');
+$app-&gt;post('/clients/register', 'ClientsController@register');
+$app-&gt;post('/clients/{id}/changepassword', 'ClientsController@change_password');
+
+$app-&gt;get('/clients', ['middleware' =&gt; 'auth:client', 'uses' =&gt; 'ClientsController@get_all']);
+$app-&gt;get('/clients/{id}', ['middleware' =&gt; 'auth:client', 'uses' =&gt; 'ClientsController@get_id']);
+
+//put
+$app-&gt;delete('/clients/{id}', 'ClientsController@delete_client');
+$app-&gt;put('/clients/{id}', 'ClientsController@edit_client');
+
+
+//conference
+/**
+ * These routes perform actions related to conferences
+ */
+    
+$app-&gt;get('/conferences/', ['middleware' =&gt; 'auth:attendee', 'uses' =&gt; 'ConferencesController@get_all']);
+$app-&gt;get('/conferences/{id}/speakers/', ['middleware' =&gt; 'auth:attendee', 'uses' =&gt; 'ConferencesController@get_conference_speakers']);
+$app-&gt;get('/conferences/{id}', 'ConferencesController@get_id');
+$app-&gt;get('/conferences/{id}/presentations/', ['middleware' =&gt; 'auth:attendee', 'uses' =&gt; 'ConferencesController@get_presentations']);
+$app-&gt;get('/conferences/{id}/presentation/', ['middleware' =&gt; 'auth:attendee', 'uses' =&gt; 'ConferencesController@select_presentation']);
+$app-&gt;get('/conferences/{id}/sponsors/', ['middleware' =&gt; 'auth:attendee', 'uses' =&gt; 'ConferencesController@get_sponsors']);
+
+
+
+$app-&gt;post('/conferences/register', 'ConferencesController@register');
+$app-&gt;post('/conferences/{id}/presentations', 'ConferencesController@create_new_presentation');
+$app-&gt;post('/conferences/{id}/sponsors', 'ConferencesController@create_new_sponsor');
+$app-&gt;post('/conferences/{id}/blacklist', 'ConferencesController@add_to_blacklist');
+$app-&gt;post('/conferences/{id}/whitelist', 'ConferencesController@add_to_whitelist');
+
+    //works now
+$app-&gt;delete('/conferences/{id}', 'ConferencesController@delete_conference');
+$app-&gt;delete('/conferences/{id}/sponsors/', 'ConferencesController@delete_sponsor');
+$app-&gt;delete('/conferences/{id}/blacklist', 'ConferencesController@remove_from_blacklist');    
+$app-&gt;delete('/conferences/{id}/blacklist', 'ConferencesController@remove_from_whitelist');    
+
+$app-&gt;put('/conferences/{id}', 'ConferencesController@edit_conferences');
+
+
+//speakers
+/**
+ * These routes perform actions related to speakers
+ */
+$app-&gt;get('/speakers/', 'SpeakersController@get_all');
+$app-&gt;get('/speakers/{id}', ['middleware' =&gt; 'auth:attendee', 'uses' =&gt; 'SpeakersController@get_id']);
+$app-&gt;get('/speakers/{id}/presentations', 'SpeakersController@get_presentations');
+
+$app-&gt;get('/speakers/{id}/conferences', 'SpeakersController@get_conference_speakers');
+
+$app-&gt;delete('/speakers/{id}', 'SpeakersController@delete_speaker');
+/*
+Route::get('/speakers/', function() {   
+    View::make('index'); // will return app/views/index.php 
+});
+*/
+
+$app-&gt;post('/speakers/register', 'SpeakersController@create_new');
+
+
+//$app-&gt;group(['prefix' =&gt; 'projects', 'middleware' =&gt; 'jwt.auth'], function($app) {
+//    $app-&gt;post('/', 'App\Http\Controllers\ProjectsController@store');
+//    $app-&gt;put('/{projectId}', 'App\Http\Controllers\ProjectsController@update');
+//    $app-&gt;delete('/{projectId}', 'App\Http\Controllers\ProjectsController@destroy');
+//});
+
+//attendees
+/**
+ * These routes perform actions related to attendees
+ */
+
+$app-&gt;post('/attendees/login', 'AttendeesController@login');
+$app-&gt;post('/attendees/logout', 'AttendeesController@logout');
+
+$app-&gt;post('/auth/refresh-token', ['middleware' =&gt; 'jwt.refresh', function() {}]);
+
+$app-&gt;post('/attendees/register', 'AttendeesController@register');
+$app-&gt;post('/attendees/{id}/changepassword', 'AttendeesController@change_password');
+$app-&gt;post('/attendees/{email}/forgotpassword', 'AttendeesController@forgot_password');
+
+$app-&gt;get('/attendees', 'AttendeesController@get_all');
+$app-&gt;get('/attendees/{id}', 'AttendeesController@get_id');
+$app-&gt;get('/attendees/{id}/conferences', 'AttendeesController@get_conferences');
+
+
+$app-&gt;delete('/attendees/{id}', 'AttendeesController@delete_attendee');
+
+//put
+$app-&gt;put('/attendees/{id}', 'AttendeesController@edit_attendee');
+
+$app-&gt;post('/password/email', 'PasswordController@postEmail');
+$app-&gt;post('/password/reset/{token}', 'PasswordController@postReset');
+
+//categories
+/**
+ * These routes perform actions related to categories
+ */
+$app-&gt;get('/categories/', 'CategoryController@get_all');
+$app-&gt;get('/categories/{id}', 'CategoryController@get_id');
+$app-&gt;get('/categories/{id}/presentations', 'CategoryController@get_all');
+
+$app-&gt;post('/categories/register', 'CategoryController@create_new');
+
+$app-&gt;delete('/categories/{id}', 'CategoryController@delete_category');
+
+$app-&gt;put('/categories/{id}', 'CategoryController@edit_category');
+
+
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

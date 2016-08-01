@@ -119,7 +119,8 @@ $app->delete('/attendees/{id}', 'AttendeesController@delete_attendee');
 //put
 $app->put('/attendees/{id}', 'AttendeesController@edit_attendee');
 
-
+$app->post('/password/email', 'PasswordController@postEmail');
+$app->post('/password/reset/{token}', 'PasswordController@postReset');
 
 //categories
 /**
@@ -134,4 +135,5 @@ $app->post('/categories/register', 'CategoryController@create_new');
 $app->delete('/categories/{id}', 'CategoryController@delete_category');
 
 $app->put('/categories/{id}', 'CategoryController@edit_category');
+
 

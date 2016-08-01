@@ -32,6 +32,9 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
             $http.defaults.headers.common.Authorization = 'Bearer ' + $localStorage.currentUser.token;
         }
  
+ /*
+  * This section is currently commented out to make testing easier
+  */
         // redirect to login page if not logged in and trying to access a restricted page
 
 //        $rootScope.$on('$locationChangeStart', function (event, next, current) {
@@ -301,6 +304,19 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
         url:'/forgotpass',
         templateUrl: 'templates/pass-reset.html',
         controller: 'ForgotPassCtrl'
+    })
+    
+    /**
+     * @memberOf states
+     * @name resetpassword
+     * @ngdoc state
+     * @desc
+     * This state displays the reset password page.
+     */
+    .state('resetpassword', {
+        url:'/resetpass/:token/:email',
+        templateUrl: 'templates/reset-pass.html',
+        controller: 'ResetPassCtrl'
     })
 
 

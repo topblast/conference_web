@@ -1,0 +1,79 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php 
+/**
+ * auth.php
+ */
+
+/**
+ * The auth file is a config file for auth guards.
+ */
+return [
+    'defaults' =&gt; [
+        'guard' =&gt; env('AUTH_GUARD', 'attendee'),
+    ],
+    'guards' =&gt; [
+        'api' =&gt; ['driver' =&gt; 'api'],
+        'attendee' =&gt; ['driver' =&gt; 'jwt-auth', 'provider' =&gt; 'attendee'],
+        'client' =&gt; ['driver' =&gt; 'jwt-auth', 'provider' =&gt; 'client'],
+        
+    ],
+
+    'providers' =&gt; [
+        //
+        'attendee' =&gt; ['driver' =&gt; 'eloquent', 'model' =&gt; App\Models\Attendee::class],
+        'client' =&gt; ['driver' =&gt; 'eloquent', 'model' =&gt; App\Models\Client::class],
+    ],
+
+    'passwords' =&gt; [
+        //
+        'users' =&gt; [
+        'provider' =&gt; 'attendee',
+        'email' =&gt; 'auth.emails.password',
+        'table' =&gt; 'password_resets',
+        'expire' =&gt; 60,
+        ],
+    ],
+];</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

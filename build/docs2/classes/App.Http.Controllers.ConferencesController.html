@@ -3,1219 +3,864 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
     <meta charset="utf-8"/>
-    <title>API Documentation</title>
+    <title>    API Documentation &raquo; \App\Http\Controllers\ConferencesController
+</title>
     <meta name="author" content=""/>
     <meta name="description" content=""/>
 
-    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
-    <link href="../css/font-awesome.min.css" rel="stylesheet">
-    <link href="../css/prism.css" rel="stylesheet" media="all"/>
-    <link href="../css/template.css" rel="stylesheet" media="all"/>
+            <link href="../css/template.css" rel="stylesheet" media="all"/>
     
-    <!--[if lt IE 9]>
-    <script src="../js/html5.js"></script>
-    <![endif]-->
-    <script src="../js/jquery-1.11.0.min.js"></script>
-    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/jquery.smooth-scroll.js"></script>
-    <script src="../js/prism.min.js"></script>
-    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
-    <script type="text/javascript">
-    function loadExternalCodeSnippets() {
-        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
-            var src = pre.getAttribute('data-src');
-            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
-            var language = 'php';
-
-            var code = document.createElement('code');
-            code.className = 'language-' + language;
-
-            pre.textContent = '';
-
-            code.textContent = 'Loading…';
-
-            pre.appendChild(code);
-
-            var xhr = new XMLHttpRequest();
-
-            xhr.open('GET', src, true);
-
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4) {
-
-                    if (xhr.status < 400 && xhr.responseText) {
-                        code.textContent = xhr.responseText;
-
-                        Prism.highlightElement(code);
-                    }
-                    else if (xhr.status >= 400) {
-                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
-                    }
-                    else {
-                        code.textContent = '✖ Error: File does not exist or is empty';
-                    }
-                }
-            };
-
-            xhr.send(null);
-        });
-    }
-
-    $(document).ready(function(){
-        loadExternalCodeSnippets();
-    });
-    $('#source-view').on('shown', function () {
-        loadExternalCodeSnippets();
-    })
-</script>
-
-    <link rel="shortcut icon" href="../images/favicon.ico"/>
-    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
-    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
-    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
-</head>
+            <!--[if lt IE 9]>
+        <script src="https://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+        <![endif]-->
+        <script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script>
+        <script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script>
+        <script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script>
+        <script src="../js/bootstrap.js" type="text/javascript"></script>
+        <script src="../js/template.js" type="text/javascript"></script>
+        <script src="../js/prettify/prettify.min.js" type="text/javascript"></script>
+    
+            <link rel="shortcut icon" href="../img/favicon.ico"/>
+        <link rel="apple-touch-icon" href="../img/apple-touch-icon.png"/>
+        <link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png"/>
+        <link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png"/>
+    </head>
 <body>
 
-<div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-        <div class="container">
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <i class="icon-ellipsis-vertical"></i>
-            </a>
-            <a class="brand" href="../index.html">API Documentation</a>
+        <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span> <span class="icon-bar"></span>
+                    <span class="icon-bar"></span> </a>
+                <a class="brand" href="../index.html">API Documentation</a>
 
-            <div class="nav-collapse">
-                <ul class="nav pull-right">
-                                        <li class="dropdown">
-                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
-                            API Documentation <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                                                        <li><a href="../namespaces/App.html">\App</a></li>
-                                                    </ul>
-                    </li>
-                                        <li class="dropdown" id="charts-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            Charts <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="../graphs/class.html">
-                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="dropdown" id="reports-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            Reports <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="../reports/errors.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">91</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="../reports/markers.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">2</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="../reports/deprecated.html">
-                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <!--<div class="go_to_top">-->
-    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
-    <!--</div>-->
-</div>
-
-<div id="___" class="container-fluid">
-        <section class="row-fluid">
-        <div class="span2 sidebar">
-                                <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1420873821"></a>
-                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
-            </div>
-            <div id="namespace-1420873821" class="accordion-body collapse in">
-                <div class="accordion-inner">
-
-                                                    <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2119129238"></a>
-                                <a href="../namespaces/App.html" style="margin-left: 30px; padding-left: 0">App</a>
-            </div>
-            <div id="namespace-2119129238" class="accordion-body collapse ">
-                <div class="accordion-inner">
-
-                                                    <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-302387338"></a>
-                                <a href="../namespaces/App.Console.html" style="margin-left: 30px; padding-left: 0">Console</a>
-            </div>
-            <div id="namespace-302387338" class="accordion-body collapse ">
-                <div class="accordion-inner">
-
-                    
-                    <ul>
-                                                                                                    <li class="class"><a href="../classes/App.Console.Kernel.html">Kernel</a></li>
-                                            </ul>
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li class="dropdown">
+                            <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                API Documentation <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                                                    <li><a>Namespaces</a></li>
+                                                                        <li><a href="../namespaces/App.html">App</a></li>
+                                                                                                                                </ul>
+                        </li>
+                        <li class="dropdown" id="charts-menu">
+                            <a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                Charts <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../graph_class.html">
+                                        <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown" id="reports-menu">
+                            <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                Reports <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../errors.html">
+                                        <i class="icon-list-alt"></i>&#160;Errors
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../markers.html">
+                                        <i class="icon-list-alt"></i>&#160;Markers
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../deprecated.html">
+                                        <i class="icon-list-alt"></i>&#160;Deprecated
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
-    </div>
-
-                                                    <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-714023399"></a>
-                                <a href="../namespaces/App.Events.html" style="margin-left: 30px; padding-left: 0">Events</a>
-            </div>
-            <div id="namespace-714023399" class="accordion-body collapse ">
-                <div class="accordion-inner">
-
-                    
-                    <ul>
-                                                                                                    <li class="class"><a href="../classes/App.Events.Event.html">Event</a></li>
-                                                    <li class="class"><a href="../classes/App.Events.ExampleEvent.html">ExampleEvent</a></li>
-                                            </ul>
-                </div>
-            </div>
+        <div class="go_to_top">
+            <a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>
         </div>
     </div>
-
-                                                    <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2053347756"></a>
-                                <a href="../namespaces/App.Exceptions.html" style="margin-left: 30px; padding-left: 0">Exceptions</a>
+    
+    <div id="___" class="container">
+        <noscript>
+            <div class="alert alert-warning">
+                Javascript is disabled; several features are only available if Javascript is enabled.
             </div>
-            <div id="namespace-2053347756" class="accordion-body collapse ">
-                <div class="accordion-inner">
+        </noscript>
 
-                    
-                    <ul>
-                                                                                                    <li class="class"><a href="../classes/App.Exceptions.Handler.html">Handler</a></li>
-                                            </ul>
-                </div>
-            </div>
-        </div>
+        
+            <style>
+        .deprecated h2 {
+            text-decoration: line-through;
+        }
+    </style>
+    <div class="row">
+        <div class="span4">
+                    <div class="btn-group view pull-right" data-toggle="buttons-radio">
+        <button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button>
+        <button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+    </div>
+    <div class="btn-group visibility" data-toggle="buttons-checkbox">
+        <button class="btn public active" title="Show public elements">Public</button>
+        <button class="btn protected" title="Show protected elements">Protected</button>
+        <button class="btn private" title="Show private elements">Private</button>
+        <button class="btn inherited active" title="Show inherited elements">Inherited</button>
     </div>
 
-                                                    <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1783214853"></a>
-                                <a href="../namespaces/App.Http.html" style="margin-left: 30px; padding-left: 0">Http</a>
-            </div>
-            <div id="namespace-1783214853" class="accordion-body collapse ">
-                <div class="accordion-inner">
+        <ul class="side-nav nav nav-list">
+        <li class="nav-header">
+            <i class="icon-custom icon-method"></i> Methods
+            <ul>
+                                                                                                    <li class="method public">
+        <a href="#method___construct" title="__construct :: Create a new controller instance.">
+            <span class="description">Create a new controller instance.</span><pre>__construct</pre>
+        </a>
+    </li>
 
-                                                    <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2024798669"></a>
-                                <a href="../namespaces/App.Http.Controllers.html" style="margin-left: 30px; padding-left: 0">Controllers</a>
-            </div>
-            <div id="namespace-2024798669" class="accordion-body collapse ">
-                <div class="accordion-inner">
+                                                                                                        <li class="method public">
+        <a href="#method_add_to_blacklist" title="add_to_blacklist :: ">
+            <span class="description"></span><pre>add_to_blacklist</pre>
+        </a>
+    </li>
 
-                    
-                    <ul>
-                                                                                                    <li class="class"><a href="../classes/App.Http.Controllers.AttendeesController.html">AttendeesController</a></li>
-                                                    <li class="class"><a href="../classes/App.Http.Controllers.CategoryController.html">CategoryController</a></li>
-                                                    <li class="class"><a href="../classes/App.Http.Controllers.ClientsController.html">ClientsController</a></li>
-                                                    <li class="class"><a href="../classes/App.Http.Controllers.ConferencesController.html">ConferencesController</a></li>
-                                                    <li class="class"><a href="../classes/App.Http.Controllers.Controller.html">Controller</a></li>
-                                                    <li class="class"><a href="../classes/App.Http.Controllers.ExampleController.html">ExampleController</a></li>
-                                                    <li class="class"><a href="../classes/App.Http.Controllers.SpeakersController.html">SpeakersController</a></li>
-                                            </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+                                                                                                        <li class="method public">
+        <a href="#method_add_to_whitelist" title="add_to_whitelist :: ">
+            <span class="description"></span><pre>add_to_whitelist</pre>
+        </a>
+    </li>
 
-                                                    <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-502109335"></a>
-                                <a href="../namespaces/App.Http.Middleware.html" style="margin-left: 30px; padding-left: 0">Middleware</a>
-            </div>
-            <div id="namespace-502109335" class="accordion-body collapse ">
-                <div class="accordion-inner">
+                                                                                                        <li class="method public">
+        <a href="#method_create_new_presentation" title="create_new_presentation :: Creates a new presentation for the conference">
+            <span class="description">Creates a new presentation for the conference</span><pre>create_new_presentation</pre>
+        </a>
+    </li>
 
-                    
-                    <ul>
-                                                                                                    <li class="class"><a href="../classes/App.Http.Middleware.Authenticate.html">Authenticate</a></li>
-                                                    <li class="class"><a href="../classes/App.Http.Middleware.ExampleMiddleware.html">ExampleMiddleware</a></li>
-                                            </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+                                                                                                        <li class="method public">
+        <a href="#method_create_new_sponsor" title="create_new_sponsor :: Creates a new sponsor for the conference.">
+            <span class="description">Creates a new sponsor for the conference.</span><pre>create_new_sponsor</pre>
+        </a>
+    </li>
 
-                    
-                    <ul>
-                                                                                            </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+                                                                                                        <li class="method public">
+        <a href="#method_delete_conference" title="delete_conference :: Deletes a conference">
+            <span class="description">Deletes a conference</span><pre>delete_conference</pre>
+        </a>
+    </li>
 
-                                                    <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1262375350"></a>
-                                <a href="../namespaces/App.Jobs.html" style="margin-left: 30px; padding-left: 0">Jobs</a>
-            </div>
-            <div id="namespace-1262375350" class="accordion-body collapse ">
-                <div class="accordion-inner">
+                                                                                                        <li class="method public">
+        <a href="#method_delete_presentation" title="delete_presentation :: Deletes a presentation related to a conference">
+            <span class="description">Deletes a presentation related to a conference</span><pre>delete_presentation</pre>
+        </a>
+    </li>
 
-                    
-                    <ul>
-                                                                                                    <li class="class"><a href="../classes/App.Jobs.ExampleJob.html">ExampleJob</a></li>
-                                                    <li class="class"><a href="../classes/App.Jobs.Job.html">Job</a></li>
-                                            </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+                                                                                                        <li class="method public">
+        <a href="#method_delete_sponsor" title="delete_sponsor :: Deletes a sponsor related to a conference.">
+            <span class="description">Deletes a sponsor related to a conference.</span><pre>delete_sponsor</pre>
+        </a>
+    </li>
 
-                                                    <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1199370313"></a>
-                                <a href="../namespaces/App.Listeners.html" style="margin-left: 30px; padding-left: 0">Listeners</a>
-            </div>
-            <div id="namespace-1199370313" class="accordion-body collapse ">
-                <div class="accordion-inner">
+                                                                                                        <li class="method public">
+        <a href="#method_edit_conference" title="edit_conference :: Edits an existing conference">
+            <span class="description">Edits an existing conference</span><pre>edit_conference</pre>
+        </a>
+    </li>
 
-                    
-                    <ul>
-                                                                                                    <li class="class"><a href="../classes/App.Listeners.ExampleListener.html">ExampleListener</a></li>
-                                            </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+                                                                                                        <li class="method public">
+        <a href="#method_get_all" title="get_all :: Gets all public conferences.">
+            <span class="description">Gets all public conferences.</span><pre>get_all</pre>
+        </a>
+    </li>
 
-                                                    <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1372297817"></a>
-                                <a href="../namespaces/App.Models.html" style="margin-left: 30px; padding-left: 0">Models</a>
-            </div>
-            <div id="namespace-1372297817" class="accordion-body collapse ">
-                <div class="accordion-inner">
+                                                                                                        <li class="method public">
+        <a href="#method_get_conference_speakers" title="get_conference_speakers :: Gets all speakers related to a conference.">
+            <span class="description">Gets all speakers related to a conference.</span><pre>get_conference_speakers</pre>
+        </a>
+    </li>
 
-                    
-                    <ul>
-                                                                                                    <li class="class"><a href="../classes/App.Models.Attendee.html">Attendee</a></li>
-                                                    <li class="class"><a href="../classes/App.Models.Blacklist.html">Blacklist</a></li>
-                                                    <li class="class"><a href="../classes/App.Models.Category.html">Category</a></li>
-                                                    <li class="class"><a href="../classes/App.Models.Chatlog.html">Chatlog</a></li>
-                                                    <li class="class"><a href="../classes/App.Models.Client.html">Client</a></li>
-                                                    <li class="class"><a href="../classes/App.Models.Conference.html">Conference</a></li>
-                                                    <li class="class"><a href="../classes/App.Models.Presentation.html">Presentation</a></li>
-                                                    <li class="class"><a href="../classes/App.Models.Room.html">Room</a></li>
-                                                    <li class="class"><a href="../classes/App.Models.Speaker.html">Speaker</a></li>
-                                                    <li class="class"><a href="../classes/App.Models.Sponsor.html">Sponsor</a></li>
-                                                    <li class="class"><a href="../classes/App.Models.Whitelist.html">Whitelist</a></li>
-                                            </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+                                                                                                        <li class="method public">
+        <a href="#method_get_id" title="get_id :: Gets a specific conference by its id.">
+            <span class="description">Gets a specific conference by its id.</span><pre>get_id</pre>
+        </a>
+    </li>
 
-                                                    <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1002761928"></a>
-                                <a href="../namespaces/App.Providers.html" style="margin-left: 30px; padding-left: 0">Providers</a>
-            </div>
-            <div id="namespace-1002761928" class="accordion-body collapse ">
-                <div class="accordion-inner">
+                                                                                                        <li class="method public">
+        <a href="#method_get_presentations" title="get_presentations :: Gets all presentations related to a conference.">
+            <span class="description">Gets all presentations related to a conference.</span><pre>get_presentations</pre>
+        </a>
+    </li>
 
-                    
-                    <ul>
-                                                                                                    <li class="class"><a href="../classes/App.Providers.AppServiceProvider.html">AppServiceProvider</a></li>
-                                                    <li class="class"><a href="../classes/App.Providers.AuthServiceProvider.html">AuthServiceProvider</a></li>
-                                                    <li class="class"><a href="../classes/App.Providers.EventServiceProvider.html">EventServiceProvider</a></li>
-                                            </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+                                                                                                        <li class="method public">
+        <a href="#method_get_sponsors" title="get_sponsors :: Gets all sponsors related to a conference">
+            <span class="description">Gets all sponsors related to a conference</span><pre>get_sponsors</pre>
+        </a>
+    </li>
 
-                    
-                    <ul>
-                                                                                                    <li class="class"><a href="../classes/App.User.html">User</a></li>
-                                            </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+                                                                                                        <li class="method public">
+        <a href="#method_register" title="register :: attempts to register a new conference">
+            <span class="description">attempts to register a new conference</span><pre>register</pre>
+        </a>
+    </li>
 
-                    
-                    <ul>
-                                                                                            </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+                                                                                                        <li class="method public">
+        <a href="#method_remove_from_blacklist" title="remove_from_blacklist :: ">
+            <span class="description"></span><pre>remove_from_blacklist</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_remove_from_whitelist" title="remove_from_whitelist :: ">
+            <span class="description"></span><pre>remove_from_whitelist</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_select_presentation" title="select_presentation :: Gets the first presentation at a conference">
+            <span class="description">Gets the first presentation at a conference</span><pre>select_presentation</pre>
+        </a>
+    </li>
+
+                                                </ul>
+        </li>
+        <li class="nav-header protected">» Protected
+            <ul>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </ul>
+        </li>
+        <li class="nav-header private">» Private
+            <ul>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </ul>
+        </li>
+        <li class="nav-header">
+            <i class="icon-custom icon-constant"></i> Constants
+            <ul>
+                            </ul>
+        </li>
+    </ul>
+
 
         </div>
-    </section>
-    <section class="row-fluid">
-        <div class="span10 offset2">
-            <div class="row-fluid">
-                <div class="span8 content class">
-                    <nav>
-                                                <a href="../namespaces/App.Http.Controllers.html">\App\Http\Controllers</a> <i class="icon-level-up"></i>
-                                            </nav>
-                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
 
-                    <h1><small>\App\Http\Controllers</small>ConferencesController</h1>
-                    <p><em>Controller for the conferences table.</em></p>
-                    
-                    
-                                        
-                    <section id="summary">
-                        <h2>Summary</h2>
-                        <section class="row-fluid heading">
-                            <section class="span4">
-                                <a href="#methods">Methods</a>
-                            </section>
-                            <section class="span4">
-                                <a href="#properties">Properties</a>
-                            </section>
-                            <section class="span4">
-                                <a href="#constants">Constants</a>
-                            </section>
-                        </section>
-                        <section class="row-fluid public">
-                            <section class="span4">
-                                                                    <a href="../classes/App.Http.Controllers.ConferencesController.html#method___construct" class="">__construct()</a><br />
-                                                                    <a href="../classes/App.Http.Controllers.ConferencesController.html#method_get_all" class="">get_all()</a><br />
-                                                                    <a href="../classes/App.Http.Controllers.ConferencesController.html#method_get_id" class="">get_id()</a><br />
-                                                                    <a href="../classes/App.Http.Controllers.ConferencesController.html#method_get_presentations" class="">get_presentations()</a><br />
-                                                                    <a href="../classes/App.Http.Controllers.ConferencesController.html#method_select_presentation" class="">select_presentation()</a><br />
-                                                                    <a href="../classes/App.Http.Controllers.ConferencesController.html#method_get_conference_speakers" class="">get_conference_speakers()</a><br />
-                                                                    <a href="../classes/App.Http.Controllers.ConferencesController.html#method_get_sponsors" class="">get_sponsors()</a><br />
-                                                                    <a href="../classes/App.Http.Controllers.ConferencesController.html#method_register" class="">register()</a><br />
-                                                                    <a href="../classes/App.Http.Controllers.ConferencesController.html#method_create_new_presentation" class="">create_new_presentation()</a><br />
-                                                                    <a href="../classes/App.Http.Controllers.ConferencesController.html#method_create_new_sponsor" class="">create_new_sponsor()</a><br />
-                                                                    <a href="../classes/App.Http.Controllers.ConferencesController.html#method_add_to_whitelist" class="">add_to_whitelist()</a><br />
-                                                                    <a href="../classes/App.Http.Controllers.ConferencesController.html#method_add_to_blacklist" class="">add_to_blacklist()</a><br />
-                                                                    <a href="../classes/App.Http.Controllers.ConferencesController.html#method_delete_conference" class="">delete_conference()</a><br />
-                                                                    <a href="../classes/App.Http.Controllers.ConferencesController.html#method_delete_presentation" class="">delete_presentation()</a><br />
-                                                                    <a href="../classes/App.Http.Controllers.ConferencesController.html#method_delete_sponsor" class="">delete_sponsor()</a><br />
-                                                                    <a href="../classes/App.Http.Controllers.ConferencesController.html#method_remove_from_whitelist" class="">remove_from_whitelist()</a><br />
-                                                                    <a href="../classes/App.Http.Controllers.ConferencesController.html#method_remove_from_blacklist" class="">remove_from_blacklist()</a><br />
-                                                                    <a href="../classes/App.Http.Controllers.ConferencesController.html#method_edit_conference" class="">edit_conference()</a><br />
-                                                            </section>
-                            <section class="span4">
-                                                                    <em>No public properties found</em>
-                                                            </section>
-                            <section class="span4">
-                                                                    <em>No constants found</em>
-                                                            </section>
-                        </section>
-                        <section class="row-fluid protected">
-                            <section class="span4">
-                                                                    <em>No protected methods found</em>
-                                                            </section>
-                            <section class="span4">
-                                                                    <em>No protected properties found</em>
-                                                            </section>
-                            <section class="span4">
-                                <em>N/A</em>
-                            </section>
-                        </section>
-                        <section class="row-fluid private">
-                            <section class="span4">
-                                                                    <em>No private methods found</em>
-                                                            </section>
-                            <section class="span4">
-                                                                    <em>No private properties found</em>
-                                                            </section>
-                            <section class="span4">
-                                <em>N/A</em>
-                            </section>
-                        </section>
-                    </section>
-                </div>
-                <aside class="span4 detailsbar">
-                                        
-                    
-                    <dl>
-                        <dt>File</dt>
-                            <dd><a href="../files/Http.Controllers.ConferencesController.html"><div class="path-wrapper">Http\Controllers\ConferencesController.php</div></a></dd>
-                                                <dt>Package</dt>
-                            <dd><div class="namespace-wrapper">Default</div></dd>
-                                                <dt>Class hierarchy</dt>
-                            <dd class="hierarchy">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                            
-                                        <div class="namespace-wrapper">\Laravel\Lumen\Routing\Controller</div>
-                                                                    
-                                        <div class="namespace-wrapper"><a href="../classes/App.Http.Controllers.Controller.html">\App\Http\Controllers\Controller</a></div>
-                                                                                                    <div class="namespace-wrapper">\App\Http\Controllers\ConferencesController</div>
-                            </dd>
-
+        <div class="span8">
+            <div class="element class">
+                <h1>ConferencesController</h1>
+                <small style="display: block; text-align: right">
+                                            Extends <a href="../classes/App.Http.Controllers.Controller.html">\App\Http\Controllers\Controller</a>
+                                                        </small>
+                <p class="short_description">Controller for the conferences table.</p>
+                <div class="details">
+                    <div class="long_description">
                         
-                        
-                        
-                        
-                                                                        </dl>
-                    <h2>Tags</h2>
-                    <table class="table table-condensed">
-                                            <tr>
-                            <th>
-                                filesource
-                            </th>
-                            <td>
-                                                                    
-                                                            </td>
-                        </tr>
-                                        </table>
-                </aside>
-            </div>
+                    </div>
+                    <table class="table table-bordered">
+                                                                                    <tr>
+                                    <th>
+                                        filesource
+                                                                            </th>
+                                    <td>
+                                                                                    
+                                                                                
+                                    </td>
+                                </tr>
+                                                                                                                <tr>
+                                    <th>
+                                        package
+                                                                            </th>
+                                    <td>
+                                                                                    
+                                                                                <p>Default</p>
+                                    </td>
+                                </tr>
+                                                                                                                                                                                </table>
 
-                        
-                        
-                                    <a id="methods" name="methods"></a>
-            <div class="row-fluid">
-                <div class="span8 content class"><h2>Methods</h2></div>
-                <aside class="span4 detailsbar"></aside>
-            </div>
+                    <h3><i class="icon-custom icon-method"></i> Methods</h3>
+                                                                <a id="method___construct"></a>
+                        <div class="element clickable method public  method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
+                            <h2>Create a new controller instance.</h2>
+                            <pre>__construct() : void</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
 
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method___construct" name="method___construct" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">__construct()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">__construct() : void</pre>
-                <p><em>Create a new controller instance.</em></p>
-                
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
 
-                
-                
-                				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
 
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_get_all" name="method_get_all" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">get_all()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">get_all() : \App\Http\Controllers\type</pre>
-                <p><em>Gets all public conferences.</em></p>
-                
-
-                
-                
-                                    <h4>Returns</h4>
-                    \App\Http\Controllers\type
-                                            &mdash; <p>Returns all conference details in the form of JSON data</p>
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_get_id" name="method_get_id" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">get_id()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">get_id(\App\Http\Controllers\type  <span class="argument">$id</span>) : \App\Http\Controllers\type</pre>
-                <p><em>Gets a specific conference by its id.</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>\App\Http\Controllers\type</td>
-                                <td>$id </td>
-                                <td></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    \App\Http\Controllers\type
-                                            &mdash; <p>Returns the details of that conference in the form of JSON data</p>
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_get_presentations" name="method_get_presentations" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">get_presentations()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">get_presentations(\App\Http\Controllers\type  <span class="argument">$id</span>) : \App\Http\Controllers\type</pre>
-                <p><em>Gets all presentations related to a conference.</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>\App\Http\Controllers\type</td>
-                                <td>$id </td>
-                                <td><p>The conference's id.</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    \App\Http\Controllers\type
-                                            &mdash; <p>Returns those presentations as JSON data</p>
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_select_presentation" name="method_select_presentation" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">select_presentation()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">select_presentation(\App\Http\Controllers\type  <span class="argument">$id</span>) : \App\Http\Controllers\type</pre>
-                <p><em>Gets the first presentation at a conference</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>\App\Http\Controllers\type</td>
-                                <td>$id </td>
-                                <td><p>The conference's id</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    \App\Http\Controllers\type
-                                            &mdash; <p>Returns that presentation as JSON data</p>
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_get_conference_speakers" name="method_get_conference_speakers" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">get_conference_speakers()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">get_conference_speakers(\App\Http\Controllers\type  <span class="argument">$id</span>) : \App\Http\Controllers\type</pre>
-                <p><em>Gets all speakers related to a conference.</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>\App\Http\Controllers\type</td>
-                                <td>$id </td>
-                                <td><p>The conference's id</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    \App\Http\Controllers\type
-                                            &mdash; <p>Returns those speakers as JSON data</p>
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_get_sponsors" name="method_get_sponsors" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">get_sponsors()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">get_sponsors(\App\Http\Controllers\type  <span class="argument">$id</span>) : \App\Http\Controllers\type</pre>
-                <p><em>Gets all sponsors related to a conference</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>\App\Http\Controllers\type</td>
-                                <td>$id </td>
-                                <td><p>The conference's id</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    \App\Http\Controllers\type
-                                            &mdash; <p>Returns those sponsors as JSON data</p>
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_register" name="method_register" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">register()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">register(\App\Http\Controllers\Request  <span class="argument">$request</span>) : \App\Http\Controllers\type</pre>
-                <p><em>attempts to register a new conference</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>\App\Http\Controllers\Request</td>
-                                <td>$request </td>
-                                <td><p>The POST request with conference details</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    \App\Http\Controllers\type
-                                            &mdash; <p>Returns the conference as a JSON object if successful, error message if unsuccessful</p>
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_create_new_presentation" name="method_create_new_presentation" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">create_new_presentation()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">create_new_presentation(\App\Http\Controllers\Request  <span class="argument">$request</span>, \App\Http\Controllers\type  <span class="argument">$id</span>) : \App\Http\Controllers\type</pre>
-                <p><em>Creates a new presentation for the conference</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>\App\Http\Controllers\Request</td>
-                                <td>$request </td>
-                                <td><p>The POST request with presentation details</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>\App\Http\Controllers\type</td>
-                                <td>$id </td>
-                                <td><p>The conference's id</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    \App\Http\Controllers\type
-                                            &mdash; <p>Returns conference as JSON object</p>
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_create_new_sponsor" name="method_create_new_sponsor" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">create_new_sponsor()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">create_new_sponsor(\App\Http\Controllers\Request  <span class="argument">$request</span>, \App\Http\Controllers\type  <span class="argument">$id</span>) : \App\Http\Controllers\type</pre>
-                <p><em>Creates a new sponsor for the conference.</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>\App\Http\Controllers\Request</td>
-                                <td>$request </td>
-                                <td><p>The POST request with sponsor details</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>\App\Http\Controllers\type</td>
-                                <td>$id </td>
-                                <td><p>The conference's id</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    \App\Http\Controllers\type
-                                            &mdash; <p>Returns conference as JSON object</p>
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_add_to_whitelist" name="method_add_to_whitelist" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">add_to_whitelist()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">add_to_whitelist(\App\Http\Controllers\Request  <span class="argument">$request</span>,   <span class="argument">$id</span>) </pre>
-                <p><em></em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>\App\Http\Controllers\Request</td>
-                                <td>$request </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td></td>
-                                <td>$id </td>
-                                <td></td>
-                            </tr>
-                                            </table>
-                
-                
-                				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_add_to_blacklist" name="method_add_to_blacklist" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">add_to_blacklist()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">add_to_blacklist(\App\Http\Controllers\Request  <span class="argument">$request</span>,   <span class="argument">$id</span>) </pre>
-                <p><em></em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>\App\Http\Controllers\Request</td>
-                                <td>$request </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td></td>
-                                <td>$id </td>
-                                <td></td>
-                            </tr>
-                                            </table>
-                
-                
-                				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_delete_conference" name="method_delete_conference" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">delete_conference()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">delete_conference(\App\Http\Controllers\Request  <span class="argument">$request</span>, \App\Http\Controllers\type  <span class="argument">$id</span>) : \App\Http\Controllers\type</pre>
-                <p><em>Deletes a conference</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>\App\Http\Controllers\Request</td>
-                                <td>$request </td>
-                                <td><p>The DELETE request</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>\App\Http\Controllers\type</td>
-                                <td>$id </td>
-                                <td><p>The conference's id</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    \App\Http\Controllers\type
-                                            &mdash; <p>Returns conference details as JSON data</p>
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_delete_presentation" name="method_delete_presentation" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">delete_presentation()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">delete_presentation(\App\Http\Controllers\Request  <span class="argument">$request</span>, \App\Http\Controllers\type  <span class="argument">$id</span>) : \App\Http\Controllers\type</pre>
-                <p><em>Deletes a presentation related to a conference</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>\App\Http\Controllers\Request</td>
-                                <td>$request </td>
-                                <td><p>The DELETE request</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>\App\Http\Controllers\type</td>
-                                <td>$id </td>
-                                <td></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    \App\Http\Controllers\type
-                                            &mdash; <p>Returns presentation details as JSON data</p>
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_delete_sponsor" name="method_delete_sponsor" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">delete_sponsor()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">delete_sponsor(\App\Http\Controllers\type  <span class="argument">$id</span>, \App\Http\Controllers\Request  <span class="argument">$request</span>) : \App\Http\Controllers\type</pre>
-                <p><em>Deletes a sponsor related to a conference.</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>\App\Http\Controllers\type</td>
-                                <td>$id </td>
-                                <td><p>The conference's id</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>\App\Http\Controllers\Request</td>
-                                <td>$request </td>
-                                <td><p>The DELETE request</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    \App\Http\Controllers\type
-                                            &mdash; <p>Returns sponsor details as JSON data</p>
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_remove_from_whitelist" name="method_remove_from_whitelist" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">remove_from_whitelist()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">remove_from_whitelist() </pre>
-                <p><em></em></p>
-                
-
-                
-                
-                				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_remove_from_blacklist" name="method_remove_from_blacklist" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">remove_from_blacklist()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">remove_from_blacklist() </pre>
-                <p><em></em></p>
-                
-
-                
-                
-                				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_edit_conference" name="method_edit_conference" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">edit_conference()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">edit_conference(\App\Http\Controllers\Request  <span class="argument">$request</span>, \App\Http\Controllers\type  <span class="argument">$id</span>) : \App\Http\Controllers\type</pre>
-                <p><em>Edits an existing conference</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>\App\Http\Controllers\Request</td>
-                                <td>$request </td>
-                                <td><p>The PUT request</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>\App\Http\Controllers\type</td>
-                                <td>$id </td>
-                                <td><p>The conference's id</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    \App\Http\Controllers\type
-                                            &mdash; <p>Returns the edited conference's details as JSON data</p>
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
+                                    
                                                                     </div>
-    </section>
+                            </div>
 
-    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="source-view-label">ConferencesController.php</h3>
-        </div>
-        <div class="modal-body">
-            <pre data-src="../files/Http\Controllers\ConferencesController.php.txt" class="language-php line-numbers"></pre>
+                        </div>
+                                            <a id="method_add_to_blacklist"></a>
+                        <div class="element clickable method public  method_add_to_blacklist" data-toggle="collapse" data-target=".method_add_to_blacklist .collapse">
+                            <h2>add_to_blacklist</h2>
+                            <pre>add_to_blacklist(\App\Http\Controllers\Request $request,  $id) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$request</h4>
+                                                <code>\App\Http\Controllers\Request</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$id</h4>
+                                                <code></code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_add_to_whitelist"></a>
+                        <div class="element clickable method public  method_add_to_whitelist" data-toggle="collapse" data-target=".method_add_to_whitelist .collapse">
+                            <h2>add_to_whitelist</h2>
+                            <pre>add_to_whitelist(\App\Http\Controllers\Request $request,  $id) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$request</h4>
+                                                <code>\App\Http\Controllers\Request</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$id</h4>
+                                                <code></code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_create_new_presentation"></a>
+                        <div class="element clickable method public  method_create_new_presentation" data-toggle="collapse" data-target=".method_create_new_presentation .collapse">
+                            <h2>Creates a new presentation for the conference</h2>
+                            <pre>create_new_presentation(\App\Http\Controllers\Request $request, \App\Http\Controllers\type $id) : \App\Http\Controllers\type</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$request</h4>
+                                                <code>\App\Http\Controllers\Request</code><p><p>The POST request with presentation details</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$id</h4>
+                                                <code>\App\Http\Controllers\type</code><p><p>The conference's id</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>\App\Http\Controllers\type</code><p><p>Returns conference as JSON object</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_create_new_sponsor"></a>
+                        <div class="element clickable method public  method_create_new_sponsor" data-toggle="collapse" data-target=".method_create_new_sponsor .collapse">
+                            <h2>Creates a new sponsor for the conference.</h2>
+                            <pre>create_new_sponsor(\App\Http\Controllers\Request $request, \App\Http\Controllers\type $id) : \App\Http\Controllers\type</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$request</h4>
+                                                <code>\App\Http\Controllers\Request</code><p><p>The POST request with sponsor details</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$id</h4>
+                                                <code>\App\Http\Controllers\type</code><p><p>The conference's id</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>\App\Http\Controllers\type</code><p><p>Returns conference as JSON object</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_delete_conference"></a>
+                        <div class="element clickable method public  method_delete_conference" data-toggle="collapse" data-target=".method_delete_conference .collapse">
+                            <h2>Deletes a conference</h2>
+                            <pre>delete_conference(\App\Http\Controllers\Request $request, \App\Http\Controllers\type $id) : \App\Http\Controllers\type</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$request</h4>
+                                                <code>\App\Http\Controllers\Request</code><p><p>The DELETE request</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$id</h4>
+                                                <code>\App\Http\Controllers\type</code><p><p>The conference's id</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>\App\Http\Controllers\type</code><p><p>Returns conference details as JSON data</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_delete_presentation"></a>
+                        <div class="element clickable method public  method_delete_presentation" data-toggle="collapse" data-target=".method_delete_presentation .collapse">
+                            <h2>Deletes a presentation related to a conference</h2>
+                            <pre>delete_presentation(\App\Http\Controllers\Request $request, \App\Http\Controllers\type $id) : \App\Http\Controllers\type</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$request</h4>
+                                                <code>\App\Http\Controllers\Request</code><p><p>The DELETE request</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$id</h4>
+                                                <code>\App\Http\Controllers\type</code><p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>\App\Http\Controllers\type</code><p><p>Returns presentation details as JSON data</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_delete_sponsor"></a>
+                        <div class="element clickable method public  method_delete_sponsor" data-toggle="collapse" data-target=".method_delete_sponsor .collapse">
+                            <h2>Deletes a sponsor related to a conference.</h2>
+                            <pre>delete_sponsor(\App\Http\Controllers\type $id, \App\Http\Controllers\Request $request) : \App\Http\Controllers\type</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$id</h4>
+                                                <code>\App\Http\Controllers\type</code><p><p>The conference's id</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$request</h4>
+                                                <code>\App\Http\Controllers\Request</code><p><p>The DELETE request</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>\App\Http\Controllers\type</code><p><p>Returns sponsor details as JSON data</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_edit_conference"></a>
+                        <div class="element clickable method public  method_edit_conference" data-toggle="collapse" data-target=".method_edit_conference .collapse">
+                            <h2>Edits an existing conference</h2>
+                            <pre>edit_conference(\App\Http\Controllers\Request $request, \App\Http\Controllers\type $id) : \App\Http\Controllers\type</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$request</h4>
+                                                <code>\App\Http\Controllers\Request</code><p><p>The PUT request</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$id</h4>
+                                                <code>\App\Http\Controllers\type</code><p><p>The conference's id</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>\App\Http\Controllers\type</code><p><p>Returns the edited conference's details as JSON data</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_get_all"></a>
+                        <div class="element clickable method public  method_get_all" data-toggle="collapse" data-target=".method_get_all .collapse">
+                            <h2>Gets all public conferences.</h2>
+                            <pre>get_all() : \App\Http\Controllers\type</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>\App\Http\Controllers\type</code><p><p>Returns all conference details in the form of JSON data</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_get_conference_speakers"></a>
+                        <div class="element clickable method public  method_get_conference_speakers" data-toggle="collapse" data-target=".method_get_conference_speakers .collapse">
+                            <h2>Gets all speakers related to a conference.</h2>
+                            <pre>get_conference_speakers(\App\Http\Controllers\type $id) : \App\Http\Controllers\type</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$id</h4>
+                                                <code>\App\Http\Controllers\type</code><p><p>The conference's id</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>\App\Http\Controllers\type</code><p><p>Returns those speakers as JSON data</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_get_id"></a>
+                        <div class="element clickable method public  method_get_id" data-toggle="collapse" data-target=".method_get_id .collapse">
+                            <h2>Gets a specific conference by its id.</h2>
+                            <pre>get_id(\App\Http\Controllers\type $id) : \App\Http\Controllers\type</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$id</h4>
+                                                <code>\App\Http\Controllers\type</code><p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>\App\Http\Controllers\type</code><p><p>Returns the details of that conference in the form of JSON data</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_get_presentations"></a>
+                        <div class="element clickable method public  method_get_presentations" data-toggle="collapse" data-target=".method_get_presentations .collapse">
+                            <h2>Gets all presentations related to a conference.</h2>
+                            <pre>get_presentations(\App\Http\Controllers\type $id) : \App\Http\Controllers\type</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$id</h4>
+                                                <code>\App\Http\Controllers\type</code><p><p>The conference's id.</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>\App\Http\Controllers\type</code><p><p>Returns those presentations as JSON data</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_get_sponsors"></a>
+                        <div class="element clickable method public  method_get_sponsors" data-toggle="collapse" data-target=".method_get_sponsors .collapse">
+                            <h2>Gets all sponsors related to a conference</h2>
+                            <pre>get_sponsors(\App\Http\Controllers\type $id) : \App\Http\Controllers\type</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$id</h4>
+                                                <code>\App\Http\Controllers\type</code><p><p>The conference's id</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>\App\Http\Controllers\type</code><p><p>Returns those sponsors as JSON data</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_register"></a>
+                        <div class="element clickable method public  method_register" data-toggle="collapse" data-target=".method_register .collapse">
+                            <h2>attempts to register a new conference</h2>
+                            <pre>register(\App\Http\Controllers\Request $request) : \App\Http\Controllers\type</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$request</h4>
+                                                <code>\App\Http\Controllers\Request</code><p><p>The POST request with conference details</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>\App\Http\Controllers\type</code><p><p>Returns the conference as a JSON object if successful, error message if unsuccessful</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_remove_from_blacklist"></a>
+                        <div class="element clickable method public  method_remove_from_blacklist" data-toggle="collapse" data-target=".method_remove_from_blacklist .collapse">
+                            <h2>remove_from_blacklist</h2>
+                            <pre>remove_from_blacklist() </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_remove_from_whitelist"></a>
+                        <div class="element clickable method public  method_remove_from_whitelist" data-toggle="collapse" data-target=".method_remove_from_whitelist .collapse">
+                            <h2>remove_from_whitelist</h2>
+                            <pre>remove_from_whitelist() </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_select_presentation"></a>
+                        <div class="element clickable method public  method_select_presentation" data-toggle="collapse" data-target=".method_select_presentation .collapse">
+                            <h2>Gets the first presentation at a conference</h2>
+                            <pre>select_presentation(\App\Http\Controllers\type $id) : \App\Http\Controllers\type</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$id</h4>
+                                                <code>\App\Http\Controllers\type</code><p><p>The conference's id</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>\App\Http\Controllers\type</code><p><p>Returns that presentation as JSON data</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                    
+                    
+                                                        </div>
+            </div>
+            <a id="\App\Http\Controllers\ConferencesController"></a>
+            <ul class="breadcrumb">
+                <li><a href="../index.html"><i class="icon-custom icon-class"></i></a></li>
+                    
+    
+    <li><span class="divider">\</span><a href="../namespaces/App.Http.Controllers.html">Controllers</a></li>
+
+                <li class="active"><span class="divider">\</span><a href="../classes/App.Http.Controllers.ConferencesController.html">ConferencesController</a></li>
+            </ul>
         </div>
     </div>
 
-    <footer class="row-fluid">
-        <section class="span10 offset2">
-            <section class="row-fluid">
-                <section class="span10 offset1">
-                    <section class="row-fluid footer-sections">
-                        <section class="span4">
-                                                        <h1><i class="icon-code"></i></h1>
-                            <div>
-                                <ul>
-                                                                            <li><a href="../namespaces/App.html">\App</a></li>
-                                                                    </ul>
-                            </div>
-                        </section>
-                        <section class="span4">
-                                                        <h1><i class="icon-bar-chart"></i></h1>
-                            <div>
-                                <ul>
-                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
-                                </ul>
-                            </div>
-                        </section>
-                        <section class="span4">
-                                                        <h1><i class="icon-pushpin"></i></h1>
-                            <div>
-                                <ul>
-                                    <li><a href="../reports/errors.html">Errors</a></li>
-                                    <li><a href="../reports/markers.html">Markers</a></li>
-                                </ul>
-                            </div>
-                        </section>
-                    </section>
-                </section>
-            </section>
-            <section class="row-fluid">
-                <section class="span10 offset1">
-                    <hr />
-                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on July 18th, 2016 at 22:02.
-                </section>
-            </section>
-        </section>
-    </footer>
-</div>
+    </div>
 
-</body>
+        <footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by
+            <a href="http://glyphicons.com/">Glyphicons</a>.<br/>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
+            generated on Mon, 01 Aug 2016 16:14:10 +0200.<br/>
+    </footer>
+    </body>
 </html>

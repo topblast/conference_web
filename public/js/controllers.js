@@ -376,7 +376,7 @@ angular.module('starter.controllers', [])
     {
         $scope.loading = true;
         
-        Web.Attendee.forgotpass($scope.attendeeData.email, function (response){
+        Web.Attendee.forgotpass($scope.attendeeData, function (response){
             alert('Email Sent!');
         },
         function(response){
@@ -388,6 +388,35 @@ angular.module('starter.controllers', [])
     };
     
     
+})
+
+/**
+ * @memberof starter
+ * @ngdoc controller
+ * @name ResetPassCtrl
+ * @param {type} $scope
+ * @param {type} $stateParams
+ * @param {type} Web
+ * @returns {undefined}
+ */
+.controller('ResetPassCtrl', function($scope, $stateParams, Web) {
+    $scope.sendEmail=function()
+    {
+        $scope.loading = true;
+        $scope.attendeeData.token = $stateParams.token;
+        $scope.attendeeData.email = $stateParams.email;
+        console.log($stateParams);
+        
+        Web.Attendee.resetpass($scope.attendeeData, function (response){
+            alert('Password successfully reset!');
+        },
+        function(response){
+            alert('Password reset unsuccessful.');  
+        }
+        );
+        
+        $scope.location = false;
+    }
 })
 
 .controller('MainCtrl', function($scope) {})

@@ -322,11 +322,26 @@ angular.module('starter.services', [])
                          * @returns {undefined}
                          */
                         forgotpass: function(email, onSuccess, onError){
-                                $http.post(API_LOCATION + 'attendees/' + email + '/forgotpassword')
-				.then (function(response){
+                        //        $http.post(API_LOCATION + 'attendees/' + email.email + '/forgotpassword')    
+                                $http.post(API_LOCATION + 'password/email', email)
+                                .then (function(response){
 				//	self.user = response;
 					onSuccess(response);
 				}, onError);
+                        },
+                        
+                        /**
+                         * Performs the action of resetting the attendee's password, taking the token as parameter
+                         * @param {type} token the password reset token
+                         * @param {type} onSuccess
+                         * @param {type} onError
+                         * @returns {undefined}
+                         */
+                        resetpass: function(attendeeData, onSuccess, onError){
+                            $http.post(API_LOCATION + 'password/reset/' + attendeeData.token, attendeeData)
+                                    .then(function(response){
+                                        onSuccess(response);
+                            }, onError);
                         },
                         
                         /**

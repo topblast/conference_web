@@ -1,5 +1,11 @@
 <?php
+/**
+ * mail.php
+ */
 
+/**
+ * This is the configuration for email
+ */
 return [
 
     /*
@@ -55,7 +61,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'bryanramz.8@gmail.com', 'name' => 'iPreevi'],
+    'from' => ['address' => 'bryanramz.8@gmail.com', 'name' => 'iPreevu'],
 
     /*
     |--------------------------------------------------------------------------
@@ -81,7 +87,7 @@ return [
     |
     */
 
-    'username' => 'bryanramz.8@gmail.com',
+    'username' => env('MAIL_EMAIL'),
 
     /*
     |--------------------------------------------------------------------------
@@ -94,7 +100,7 @@ return [
     |
     */
 
-    'password' => 'budokai10',
+    'password' => env('MAIL_PASSWORD'),
 
     /*
     |--------------------------------------------------------------------------

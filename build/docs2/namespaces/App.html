@@ -3,441 +3,811 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
     <meta charset="utf-8"/>
-    <title>API Documentation</title>
+    <title>     &raquo; \App
+</title>
     <meta name="author" content=""/>
     <meta name="description" content=""/>
 
-    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
-    <link href="../css/font-awesome.min.css" rel="stylesheet">
-    <link href="../css/prism.css" rel="stylesheet" media="all"/>
-    <link href="../css/template.css" rel="stylesheet" media="all"/>
+            <link href="../css/template.css" rel="stylesheet" media="all"/>
     
-    <!--[if lt IE 9]>
-    <script src="../js/html5.js"></script>
-    <![endif]-->
-    <script src="../js/jquery-1.11.0.min.js"></script>
-    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/jquery.smooth-scroll.js"></script>
-    <script src="../js/prism.min.js"></script>
-    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+            <!--[if lt IE 9]>
+        <script src="https://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+        <![endif]-->
+        <script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script>
+        <script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script>
+        <script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script>
+        <script src="../js/bootstrap.js" type="text/javascript"></script>
+        <script src="../js/template.js" type="text/javascript"></script>
+        <script src="../js/prettify/prettify.min.js" type="text/javascript"></script>
     
-    <link rel="shortcut icon" href="../images/favicon.ico"/>
-    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
-    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
-    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
-</head>
+            <link rel="shortcut icon" href="../img/favicon.ico"/>
+        <link rel="apple-touch-icon" href="../img/apple-touch-icon.png"/>
+        <link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png"/>
+        <link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png"/>
+    </head>
 <body>
 
-<div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-        <div class="container">
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <i class="icon-ellipsis-vertical"></i>
-            </a>
-            <a class="brand" href="../index.html">API Documentation</a>
+        <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span> <span class="icon-bar"></span>
+                    <span class="icon-bar"></span> </a>
+                <a class="brand" href="../index.html">API Documentation</a>
 
-            <div class="nav-collapse">
-                <ul class="nav pull-right">
-                                        <li class="dropdown">
-                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
-                            API Documentation <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                                                        <li><a href="../namespaces/App.html">\App</a></li>
-                                                    </ul>
-                    </li>
-                                        <li class="dropdown" id="charts-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            Charts <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="../graphs/class.html">
-                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="dropdown" id="reports-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            Reports <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="../reports/errors.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">91</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="../reports/markers.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">2</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="../reports/deprecated.html">
-                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li class="dropdown">
+                            <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                API Documentation <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                                                    <li><a>Namespaces</a></li>
+                                                                        <li><a href="../namespaces/App.html">App</a></li>
+                                                                                                                                </ul>
+                        </li>
+                        <li class="dropdown" id="charts-menu">
+                            <a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                Charts <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../graph_class.html">
+                                        <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown" id="reports-menu">
+                            <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                Reports <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../errors.html">
+                                        <i class="icon-list-alt"></i>&#160;Errors
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../markers.html">
+                                        <i class="icon-list-alt"></i>&#160;Markers
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../deprecated.html">
+                                        <i class="icon-list-alt"></i>&#160;Deprecated
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="go_to_top">
+            <a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>
+        </div>
+    </div>
+    
+    <div id="___" class="container">
+        <noscript>
+            <div class="alert alert-warning">
+                Javascript is disabled; several features are only available if Javascript is enabled.
+            </div>
+        </noscript>
+
+        
+            
+    <div class="row">
+
+        <div class="span4">
+            <div class="btn-group view pull-right" data-toggle="buttons-radio">
+                <button class="btn details" title="Show descriptions and method names">
+                    <i class="icon-list"></i></button><button class="btn simple" title="Show only method names">
+                    <i class="icon-align-justify"></i>
+                </button>
+            </div>
+            <ul class="side-nav nav nav-list">
+                <li class="nav-header">
+                    <i class="icon-map-marker"></i> Namespaces
+                </li>
+                <a href="../namespaces/App.html" title="App">
+                    <i class="icon-th"></i> App
+                </a>
+                <ul class="nav nav-list nav-namespaces">
+                        
+        <li>
+        <a href="../namespaces/App.Console.html" title="Console">
+            <i class="icon-th"></i> Console
+        </a>
+        <ul class="nav nav-list nav-namespaces">
+                
+    
+        </ul>
+    </li>
+        <li>
+        <a href="../namespaces/App.Contracts.html" title="Contracts">
+            <i class="icon-th"></i> Contracts
+        </a>
+        <ul class="nav nav-list nav-namespaces">
+                
+    
+        </ul>
+    </li>
+        <li>
+        <a href="../namespaces/App.Events.html" title="Events">
+            <i class="icon-th"></i> Events
+        </a>
+        <ul class="nav nav-list nav-namespaces">
+                
+    
+        </ul>
+    </li>
+        <li>
+        <a href="../namespaces/App.Exceptions.html" title="Exceptions">
+            <i class="icon-th"></i> Exceptions
+        </a>
+        <ul class="nav nav-list nav-namespaces">
+                
+    
+        </ul>
+    </li>
+        <li>
+        <a href="../namespaces/App.Http.html" title="Http">
+            <i class="icon-th"></i> Http
+        </a>
+        <ul class="nav nav-list nav-namespaces">
+                
+        <li>
+        <a href="../namespaces/App.Http.Controllers.html" title="Controllers">
+            <i class="icon-th"></i> Controllers
+        </a>
+        <ul class="nav nav-list nav-namespaces">
+                
+    
+        </ul>
+    </li>
+        <li>
+        <a href="../namespaces/App.Http.Middleware.html" title="Middleware">
+            <i class="icon-th"></i> Middleware
+        </a>
+        <ul class="nav nav-list nav-namespaces">
+                
+    
+        </ul>
+    </li>
+    
+        </ul>
+    </li>
+        <li>
+        <a href="../namespaces/App.Jobs.html" title="Jobs">
+            <i class="icon-th"></i> Jobs
+        </a>
+        <ul class="nav nav-list nav-namespaces">
+                
+    
+        </ul>
+    </li>
+        <li>
+        <a href="../namespaces/App.Listeners.html" title="Listeners">
+            <i class="icon-th"></i> Listeners
+        </a>
+        <ul class="nav nav-list nav-namespaces">
+                
+    
+        </ul>
+    </li>
+        <li>
+        <a href="../namespaces/App.Models.html" title="Models">
+            <i class="icon-th"></i> Models
+        </a>
+        <ul class="nav nav-list nav-namespaces">
+                
+    
+        </ul>
+    </li>
+        <li>
+        <a href="../namespaces/App.Providers.html" title="Providers">
+            <i class="icon-th"></i> Providers
+        </a>
+        <ul class="nav nav-list nav-namespaces">
+                
+    
+        </ul>
+    </li>
+    
                 </ul>
-            </div>
+            </ul>
         </div>
-    </div>
-    <!--<div class="go_to_top">-->
-    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
-    <!--</div>-->
-</div>
 
-<div id="___" class="container-fluid">
-        <section class="row-fluid">
-        <div class="span2 sidebar">
-                                <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-853126552"></a>
-                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
-            </div>
-            <div id="namespace-853126552" class="accordion-body collapse in">
-                <div class="accordion-inner">
+        <div class="span8 namespace-contents">
+                
+    
+        <ul class="breadcrumb">
+            <li><a href="../index.html"><i class="icon-th"></i></a></li>
+                
+    
+    <li>
+        <span class="divider">\</span><a href="../namespaces/App.html">App</a>
+    </li>
 
-                                                    <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-477859575"></a>
-                                <a href="../namespaces/App.html" style="margin-left: 30px; padding-left: 0">App</a>
-            </div>
-            <div id="namespace-477859575" class="accordion-body collapse ">
-                <div class="accordion-inner">
+        </ul>
 
-                                                    <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-731735270"></a>
-                                <a href="../namespaces/App.Console.html" style="margin-left: 30px; padding-left: 0">Console</a>
-            </div>
-            <div id="namespace-731735270" class="accordion-body collapse ">
-                <div class="accordion-inner">
+        
+        
+                    <div class="namespace-indent">
+                <h3><i class="icon-custom icon-class"></i> Classes, interfaces and traits</h3>
+                                        <div id="trait_ResetsPasswords" class="element ajax clickable trait" data-toggle="collapse" data-target="#trait_ResetsPasswords .collapse">
+        <h1>ResetsPasswords<a href="../classes/App.ResetsPasswords.html">¶</a></h1>
+        <p class="short_description">Definition of the ResetsPasswords trait</p>
+        <div class="details collapse">
+                            
+                    </div>
+        <a href="../classes/App.ResetsPasswords.html" class="more">« More »</a>    </div>
 
-                    
-                    <ul>
-                                                                                                    <li class="class"><a href="../classes/App.Console.Kernel.html">Kernel</a></li>
-                                            </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+                
+                
+                                        <div id="class_User" class="element ajax clickable class" data-toggle="collapse" data-target="#class_User .collapse">
+        <h1>User<a href="../classes/App.User.html">¶</a></h1>
+        <p class="short_description"></p>
+        <div class="details collapse">
+                            
+                    </div>
+        <a href="../classes/App.User.html" class="more">« More »</a>    </div>
 
-                                                    <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1217586901"></a>
-                                <a href="../namespaces/App.Events.html" style="margin-left: 30px; padding-left: 0">Events</a>
-            </div>
-            <div id="namespace-1217586901" class="accordion-body collapse ">
-                <div class="accordion-inner">
-
-                    
-                    <ul>
-                                                                                                    <li class="class"><a href="../classes/App.Events.Event.html">Event</a></li>
-                                                    <li class="class"><a href="../classes/App.Events.ExampleEvent.html">ExampleEvent</a></li>
-                                            </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-                                                    <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1414804485"></a>
-                                <a href="../namespaces/App.Exceptions.html" style="margin-left: 30px; padding-left: 0">Exceptions</a>
-            </div>
-            <div id="namespace-1414804485" class="accordion-body collapse ">
-                <div class="accordion-inner">
-
-                    
-                    <ul>
-                                                                                                    <li class="class"><a href="../classes/App.Exceptions.Handler.html">Handler</a></li>
-                                            </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-                                                    <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2134358786"></a>
-                                <a href="../namespaces/App.Http.html" style="margin-left: 30px; padding-left: 0">Http</a>
-            </div>
-            <div id="namespace-2134358786" class="accordion-body collapse ">
-                <div class="accordion-inner">
-
-                                                    <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-765989816"></a>
-                                <a href="../namespaces/App.Http.Controllers.html" style="margin-left: 30px; padding-left: 0">Controllers</a>
-            </div>
-            <div id="namespace-765989816" class="accordion-body collapse ">
-                <div class="accordion-inner">
-
-                    
-                    <ul>
-                                                                                                    <li class="class"><a href="../classes/App.Http.Controllers.AttendeesController.html">AttendeesController</a></li>
-                                                    <li class="class"><a href="../classes/App.Http.Controllers.CategoryController.html">CategoryController</a></li>
-                                                    <li class="class"><a href="../classes/App.Http.Controllers.ClientsController.html">ClientsController</a></li>
-                                                    <li class="class"><a href="../classes/App.Http.Controllers.ConferencesController.html">ConferencesController</a></li>
-                                                    <li class="class"><a href="../classes/App.Http.Controllers.Controller.html">Controller</a></li>
-                                                    <li class="class"><a href="../classes/App.Http.Controllers.ExampleController.html">ExampleController</a></li>
-                                                    <li class="class"><a href="../classes/App.Http.Controllers.SpeakersController.html">SpeakersController</a></li>
-                                            </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-                                                    <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-569355677"></a>
-                                <a href="../namespaces/App.Http.Middleware.html" style="margin-left: 30px; padding-left: 0">Middleware</a>
-            </div>
-            <div id="namespace-569355677" class="accordion-body collapse ">
-                <div class="accordion-inner">
-
-                    
-                    <ul>
-                                                                                                    <li class="class"><a href="../classes/App.Http.Middleware.Authenticate.html">Authenticate</a></li>
-                                                    <li class="class"><a href="../classes/App.Http.Middleware.ExampleMiddleware.html">ExampleMiddleware</a></li>
-                                            </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-                    
-                    <ul>
-                                                                                            </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-                                                    <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-225994415"></a>
-                                <a href="../namespaces/App.Jobs.html" style="margin-left: 30px; padding-left: 0">Jobs</a>
-            </div>
-            <div id="namespace-225994415" class="accordion-body collapse ">
-                <div class="accordion-inner">
-
-                    
-                    <ul>
-                                                                                                    <li class="class"><a href="../classes/App.Jobs.ExampleJob.html">ExampleJob</a></li>
-                                                    <li class="class"><a href="../classes/App.Jobs.Job.html">Job</a></li>
-                                            </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-                                                    <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2119246804"></a>
-                                <a href="../namespaces/App.Listeners.html" style="margin-left: 30px; padding-left: 0">Listeners</a>
-            </div>
-            <div id="namespace-2119246804" class="accordion-body collapse ">
-                <div class="accordion-inner">
-
-                    
-                    <ul>
-                                                                                                    <li class="class"><a href="../classes/App.Listeners.ExampleListener.html">ExampleListener</a></li>
-                                            </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-                                                    <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1067446955"></a>
-                                <a href="../namespaces/App.Models.html" style="margin-left: 30px; padding-left: 0">Models</a>
-            </div>
-            <div id="namespace-1067446955" class="accordion-body collapse ">
-                <div class="accordion-inner">
-
-                    
-                    <ul>
-                                                                                                    <li class="class"><a href="../classes/App.Models.Attendee.html">Attendee</a></li>
-                                                    <li class="class"><a href="../classes/App.Models.Blacklist.html">Blacklist</a></li>
-                                                    <li class="class"><a href="../classes/App.Models.Category.html">Category</a></li>
-                                                    <li class="class"><a href="../classes/App.Models.Chatlog.html">Chatlog</a></li>
-                                                    <li class="class"><a href="../classes/App.Models.Client.html">Client</a></li>
-                                                    <li class="class"><a href="../classes/App.Models.Conference.html">Conference</a></li>
-                                                    <li class="class"><a href="../classes/App.Models.Presentation.html">Presentation</a></li>
-                                                    <li class="class"><a href="../classes/App.Models.Room.html">Room</a></li>
-                                                    <li class="class"><a href="../classes/App.Models.Speaker.html">Speaker</a></li>
-                                                    <li class="class"><a href="../classes/App.Models.Sponsor.html">Sponsor</a></li>
-                                                    <li class="class"><a href="../classes/App.Models.Whitelist.html">Whitelist</a></li>
-                                            </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-                                                    <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1935000430"></a>
-                                <a href="../namespaces/App.Providers.html" style="margin-left: 30px; padding-left: 0">Providers</a>
-            </div>
-            <div id="namespace-1935000430" class="accordion-body collapse ">
-                <div class="accordion-inner">
-
-                    
-                    <ul>
-                                                                                                    <li class="class"><a href="../classes/App.Providers.AppServiceProvider.html">AppServiceProvider</a></li>
-                                                    <li class="class"><a href="../classes/App.Providers.AuthServiceProvider.html">AuthServiceProvider</a></li>
-                                                    <li class="class"><a href="../classes/App.Providers.EventServiceProvider.html">EventServiceProvider</a></li>
-                                            </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-                    
-                    <ul>
-                                                                                                    <li class="class"><a href="../classes/App.User.html">User</a></li>
-                                            </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-                    
-                    <ul>
-                                                                                            </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-        </div>
-    </section>
-    <section class="row-fluid">
-        <div class="span10 offset2">
-            <div class="row-fluid">
-                <div class="span8 content namespace">
-                    <nav>
-                                                <a href="../namespaces/default.html">\</a>
-                                            </nav>
-                    <h1><small>\</small>App</h1>
-
-                                        <h2>Namespaces</h2>
-                    <table class="table table-hover">
-                                                    <tr>
-                                <td><a href="../namespaces/App.Console.html">Console</a></td>
-                            </tr>
-                                                    <tr>
-                                <td><a href="../namespaces/App.Events.html">Events</a></td>
-                            </tr>
-                                                    <tr>
-                                <td><a href="../namespaces/App.Exceptions.html">Exceptions</a></td>
-                            </tr>
-                                                    <tr>
-                                <td><a href="../namespaces/App.Http.html">Http</a></td>
-                            </tr>
-                                                    <tr>
-                                <td><a href="../namespaces/App.Jobs.html">Jobs</a></td>
-                            </tr>
-                                                    <tr>
-                                <td><a href="../namespaces/App.Listeners.html">Listeners</a></td>
-                            </tr>
-                                                    <tr>
-                                <td><a href="../namespaces/App.Models.html">Models</a></td>
-                            </tr>
-                                                    <tr>
-                                <td><a href="../namespaces/App.Providers.html">Providers</a></td>
-                            </tr>
-                                            </table>
-                    
-                    
-                    
-                                        <h2>Classes</h2>
-                    <table class="table table-hover">
-                                            <tr>
-                            <td><a href="../classes/App.User.html">User</a></td>
-                            <td><em></em></td>
-                        </tr>
-                                        </table>
-                                    </div>
-
-                <aside class="span4 detailsbar">
-                    <dl>
-                        <dt>Namespace hierarchy</dt>
-                        <dd class="hierarchy">
-                                                                                                                                                                                                                                                                
-                                    <div class="namespace-wrapper"><a href="../namespaces/default.html">\</a></div>
-                                                                                        <div class="namespace-wrapper">\App</div>
-                        </dd>
-                    </dl>
-                </aside>
-            </div>
-
+                            </div>
             
-            
-        </div>
-    </section>
+                
+    
+        <ul class="breadcrumb">
+            <li><a href="../index.html"><i class="icon-th"></i></a></li>
+                
+                
+    
+    <li>
+        <span class="divider">\</span><a href="../namespaces/App.html">App</a>
+    </li>
 
-    <footer class="row-fluid">
-        <section class="span10 offset2">
-            <section class="row-fluid">
-                <section class="span10 offset1">
-                    <section class="row-fluid footer-sections">
-                        <section class="span4">
-                                                        <h1><i class="icon-code"></i></h1>
-                            <div>
-                                <ul>
-                                                                            <li><a href="../namespaces/App.html">\App</a></li>
-                                                                    </ul>
+    
+    <li>
+        <span class="divider">\</span><a href="../namespaces/App.Jobs.html">Jobs</a>
+    </li>
+
+        </ul>
+
+        
+        
+                    <div class="namespace-indent">
+                <h3><i class="icon-custom icon-class"></i> Classes, interfaces and traits</h3>
+                
+                
+                                        <div id="class_ExampleJob" class="element ajax clickable class" data-toggle="collapse" data-target="#class_ExampleJob .collapse">
+        <h1>ExampleJob<a href="../classes/App.Jobs.ExampleJob.html">¶</a></h1>
+        <p class="short_description"></p>
+        <div class="details collapse">
+                            
+                    </div>
+        <a href="../classes/App.Jobs.ExampleJob.html" class="more">« More »</a>    </div>
+
+                                        <div id="class_Job" class="element ajax clickable class" data-toggle="collapse" data-target="#class_Job .collapse">
+        <h1>Job<a href="../classes/App.Jobs.Job.html">¶</a></h1>
+        <p class="short_description"></p>
+        <div class="details collapse">
+                            
+                    </div>
+        <a href="../classes/App.Jobs.Job.html" class="more">« More »</a>    </div>
+
                             </div>
-                        </section>
-                        <section class="span4">
-                                                        <h1><i class="icon-bar-chart"></i></h1>
-                            <div>
-                                <ul>
-                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
-                                </ul>
+            
+    
+                
+    
+        <ul class="breadcrumb">
+            <li><a href="../index.html"><i class="icon-th"></i></a></li>
+                
+                
+    
+    <li>
+        <span class="divider">\</span><a href="../namespaces/App.html">App</a>
+    </li>
+
+    
+    <li>
+        <span class="divider">\</span><a href="../namespaces/App.Events.html">Events</a>
+    </li>
+
+        </ul>
+
+        
+        
+                    <div class="namespace-indent">
+                <h3><i class="icon-custom icon-class"></i> Classes, interfaces and traits</h3>
+                
+                
+                                        <div id="class_Event" class="element ajax clickable class" data-toggle="collapse" data-target="#class_Event .collapse">
+        <h1>Event<a href="../classes/App.Events.Event.html">¶</a></h1>
+        <p class="short_description"></p>
+        <div class="details collapse">
+                            
+                    </div>
+        <a href="../classes/App.Events.Event.html" class="more">« More »</a>    </div>
+
+                                        <div id="class_ExampleEvent" class="element ajax clickable class" data-toggle="collapse" data-target="#class_ExampleEvent .collapse">
+        <h1>ExampleEvent<a href="../classes/App.Events.ExampleEvent.html">¶</a></h1>
+        <p class="short_description"></p>
+        <div class="details collapse">
+                            
+                    </div>
+        <a href="../classes/App.Events.ExampleEvent.html" class="more">« More »</a>    </div>
+
                             </div>
-                        </section>
-                        <section class="span4">
-                                                        <h1><i class="icon-pushpin"></i></h1>
-                            <div>
-                                <ul>
-                                    <li><a href="../reports/errors.html">Errors</a></li>
-                                    <li><a href="../reports/markers.html">Markers</a></li>
-                                </ul>
+            
+    
+                
+    
+        <ul class="breadcrumb">
+            <li><a href="../index.html"><i class="icon-th"></i></a></li>
+                
+                
+    
+    <li>
+        <span class="divider">\</span><a href="../namespaces/App.html">App</a>
+    </li>
+
+    
+    <li>
+        <span class="divider">\</span><a href="../namespaces/App.Models.html">Models</a>
+    </li>
+
+        </ul>
+
+        
+        
+                    <div class="namespace-indent">
+                <h3><i class="icon-custom icon-class"></i> Classes, interfaces and traits</h3>
+                
+                
+                                        <div id="class_Attendee" class="element ajax clickable class" data-toggle="collapse" data-target="#class_Attendee .collapse">
+        <h1>Attendee<a href="../classes/App.Models.Attendee.html">¶</a></h1>
+        <p class="short_description">Attendee model.</p>
+        <div class="details collapse">
+                            <p>The Attendee model for the attendees table.</p>
+                    </div>
+        <a href="../classes/App.Models.Attendee.html" class="more">« More »</a>    </div>
+
+                                        <div id="class_Blacklist" class="element ajax clickable class" data-toggle="collapse" data-target="#class_Blacklist .collapse">
+        <h1>Blacklist<a href="../classes/App.Models.Blacklist.html">¶</a></h1>
+        <p class="short_description"></p>
+        <div class="details collapse">
+                            
+                    </div>
+        <a href="../classes/App.Models.Blacklist.html" class="more">« More »</a>    </div>
+
+                                        <div id="class_Category" class="element ajax clickable class" data-toggle="collapse" data-target="#class_Category .collapse">
+        <h1>Category<a href="../classes/App.Models.Category.html">¶</a></h1>
+        <p class="short_description"></p>
+        <div class="details collapse">
+                            
+                    </div>
+        <a href="../classes/App.Models.Category.html" class="more">« More »</a>    </div>
+
+                                        <div id="class_Chatlog" class="element ajax clickable class" data-toggle="collapse" data-target="#class_Chatlog .collapse">
+        <h1>Chatlog<a href="../classes/App.Models.Chatlog.html">¶</a></h1>
+        <p class="short_description"></p>
+        <div class="details collapse">
+                            
+                    </div>
+        <a href="../classes/App.Models.Chatlog.html" class="more">« More »</a>    </div>
+
+                                        <div id="class_Client" class="element ajax clickable class" data-toggle="collapse" data-target="#class_Client .collapse">
+        <h1>Client<a href="../classes/App.Models.Client.html">¶</a></h1>
+        <p class="short_description">Client Model.</p>
+        <div class="details collapse">
+                            <p>The Client model for the clients table.</p>
+                    </div>
+        <a href="../classes/App.Models.Client.html" class="more">« More »</a>    </div>
+
+                                        <div id="class_Conference" class="element ajax clickable class" data-toggle="collapse" data-target="#class_Conference .collapse">
+        <h1>Conference<a href="../classes/App.Models.Conference.html">¶</a></h1>
+        <p class="short_description">Conference Model.</p>
+        <div class="details collapse">
+                            <p>The model for the conferences table</p>
+                    </div>
+        <a href="../classes/App.Models.Conference.html" class="more">« More »</a>    </div>
+
+                                        <div id="class_Presentation" class="element ajax clickable class" data-toggle="collapse" data-target="#class_Presentation .collapse">
+        <h1>Presentation<a href="../classes/App.Models.Presentation.html">¶</a></h1>
+        <p class="short_description">Presentation model.</p>
+        <div class="details collapse">
+                            <p>The model for the presentations table.</p>
+                    </div>
+        <a href="../classes/App.Models.Presentation.html" class="more">« More »</a>    </div>
+
+                                        <div id="class_Room" class="element ajax clickable class" data-toggle="collapse" data-target="#class_Room .collapse">
+        <h1>Room<a href="../classes/App.Models.Room.html">¶</a></h1>
+        <p class="short_description">The Room model.</p>
+        <div class="details collapse">
+                            <p>The model for the rooms table.</p>
+                    </div>
+        <a href="../classes/App.Models.Room.html" class="more">« More »</a>    </div>
+
+                                        <div id="class_Speaker" class="element ajax clickable class" data-toggle="collapse" data-target="#class_Speaker .collapse">
+        <h1>Speaker<a href="../classes/App.Models.Speaker.html">¶</a></h1>
+        <p class="short_description">The Speaker Model.</p>
+        <div class="details collapse">
+                            <p>The model for the speakers table.</p>
+                    </div>
+        <a href="../classes/App.Models.Speaker.html" class="more">« More »</a>    </div>
+
+                                        <div id="class_Sponsor" class="element ajax clickable class" data-toggle="collapse" data-target="#class_Sponsor .collapse">
+        <h1>Sponsor<a href="../classes/App.Models.Sponsor.html">¶</a></h1>
+        <p class="short_description">The Sponsor Model.</p>
+        <div class="details collapse">
+                            <p>The model for the sponsors table.</p>
+                    </div>
+        <a href="../classes/App.Models.Sponsor.html" class="more">« More »</a>    </div>
+
+                                        <div id="class_Whitelist" class="element ajax clickable class" data-toggle="collapse" data-target="#class_Whitelist .collapse">
+        <h1>Whitelist<a href="../classes/App.Models.Whitelist.html">¶</a></h1>
+        <p class="short_description"></p>
+        <div class="details collapse">
+                            
+                    </div>
+        <a href="../classes/App.Models.Whitelist.html" class="more">« More »</a>    </div>
+
                             </div>
-                        </section>
-                    </section>
-                </section>
-            </section>
-            <section class="row-fluid">
-                <section class="span10 offset1">
-                    <hr />
-                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on July 18th, 2016 at 22:02.
-                </section>
-            </section>
-        </section>
+            
+    
+                
+    
+                
+    
+        <ul class="breadcrumb">
+            <li><a href="../index.html"><i class="icon-th"></i></a></li>
+                
+                
+                
+    
+    <li>
+        <span class="divider">\</span><a href="../namespaces/App.html">App</a>
+    </li>
+
+    
+    <li>
+        <span class="divider">\</span><a href="../namespaces/App.Http.html">Http</a>
+    </li>
+
+    
+    <li>
+        <span class="divider">\</span><a href="../namespaces/App.Http.Controllers.html">Controllers</a>
+    </li>
+
+        </ul>
+
+        
+        
+                    <div class="namespace-indent">
+                <h3><i class="icon-custom icon-class"></i> Classes, interfaces and traits</h3>
+                
+                
+                                        <div id="class_AttendeesController" class="element ajax clickable class" data-toggle="collapse" data-target="#class_AttendeesController .collapse">
+        <h1>AttendeesController<a href="../classes/App.Http.Controllers.AttendeesController.html">¶</a></h1>
+        <p class="short_description">Controller for the Attendee Model</p>
+        <div class="details collapse">
+                            <p><em>AttendeesController</em> is a controller for the Attendee Model, which is the data model for the attendees table.</p>
+                    </div>
+        <a href="../classes/App.Http.Controllers.AttendeesController.html" class="more">« More »</a>    </div>
+
+                                        <div id="class_CategoryController" class="element ajax clickable class" data-toggle="collapse" data-target="#class_CategoryController .collapse">
+        <h1>CategoryController<a href="../classes/App.Http.Controllers.CategoryController.html">¶</a></h1>
+        <p class="short_description">Controller for the Category Model.</p>
+        <div class="details collapse">
+                            <p><em>CategoryController</em> is a controller for the Category Model, which is the data model for the categories table.</p>
+                    </div>
+        <a href="../classes/App.Http.Controllers.CategoryController.html" class="more">« More »</a>    </div>
+
+                                        <div id="class_ClientsController" class="element ajax clickable class" data-toggle="collapse" data-target="#class_ClientsController .collapse">
+        <h1>ClientsController<a href="../classes/App.Http.Controllers.ClientsController.html">¶</a></h1>
+        <p class="short_description">Controller for the clients table.</p>
+        <div class="details collapse">
+                            
+                    </div>
+        <a href="../classes/App.Http.Controllers.ClientsController.html" class="more">« More »</a>    </div>
+
+                                        <div id="class_ConferencesController" class="element ajax clickable class" data-toggle="collapse" data-target="#class_ConferencesController .collapse">
+        <h1>ConferencesController<a href="../classes/App.Http.Controllers.ConferencesController.html">¶</a></h1>
+        <p class="short_description">Controller for the conferences table.</p>
+        <div class="details collapse">
+                            
+                    </div>
+        <a href="../classes/App.Http.Controllers.ConferencesController.html" class="more">« More »</a>    </div>
+
+                                        <div id="class_Controller" class="element ajax clickable class" data-toggle="collapse" data-target="#class_Controller .collapse">
+        <h1>Controller<a href="../classes/App.Http.Controllers.Controller.html">¶</a></h1>
+        <p class="short_description"></p>
+        <div class="details collapse">
+                            
+                    </div>
+        <a href="../classes/App.Http.Controllers.Controller.html" class="more">« More »</a>    </div>
+
+                                        <div id="class_ExampleController" class="element ajax clickable class" data-toggle="collapse" data-target="#class_ExampleController .collapse">
+        <h1>ExampleController<a href="../classes/App.Http.Controllers.ExampleController.html">¶</a></h1>
+        <p class="short_description"></p>
+        <div class="details collapse">
+                            
+                    </div>
+        <a href="../classes/App.Http.Controllers.ExampleController.html" class="more">« More »</a>    </div>
+
+                                        <div id="class_PasswordController" class="element ajax clickable class" data-toggle="collapse" data-target="#class_PasswordController .collapse">
+        <h1>PasswordController<a href="../classes/App.Http.Controllers.PasswordController.html">¶</a></h1>
+        <p class="short_description">Controller that uses the ResetsPasswords trait</p>
+        <div class="details collapse">
+                            
+                    </div>
+        <a href="../classes/App.Http.Controllers.PasswordController.html" class="more">« More »</a>    </div>
+
+                                        <div id="class_SpeakersController" class="element ajax clickable class" data-toggle="collapse" data-target="#class_SpeakersController .collapse">
+        <h1>SpeakersController<a href="../classes/App.Http.Controllers.SpeakersController.html">¶</a></h1>
+        <p class="short_description">Controller for the Speaker Model.</p>
+        <div class="details collapse">
+                            <p><em>SpeakersController</em> is a controller for the Speaker Model, which is the data model for the speakers table.</p>
+                    </div>
+        <a href="../classes/App.Http.Controllers.SpeakersController.html" class="more">« More »</a>    </div>
+
+                            </div>
+            
+    
+                
+    
+        <ul class="breadcrumb">
+            <li><a href="../index.html"><i class="icon-th"></i></a></li>
+                
+                
+                
+    
+    <li>
+        <span class="divider">\</span><a href="../namespaces/App.html">App</a>
+    </li>
+
+    
+    <li>
+        <span class="divider">\</span><a href="../namespaces/App.Http.html">Http</a>
+    </li>
+
+    
+    <li>
+        <span class="divider">\</span><a href="../namespaces/App.Http.Middleware.html">Middleware</a>
+    </li>
+
+        </ul>
+
+        
+        
+                    <div class="namespace-indent">
+                <h3><i class="icon-custom icon-class"></i> Classes, interfaces and traits</h3>
+                
+                
+                                        <div id="class_Authenticate" class="element ajax clickable class" data-toggle="collapse" data-target="#class_Authenticate .collapse">
+        <h1>Authenticate<a href="../classes/App.Http.Middleware.Authenticate.html">¶</a></h1>
+        <p class="short_description"></p>
+        <div class="details collapse">
+                            
+                    </div>
+        <a href="../classes/App.Http.Middleware.Authenticate.html" class="more">« More »</a>    </div>
+
+                                        <div id="class_ExampleMiddleware" class="element ajax clickable class" data-toggle="collapse" data-target="#class_ExampleMiddleware .collapse">
+        <h1>ExampleMiddleware<a href="../classes/App.Http.Middleware.ExampleMiddleware.html">¶</a></h1>
+        <p class="short_description"></p>
+        <div class="details collapse">
+                            
+                    </div>
+        <a href="../classes/App.Http.Middleware.ExampleMiddleware.html" class="more">« More »</a>    </div>
+
+                            </div>
+            
+    
+    
+                
+    
+        <ul class="breadcrumb">
+            <li><a href="../index.html"><i class="icon-th"></i></a></li>
+                
+                
+    
+    <li>
+        <span class="divider">\</span><a href="../namespaces/App.html">App</a>
+    </li>
+
+    
+    <li>
+        <span class="divider">\</span><a href="../namespaces/App.Contracts.html">Contracts</a>
+    </li>
+
+        </ul>
+
+        
+        
+                    <div class="namespace-indent">
+                <h3><i class="icon-custom icon-class"></i> Classes, interfaces and traits</h3>
+                
+                                        <div id="interface_ResetsPasswords" class="element ajax clickable interface" data-toggle="collapse" data-target="#interface_ResetsPasswords .collapse">
+        <h1>ResetsPasswords<a href="../classes/App.Contracts.ResetsPasswords.html">¶</a></h1>
+        <p class="short_description"></p>
+        <div class="details collapse">
+                            
+                    </div>
+        <a href="../classes/App.Contracts.ResetsPasswords.html" class="more">« More »</a>    </div>
+
+                
+                            </div>
+            
+    
+                
+    
+        <ul class="breadcrumb">
+            <li><a href="../index.html"><i class="icon-th"></i></a></li>
+                
+                
+    
+    <li>
+        <span class="divider">\</span><a href="../namespaces/App.html">App</a>
+    </li>
+
+    
+    <li>
+        <span class="divider">\</span><a href="../namespaces/App.Providers.html">Providers</a>
+    </li>
+
+        </ul>
+
+        
+        
+                    <div class="namespace-indent">
+                <h3><i class="icon-custom icon-class"></i> Classes, interfaces and traits</h3>
+                
+                
+                                        <div id="class_AppServiceProvider" class="element ajax clickable class" data-toggle="collapse" data-target="#class_AppServiceProvider .collapse">
+        <h1>AppServiceProvider<a href="../classes/App.Providers.AppServiceProvider.html">¶</a></h1>
+        <p class="short_description"></p>
+        <div class="details collapse">
+                            
+                    </div>
+        <a href="../classes/App.Providers.AppServiceProvider.html" class="more">« More »</a>    </div>
+
+                                        <div id="class_AuthServiceProvider" class="element ajax clickable class" data-toggle="collapse" data-target="#class_AuthServiceProvider .collapse">
+        <h1>AuthServiceProvider<a href="../classes/App.Providers.AuthServiceProvider.html">¶</a></h1>
+        <p class="short_description"></p>
+        <div class="details collapse">
+                            
+                    </div>
+        <a href="../classes/App.Providers.AuthServiceProvider.html" class="more">« More »</a>    </div>
+
+                                        <div id="class_EventServiceProvider" class="element ajax clickable class" data-toggle="collapse" data-target="#class_EventServiceProvider .collapse">
+        <h1>EventServiceProvider<a href="../classes/App.Providers.EventServiceProvider.html">¶</a></h1>
+        <p class="short_description"></p>
+        <div class="details collapse">
+                            
+                    </div>
+        <a href="../classes/App.Providers.EventServiceProvider.html" class="more">« More »</a>    </div>
+
+                            </div>
+            
+    
+                
+    
+        <ul class="breadcrumb">
+            <li><a href="../index.html"><i class="icon-th"></i></a></li>
+                
+                
+    
+    <li>
+        <span class="divider">\</span><a href="../namespaces/App.html">App</a>
+    </li>
+
+    
+    <li>
+        <span class="divider">\</span><a href="../namespaces/App.Exceptions.html">Exceptions</a>
+    </li>
+
+        </ul>
+
+        
+        
+                    <div class="namespace-indent">
+                <h3><i class="icon-custom icon-class"></i> Classes, interfaces and traits</h3>
+                
+                
+                                        <div id="class_Handler" class="element ajax clickable class" data-toggle="collapse" data-target="#class_Handler .collapse">
+        <h1>Handler<a href="../classes/App.Exceptions.Handler.html">¶</a></h1>
+        <p class="short_description"></p>
+        <div class="details collapse">
+                            
+                    </div>
+        <a href="../classes/App.Exceptions.Handler.html" class="more">« More »</a>    </div>
+
+                            </div>
+            
+    
+                
+    
+        <ul class="breadcrumb">
+            <li><a href="../index.html"><i class="icon-th"></i></a></li>
+                
+                
+    
+    <li>
+        <span class="divider">\</span><a href="../namespaces/App.html">App</a>
+    </li>
+
+    
+    <li>
+        <span class="divider">\</span><a href="../namespaces/App.Listeners.html">Listeners</a>
+    </li>
+
+        </ul>
+
+        
+        
+                    <div class="namespace-indent">
+                <h3><i class="icon-custom icon-class"></i> Classes, interfaces and traits</h3>
+                
+                
+                                        <div id="class_ExampleListener" class="element ajax clickable class" data-toggle="collapse" data-target="#class_ExampleListener .collapse">
+        <h1>ExampleListener<a href="../classes/App.Listeners.ExampleListener.html">¶</a></h1>
+        <p class="short_description"></p>
+        <div class="details collapse">
+                            
+                    </div>
+        <a href="../classes/App.Listeners.ExampleListener.html" class="more">« More »</a>    </div>
+
+                            </div>
+            
+    
+                
+    
+        <ul class="breadcrumb">
+            <li><a href="../index.html"><i class="icon-th"></i></a></li>
+                
+                
+    
+    <li>
+        <span class="divider">\</span><a href="../namespaces/App.html">App</a>
+    </li>
+
+    
+    <li>
+        <span class="divider">\</span><a href="../namespaces/App.Console.html">Console</a>
+    </li>
+
+        </ul>
+
+        
+        
+                    <div class="namespace-indent">
+                <h3><i class="icon-custom icon-class"></i> Classes, interfaces and traits</h3>
+                
+                
+                                        <div id="class_Kernel" class="element ajax clickable class" data-toggle="collapse" data-target="#class_Kernel .collapse">
+        <h1>Kernel<a href="../classes/App.Console.Kernel.html">¶</a></h1>
+        <p class="short_description"></p>
+        <div class="details collapse">
+                            
+                    </div>
+        <a href="../classes/App.Console.Kernel.html" class="more">« More »</a>    </div>
+
+                            </div>
+            
+    
+    
+        </div>
+    </div>
+    </div>
+
+        <footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by
+            <a href="http://glyphicons.com/">Glyphicons</a>.<br/>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
+            generated on Mon, 01 Aug 2016 16:14:09 +0200.<br/>
     </footer>
-</div>
-
-</body>
+    </body>
 </html>

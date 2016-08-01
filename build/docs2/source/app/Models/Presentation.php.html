@@ -1,0 +1,153 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php 
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+/**
+ * Presentation model.
+ * 
+ * The model for the presentations table.
+ * @filesource
+ */
+class Presentation extends Model {
+    protected $primaryKey=&quot;presentation_id&quot;;
+
+    public function conference(){
+        return $this-&gt;belongsTo('App\Models\Conference');
+    }
+    
+    public function categories(){
+        return $this-&gt;belongsToMany('App\Models\Category', 'pres_categories');
+    }
+    
+    public function speakers(){
+        return $this-&gt;belongsToMany('App\Models\Speaker', 'pres_speakers');
+    }
+    
+    public function chats(){
+        return $this-&gt;hasMany('App\Models\Chatlog');
+    }
+    
+    public function room(){
+        return $this-&gt;belongsTo('App\Models\Room');
+    }
+    
+    
+    public static function boot()
+    {
+        parent::boot();    
+    /*
+        static::deleted(function($presentation)
+        {
+                
+            
+            if (is_null($presentation-&gt;categories)) {
+                //Do nothing
+            }
+            else
+            {
+                $presentation-&gt;categories()-&gt;detach($presentation-&gt;presentation_id);
+                //$presentation-&gt;categories()-&gt;delete();
+            }
+            
+            
+            if (is_null($presentations-&gt;speakers)) {
+                //Do nothing
+            }
+            else
+            {
+                $presentation-&gt;speakers()-&gt;detach($presentation-&gt;speakers()-&gt;speaker_id);
+
+               // $presentations-&gt;speakers()-&gt;delete();
+            }
+            
+            
+           
+        });
+     
+        
+        // cause a delete of a product to cascade to children so they are also deleted
+        static::deleting(function($presentation)
+        {
+            if (is_null($presentation-&gt;chats)) {
+                //Do nothing
+            }
+            else
+            {
+                $presentation-&gt;chats()-&gt;delete();
+            }
+            
+            
+            
+            if (is_null($presentation-&gt;categories)) {
+                //Do nothing
+            }
+            else
+            {
+                $presentation-&gt;categories()-&gt;detach($presentation-&gt;presentation_id);
+                //$presentation-&gt;categories()-&gt;delete();
+            }
+            
+            
+            if (is_null($presentations-&gt;speakers)) {
+                //Do nothing
+            }
+            else
+            {
+                $presentation-&gt;speakers()-&gt;detach($presentation-&gt;speakers()-&gt;speaker_id);
+
+               // $presentations-&gt;speakers()-&gt;delete();
+            }
+            
+            
+           
+        });
+     
+     */
+    }    
+}</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

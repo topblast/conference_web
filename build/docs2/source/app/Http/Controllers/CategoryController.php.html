@@ -1,0 +1,181 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+/**
+ * CategoryController.php
+ */
+namespace App\Http\Controllers;
+
+use App\Models\Category;
+use App\Models\Presentation;
+use Illuminate\Http\Request;
+
+/**
+ * Controller for the Category Model.
+ * 
+ * *CategoryController* is a controller for the Category Model, which is the data model for the categories table. 
+ * @filesource
+ */
+class CategoryController extends Controller
+{
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        //
+    }
+
+
+    //GET FUNCTIONS
+    /**
+     * Gets all categories.
+     * @return type
+     * Returns category details as JSON data.
+     */
+    public function get_all() {
+
+        $all = Category::all();
+        
+        return response()-&gt;json($all);
+    }
+
+    //GET BY ID FUNCTION
+    /**
+     * Gets a category based on id
+     * @param type $id
+     * @return type
+     * Returns category details as JSON data if successful, 404 and empty JSON array if unsuccessful.
+     */
+    public function get_id($id) {
+        if(!$cli = Category::find($id))
+            return response()-&gt;json([], 404);
+
+        return response()-&gt;json($cli);
+    }
+    
+    //GET PRESENTATION FUNCTION
+    /**
+     * Gets all presentations related to a category using id as parameter
+     * @param type $id
+     * @return type
+     * Returns presentations as JSON data if successful, 404 and empty JSON array if unsuccessful
+     */
+    public function get_presentations($id){
+        if(!$cli = Category::find($id)-&gt;presentations)
+            return response()-&gt;json([], 404);            
+        
+        return response($cli);
+    }
+    
+    //POST FUNCTION
+     /**
+     * Creates a new category.
+     * @param Request $request
+     * The POST request
+     * @return type
+     * returns category details as JSON data.
+     */
+    public function create_new(Request $request)
+    {
+        $category = new Category;
+        
+        $category-&gt;name = $request-&gt;input('name');
+        $category-&gt;keywords = $request-&gt;input('keywords');
+        $category-&gt;parent_id = $request-&gt;input('parent_id');
+        
+        $category-&gt;save();
+        $category-&gt;find($category-&gt;category_id)-&gt;presentations()-&gt;attach($request-&gt;input('presentation_id'), ['created_at'=&gt;$category-&gt;created_at, 'updated_at'=&gt;$category-&gt;updated_at]);
+        
+        return response()-&gt;json($category);
+    }
+    
+
+    //DELETE FUNCTION
+    /**
+     * Deletes an existing category based on id
+     * @param type $id
+     * @return type
+     * Returns category details as JSON data if successful, 404 error and an empty JSON array if unsuccessful.
+     */
+    public function delete_category($id){
+        if(!$del  = Category::find($id))
+            return response()-&gt;json([], 404);            
+ 
+        $del-&gt;delete();
+ 
+        return response()-&gt;json($del);
+    }
+
+
+    //PUT FUNCTION
+    /**
+     * Edits an existing category
+     * @param Request $request
+     * The PUT request.
+     * @param type $id
+     * @return type
+     * Returns edited category details as JSON data, or a 404 error if the requested category cannot be found.
+     */
+    public function edit_category(Request $request,$id){
+        if(!$edit  = Category::find($id))
+            return response()-&gt;json([], 404);            
+
+        $edit-&gt;name = $request-&gt;input('name');
+        $edit-&gt;keywords = $request-&gt;input('keywords');
+        $edit-&gt;parent_id = $request-&gt;input('parent_id');
+        
+        $edit-&gt;save();
+        
+        $edit-&gt;presentations()-&gt;updateExistingPivot($request-&gt;input('presentation_id'), ['updated_at'=&gt; $edit-&gt;updated_at]);
+  
+        return response()-&gt;json($edit);
+    }
+
+ 
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

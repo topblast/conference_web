@@ -9,6 +9,8 @@ use Laravel\Lumen\Auth\Authorizable;
 use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
 use Tymon\JWTAuth\Contracts\JWTSubject as JWTSubject;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 //use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 
 /**
@@ -18,8 +20,8 @@ use Illuminate\Contracts\Auth\Authenticatable;
  * 
  * @filesource
  */
-class Attendee extends Model implements JWTSubject, Authenticatable{
-    use AuthenticatableTrait, Authorizable;
+class Attendee extends Model implements CanResetPasswordContract, JWTSubject, Authenticatable{
+    use CanResetPassword, AuthenticatableTrait, Authorizable;
 
     protected $primaryKey = 'attendee_id';
 
