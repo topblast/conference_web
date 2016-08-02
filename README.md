@@ -17,6 +17,10 @@ CSS Conference Application Web &amp; Server Implementation
     * For `MAIL_EMAIL` choose a Gmail email address that you want notification emails to be sent from.
     * For `MAIL_PASSWORD` enter the password for that email address.
     * Save your changes.
+5. At the root of the project run the Command:
+```
+php artisan migrate
+```
 
 #How To Run
 1. Navigate to the project directory.
