@@ -6,6 +6,22 @@ CSS Conference Application Web &amp; Server Implementation
 - Composer
 - Lumen Framework
 
+#Setup
+1. Download/clone the project.
+2. Navigate to the root of the project.
+3. Create a copy of the `.env.example` file. Name it `.env`.
+4. In your `.env` file, add the following values:
+    * For `DB_DATABASE` use the name of a database locally stored on your computer.
+    * If your username for your chosen database is different from 'root', then type in that username in `DB_USERNAME`.
+    * For `DB_PASSWORD` use the password for your chosen database. If your database has no password then leave this value blank.
+    * For `MAIL_EMAIL` choose a Gmail email address that you want notification emails to be sent from.
+    * For `MAIL_PASSWORD` enter the password for that email address.
+    * Save your changes.
+5. At the root of the project run the Command:
+```
+php artisan migrate
+```
+
 #How To Run
 1. Navigate to the project directory.
 2. Run the Command: 
