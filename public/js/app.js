@@ -302,7 +302,7 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
     */
     .state('forgotpassword', {
         url:'/forgotpass',
-        templateUrl: 'templates/pass-reset.html',
+        templateUrl: 'templates/forgotpass.html',
         controller: 'ForgotPassCtrl'
     })
     
