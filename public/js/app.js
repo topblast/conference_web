@@ -12,7 +12,14 @@
  * 'starter.controllers' is found in controllers.js
  */
 
-angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router', 'ngStorage', 'angularUtils.directives.dirPagination', 'ng-backstretch'])
+angular.module('starter', [
+		'starter.controllers',
+		'starter.services',
+		'ui.router',
+		'ngStorage',
+		'angularUtils.directives.dirPagination',
+		'ng-backstretch'
+	])
 	/**
 	 * @memberof starter
 	 * @ngdoc run
