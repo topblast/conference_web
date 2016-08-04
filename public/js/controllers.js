@@ -7,7 +7,6 @@
  * 
  */
 
-
 angular.module('starter.controllers', [])
 
 /**
@@ -23,103 +22,90 @@ angular.module('starter.controllers', [])
  * @returns {undefined}
  */
 .controller('HomeCtrl', function($scope, Web, $localStorage, $location, $http) {
- 
-  $scope.bgImage = 'img/backgrounds/4.jpg';
 
-  var presentations= [];
-  $scope.presentation = [];
-   
-   $scope.submitSpeaker=function(){
-       $scope.loading = true;
-       
-       Web.Speaker.create($scope.speakerData, function (response){
-                alert('Speaker added!');
-                Web.Speaker.list()
-                .success(function(data) {
-                    $scope.speakers = data;
-                    $scope.loading = false;
-                });
-            },
-            function(response){
-                alert('Something went wrong with the login process. Try again later!');
-            }
-        );
+	$scope.bgImage = 'img/backgrounds/4.jpg';
 
-   };
+	var presentations = [];
+	$scope.presentation = [];
 
-   $scope.loading = true;
+	$scope.submitSpeaker = function() {
+		$scope.loading = true;
 
-    Web.Speaker.list()
-        .success(function(data) {
-            $scope.speakers = data;
-            $scope.loading = false;
-           // alert('Reached here with ' + $scope.speakers);
-        });
-    
-    
+		Web.Speaker.create($scope.speakerData, function(response) {
+				alert('Speaker added!');
+				Web.Speaker.list()
+					.success(function(data) {
+						$scope.speakers = data;
+						$scope.loading = false;
+					});
+			},
+			function(response) {
+				alert('Something went wrong with the login process. Try again later!');
+			}
+		);
 
-    $scope.deleteSpeaker=function(id){
-    Web.Speaker.delete(id, function (response){
-        alert("Speaker deleted");
-         Web.Speaker.list()
-                .success(function(data) {
-                    $scope.speakers = data;
-                });
-        }, function (response){
-        alert("Error!!!");
-        }
-    );
-    };
+	};
 
+	$scope.loading = true;
 
-    $scope.loading = true;
+	Web.Speaker.list()
+		.success(function(data) {
+			$scope.speakers = data;
+			$scope.loading = false;
+			// alert('Reached here with ' + $scope.speakers);
+		});
 
-    Web.Attendee.getConferences($localStorage.currentUser.id)
-        .success(function(data) {
-            $scope.conferences = data;
-            $scope.loading = false;
-//           // alert('Reached here with ' + $scope.speakers);
-            angular.forEach(data, function(value, key){
-    
-                Web.Conference.selectPresentation(value.conference_id).success(function(data){
-                $scope.presentation[value.conference_id] = data;
+	$scope.deleteSpeaker = function(id) {
+		Web.Speaker.delete(id, function(response) {
+			alert("Speaker deleted");
+			Web.Speaker.list()
+				.success(function(data) {
+					$scope.speakers = data;
+				});
+		}, function(response) {
+			alert("Error!!!");
+		});
+	};
 
-                });
-      //        }
+	$scope.loading = true;
 
-             
-            });
-        });
-   
-   $scope.loading = true;
-   
-  
-   
-   $scope.selectPres=function(id){
-     $scope.loading = false;
-     console.log(presentations[id].$$state.value.data);
-     
-     return presentations[id].$$state.value.data;
-    };
+	Web.Attendee.getConferences($localStorage.currentUser.id)
+		.success(function(data) {
+			$scope.conferences = data;
+			$scope.loading = false;
+			//           // alert('Reached here with ' + $scope.speakers);
+			angular.forEach(data, function(value, key) {
 
+				Web.Conference.selectPresentation(value.conference_id).success(function(data) {
+					$scope.presentation[value.conference_id] = data;
 
+				});
+				//        }
 
+			});
+		});
 
+	$scope.loading = true;
 
-    $scope.logout=function() {
-            // remove user from local storage and clear http auth header
-            Web.Attendee.logout();
-            delete $localStorage.currentUser;
-            $http.defaults.headers.common.Authorization = '';
-            $location.path('/login');
-        };
+	$scope.selectPres = function(id) {
+		$scope.loading = false;
+		console.log(presentations[id].$$state.value.data);
 
+		return presentations[id].$$state.value.data;
+	};
 
+	$scope.logout = function() {
+		// remove user from local storage and clear http auth header
+		Web.Attendee.logout();
+		delete $localStorage.currentUser;
+		$http.defaults.headers.common.Authorization = '';
+		$location.path('/login');
+	};
 
 })
 
-.controller('bgCtrl', function($scope){
-   $scope.bgImage = 'img/backgrounds/3.jpg';
+.controller('bgCtrl', function($scope) {
+	$scope.bgImage = 'img/backgrounds/3.jpg';
 })
 
 /**
@@ -135,19 +121,19 @@ angular.module('starter.controllers', [])
  * @returns {undefined}
  */
 .controller('HeaderCtrl', function($scope, Web, $location, $localStorage, $http) {
-    $scope.userDetails = $localStorage.currentUser;
-            
-    $scope.logout=function() {
-            // remove user from local storage and clear http auth header
-            Web.Attendee.logout();
-            delete $localStorage.currentUser;
-            $http.defaults.headers.common.Authorization = '';
-            $location.path('/login');
-        };
+	$scope.userDetails = $localStorage.currentUser;
 
-    $scope.showHelpModal=function($scope) {
-        $scope.showModal = true;
-    };
+	$scope.logout = function() {
+		// remove user from local storage and clear http auth header
+		Web.Attendee.logout();
+		delete $localStorage.currentUser;
+		$http.defaults.headers.common.Authorization = '';
+		$location.path('/login');
+	};
+
+	$scope.showHelpModal = function($scope) {
+		$scope.showModal = true;
+	};
 })
 
 /**
@@ -160,11 +146,11 @@ angular.module('starter.controllers', [])
  * @param Web {service} factory service that holds all the table-specific services for the conference
  * @returns {undefined}
  */
-.controller('SelectCtrl', function($scope, $stateParams, Web){
-    Web.Speaker.select($stateParams.speakerID).success(function(data){
-        $scope.speaker = data;
+.controller('SelectCtrl', function($scope, $stateParams, Web) {
+	Web.Speaker.select($stateParams.speakerID).success(function(data) {
+		$scope.speaker = data;
 
-    });
+	});
 })
 
 /**
@@ -176,32 +162,31 @@ angular.module('starter.controllers', [])
  * @param Web {service} factory service that holds all the table-specific services for the conference
  * @returns {undefined}
  */
-.controller('ConfCtrl', function($scope, $stateParams, Web){
-    Web.Conference.select($stateParams.conferenceID).success(function(data){
-        $scope.conference = data;
+.controller('ConfCtrl', function($scope, $stateParams, Web) {
+	Web.Conference.select($stateParams.conferenceID).success(function(data) {
+		$scope.conference = data;
 
-    });
-    
-    Web.Conference.selectPresentations($stateParams.conferenceID).success(function(data){
-        $scope.presentations = data;
-    });
+	});
 
-    Web.Speaker.selectConf($stateParams.conferenceID).success(function(data){
-        $scope.speakers = data;
-    });
-    
-    $scope.deleteSpeaker=function(id){
-    Web.Speaker.delete(id, function (response){
-        alert("Speaker deleted");
-         Web.Speaker.selectConf($stateParams.conferenceID)
-                 .success(function(data){
-                $scope.speakers = data;
-            });
-        }, function (response){
-        alert("Error!!!");
-        }
-    );
-    };
+	Web.Conference.selectPresentations($stateParams.conferenceID).success(function(data) {
+		$scope.presentations = data;
+	});
+
+	Web.Speaker.selectConf($stateParams.conferenceID).success(function(data) {
+		$scope.speakers = data;
+	});
+
+	$scope.deleteSpeaker = function(id) {
+		Web.Speaker.delete(id, function(response) {
+			alert("Speaker deleted");
+			Web.Speaker.selectConf($stateParams.conferenceID)
+				.success(function(data) {
+					$scope.speakers = data;
+				});
+		}, function(response) {
+			alert("Error!!!");
+		});
+	};
 })
 
 /**
@@ -216,41 +201,42 @@ angular.module('starter.controllers', [])
  * @returns {undefined}
  */
 .controller('LoginCtrl', function($scope, Web, $location, $http, $localStorage) {
-    //console.log($scope);
-    //console.log($scope.bgImage);
-    
-    $scope.bgImage = 'img/backgrounds/3.jpg';
-   
-    $scope.loginAttendee=function()
-    {
-        
-         $scope.loading = true;
+	//console.log($scope);
+	//console.log($scope.bgImage);
 
+	$scope.bgImage = 'img/backgrounds/3.jpg';
 
-       Web.Attendee.login($scope.attendeeData, function (response){
-                alert('Login Successful!');
-               
-                $scope.loading = false;
-                //console.log(response.data);
-                //console.log(response.data.user);
-                // store username and token in local storage to keep user logged in between page refreshes
-                $localStorage.currentUser = { username: response.data.user.name, token: response.data.token, id: response.data.user.attendee_id };
-                 
-                // add jwt token to auth header for all requests made by the $http service
-                   
-                $http.defaults.headers.common.Authorization = 'Bearer ' + response.data.token;
-                 $location.path('/main/home');
+	$scope.loginAttendee = function() {
 
-            },
-            function(response){
-             //   alert(response.data.error);
-                alert('Something went wrong with the login process. Try again later!');
-             //   $location.path('/login');
-            }
-        );
+		$scope.loading = true;
 
-       
-    };
+		Web.Attendee.login($scope.attendeeData, function(response) {
+				alert('Login Successful!');
+
+				$scope.loading = false;
+				//console.log(response.data);
+				//console.log(response.data.user);
+				// store username and token in local storage to keep user logged in between page refreshes
+				$localStorage.currentUser = {
+					username: response.data.user.name,
+					token: response.data.token,
+					id: response.data.user.attendee_id
+				};
+
+				// add jwt token to auth header for all requests made by the $http service
+
+				$http.defaults.headers.common.Authorization = 'Bearer ' + response.data.token;
+				$location.path('/main/home');
+
+			},
+			function(response) {
+				//   alert(response.data.error);
+				alert('Something went wrong with the login process. Try again later!');
+				//   $location.path('/login');
+			}
+		);
+
+	};
 })
 
 /**
@@ -265,33 +251,33 @@ angular.module('starter.controllers', [])
  * @returns {undefined}
  */
 .controller('LoginClientCtrl', function($scope, Web, $location, $http, $localStorage) {
-     $scope.loginClient=function()
-    {
-        
-         $scope.loading = true;
+	$scope.loginClient = function() {
 
+		$scope.loading = true;
 
-       Web.Client.login($scope.clientData, function (response){
-                alert('Login Successful! ' + response.data.user.contact_name);
-                $scope.loading = false;
-                //console.log(response.data);
-                //console.log(response.data.user);
-                // store username and token in local storage to keep user logged in between page refreshes
-                $localStorage.currentUser = { username: response.data.user.contact_name, token: response.data.token };
-                 
-                // add jwt token to auth header for all requests made by the $http service
-                   
-                $http.defaults.headers.common.Authorization = 'Bearer ' + response.data.token;
-                 $location.path('/client/profile');
+		Web.Client.login($scope.clientData, function(response) {
+				alert('Login Successful! ' + response.data.user.contact_name);
+				$scope.loading = false;
+				//console.log(response.data);
+				//console.log(response.data.user);
+				// store username and token in local storage to keep user logged in between page refreshes
+				$localStorage.currentUser = {
+					username: response.data.user.contact_name,
+					token: response.data.token
+				};
 
-            },
-            function(response){
-                alert('Something went wrong with the login process. Try again later!');
-            }
-        );
+				// add jwt token to auth header for all requests made by the $http service
 
-       
-    };
+				$http.defaults.headers.common.Authorization = 'Bearer ' + response.data.token;
+				$location.path('/client/profile');
+
+			},
+			function(response) {
+				alert('Something went wrong with the login process. Try again later!');
+			}
+		);
+
+	};
 })
 
 /**
@@ -304,29 +290,27 @@ angular.module('starter.controllers', [])
  * @returns {undefined}
  */
 .controller('RegCtrl', function($scope, Web, $location) {
-    $scope.bgImage = 'img/backgrounds/3.jpg';
-            
-     $scope.submitAttendee=function()
-    {
+	$scope.bgImage = 'img/backgrounds/3.jpg';
 
-         $scope.loading = true;
+	$scope.submitAttendee = function() {
 
-         if($scope.attendeeData.password !== $scope.pword)
-         {
-             alert("passwords don't match!");
-             return;
-         }
+		$scope.loading = true;
 
-       Web.Attendee.register($scope.attendeeData, function (response){
-                alert('Attendee added!');
-                 $location.path('/login');
-                
-            },
-            function(response){
-                alert('Something went wrong with the login process. Try again later!');
-            }
-        );
-    };
+		if ($scope.attendeeData.password !== $scope.pword) {
+			alert("passwords don't match!");
+			return;
+		}
+
+		Web.Attendee.register($scope.attendeeData, function(response) {
+				alert('Attendee added!');
+				$location.path('/login');
+
+			},
+			function(response) {
+				alert('Something went wrong with the login process. Try again later!');
+			}
+		);
+	};
 })
 
 /**
@@ -339,27 +323,25 @@ angular.module('starter.controllers', [])
  * @returns {undefined}
  */
 .controller('RegClientCtrl', function($scope, Web, $location) {
-     $scope.submitClient=function()
-    {
+	$scope.submitClient = function() {
 
-         $scope.loading = true;
+		$scope.loading = true;
 
-         if($scope.clientData.password !== $scope.pword)
-         {
-             alert("passwords don't match!");
-             return;
-         }
+		if ($scope.clientData.password !== $scope.pword) {
+			alert("passwords don't match!");
+			return;
+		}
 
-       Web.Client.register($scope.clientData, function (response){
-                alert('Client added!');
-                 $location.path('/client/login');
-                
-            },
-            function(response){
-                alert('Something went wrong with the registration process. Try again later!');
-            }
-        );
-    };
+		Web.Client.register($scope.clientData, function(response) {
+				alert('Client added!');
+				$location.path('/client/login');
+
+			},
+			function(response) {
+				alert('Something went wrong with the registration process. Try again later!');
+			}
+		);
+	};
 })
 
 /**
@@ -372,22 +354,20 @@ angular.module('starter.controllers', [])
  * @returns {undefined}
  */
 .controller('ForgotPassCtrl', function($scope, Web, $location) {
-    $scope.sendEmail=function()
-    {
-        $scope.loading = true;
-        
-        Web.Attendee.forgotpass($scope.attendeeData, function (response){
-            alert('Email Sent!');
-        },
-        function(response){
-            alert('Email was unsuccessful.');  
-        }
-        );
-        
-        $scope.location = false;
-    };
-    
-    
+	$scope.sendEmail = function() {
+		$scope.loading = true;
+
+		Web.Attendee.forgotpass($scope.attendeeData, function(response) {
+				alert('Email Sent!');
+			},
+			function(response) {
+				alert('Email was unsuccessful.');
+			}
+		);
+
+		$scope.location = false;
+	};
+
 })
 
 /**
@@ -400,31 +380,30 @@ angular.module('starter.controllers', [])
  * @returns {undefined}
  */
 .controller('ResetPassCtrl', function($scope, $stateParams, Web) {
-    $scope.sendEmail=function()
-    {
-        $scope.loading = true;
-        $scope.attendeeData.token = $stateParams.token;
-        $scope.attendeeData.email = $stateParams.email;
-        console.log($stateParams);
-        
-        Web.Attendee.resetpass($scope.attendeeData, function (response){
-            alert('Password successfully reset!');
-        },
-        function(response){
-            alert('Password reset unsuccessful.');  
-        }
-        );
-        
-        $scope.location = false;
-    }
+	$scope.sendEmail = function() {
+		$scope.loading = true;
+		$scope.attendeeData.token = $stateParams.token;
+		$scope.attendeeData.email = $stateParams.email;
+		console.log($stateParams);
+
+		Web.Attendee.resetpass($scope.attendeeData, function(response) {
+				alert('Password successfully reset!');
+			},
+			function(response) {
+				alert('Password reset unsuccessful.');
+			}
+		);
+
+		$scope.location = false;
+	}
 })
 
 .controller('MainCtrl', function($scope) {})
 
 .controller('AccountCtrl', function($scope) {
-  $scope.settings = {
-    enableFriends: true
-  };
+	$scope.settings = {
+		enableFriends: true
+	};
 });
 
 /*
