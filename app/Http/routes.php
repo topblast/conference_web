@@ -54,7 +54,7 @@ $app->get('/conferences/{id}/sponsors/', ['middleware' => 'auth:attendee', 'uses
 
 
 
-$app->post('/conferences/register', 'ConferencesController@register');
+$app->post('/conferences/register', ['middleware' => 'auth:client', 'uses' => 'ConferencesController@register']);
 $app->post('/conferences/{id}/presentations', 'ConferencesController@create_new_presentation');
 $app->post('/conferences/{id}/sponsors', 'ConferencesController@create_new_sponsor');
 $app->post('/conferences/{id}/blacklist', 'ConferencesController@add_to_blacklist');
