@@ -89,7 +89,8 @@ angular.module('starter', [
 				url: '/main',
 				abstract: true,
 				templateUrl: '/templates/main.html'
-			}) //  .state('forms', {
+			})
+			//  .state('forms', {
 			//      url: '',
 			//      abstract: true,
 			//      templateUrl: '/templates/.html'

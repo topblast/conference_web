@@ -18,394 +18,339 @@ angular.module('starter.services', [])
  * @returns {services_L13.servicesAnonym$1}
  */
 .factory('Web', function($http) {
-	var API_LOCATION = 'http://localhost:8000/';
-	return {
-		user: {},
-		/**
-		 * @memberof Web
-		 * @ngdoc service
-		 * @description A list of methods dealing with the clients table
-		 */
-		Client: {
+		var Web;
+		(function(Web) {
+			var API_LOCATION = 'http://localhost:8000/';
 			/**
-			 * Calls API route for client login, passing the user's credentials as parameters.
-			 * @method login
-			 * @memberof Web.Client
-			 * @param credentials {type} the clients login credentials: email and password.
-			 * @param onSuccess {type} response to return if login function is successful.
-			 * @param onError {type} response to return if login function fails.
-			 * @returns {undefined}
-			 */
-			login: function(credentials, onSuccess, onError) {
-				$http.post(API_LOCATION + 'clients/login', credentials)
-					.then(function(response) {
-						self.user = response;
-						//alert(self.user.data.token + ' ' + self.user.status);
-						onSuccess(response);
-					}, onError);
-			},
-
-			/**
-			 * Calls API route for client registration, passing the user's credentials as parameters.
-			 * @memberof Web.Client
-			 * @method register 
-			 * @param credentials {type} the clients login credentials: email and password.
-			 * @param onSuccess {type} response to return if login function is successful.
-			 * @param onError {type} response to return if login function fails.
-			 * @returns {undefined}
-			 */
-			register: function(credentials, onSuccess, onError) {
-				$http.post(API_LOCATION + 'clients/register', credentials)
-					.then(function(response) {
-						self.user = response;
-						onSuccess(response);
-					}, onError);
-			},
-			/**
-			 * Deletes client from database.
-			 * @memberof Web.Client
+			 * @memberof Web
 			 * @ngdoc service
-			 * @method delete
-			 * @param {type} id
-			 * @returns {undefined}
+			 * @name Attendee
+			 * @description A list of methods dealing with the attendees table.
 			 */
-			delete: function(id) {
-
-			},
-		},
-		/**
-		 * @memberof Web
-		 * @ngdoc service
-		 * @name Speaker
-		 * @description A list of methods dealing with the speakers table
-		 */
-		Speaker: {
-			/**
-			 * Gets details on all speakers.
-			 * @memberof Web.Speaker
-			 * @method list 
-			 * @param onSuccess {type} response to return if method is successful.
-			 * @param onError {type} response to return if method fails.
-			 * @returns {undefined}
-			 */
-			list: function(onSuccess, onError) {
-				var self = this;
-				self.user = {};
-				return $http.get(API_LOCATION + 'speakers/');
-			},
-
-			/**
-			 * Gets details on all speakers.
-			 * @memberof Web.Speaker
-			 * @method select 
-			 * @param onSuccess {type} response to return if method is successful.
-			 * @param onError {type} response to return if method fails.
-			 * @returns {undefined}
-			 */
-			select: function(id) {
-				return $http.get(API_LOCATION + 'speakers/' + id);
-			},
-
-			/**
-			 * Gets details on a conference the speaker is presenting for.
-			 * @memberof Web.Speaker
-			 * @method selectConf 
-			 * @param id {type} the conference's id.
-			 * @returns {undefined}
-			 */
-			selectConf: function(id) {
-				return $http.get(API_LOCATION + 'speakers/' + id + '/conferences');
-			},
-
-			/**
-			 * Creates a new speaker.
-			 * @memberof Web.Speaker
-			 * @method create
-			 * @param speakerData (type) form data containing the speaker's details. 
-			 * @param onSuccess {type} response to return if method is successful.
-			 * @param onError {type} response to return if method fails.
-			 * @returns {undefined}
-			 */
-			create: function(speakerData, onSuccess, onError) {
-				var self = this;
-				self.user = {};
-				speakerData.type = 'keynote';
-				//return $http.post(API_LOCATION + 'speakers', speakerData);
-				$http.post(API_LOCATION + 'speakers/register', speakerData)
-					.then(function(response) {
-						self.user = response;
-						onSuccess(response);
-					}, function(response) {
-						onError(response);
+			var Attendees = (function() {
+				function Attendees() {}
+				/**
+				 * Attempts to login the client, passing the user's credentials as parameters.
+				 * @memberof Web.Attendee
+				 * @method Login
+				 * @param {type} credentials the clients login credentials: email and password.
+				 * @returns {Promise}
+				 */
+				Attendees.Login = function(credentials) {
+					return $http.post(API_LOCATION + 'attendees/login', credentials);
+				};
+				/**
+				 * Calls API route for attendee logout
+				 * @memberof Web.Attendee
+				 * @method Logout
+				 * @returns {Promise}
+				 */
+				Attendees.Logout = function() {
+					return $http.get(API_LOCATION + 'attendees/logout');
+				};
+				/**
+				 * Calls API route for changing attendee password.
+				 * @memberof Web.Attendee
+				 * @method ChangePassword
+				 * @param {type} id attendee's id
+				 * @returns {Promise}
+				 */
+				Attendees.ChangePassword = function(id) {
+					return $http.get(API_LOCATION + 'attendees/' + id + '/changepassword');
+				};
+				/**
+				 * Calls API route for an attendee's forgotten password
+				 * @memberof Web.Attendee
+				 * @method ForgotPassword
+				 * @param {type} email the attendee's email
+				 * @returns {Promise}
+				 */
+				Attendees.ForgotPassword = function(email) {
+					return $http.post(API_LOCATION + 'password/email', {
+						email: email
 					});
-
-			},
-
+				};
+				/**
+				 * Performs the action of resetting the attendee's password, taking the token as parameter
+				 * @memberof Web.Attendee
+				 * @method ResetPassword
+				 * @param {type} token the password reset token
+				 * @returns {Promise}
+				 */
+				Attendees.ResetPassword = function(attendeeData) {
+					return $http.post(API_LOCATION + 'password/reset/' + attendeeData.token, attendeeData);
+				};
+				/**
+				 * Registers a new account for the attendee
+				 * @memberof Web.Attendee
+				 * @method Register
+				 * @param {type} credentials the attendee's credentials (email, username, password)
+				 * @returns {Promise}
+				 */
+				Attendees.Register = function(credentials) {
+					return $http.post(API_LOCATION + 'attendees/register', credentials);
+				};
+				/**
+				 * Deletes an attendee's account
+				 * @memberof Web.Attendee
+				 * @method Delete
+				 * @param {type} id the attendee's id
+				 * @returns {Promise}
+				 */
+				Attendees.Delete = function(id) {
+					return $http.delete(API_LOCATION + 'attendees/' + id);
+				};
+				/**
+				 * Updates an attendee's details
+				 * @memberof Web.Attendee
+				 * @method Update
+				 * @param {type} id the attendee's id
+				 * @param {type} Updated user data
+				 * @returns {Promise}
+				 */
+				Attendees.Update = function(id, updateData) {
+					return $http.put(API_LOCATION + 'attendees/' + id, updateData);
+				};
+				/**
+				 * Returns a json array of the conferences the attendee is signed up for upon success, an empty array and 404 error upon failure
+				 * @memberof Web.Attendee
+				 * @method Conferences
+				 * @param {type} id the attendee's id
+				 * @returns {Promise}
+				 */
+				Attendees.Conferences = function(id) {
+					return $http.get(API_LOCATION + 'attendees/' + id + '/conferences');
+				};
+				return Attendees;
+			}());
+			Web.Attendees = Attendees;
 			/**
-			 * Deletes a speaker.
-			 * @memberof Web.Speaker
-			 * @method delete
-			 * @param id (type) the speaker's id. 
-			 * @param onSuccess {type} response to return if method is successful.
-			 * @param onError {type} response to return if method fails.
-			 * @returns {undefined}
+			 * @memberof Web
+			 * @ngdoc service
+			 * @description A list of methods dealing with the clients table
 			 */
-			delete: function(id, onSuccess, onError) {
-				$http.delete(API_LOCATION + 'speakers/' + id)
-					.then(function(response) {
-						self.user = response;
-						onSuccess(response);
-					}, function(response) {
-						onError(response);
-					});
-			},
-		},
-		/**
-		 * @memberof Web
-		 * @ngdoc service
-		 * @name Conference
-		 * @description A list of methods dealing with the conferences table
-		 */
-		Conference: {
+			var Clients = (function() {
+				function Clients() {}
+				/**
+				 * Calls API route for client login, passing the user's credentials as parameters.
+				 * @method Login
+				 * @memberof Web.Client
+				 * @param credentials {Object} the clients login credentials: email and password.
+				 * @returns {Promise}
+				 */
+				Clients.Login = function(credentials) {
+					return $http.post(API_LOCATION + 'clients/login', credentials);
+				};
+				/**
+				 * Calls API route for client registration, passing the user's credentials as parameters.
+				 * @memberof Web.Client
+				 * @method Register
+				 * @param credentials {Object} the clients login credentials: email and password.
+				 * @returns {Promise}
+				 */
+				Clients.Register = function(credentials) {
+					return $http.post(API_LOCATION + 'clients/register', credentials);
+				};
+				/**
+				 * Deletes client from database.
+				 * @memberof Web.Client
+				 * @ngdoc service
+				 * @method Delete
+				 * @param {type} id
+				 * @returns {undefined}
+				 */
+				Clients.Delete = function(id) {};
+				return Clients;
+			}());
+			Web.Clients = Clients;
 			/**
-			 * Gets details on all public conferences.
-			 * @memberof Web.Conference
-			 * @method list 
-			 * @param onSuccess {type} response to return if method is successful.
-			 * @param onError {type} response to return if method fails.
-			 * @returns {undefined}
+			 * @memberof Web
+			 * @ngdoc service
+			 * @name Conference
+			 * @description A list of methods dealing with the conferences table
 			 */
-			list: function(onSuccess, onError) {
-				var self = this;
-				//alert(self.user);
-				//self.user = {};
-				// $http.post(API_LOCATION + 'auth/refresh-token');
-				return $http.get(API_LOCATION + 'conferences/');
-
-			},
-
+			var Conferences = (function() {
+				function Conferences() {}
+				/**
+				 * Gets details on all public conferences.
+				 * @memberof Web.Conference
+				 * @method List
+				 * @returns {Promise}
+				 */
+				Conferences.List = function() {
+					return $http.get(API_LOCATION + 'conferences');
+				};
+				/**
+				 * Gets details on a specific conferences based on id.
+				 * @memberof Web.Conference
+				 * @method Select
+				 * @param id {type} the conference's id.
+				 * @returns {Promise}
+				 */
+				Conferences.Select = function(id) {
+					return $http.get(API_LOCATION + 'conferences/' + id);
+				};
+				/**
+				 * Gets details on all presentations held at a specific conference.
+				 * @memberof Web.Conference
+				 * @method Presentations
+				 * @param id {type} the conference's id.
+				 * @returns {Promise}
+				 */
+				Conferences.Presentations = function(conference_id) {
+					return $http.get(API_LOCATION + 'conferences/' + conference_id + '/presentations');
+				};
+				/**
+				 * Gets details on the first presentation at a specific conference.
+				 * @memberof Web.Conference
+				 * @method Presentation
+				 * @param id {type} the conference's id.
+				 * @returns {Promise}
+				 */
+				Conferences.Presentation = function(conference_id, presentation_id) {
+					return $http.get(API_LOCATION + 'conferences/' + conference_id + '/presentations/' + presentation_id);
+				};
+				return Conferences;
+			}());
+			Web.Conferences = Conferences;
 			/**
-			 * Gets details on a specific conferences based on id.
-			 * @memberof Web.Conference
-			 * @method select 
-			 * @param id {type} the conference's id.
-			 * @returns {undefined}
+			 * @memberof Web
+			 * @ngdoc service
+			 * @name Speaker
+			 * @description A list of methods dealing with the speakers table
 			 */
-			select: function(id) {
-				return $http.get(API_LOCATION + 'conferences/' + id);
-			},
-
+			var Speakers = (function() {
+				function Speakers() {}
+				/**
+				 * Gets details on all speakers.
+				 * @memberof Web.Speaker
+				 * @method List
+				 * @returns {Promise}
+				 */
+				Speakers.List = function() {
+					return $http.get(API_LOCATION + 'speakers');
+				};
+				/**
+				 * Gets details on all speakers.
+				 * @memberof Web.Speaker
+				 * @method Select
+				 * @returns {Promise}
+				 */
+				Speakers.Select = function(id) {
+					return $http.get(API_LOCATION + 'speakers/' + id);
+				};
+				/**
+				 * Gets details on a conference the speaker is presenting for.
+				 * @memberof Web.Speaker
+				 * @method Conferences
+				 * @param id {type} the Speakers's id.
+				 * @returns {undefined}
+				 */
+				Speakers.Conferences = function(speaker_id) {
+					return $http.get(API_LOCATION + 'speakers/' + speaker_id + '/conferences');
+				};
+				/**
+				 * Creates a new speaker.
+				 * @memberof Web.Speaker
+				 * @method Create
+				 * @param speakerData (type) form data containing the speaker's details.
+				 * @returns {Promise}
+				 */
+				Speakers.Create = function(speakerData) {
+					return $http.post(API_LOCATION + 'speakers/register', speakerData);
+				};
+				return Speakers;
+			}());
+			Web.Speakers = Speakers;
 			/**
-			 * Gets details on the first presentation at a specific conference.
-			 * @memberof Web.Conference
-			 * @method selectPresentation
-			 * @param id {type} the conference's id.
-			 * @returns {undefined}
+			 * @memberof Web
+			 * @ngdoc service
+			 * @name Sponsor
+			 * @description A list of methods dealing with the sponsors table
 			 */
-			selectPresentation: function(id) {
-				return $http.get(API_LOCATION + 'conferences/' + id + '/presentation/');
-			},
-
-			/**
-			 * Gets details on all presentations held at a specific conference.
-			 * @memberof Web.Conference
-			 * @method selectPresentation
-			 * @param id {type} the conference's id.
-			 * @returns {undefined}
-			 */
-			selectPresentations: function(id) {
-				return $http.get(API_LOCATION + 'conferences/' + id + '/presentations/');
+			var Sponsors = (function() {
+				function Sponsors() {}
+				/**
+				 * Gets details on all sponsors.
+				 * @memberof web.Sponsor
+				 * @method List
+				 * @returns {Promise}
+				 */
+				Sponsors.List = function() {
+					return $http.get(API_LOCATION + 'sponsors');
+				};
+				return Sponsors;
+			}());
+			Web.Sponsors = Sponsors;
+		})(Web || (Web = {}));
+		return Web;
+	})
+	.factory('Attendee', function($http, Web) {
+		var AttendeeService = (function() {
+			function AttendeeService() {
+				this.User = null;
+				this.Token = null;
 			}
-
-		},
-
-		/**
-		 * @memberof Web
-		 * @ngdoc service
-		 * @name Sponsor
-		 * @description A list of methods dealing with the sponsors table
-		 */
-		Sponsor: {
 			/**
-			 * Gets details on all sponsors.
-			 * @memberof web.Sponsor
-			 * @method list 
-			 * @param onSuccess {type} response to return if method is successful.
-			 * @param onError {type} response to return if method fails.
+			 * Check is the current user is logged in
+			 * @memberof Attendee
+			 * @method IsLogged
+			 * @returns {boolean}
+			 */
+			AttendeeService.prototype.IsLogged = function() {
+				return this.User != null && this.Token != null;
+			};
+			/**
+			 * Log Attendee into Service
+			 * @memberof Attendee
+			 * @method Login
+			 * @param {type} Email the attendee's email
+			 * @param {type} Password the attendee's email
+			 * @returns {boolean}
+			 */
+			AttendeeService.prototype.Login = function(email, password) {
+				var _this = this;
+				return Web.Attendees.Login({
+					email: email,
+					password: password
+				}).then(function(response) {
+					_this.User = response.data.user;
+					_this.Token = response.data.token;
+					$http.defaults.headers.common.Authorization = 'Bearer ' + _this.Token;
+					return response;
+				});
+			};
+			/**
+			 * Logs out of attendee account
+			 * @memberof Attendee
+			 * @method Logout
+			 * @returns {boolean}
+			 */
+			AttendeeService.prototype.Logout = function() {
+				this.User = null;
+				this.Token = null;
+				$http.defaults.headers.common.Authorization = '';
+				return Web.Attendees.Logout();
+			};
+			/**
+			 * Send the change password email of the current signed in attendee
+			 * @memberof Attendee
+			 * @method ChangePassword
 			 * @returns {undefined}
 			 */
-			list: function(onSuccess, onError) {
-				var self = this;
-				self.user = {};
-				$http.get(API_LOCATION + 'sponsors')
-					.then(function(response) {
-						self.user = response;
-						onSuccess(response);
-					}, onError);
-			},
-
-		},
-		/**
-		 * @memberof Web
-		 * @ngdoc service
-		 * @name Attendee
-		 * @description A list of methods dealing with the attendees table. 
-		 */
-		Attendee: {
+			AttendeeService.prototype.ChangePassword = function() {
+				return Web.Attendees.ChangePassword(this.User.attendee_id);
+			};
 			/**
-			 * Attempts to login the client, passing the user's credentials as parameters.
-			 * @memberof Web.Attendee
-			 * @method login
-			 * @param {type} credentials the clients login credentials: email and password.
-			 * @param {type} onSuccess response to return if login function is successful.
-			 * @param {type} onError response to return if login function fails.
+			 * Get all accessable conferences of the current signed in attendee.
+			 * @memberof Attendee
+			 * @method Conferences
 			 * @returns {undefined}
 			 */
-			login: function(credentials, onSuccess, onError) {
-				//var self = this;
-				//self.user = {};
-				$http.post(API_LOCATION + 'attendees/login', credentials)
-					.then(function(response) {
-						//self.user = response;
-						//alert(self.user.data.token + ' ' + self.user.status);
-						onSuccess(response);
-					}, onError);
-			},
-			/**
-			 * Calls API route for attendee logout
-			 * @memberof Web.Attendee
-			 * @method logout
-			 * @returns {undefined}
-			 */
-			logout: function() {
-				$http.post(API_LOCATION + 'attendees/logout')
-					.then(function(response) {
-						// alert("Logout Successful!");
-
-					}, function(response) {
-						//alert("Logout Unsuccessful!");
-					});
-			},
-			/**
-			 * Calls API route for changing attendee password.
-			 * @memberof Web.Attendee
-			 * @method changepass
-			 * @param {type} id attendee's id
-			 * @param {type} onSuccess
-			 * @param {type} onError
-			 * @returns {undefined}
-			 */
-			changepass: function(id, onSuccess, onError) {
-				var self = this;
-				self.user = {};
-				$http.post(API_LOCATION + 'attendees/{id}/changepassword', id)
-					.then(function(response) {
-						self.user = response;
-						onSuccess(response);
-					}, onError);
-			},
-			/**
-			 * Calls API route for an attendee's forgotten password
-			 * @memberof Web.Attendee
-			 * @method forgotpass
-			 * @param {type} email the attendee's email
-			 * @param {type} onSuccess 
-			 * @param {type} onError
-			 * @returns {undefined}
-			 */
-			forgotpass: function(email, onSuccess, onError) {
-				//        $http.post(API_LOCATION + 'attendees/' + email.email + '/forgotpassword')    
-				$http.post(API_LOCATION + 'password/email', email)
-					.then(function(response) {
-						//	self.user = response;
-						onSuccess(response);
-					}, onError);
-			},
-
-			/**
-			 * Performs the action of resetting the attendee's password, taking the token as parameter
-			 * @param {type} token the password reset token
-			 * @param {type} onSuccess
-			 * @param {type} onError
-			 * @returns {undefined}
-			 */
-			resetpass: function(attendeeData, onSuccess, onError) {
-				$http.post(API_LOCATION + 'password/reset/' + attendeeData.token, attendeeData)
-					.then(function(response) {
-						onSuccess(response);
-					}, onError);
-			},
-
-			/**
-			 * Registers a new account for the attendee
-			 * @memberof Web.Attendee
-			 * @method register
-			 * @param {type} credentials the attendee's credentials (email, username, password)
-			 * @param {type} onSuccess 
-			 * @param {type} onError
-			 * @returns {undefined}
-			 */
-			register: function(credentials, onSuccess, onError) {
-				var self = this;
-				self.user = {};
-				$http.post(API_LOCATION + 'attendees/register', credentials)
-					.then(function(response) {
-						self.user = response;
-						onSuccess(response);
-					}, onError);
-			},
-
-			/**
-			 * Deletes an attendee's account
-			 * @memberof Web.Attendee
-			 * @method deleteAccount
-			 * @param {type} id the attendee's id
-			 * @param {type} onSuccess 
-			 * @param {type} onError
-			 * @returns {undefined}
-			 */
-			deleteAccount: function(id, onSuccess, onError) {
-				var self = this;
-				self.user = {};
-				$http.delete(API_LOCATION + 'attendees/' + id)
-					.then(function(response) {
-						self.user = response;
-						onSuccess(response);
-					}, onError);
-			},
-
-			/**
-			 * Updates an attendee's details
-			 * @memberof Web.Attendee
-			 * @method update
-			 * @param {type} email the attendee's email
-			 * @param {type} onSuccess 
-			 * @param {type} onError
-			 * @returns {undefined}
-			 */
-			update: function(id, onSuccess, onError) {
-				var self = this;
-				self.user = {};
-				$http.put(API_LOCATION + 'attendees/{id}', id)
-					.then(function(response) {
-						self.user = response;
-						onSuccess(response);
-					}, onError);
-			},
-
-			/**
-			 * Returns a json array of the conferences the attendee is signed up for upon success, an empty array and 404 error upon failure
-			 * @memberof Web.Attendee
-			 * @method getConferences
-			 * @param {type} id the attendee's id
-			 * @param {type} onSuccess 
-			 * @param {type} onError
-			 * @returns {undefined}
-			 */
-			getConferences: function(id, onSuccess, onError) {
-				return $http.get(API_LOCATION + 'attendees/' + id + '/conferences');
-			}
-
-		}
-	}
-});
+			AttendeeService.prototype.Conferences = function() {
+				return Web.Attendees.Conferences(this.User.attendee_id);
+			};
+			return AttendeeService;
+		}());
+		return new AttendeeService();
+	});
