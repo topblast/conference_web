@@ -285,12 +285,32 @@ angular.module('starter.services', [])
 		})(Web || (Web = {}));
 		return Web;
 	})
-	.factory('Attendee', function($http, Web) {
+	.factory('Attendee', function($http, Web, $localStorage) {
 		var AttendeeService = (function() {
 			function AttendeeService() {
-				this.User = null;
-				this.Token = null;
+				this.User = $localStorage.user_data;
+				this.Token = $localStorage.user_token;
 			}
+			/**
+			 * Set the user data to localstorage
+			 * @memberof Attendee
+			 * @method IsLogged
+			 * @returns {boolean}
+			 */
+			AttendeeService.prototype.SetUser = function(user_data) {
+				this.User = user_data;
+				$localStorage.user_data = this.User;
+			};
+			/**
+			 * Set the token to localstorage
+			 * @memberof Attendee
+			 * @method SetToken
+			 * @returns {boolean}
+			 */
+			AttendeeService.prototype.SetToken = function(token) {
+				this.Token = token;
+				$localStorage.user_token = this.Token;
+			};
 			/**
 			 * Check is the current user is logged in
 			 * @memberof Attendee
@@ -314,8 +334,8 @@ angular.module('starter.services', [])
 					email: email,
 					password: password
 				}).then(function(response) {
-					_this.User = response.data.user;
-					_this.Token = response.data.token;
+					_this.SetUser(response.data.user);
+					_this.SetToken(response.data.token);
 					$http.defaults.headers.common.Authorization = 'Bearer ' + _this.Token;
 					return response;
 				});
@@ -327,8 +347,8 @@ angular.module('starter.services', [])
 			 * @returns {boolean}
 			 */
 			AttendeeService.prototype.Logout = function() {
-				this.User = null;
-				this.Token = null;
+				this.SetUser(null);
+				this.SetToken(null);
 				$http.defaults.headers.common.Authorization = '';
 				return Web.Attendees.Logout();
 			};
