@@ -1,0 +1,71 @@
+<div backstretch backstretch-images="bgImage"></div>
+
+<div class="top-content">
+
+	<div class="inner-bg">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-8 col-sm-offset-2 text">
+					<h1><strong>Website Name</strong> Registration</h1>
+					<div class="description">
+						<p>
+							<strong>LOGO</strong>
+						</p>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="col-sm-6 col-sm-offset-3 form-box">
+					<div class="form-top">
+						<div class="form-top-left">
+							<h3>Register to our site</h3>
+							<p>Enter your username , email address and password to register:</p>
+						</div>
+						<div class="form-top-right">
+							<i class="fa fa-pencil"></i>
+						</div>
+					</div>
+					<div class="form-bottom">
+						<form ng-submit="submitAttendee()" class="form-horizontal login-form">
+							<div class="form-group">
+								<div>
+									<input type="text" name="username" class="form-control" placeholder="Username..." ng-model="attendeeData.name" required ng-model="attendeeData.name" id="error_msg2">
+								</div>
+							</div>
+							<div class="form-group">
+
+								<label class="sr-only" for="form-email">Email...</label>
+								<input type="email" name="email" class="form-control form-email" placeholder="Email..." ng-model="attendeeData.email" required oninvalid="this.setCustomValidity('enter valid email')" oninput="this.setCustomValidity('')" pattern=".{8,}" ng-model="attendeeData.email"
+										id="error_msg3">
+
+							</div>
+							<div class="form-group">
+
+								<div>
+									<input type="password" name="password" class="form-control" placeholder="Password..." required oninvalid="this.setCustomValidity('paswrd')" ng-model="attendeeData.password" id="error_msg4">
+								</div>
+							</div>
+							<div class="form-group">
+								<div>
+									<input type="password" name="confirm_pword" class="form-control" placeholder="Confirm Password..." required ng-model="pword">
+								</div>
+							</div>
+							<div>
+								<div>
+									<button id="button_reg" value="Register" type="submit" class="btn">Register</button>
+								</div>
+							</div>
+							<div>
+								<a ui-sref="login">Back to Login</a>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+</div>

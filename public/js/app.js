@@ -88,7 +88,7 @@ angular.module('starter', [
 			.state('main', {
 				url: '/main',
 				abstract: true,
-				templateUrl: '/templates/main.html'
+				templateUrl: '/templates/main/main.html'
 			})
 			//  .state('forms', {
 			//      url: '',
@@ -107,15 +107,15 @@ angular.module('starter', [
 				url: '/home',
 				views: {
 					'header': {
-						templateUrl: 'templates/header.html',
+						templateUrl: 'templates/main/home/header.html',
 						controller: 'HeaderCtrl'
 					},
 					'main-home': {
-						templateUrl: 'templates/main-home.html',
+						templateUrl: 'templates/main/home/index.html',
 						controller: 'HomeCtrl'
 					},
 					'footer': {
-						templateUrl: 'templates/footer.html'
+						templateUrl: 'templates/main/home/footer.html'
 					}
 				}
 			})
@@ -130,11 +130,11 @@ angular.module('starter', [
 				url: '/:speakerID',
 				views: {
 					'header': {
-						templateUrl: 'templates/header.html',
+						templateUrl: 'templates/main/home-speakers/header.html',
 						controller: 'HeaderCtrl'
 					},
 					'main-home': {
-						templateUrl: 'templates/test.html',
+						templateUrl: 'templates/main/home-speakers/test.html',
 						controller: 'SelectCtrl'
 					}
 				}
@@ -150,14 +150,14 @@ angular.module('starter', [
 				url: '/:conferenceID',
 				views: {
 					'main-home': {
-						templateUrl: 'templates/test.html',
+						templateUrl: 'templates/main/home-presentations/test.html',
 						controller: 'SelectCtrl'
 					},
 					'help': {
-						templateUrl: 'templates/help.html'
+						templateUrl: 'templates/main/home-presentations/help.html'
 					},
 					'report': {
-						templateUrl: 'templates/report.html'
+						templateUrl: 'templates/main/home-presentations/report.html'
 					}
 				}
 			})
@@ -170,7 +170,7 @@ angular.module('starter', [
 			 */
 			.state('main.test', {
 				url: '/test',
-				templateUrl: 'templates/test.html',
+				templateUrl: 'templates/main/test/test.html',
 				controller: 'HomeCtrl'
 			})
 			/**
@@ -184,11 +184,11 @@ angular.module('starter', [
 				url: '/conference/:conferenceID',
 				views: {
 					'header': {
-						templateUrl: 'templates/conference-header.html',
+						templateUrl: 'templates/main/conference/header.html',
 						controller: 'HeaderCtrl'
 					},
 					'main-home': {
-						templateUrl: 'templates/select-conference.html',
+						templateUrl: 'templates/main/conference/select.html',
 						controller: 'ConfCtrl'
 					}
 				}
@@ -199,7 +199,7 @@ angular.module('starter', [
 			       url: '/conference/:conferenceID/presentations',
 			        views:{
 			          'presentations':{
-			            templateUrl: 'main-presentation.html'
+			            templateUrl: 'template/main/presentation.html'
 			          }
 			        }
 			     })
@@ -218,7 +218,7 @@ angular.module('starter', [
 			 */
 			.state('client-profile', {
 				url: '/client/profile',
-				templateUrl: 'templates/client-profile.html'
+				templateUrl: 'templates/client/profile.html'
 			})
 			/**
 			 * @memberof states
@@ -229,7 +229,7 @@ angular.module('starter', [
 			 */
 			.state('login', {
 				url: '/login',
-				templateUrl: 'templates/login.html',
+				templateUrl: 'templates/attendee/login.html',
 				controller: 'LoginCtrl'
 			})
 			/**
@@ -241,7 +241,7 @@ angular.module('starter', [
 			 */
 			.state('client-login', {
 				url: '/client/login',
-				templateUrl: 'templates/client-login.html',
+				templateUrl: 'templates/client/login.html',
 				controller: 'LoginClientCtrl'
 			})
 			/**
@@ -253,7 +253,7 @@ angular.module('starter', [
 			 */
 			.state('register', {
 				url: '/register',
-				templateUrl: 'templates/registration.html',
+				templateUrl: 'templates/attendee/registration.html',
 				controller: 'RegCtrl'
 			})
 			/**
@@ -265,7 +265,7 @@ angular.module('starter', [
 			 */
 			.state('client-register', {
 				url: '/client/register',
-				templateUrl: 'templates/client-registration.html',
+				templateUrl: 'templates/client/registration.html',
 				controller: 'RegClientCtrl'
 			})
 			/**
@@ -277,7 +277,7 @@ angular.module('starter', [
 			 */
 			.state('forgotpassword', {
 				url: '/forgotpass',
-				templateUrl: 'templates/forgotpass.html',
+				templateUrl: 'templates/attendee/forgotpass.html',
 				controller: 'ForgotPassCtrl'
 			})
 			/**
@@ -289,7 +289,7 @@ angular.module('starter', [
 			 */
 			.state('resetpassword', {
 				url: '/resetpass/:token/:email',
-				templateUrl: 'templates/reset-pass.html',
+				templateUrl: 'templates/attendee/reset-pass.html',
 				controller: 'ResetPassCtrl'
 			}).state('help', {
 				url: '/help',
@@ -307,14 +307,14 @@ angular.module('starter', [
 			 */
 			.state('change-password', {
 				url: '/change-password',
-				templateUrl: 'templates/change-password.html' //controller: 'ForgotPassCtrl',
+				templateUrl: 'templates/attendee/change-password.html' //controller: 'ForgotPassCtrl',
 					//TODO: add controller for change password.
 			}).state('user', {
 				url: '/user',
 				templateUrl: 'templates/user.html', //controller: 'ForgotPassCtrl',
 			}).state('speaker bio', {
 				url: '/speaker',
-				templateUrl: 'templates/speaker bio.html' //controller: 'ForgotPassCtrl',
+				templateUrl: 'templates/speaker-bio.html' //controller: 'ForgotPassCtrl',
 			})
 			/**
 			 * @memberof states
