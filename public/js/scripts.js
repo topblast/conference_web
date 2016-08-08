@@ -25,6 +25,10 @@ jQuery(document).ready(function() {
 //         $('body').data('backstretch').show(0);
 //    }
 //    $('body').data('backstretch').pause();
+    
+    
+    
+    
 
     /*
         Form validation

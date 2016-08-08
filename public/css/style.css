@@ -113,3 +113,9 @@ nav a:hover { background: #1ad5ff; color: #FFF; }
 }
 
 /*.menu ul li > ul li a:hover { background-color:#2e2e2e; }*/
+    
+.carousel-inner.onebyone-carosel { margin: auto; width: 90%; }
+.onebyone-carosel .active.left { left: -33.33%; }
+.onebyone-carosel .active.right { left: 33.33%; }
+.onebyone-carosel .next { left: 33.33%; }
+.onebyone-carosel .prev { left: -33.33%; }

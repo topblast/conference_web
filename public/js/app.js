@@ -223,8 +223,6 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
   .state('test', {
     url: '/test',
     templateUrl: 'templates/test.html',
-    controller: 'HomeCtrl'
-       
   })
   
   /**

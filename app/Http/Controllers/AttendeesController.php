@@ -49,6 +49,10 @@ class AttendeesController extends Controller
      * @todo Add checks for when user logs in with a remember token
      */
     public function login(Request $request) {
+        // set the remember me cookie if the user check the box
+        $remember = $request->input('remember') === null ? false : $request->input('remember');
+        //echo $remember;
+        
         $this->validate($request, [
             'email' => 'required|email',
             'password' => 'required'
@@ -61,13 +65,23 @@ class AttendeesController extends Controller
 
          try
         {
-
-              // attempt to verify the credentials and create a token for the user
-            if (! $token = Auth::attempt($credentials)) {
-
-                return response()->json(['error' => 'invalid_credentials'], 401);
+            if ($remember)
+            {
+                $customClaims = ['exp' => date('Y-m-d', strtotime('+1 day'))];
             }
+            
+            else
+            {
+                $customClaims = ['exp' => date('Y-m-d', strtotime('+1 minute'))];
+            }
+            
+           
+                // attempt to verify the credentials and create a token for the user
+              if (! $token = Auth::attempt($credentials, $customClaims)) {
 
+                  return response()->json(['error' => 'invalid_credentials'], 401);
+              }
+           
 
         }
         catch (JWTException $e)

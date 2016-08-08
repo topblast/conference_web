@@ -7,7 +7,9 @@
 
 
     <link href="css/style.css" rel="stylesheet">
+    <!-- Bootstrap ver 3.3.6 --> 
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
 
     <!-- <link href="templates/registration.css" rel="stylesheet"> -->
 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
@@ -37,16 +39,17 @@
     <!--jQuery-->
 <!--      <script src="templates/assets/js/jquery-1.11.1.min.js"></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+   
     
     <!--Bootstrap-->
     <script src="js/bootstrap.min.js"></script>
     
     <script src="templates/registration.js"></script>
 	
-	 <!-- Javascript -->
+    <!-- Javascript -->
         
-        <script src="js/jquery.backstretch.min.js"></script>
-        <script src="js/scripts.js"></script>
+    <script src="js/jquery.backstretch.min.js"></script>
+    <script src="js/scripts.js"></script>
 <!--        <style>
             .bgimg{
                  width: 100%;
