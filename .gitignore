@@ -1,3 +1,4 @@
 /vendor
 .env
 /nbproject/private/
+/public/ts*

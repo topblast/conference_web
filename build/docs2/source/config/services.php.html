@@ -1,0 +1,83 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+return [
+
+    /*
+    |--------------------------------------------------------------------------
+    | Third Party Services
+    |--------------------------------------------------------------------------
+    |
+    | This file is for storing the credentials for third party services such
+    | as Stripe, Mailgun, Mandrill, and others. This file provides a sane
+    | default location for this type of information, allowing packages
+    | to have a conventional place to find your various credentials.
+    |
+    */
+
+    'mailgun' =&gt; [
+        'domain' =&gt; env('MAILGUN_DOMAIN'),
+        'secret' =&gt; env('MAILGUN_SECRET'),
+    ],
+
+    'mandrill' =&gt; [
+        'secret' =&gt; env('MANDRILL_SECRET'),
+    ],
+
+    'ses' =&gt; [
+        'key'    =&gt; env('SES_KEY'),
+        'secret' =&gt; env('SES_SECRET'),
+        'region' =&gt; 'us-east-1',
+    ],
+
+    'stripe' =&gt; [
+        'model'  =&gt; App\User::class,
+        'key'    =&gt; env('STRIPE_KEY'),
+        'secret' =&gt; env('STRIPE_SECRET'),
+    ],
+
+];
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

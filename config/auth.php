@@ -1,5 +1,11 @@
 <?php 
+/**
+ * auth.php
+ */
 
+/**
+ * The auth file is a config file for auth guards.
+ */
 return [
     'defaults' => [
         'guard' => env('AUTH_GUARD', 'attendee'),
@@ -19,5 +25,11 @@ return [
 
     'passwords' => [
         //
+        'users' => [
+        'provider' => 'attendee',
+        'email' => 'auth.emails.password',
+        'table' => 'password_resets',
+        'expire' => 60,
+        ],
     ],
 ];

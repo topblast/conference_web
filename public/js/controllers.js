@@ -1,289 +1,410 @@
+/**
+ * @memberof starter
+ * @ngdoc module
+ * @name starter.controllers
+ * 
+ * 
+ * 
+ */
+
 angular.module('starter.controllers', [])
 
-.controller('HomeCtrl', function($scope, Web, $localStorage, $location, $http) {
-    //$scope.speakers = Web.Speaker.list();
-   // alert('Reached here with ' + $scope.speakers);
-    // loading variable to show the spinning loading icon
-  //  $scope.loading = true;
-  var presentations= [];
-  $scope.presentation = [];
-   
-   $scope.submitSpeaker=function(){
-       $scope.loading = true;
-       
-       Web.Speaker.create($scope.speakerData, function (response){
-                alert('Speaker added!');
-                Web.Speaker.list()
-                .success(function(data) {
-                    $scope.speakers = data;
-                    $scope.loading = false;
-                });
-            },
-            function(response){
-                alert('Something went wrong with the login process. Try again later!');
-            }
-        );
-//               .success(function(data) {
-//
-//                   Web.Speaker.list()
-//                           .success(function(getData){
-//                               $scope.speakers = getData;
-//                               $scope.loading = false;
-//                   })
-//       });
-   };
+/**
+ * @memberof starter
+ * @ngdoc controller
+ * @desc Controller for the 'main-home' view in the 'main.home' state
+ * @name HomeCtrl
+ * @param $scope {service} controller scope
+ * @param Web {service} factory service that holds all the table-specific services for the conference
+ * @param $localstorage {service} ngStorage localStorage
+ * @param $location {service} ng location
+ * @param $http {service} promise http
+ * @returns {undefined}
+ */
+.controller('HomeCtrl', function($scope, Web, Attendee, $localStorage, $location) {
 
-   $scope.loading = true;
+	$scope.bgImage = 'img/backgrounds/4.jpg';
 
-    Web.Speaker.list()
-        .success(function(data) {
-            $scope.speakers = data;
-            $scope.loading = false;
-           // alert('Reached here with ' + $scope.speakers);
-        });
-    
-    
+	var presentations = [];
+	$scope.presentation = [];
 
-    $scope.deleteSpeaker=function(id){
-    Web.Speaker.delete(id, function (response){
-        alert("Speaker deleted");
-         Web.Speaker.list()
-                .success(function(data) {
-                    $scope.speakers = data;
-                });
-        }, function (response){
-        alert("Error!!!");
-        }
-    );
-    };
+	$scope.submitSpeaker = function() {
+		$scope.loading = true;
 
-//    Web.Conference.list()
-//        .success(function(data) {
-//            $scope.speakers = data;
-    $scope.loading = true;
+		Web.Speakers.Create($scope.speakerData)
+			.then(function(response) {
+					alert('Speaker added!');
+					Web.Speakers.List()
+						.success(function(data) {
+							$scope.speakers = data;
+							$scope.loading = false;
+						});
+				},
+				function(response) {
+					alert('Something went wrong with the login process. Try again later!');
+				}
+			);
 
-    Web.Conference.list()
-        .success(function(data) {
-            $scope.conferences = data;
-            $scope.loading = false;
-//           // alert('Reached here with ' + $scope.speakers);
-            angular.forEach(data, function(value, key){
-    //          console.log(Web.Conference.selectPresentation(value.conference_id).success(function(data){
-    //        return data;
-    //
-    //    }));
-    //          if(angular.isUndefined(Web.Conference.selectPresentation(value.conference_id).$$state.value))
-    //          {
-    //            //console.log(value.conference_id);
-    //            $scope.presentation[value.conference_id] = '';
-    //          }
-    //          
-    //          else
-    //          {
-     //           console.log(Web.Conference.selectPresentation(value.conference_id).$$state.value);
-                Web.Conference.selectPresentation(value.conference_id).success(function(data){
-                $scope.presentation[value.conference_id] = data;
+	};
 
-                });
-      //        }
+	$scope.loading = true;
 
-               //console.log('This is 77: ' +  $scope.presentation[77]);
-            });
-        });
-   
-   $scope.loading = true;
-   
-  
-   
-   $scope.selectPres=function(id){
-     $scope.loading = false;
-     console.log(presentations[id].$$state.value.data);
-     
-     return presentations[id].$$state.value.data;
-    };
+	Web.Speakers.List()
+		.success(function(data) {
+			$scope.speakers = data;
+			$scope.loading = false;
+			// alert('Reached here with ' + $scope.speakers);
+		});
 
+	$scope.deleteSpeaker = function(id) {
+		Web.Speakers.Delete(id, function(response) {
+			alert("Speaker deleted");
+			Web.Speakers.List()
+				.success(function(data) {
+					$scope.speakers = data;
+				});
+		}, function(response) {
+			alert("Error!!!");
+		});
+	};
 
+	$scope.loading = true;
 
+	Attendee.Conferences($localStorage.currentUser.id)
+		.success(function(data) {
+			$scope.conferences = data;
+			$scope.loading = false;
+			//           // alert('Reached here with ' + $scope.speakers);
+			angular.forEach(data, function(value, key) {
 
+				Web.Conference.selectPresentation(value.conference_id).success(function(data) {
+					$scope.presentation[value.conference_id] = data;
 
-    $scope.logout=function() {
-            // remove user from local storage and clear http auth header
-            Web.Attendee.logout();
-            delete $localStorage.currentUser;
-            $http.defaults.headers.common.Authorization = '';
-            $location.path('/login');
-        };
+				});
+				//        }
 
+			});
+		});
 
+	$scope.loading = true;
+
+	$scope.selectPres = function(id) {
+		$scope.loading = false;
+		console.log(presentations[id].$$state.value.data);
+
+		return presentations[id].$$state.value.data;
+	};
+
+	$scope.logout = function() {
+		// remove user from local storage and clear http auth header
+		Attendee.logout();
+		delete $localStorage.currentUser;
+		//$http.defaults.headers.common.Authorization = '';
+		$location.path('/login');
+	};
 
 })
 
-.controller('HeaderCtrl', function($scope, Web, $location, $localStorage, $http) {
-    $scope.userDetails = $localStorage.currentUser;
-            
-    $scope.logout=function() {
-            // remove user from local storage and clear http auth header
-            Web.Attendee.logout();
-            delete $localStorage.currentUser;
-            $http.defaults.headers.common.Authorization = '';
-            $location.path('/login');
-        };
-
-    $scope.showHelpModal=function($scope) {
-        $scope.showModal = true;
-    };
+.controller('bgCtrl', function($scope) {
+	$scope.bgImage = 'img/backgrounds/3.jpg';
 })
 
-.controller('SelectCtrl', function($scope, $stateParams, Web){
-    Web.Speaker.select($stateParams.speakerID).success(function(data){
-        $scope.speaker = data;
+/**
+ * @memberOf starter
+ * @ngdoc controller
+ * @name HeaderCtrl
+ * @desc Controller for the 'header' view, used in multiple states.
+ * @param $scope {service} controller scope
+ * @param Attendee {service} factory service that holds all the table-specific services for the conference
+ * @param $localstorage {service} ngStorage localStorage
+ * @param $location {service} ng location
+ * @returns {undefined}
+ */
+.controller('HeaderCtrl', function($scope, Attendee, $location, $localStorage) {
+	// $scope.userDetails = $localStorage.currentUser;
 
-    });
+	$scope.logout = function() {
+		// remove user from local storage and clear http auth header
+		Attendee.Logout();
+		// delete $localStorage.currentUser;
+		//$http.defaults.headers.common.Authorization = '';
+		$location.path('/login');
+	};
+
+	$scope.showHelpModal = function($scope) {
+		$scope.showModal = true;
+	};
 })
 
-.controller('ConfCtrl', function($scope, $stateParams, Web){
-    Web.Conference.select($stateParams.conferenceID).success(function(data){
-        $scope.conference = data;
+/**
+ * @memberOf starter
+ * @ngdoc controller
+ * @name SelectCtrl
+ * @desc Controller for the 'main-home' view in the 'main.home-presentations' state
+ * @param $scope {service} controller scope
+ * @param $stateParams {service} Parameters added to the state's url
+ * @param Web {service} factory service that holds all the table-specific services for the conference
+ * @returns {undefined}
+ */
+.controller('SelectCtrl', function($scope, $stateParams, Web) {
+	Web.Speakers.Select($stateParams.speakerID).success(function(data) {
+		$scope.speaker = data;
 
-    });
-
-    Web.Speaker.selectConf($stateParams.conferenceID).success(function(data){
-        $scope.speakers = data;
-    });
-    
-    $scope.deleteSpeaker=function(id){
-    Web.Speaker.delete(id, function (response){
-        alert("Speaker deleted");
-         Web.Speaker.selectConf($stateParams.conferenceID)
-                 .success(function(data){
-                $scope.speakers = data;
-            });
-        }, function (response){
-        alert("Error!!!");
-        }
-    );
-    };
+	});
 })
 
-.controller('LoginCtrl', function($scope, Web, $location, $http, $localStorage) {
-     $scope.loginAttendee=function()
-    {
-        
-         $scope.loading = true;
+/**
+ * @memberof starter
+ * @ngdoc controller
+ * @name ConfCtrl
+ * @param $scope {service} controller scope
+ * @param $stateParams {service} Parameters added to the state's url
+ * @param Web {service} factory service that holds all the table-specific services for the conference
+ * @returns {undefined}
+ */
+.controller('ConfCtrl', function($scope, $stateParams, Web) {
+	Web.Conference.Select($stateParams.conferenceID).success(function(data) {
+		$scope.conference = data;
 
+	});
 
-       Web.Attendee.login($scope.attendeeData, function (response){
-                alert('Login Successful!');
-                console.log(response);
-                console.log(response.data);
-                console.log(response.data.user);
-                $scope.loading = false;
-                //console.log(response.data);
-                //console.log(response.data.user);
-                // store username and token in local storage to keep user logged in between page refreshes
-                $localStorage.currentUser = { username: response.data.user.name, token: response.data.token };
-                 
-                // add jwt token to auth header for all requests made by the $http service
-                   
-                $http.defaults.headers.common.Authorization = 'Bearer ' + response.data.token;
-                 $location.path('/main/home');
+	Web.Conference.Presentations($stateParams.conferenceID).success(function(data) {
+		$scope.presentations = data;
+	});
 
-            },
-            function(response){
-                alert('Something went wrong with the login process. Try again later!');
-            }
-        );
+	// TODO: Review the function/operation below.
+	Web.Speakers.Conferences($stateParams.conferenceID).success(function(data) {
+		$scope.speakers = data;
+	});
 
-       
-    };
+	$scope.deleteSpeaker = function(id) {
+		Web.Speakers.Delete(id, function(response) {
+			alert("Speaker deleted");
+			Web.Speakers.Conferences($stateParams.conferenceID)
+				.success(function(data) {
+					$scope.speakers = data;
+				});
+		}, function(response) {
+			alert("Error!!!");
+		});
+	};
 })
 
+/**
+ * @memberof starter
+ * @ngdoc controller
+ * @name LoginCtrl
+ * @param {type} $scope controller scope
+ * @param {type} Attendee factory service that holds all the table-specific services for the conference
+ * @param {type} $location
+ * @param {type} $routeParams Query Parameters
+ * @param {type} $localStorage ngStorage localStorage
+ * @returns {undefined}
+ */
+.controller('LoginCtrl', function($scope, Attendee, $location, $localStorage) {
+	if (Attendee.IsLogged())
+		$location.path('/main/home');
+
+	$scope.bgImage = 'img/backgrounds/3.jpg';
+
+	$scope.loginAttendee = function() {
+		$scope.loading = true;
+		Attendee.Login($scope.attendeeData.email, $scope.attendeeData.password)
+			.then(function(response) {
+					alert('Login Successful!');
+
+					$scope.loading = false;
+					/*
+					// Store username and token in local storage to keep user logged in between page refreshes
+					$localStorage.currentUser = {
+						username: response.data.user.name,
+						token: response.data.token,
+						id: response.data.user.attendee_id
+					};*/
+
+					// add jwt token to auth header for all requests made by the $http service
+					$location.path('/main/home');
+				},
+				function(response) {
+					alert('Something went wrong with the login process. Try again later!');
+				}
+			);
+
+	};
+})
+
+/**
+ * @memberof starter
+ * @ngdoc controller
+ * @name LoginClientCtrl
+ * @param {type} $scope controller scope
+ * @param {type} Web factory service that holds all the table-specific services for the conference
+ * @param {type} $location
+ * @param {type} $http promise http
+ * @param {type} $localStorage ngStorage localStorage
+ * @returns {undefined}
+ */
 .controller('LoginClientCtrl', function($scope, Web, $location, $http, $localStorage) {
-     $scope.loginClient=function()
-    {
-        
-         $scope.loading = true;
+	$scope.loginClient = function() {
 
+		$scope.loading = true;
 
-       Web.Client.login($scope.clientData, function (response){
-                alert('Login Successful! ' + response.data.user.contact_name);
-                $scope.loading = false;
-                //console.log(response.data);
-                //console.log(response.data.user);
-                // store username and token in local storage to keep user logged in between page refreshes
-                $localStorage.currentUser = { username: response.data.user.contact_name, token: response.data.token };
-                 
-                // add jwt token to auth header for all requests made by the $http service
-                   
-                $http.defaults.headers.common.Authorization = 'Bearer ' + response.data.token;
-                 $location.path('/client/profile');
+		Web.Clients.Login($scope.clientData)
+			.then(function(response) {
+					alert('Login Successful! ' + response.data.user.contact_name);
+					$scope.loading = false;
+					//console.log(response.data);
+					//console.log(response.data.user);
+					// store username and token in local storage to keep user logged in between page refreshes
+					$localStorage.currentUser = {
+						username: response.data.user.contact_name,
+						token: response.data.token
+					};
 
-            },
-            function(response){
-                alert('Something went wrong with the login process. Try again later!');
-            }
-        );
+					// add jwt token to auth header for all requests made by the $http service
 
-       
-    };
+					$http.defaults.headers.common.Authorization = 'Bearer ' + response.data.token;
+					$location.path('/client/profile');
+
+				},
+				function(response) {
+					alert('Something went wrong with the login process. Try again later!');
+				}
+			);
+
+	};
 })
 
+/**
+ * @memberof starter
+ * @ngdoc controller
+ * @name RegCtrl
+ * @param {type} $scope controller scope 
+ * @param {type} Web factory service that holds all the table-specific services for the conference
+ * @param {type} $location
+ * @returns {undefined}
+ */
 .controller('RegCtrl', function($scope, Web, $location) {
-     $scope.submitAttendee=function()
-    {
+	$scope.bgImage = 'img/backgrounds/3.jpg';
 
-         $scope.loading = true;
+	$scope.submitAttendee = function() {
 
-         if($scope.attendeeData.password != $scope.pword)
-         {
-             alert("passwords don't match!");
-             return;
-         }
+		$scope.loading = true;
 
-       Web.Attendee.register($scope.attendeeData, function (response){
-                alert('Attendee added!');
-                 $location.path('/login');
-                
-            },
-            function(response){
-                alert('Something went wrong with the login process. Try again later!');
-            }
-        );
-    };
+		if ($scope.attendeeData.password !== $scope.pword) {
+			alert("passwords don't match!");
+			return;
+		}
+
+		Web.Attendees.Register($scope.attendeeData)
+			.then(function(response) {
+					alert('Attendee added!');
+					$location.path('/login').search({
+						email: $scope.attendeeData.email
+					});
+
+				},
+				function(response) {
+					alert('Something went wrong with the login process. Try again later!');
+				}
+			);
+	};
 })
 
+/**
+ * @memberof starter
+ * @ngdoc controller
+ * @name RegClientCtrl
+ * @param {type} $scope
+ * @param {type} Web
+ * @param {type} $location
+ * @returns {undefined}
+ */
 .controller('RegClientCtrl', function($scope, Web, $location) {
-     $scope.submitClient=function()
-    {
+	$scope.submitClient = function() {
 
-         $scope.loading = true;
+		$scope.loading = true;
 
-         if($scope.clientData.password != $scope.pword)
-         {
-             alert("passwords don't match!");
-             return;
-         }
+		if ($scope.clientData.password !== $scope.pword) {
+			alert("passwords don't match!");
+			return;
+		}
 
-       Web.Client.register($scope.clientData, function (response){
-                alert('Client added!');
-                 $location.path('/client/login');
-                
-            },
-            function(response){
-                alert('Something went wrong with the registration process. Try again later!');
-            }
-        );
-    };
+		Web.Clients.Register($scope.clientData)
+			.then(function(response) {
+					alert('Client added!');
+					$location.path('/client/login');
+
+				},
+				function(response) {
+					alert('Something went wrong with the registration process. Try again later!');
+				}
+			);
+	};
 })
 
-.controller('ForgotPassCtrl', function($scope, Web, $location) {})
+/**
+ * @memberof starter
+ * @ngdoc controller
+ * @name ForgotPassCtrl
+ * @param {type} $scope
+ * @param {type} Web
+ * @param {type} $location
+ * @returns {undefined}
+ */
+.controller('ForgotPassCtrl', function($scope, Web, $location) {
+	$scope.sendEmail = function() {
+		$scope.loading = true;
+
+		Web.Attendee.ForgotPassword($scope.attendeeData.email)
+			.then(function(response) {
+					alert('Email Sent!');
+				},
+				function(response) {
+					alert('Email was unsuccessful.');
+				}
+			);
+
+		$scope.location = false;
+	};
+
+})
+
+/**
+ * @memberof starter
+ * @ngdoc controller
+ * @name ResetPassCtrl
+ * @param {type} $scope
+ * @param {type} $stateParams
+ * @param {type} Attendee
+ * @returns {undefined}
+ */
+.controller('ResetPassCtrl', function($scope, $stateParams, Attendee) {
+	$scope.sendEmail = function() {
+		$scope.loading = true;
+		$scope.attendeeData.token = $stateParams.token;
+		$scope.attendeeData.email = $stateParams.email;
+		console.log($stateParams);
+
+		Attendee.ResetPassword($scope.attendeeData)
+			.then(function(response) {
+					alert('Password successfully reset!');
+				},
+				function(response) {
+					alert('Password reset unsuccessful.');
+				}
+			);
+
+		$scope.location = false;
+	}
+})
 
 .controller('MainCtrl', function($scope) {})
 
 .controller('AccountCtrl', function($scope) {
-  $scope.settings = {
-    enableFriends: true
-  };
+	$scope.settings = {
+		enableFriends: true
+	};
 });
 
 /*

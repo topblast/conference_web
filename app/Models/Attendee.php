@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Attendee.php
+ */
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -7,11 +9,19 @@ use Laravel\Lumen\Auth\Authorizable;
 use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
 use Tymon\JWTAuth\Contracts\JWTSubject as JWTSubject;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 //use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 
-
-class Attendee extends Model implements JWTSubject, Authenticatable{
-    use AuthenticatableTrait, Authorizable;
+/**
+ * Attendee model.
+ * 
+ * The Attendee model for the attendees table.
+ * 
+ * @filesource
+ */
+class Attendee extends Model implements CanResetPasswordContract, JWTSubject, Authenticatable{
+    use CanResetPassword, AuthenticatableTrait, Authorizable;
 
     protected $primaryKey = 'attendee_id';
 
@@ -25,20 +35,36 @@ class Attendee extends Model implements JWTSubject, Authenticatable{
         'password',
     ];
     
+    /**
+     * Establishes a many-to-many relationship with conferences table
+     * @return type
+     */
     public function conferences(){
         return $this->belongsToMany('App\Models\Conference', 'conference_attendees');
     }
     
+    /**
+     * Establishes a one-to-many relationship with chatlogs table
+     * @return type
+     */
     public function chats()
     {
         return $this->hasMany('App\Models\Chatlog');
     }
     
+    /**
+     * Establishes a one-to-many relationship with whitelists table
+     * @return type
+     */
     public function whitelist()
     {
         return $this->hasMany('App\Models\Whitelist');
     }
     
+    /**
+     * Establishes a one-to-many relationship with blacklists table
+     * @return type
+     */
     public function blacklist()
     {
         return $this->hasMany('App\Models\Blacklist');

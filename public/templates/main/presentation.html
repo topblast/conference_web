@@ -1,0 +1,5 @@
+<p>presentation goes here</p>
+<div ng-repeat="presentation in getConferenceID(conference.id)">
+	<!--<div ng-repeat="presentation in presentations" ng-init="selectPres(conference.conference_id)">-->
+	{{presentation.presentation_id}} {{presentation.title}}
+</div>

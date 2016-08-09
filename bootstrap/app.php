@@ -25,6 +25,7 @@ $app = new Laravel\Lumen\Application(
 
 $app->withFacades();
 $app->configure('jwt');
+$app->configure('mail');
 
 class_alias('Tymon\JWTAuth\Facades\JWTAuth', 'JWTAuth');
 /** This gives you finer control over the payloads you create if you require it.
@@ -37,6 +38,7 @@ $app->alias('auth', 'Illuminate\Auth\AuthManager');
 //$app->alias('JWTAuth', 'Tymon\JWTAuth\Facades\JWTAuth');
 
 $app->withEloquent();
+$app->configure('services');
 
 /*
 |--------------------------------------------------------------------------
@@ -97,7 +99,8 @@ $app->register(Arubacao\BasicAuth\BasicGuardServiceProvider::class);
 //$app->register('Tymon\JWTAuth\Providers\JWTAuthServiceProvider');
 $app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
 $app->register(Irazasyed\JwtAuthGuard\JwtAuthGuardServiceProvider::class);
-
+$app->register(\Illuminate\Auth\Passwords\PasswordResetServiceProvider::class);
+$app->register(Illuminate\Mail\MailServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 
 /*

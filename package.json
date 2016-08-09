@@ -1,0 +1,32 @@
+{
+  "name": "conference-app",
+  "version": "1.0.0",
+  "description": "The Conference web Application system is a virtually self contained scheduling system; however, it will require users to have access to a web browser on their workstation computer.  This means that the users of the system do not need to invest in any other software to get the most out of the software system as any Windows based PC comes installed with a web browser, and any non Windows machine can use Chrome or other freeware browsers.  The system will also have the ability to allow users to add specific events to their native calendar.",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "ngstorage": "^0.3.10"
+  },
+  "devDependencies": {
+    "angular-jsdoc": "^1.4.2",
+    "grunt": "^1.0.1",
+    "grunt-jsdoc": "^2.1.0",
+    "jsdoc": "^3.4.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/topblast/conference_web.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/topblast/conference_web/issues"
+  },
+  "homepage": "https://github.com/topblast/conference_web#readme"
+}

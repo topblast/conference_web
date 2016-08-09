@@ -1,0 +1,185 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+/**
+ * Conference.php
+ */
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+/**
+ * Conference Model.
+ * 
+ * The model for the conferences table
+ * @filesource
+ */
+class Conference extends Model{
+    protected $primaryKey=&quot;conference_id&quot;;
+    /**
+     * Establishes many-to-one relationship with clients table
+     * @return type
+     */
+    public function client() {
+        return $this-&gt;belongsTo('App\Models\Client');
+    }
+    
+    /**
+     * Establishes one-to-many relationship with presentations table 
+     * @return type
+     */
+    public function presentations()
+    {
+        return $this-&gt;hasMany('App\Models\Presentation');
+    }
+    
+    /**
+     * Establishes one-to-many relationship with rooms table
+     * @return type
+     */
+    public function rooms()
+    {
+        return $this-&gt;hasMany('App\Models\Room');
+    }
+    
+    /**
+     * Establishes one-to-many relationship with sponsors table
+     * @return type
+     */
+    public function sponsors()
+    {
+        return $this-&gt;hasMany('App\Models\Sponsor');
+    }
+    
+    /**
+     * Establishes one-to-many relationship with whitelists table
+     * @return type
+     */
+    public function whitelist()
+    {
+        return $this-&gt;hasMany('App\Models\Whitelist');
+    }
+    
+    /**
+     * Establishes one-to-many relationship with blacklists table
+     * @return type
+     */
+    public function blacklist()
+    {
+        return $this-&gt;hasMany('App\Models\Blacklist');
+    }
+    
+    /**
+     * Establishes many-to-many relationship with attendees table
+     * @return type
+     */
+    public function attendees(){
+        return $this-&gt;belongsToMany('App\Models\Attendee', 'conference_attendees');
+    }
+    
+    /**
+     * Event for when model is booted
+     */
+     public static function boot()
+    {
+        parent::boot();    
+    
+        // cause a delete of a product to cascade to children so they are also deleted
+        static::deleting(function($conference)
+        {
+            
+            
+            
+            
+            if (is_null($conference-&gt;presentations)) {
+                //Do nothing
+            }
+            else
+            {
+                $conference-&gt;presentations()-&gt;delete();
+            }
+            
+            
+            
+           
+            
+            
+            if (is_null($conference-&gt;sponsors)) {
+                //Do nothing
+            }
+            else
+            {
+                $conference-&gt;sponsors()-&gt;delete();
+            }
+            
+            
+            if (is_null($conference-&gt;whitelist)) {
+                //Do nothing
+            }
+            else
+            {
+                $conference-&gt;whitelist()-&gt;delete();
+            }
+            
+            
+            if (is_null($conference-&gt;blacklist)) {
+                //Do nothing
+            }
+            else
+            {
+                $conference-&gt;blacklist()-&gt;delete();
+            }
+            
+             if (is_null($conference-&gt;rooms)) {
+                //Do nothing
+            }
+            else
+            {
+                $conference-&gt;rooms()-&gt;delete();
+            }
+        });
+    }    
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

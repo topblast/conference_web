@@ -4,6 +4,19 @@ CSS Conference Application Web &amp; Server Implementation
 #Requirements
 - PHP 7.x
 - Composer
+- Lumen Framework
+
+#Setup
+1. Download/clone the project.
+2. Navigate to the root of the project.
+3. Create a copy of the `.env.example` file. Name it `.env`.
+4. In your `.env` file, add the following values:
+    * For `DB_DATABASE` use the name of a database locally stored on your computer.
+    * If your username for your chosen database is different from 'root', then type in that username in `DB_USERNAME`.
+    * For `DB_PASSWORD` use the password for your chosen database. If your database has no password then leave this value blank.
+    * For `MAIL_EMAIL` choose a Gmail email address that you want notification emails to be sent from.
+    * For `MAIL_PASSWORD` enter the password for that email address.
+    * Save your changes.
 
 #How To Run
 1. Navigate to the project directory.
@@ -11,6 +24,12 @@ CSS Conference Application Web &amp; Server Implementation
 ```
 composer install
 ```
+3. If setting up the database for the first time, run the Command:
+```
+php artisan migrate
+```
+otherwise, skip this step.
+
 3. Run the Command: 
 ```
 php artisan serve
@@ -120,6 +139,11 @@ Presentation Speaker
 - Speaker ID [fk]
 - Presentation ID [fk]
 - Speaker Type {Keynote, Discussant}
+
+## Source Code Documentation
+Documentation for the front-end can be found at ` ./builds/docs `. Click on the index.html file.
+
+Documentation for the back-end can be found at ` ./builds/docs2 `. Click on the index.html file.
 
 ## Official Documentation
 

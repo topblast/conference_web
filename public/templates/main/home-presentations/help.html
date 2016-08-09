@@ -1,0 +1,60 @@
+<!--This button should be linked to the page for help but is not actually needed for the finished product-->
+
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-transparent">
+  Launch modal transparent
+</button>
+<!--End-->
+
+ <!--Modal for users to send help request-->
+<div class="modal modal-transparent fade" id="modal-transparent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Help</h4>
+                <p>Can't find the conference? Missing information? Tell us what you need help with in the box below and we will get back to you</p>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <div>
+                        <input type="name" name="name" class="form-control" placeholder="Name" ng-model="attendeeData.name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div>
+                            <input type="email" name="email" class="form-control" placeholder="Email" ng-model="attendeeData.email">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div>
+                                <textarea id = "comment" type="comment" name="comment" class="form-control" placeholder="Comment" rows="3" ng-model="attendeeData.comment"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+<!--Buttons to enter information or close the modal-->
+                    <div class="modal-footer">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <button class="btn btn-block"> Send</button>
+                            </div>
+                            <div class="col-md-6">
+                                <button class="btn btn-block" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- include jQuery -->
+                <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+            </div>
+<!---End modal-->
+
+
+
+
+
+</div>

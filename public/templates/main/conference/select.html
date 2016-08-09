@@ -1,0 +1,14 @@
+<div ui-view="header"></div>
+
+<p>Conferences go here</p>
+<div>
+	{{conference.conference_id}} {{conference.name}}
+
+
+	<p>Presentations</p>
+	<div ng-repeat="pres in presentations">
+		<h3>{{pres.presentation_id}} {{pres.title}}</h3>
+		<p> {{pres.abstract}} </p>
+		<!--                     <p><a href="#" ng-if="speaker" ng-click="deleteSpeaker(speaker.speaker_id)" class="text-muted">Delete</a></p>-->
+	</div>
+</div>

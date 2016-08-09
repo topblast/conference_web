@@ -1,0 +1,281 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+/**
+ * ClientsController.php
+ */
+namespace App\Http\Controllers;
+
+use App\Models\Client;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+
+use Illuminate\Http\Exception\HttpResponseException;
+use JWTAuth;
+use Tymon\JWTAuth\Exceptions\JWTException;
+use App\Http\Controllers\Controller;
+
+use Illuminate\Http\Response as IlluminateResponse;
+
+/**
+ * Controller for the clients table.
+ * 
+ * 
+ */
+class ClientsController extends Controller
+{
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        //
+    }
+
+    //LOGIN FUNCTION
+    /**
+     * Attempts to login the client
+     * @param Request $request
+     * The POST request
+     * @return type
+     * @todo Add checks for when user logs in with a remember token
+     */
+    public function login(Request $request) {
+        $this-&gt;validate($request, [
+            'email' =&gt; 'required|email',
+            'password' =&gt; 'required',
+          
+        ]);
+
+       
+
+        $credentials = $request-&gt;only('email', 'password');
+
+       try
+        {
+             
+              // attempt to verify the credentials and create a token for the user
+            if (! $token = Auth::guard('client')-&gt;attempt($credentials)) {
+                
+                return response()-&gt;json(['error' =&gt; 'invalid_credentials'], 401);
+            }
+              
+             
+        }
+        catch (JWTException $e)
+        {
+            // something went wrong whilst attempting to encode the token
+            return response()-&gt;json(['error' =&gt; 'could_not_create_token'], 500);
+        }
+        
+        $user = Auth::guard('client')-&gt;user(); //authenticate user with successfully generated token
+        
+        // all good so return the token and user credentials
+        return response()-&gt;json(compact('user','token'));
+    }
+
+    //REGISTER FUNCTION
+    /**
+     * Attempts to register the client
+     * @param Request $request
+     * The POST request
+     * @return type
+     */
+    public function register(Request $request){
+         $regex = '/(?=.*[0-9])(?=.*[A-Z])(?=.*).{8,}/'; //at least 8 characters including at least 1 Uppercase and 1 digit required
+        $result = $this-&gt;validate($request,[
+            'contact_name' =&gt; 'required',
+            'email' =&gt; 'required|email',
+            'password' =&gt; 'required|min:8|regex:' . $regex,
+            'organisation' =&gt; 'required',
+            'address1' =&gt; 'required',
+            'city' =&gt; 'required',
+            'country' =&gt; 'required',
+        ]);
+
+        if (isset($result-&gt;error))
+        {
+            return response()-&gt;json([
+                'error'=&gt; [
+                    'message' =&gt; 'Verification Failed',
+                    'result' =&gt; $result-&gt;error
+                ]
+            ], IlluminateResponse::HTTP_BAD_REQUEST);
+        }
+
+        $client_into = $request-&gt;only(
+            'contact_name',
+            'email',
+            'password',
+            'organisation',
+            'address1',
+            'address2',
+            'city',
+            'country'
+        );
+
+        if (Client::where('email', $client_into['email'])-&gt;count() &gt; 0)
+        {
+            // Email Exist
+            return response()-&gt;json([
+                'error'=&gt; [
+                    'message' =&gt; 'Email already in use',
+                ]
+            ], 409 );
+        }
+
+        $client_into['password'] = Hash::make($client_into['password']);
+        $cli = Client::create($client_into);
+        return response()-&gt;json($cli);
+    }
+
+    //GET FUNCTIONS
+    /**
+     * Gets all clients
+     * @return type
+     */
+    public function get_all() {
+        if(!$all = Client::all())
+            return response()-&gt;json([], 404);
+        
+        return response()-&gt;json($all);
+    }
+
+    //GET BY ID FUNCTION
+    /**
+     * Gets client by id
+     * @param type $id
+     * @return type
+     */
+    public function get_id($id) {
+        if(!$cli = Client::find($id))
+            return response()-&gt;json([], 404);
+
+        return response()-&gt;json($cli);
+    }
+    
+    
+    
+    //PUT FUNCTIONS    
+    /**
+     * Changes a client's password. Function may not be necessary depending on how Lumen handles password resets.
+     * @param type $id
+     * @param Request $request
+     * The PUT request
+     * @return type
+     */
+    public function change_password($id, Request $request){
+        if(!$pEdit = Client::find($id))
+            return response()-&gt;json([], 404);
+
+        $pEdit-&gt;salted_password = $request-&gt;input('password');
+        
+        $pEdit-&gt;save();
+        
+        return response()-&gt;json($pEdit);
+    }
+
+    //DELETE FUNCTION
+   /**
+    * Deletes a client using id as parameter
+    * @param Request $request
+    * The DELETE request
+    * @param type $id
+    * @return type
+    */
+    public function delete_client(Request $request, $id){
+        if(!$del  = Client::find($id))
+            return response()-&gt;json([], 404);
+ 
+        $del-&gt;delete();
+ 
+        return response()-&gt;json($del);
+    }
+
+    //PUT FUNCTION
+    /**
+     * Edits a client's details
+     * @param type $id
+     * @param Request $request
+     * The PUT request
+     * @return type
+     */
+    public function edit_client($id, Request $request){
+        if(!$edit  = Client::find($id))
+            return response()-&gt;json([], 404);
+
+        $edit-&gt;contact_name = $request-&gt;input('contact_name');
+        $edit-&gt;email = $request-&gt;input('email');
+        $edit-&gt;organisation = $request-&gt;input('organisation');  
+        $edit-&gt;address1 = $request-&gt;input('address1');
+        $edit-&gt;address2 = $request-&gt;input('address2');
+        $edit-&gt;city = $request-&gt;input('city');
+        $edit-&gt;country = $request-&gt;input('country');
+
+        //no password is needed as we have an edit password function
+        //have values loaded for put function, so as to not have blank fields
+
+ 
+        $edit-&gt;save();
+  
+        return response()-&gt;json($edit);
+    }
+
+    //Logout
+    /**
+     * Logs out the client
+     */
+    public function logout(){
+        //invalidate generated token
+        Auth::logout();
+    }
+   
+    
+}
+
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>
