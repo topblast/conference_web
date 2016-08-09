@@ -216,7 +216,7 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
 
 .state('speaker bio', {
         url:'/speaker',
-        templateUrl: 'templates/speaker bio.html'
+        templateUrl: 'templates/speaker-bio.html'
         //controller: 'ForgotPassCtrl',
     })
 
@@ -226,21 +226,39 @@ angular.module('starter', ['starter.controllers', 'starter.services', 'ui.router
         //controller: 'ForgotPassCtrl',
     })
 
-.state('conhome', {
+.
+
+.state('about', {
+        url:'/about',
+        templateUrl: 'templates/about.html'
+        //controller: 'ForgotPassCtrl',
+    })
+
+.state('Speakers', {
+        url:'/speakers',
+        templateUrl: 'templates/Speakers.html'
+        //controller: 'ForgotPassCtrl',
+    })
+
+.state('Schedule', {
+        url:'/schedule',
+        templateUrl: 'templates/Schedule.html'
+        //controller: 'ForgotPassCtrl',
+    })
+//WARRENS TESTING!!!!!!!!!!
+//WARRENS TESTING!!!!!!!!!!
+//WARRENS TESTING!!!!!!!!!!
+//WARRENS TESTING!!!!!!!!!!
+//WARRENS TESTING!!!!!!!!!!
+//WARRENS TESTING!!!!!!!!!!
+//WARRENS TESTING!!!!!!!!!!
+//WARRENS TESTING!!!!!!!!!!
+
+state('conhome', {
         url:'/conhome',
         templateUrl: 'templates/conhome.html'
         //controller: 'ForgotPassCtrl',
     })
-
-
-//WARRENS TESTING!!!!!!!!!!
-//WARRENS TESTING!!!!!!!!!!
-//WARRENS TESTING!!!!!!!!!!
-//WARRENS TESTING!!!!!!!!!!
-//WARRENS TESTING!!!!!!!!!!
-//WARRENS TESTING!!!!!!!!!!
-//WARRENS TESTING!!!!!!!!!!
-//WARRENS TESTING!!!!!!!!!!
 
 .state('maintest', {
     url: '/maintest',

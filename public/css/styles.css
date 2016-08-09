@@ -50,6 +50,14 @@ img {
     color: #fff;
     text-shadow: none;
 }
+
+img {
+    border-radius: 5px 5px 0 0;
+}
+
+.container {
+    padding: 2px 16px;
+}
 .btn-link-1 {
     display: inline-block;
     height: 50px;
@@ -198,12 +206,35 @@ h3 {
 .social-login-buttons {
     margin-top: 25px;
 }
+
+.backstretch img{
+        background: white;
+}
+
+#about h3 {
+    color: black;
+    text-align: left;
+    font-weight: 400;
+}
+#about img {
+    margin: 0 auto;
+    padding: 5px;
+    width: 200px;
+    height: 200px;
+    float:left;
+}
+
+#about p {
+    text-align: left;
+}
 #border {
     border-bottom: solid;
     box-shadow: 0px 0px 5px grey;
     color: rgb(6, 152, 152);
     width: 100%;
+
 }
+
 #speakerbio {
     background: white;
 }
@@ -215,6 +246,9 @@ h3 {
     width: 200px;
     height: 200px;
 }
+
+
+
 #speakerbio h3 {
     color: black;
     text-align: left;
@@ -233,6 +267,20 @@ h3 {
 #checklable label{
     color:rgba(6, 152, 152, 0.5);
 }
+
+#user img {
+    margin: 0 auto;
+    padding: 5px;
+    -moz-border-radius: 100%;
+    -webkit-border-radius: 100%;
+    border-radius: 100%;
+    width: 200px;
+    height: 200px;
+   
+}
+
+
+
 
 /*
 .modal-content
@@ -263,4 +311,40 @@ h3 {
     h2 {
         font-size: 32px;
     }
+}
+.panel {
+
+    transition: padding 0.5s;
+    -moz-transition: padding 0.5s; /* Firefox 4 */
+    -webkit-transition: padding 0.5s; /* Safari and Chrome */
+    -o-transition: padding 0.5s; /* Opera */
+    -ms-transition:padding 0.5s; /* IE9 (maybe) */  
+  
+}
+
+.carousel {
+    margin-bottom: 0;
+    padding: 0 12px 0px 12px;
+}
+
+.carousel-control {
+    left: -10px
+}
+.carousel-control.right {
+    right: -10px;
+}
+
+.carousel-indicators {
+    right: 50%;
+    top: auto;
+    bottom: 0px;
+    margin-right: -19px;
+}
+
+.carousel-indicators li {
+    background: #c0c0c0;
+}
+
+.carousel-indicators .active {
+background: #333333;
 }

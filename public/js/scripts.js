@@ -4,6 +4,10 @@ jQuery(document).ready(function() {
     /*
         Fullscreen background
     */
+    $('#myCarousel').carousel({
+  interval: 10000
+  })
+    
    $.backstretch([
                     "img/backgrounds/2.jpg",
 	              "img/backgrounds/4.jpg"
