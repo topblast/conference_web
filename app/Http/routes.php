@@ -46,6 +46,7 @@ $app->put('/clients/{id}', 'ClientsController@edit_client');
  */
     
 $app->get('/conferences/', ['middleware' => 'auth:attendee', 'uses' => 'ConferencesController@get_all']);
+//$app->get('/conferences/', 'ConferencesController@get_all');
 $app->get('/conferences/{id}/speakers/', ['middleware' => 'auth:attendee', 'uses' => 'ConferencesController@get_conference_speakers']);
 $app->get('/conferences/{id}', 'ConferencesController@get_id');
 $app->get('/conferences/{id}/presentations/', ['middleware' => 'auth:attendee', 'uses' => 'ConferencesController@get_presentations']);
@@ -54,7 +55,7 @@ $app->get('/conferences/{id}/sponsors/', ['middleware' => 'auth:attendee', 'uses
 
 
 
-$app->post('/conferences/register', 'ConferencesController@register');
+$app->post('/conferences/register', ['middleware' => 'auth:client', 'uses' => 'ConferencesController@register']);
 $app->post('/conferences/{id}/presentations', 'ConferencesController@create_new_presentation');
 $app->post('/conferences/{id}/sponsors', 'ConferencesController@create_new_sponsor');
 $app->post('/conferences/{id}/blacklist', 'ConferencesController@add_to_blacklist');
@@ -108,6 +109,10 @@ $app->post('/auth/refresh-token', ['middleware' => 'jwt.refresh', function() {}]
 $app->post('/attendees/register', 'AttendeesController@register');
 $app->post('/attendees/{id}/changepassword', 'AttendeesController@change_password');
 $app->post('/attendees/{email}/forgotpassword', 'AttendeesController@forgot_password');
+$app->post('/password/email', 'PasswordController@postEmail');
+$app->post('/password/reset/{token}', 'PasswordController@postReset');
+
+$app->post('/attendees/{attendeeID}/conferences/{conferenceID}', 'AttendeesController@join_conference');
 
 $app->get('/attendees', 'AttendeesController@get_all');
 $app->get('/attendees/{id}', 'AttendeesController@get_id');
@@ -119,8 +124,7 @@ $app->delete('/attendees/{id}', 'AttendeesController@delete_attendee');
 //put
 $app->put('/attendees/{id}', 'AttendeesController@edit_attendee');
 
-$app->post('/password/email', 'PasswordController@postEmail');
-$app->post('/password/reset/{token}', 'PasswordController@postReset');
+
 
 //categories
 /**

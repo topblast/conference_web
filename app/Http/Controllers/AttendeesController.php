@@ -140,8 +140,19 @@ class AttendeesController extends Controller
 
         $attendee_into['password'] = Hash::make($attendee_into['password']);
         $attendee = Attendee::create($attendee_into);
-        $attendee->find($attendee->attendee_id)->conferences()->attach($request->input('conference_id'), ['created_at'=>$attendee->created_at, 'updated_at'=>$attendee->updated_at]);
+        //$attendee->find($attendee->attendee_id)->conferences()->attach($request->input('conference_id'), ['created_at'=>$attendee->created_at, 'updated_at'=>$attendee->updated_at]);
 
+        return response()->json($attendee);
+    }
+    
+    public function join_conference($attendee_id, $conference_id)
+    {
+        if ( !$attendee = Attendee::find($attendee_id) )
+        {
+            return response()->json(array(), 404);
+	}
+        
+        $attendee->conferences()->attach($conference_id, ['created_at'=>$attendee->created_at, 'updated_at'=>$attendee->updated_at]);
         return response()->json($attendee);
     }
 

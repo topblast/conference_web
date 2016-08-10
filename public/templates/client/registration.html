@@ -1,0 +1,82 @@
+<!--<DOCTYPE! html><html><head><title>Conference</title><metachar="UTF-8"><link rel="stylesheet" type="text/css" href="registration.css"></head><body><script type="text/javascript" src="registration.js"></script>   -->
+<div class="container-fluid">
+	<style>
+		.center {
+			text-align: center;
+		}
+	</style>
+	<div class="center" id="logo-holder">
+		<a class="brand" style="margin: 0; float: none; text-align:center" href="#">
+			<img src="../img/Logo_TV_2015.png" height="140" width="133" align="middle" />
+		</a>
+	</div>
+	<section>
+		<form ng-submit="submitClient()" class="form-horizontal">
+			<div class="form-group">
+				<div class="col-sm-4 col-sm-offset-4">
+					<input type="text" name="username" class="form-control" placeholder="Username" ng-model="clientData.contact_name" required="" ng-model="clientData.contact_name" id="error_msg2">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-4 col-sm-offset-4">
+					<input type="email" name="email" class="form-control" placeholder="Email" required="" ng-model="clientData.email" id="error_msg3">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-sm-4 col-sm-offset-4">
+					<input type="password" name="password" class="form-control" placeholder="Password" required="" ng-model="clientData.password" id="error_msg4">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-4 col-sm-offset-4">
+					<input type="password" name="confirm_pword" class="form-control" placeholder="Confirm Password" required="" ng-model="pword" id="error_msg1">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-sm-4 col-sm-offset-4">
+					<input type="text" name="organisation" class="form-control" placeholder="Organisation" required="" ng-model="clientData.organisation" id="error_msg3">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-sm-4 col-sm-offset-4">
+					<input type="text" name="address1" class="form-control" placeholder="Address 1" required="" ng-model="clientData.address1" id="error_msg3">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-sm-4 col-sm-offset-4">
+					<input type="text" name="address2" class="form-control" placeholder="Address 2" required="" ng-model="clientData.address2" id="error_msg3">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-sm-4 col-sm-offset-4">
+					<input type="text" name="city" class="form-control" placeholder="City" required="" ng-model="clientData.city" id="error_msg3">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-sm-4 col-sm-offset-4">
+					<input type="text" name="country" class="form-control" placeholder="Country" required="" ng-model="clientData.country" id="error_msg3">
+				</div>
+			</div>
+
+
+
+			<div>
+				<div style="padding-left:6px;" class="col-sm-4 col-sm-offset-4">
+					<input id="button_reg" type="submit" name="submitform" required="" class="btn btn-default" value="Register">
+				</div>
+			</div>
+		</form>
+
+		<div style="padding-left:6px;" class="col-sm-4 col-sm-offset-4">
+			<a ui-sref="client-login">Back to Login</a>
+		</div>
+</div>
+</section>
+
+<!--      </body></html>-->

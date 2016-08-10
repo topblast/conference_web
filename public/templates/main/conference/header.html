@@ -1,0 +1,27 @@
+<div>
+	<input type="checkbox" id="menuToggle"><label for="menuToggle" class="menu-icon">&#9776;</label> <a ui-sref="main.home">Schedule</a> | <a ui-sref="main.home-speakers({speakerID: 5})">Speakers</a> | <a ui-sref="main.test">Map</a> | <a ui-sref="main.test">About</a>
+
+	<br><br><br>
+
+	<nav class="menu">
+		<ul>
+			<li><a ui-sref="">Profile</a></li>
+			<li><a ui-sref="main.home">My Conferences</a>
+                            <ul class="submenu">
+				<li ng-repeat="conference in conferences"><a ui-sref="main.conference({conferenceID: {{conference.conference_id}}})">{{conference.name}}</a></li>
+                            </ul>
+                        </li>
+                            
+			<!-- <ul><li>sub-menu containing list of conferences</li></ul> -->
+			<li><a ui-sref="">Change Password</a></li>
+			<li><a ui-sref="" ng-click="logout()">Logout</a></li>
+			<li><a ui-sref="">Help</a></li>
+			<li><a ui-sref="">Report Bug</a></li>
+		</ul>
+	</nav>
+
+
+	<div id="c-mask" class="c-mask"></div>
+	<!-- to be used to darken page when side menu is opened -->
+
+</div>
