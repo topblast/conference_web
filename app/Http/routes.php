@@ -113,11 +113,13 @@ $app->post('/attendees/{email}/forgotpassword', 'AttendeesController@forgot_pass
 $app->post('/password/email', 'PasswordController@postEmail');
 $app->post('/password/reset/{token}', 'PasswordController@postReset');
 
-$app->post('/attendees/{attendeeID}/conferences/{conferenceID}', 'AttendeesController@join_conference');
+//$app->post('/attendees/{attendeeID}/conferences/{conferenceID}', 'AttendeesController@join_conference');
+$app->post('/attendees/{attendeeID}/conferences/{conferenceID}', ['middleware' => 'auth:attendee', 'uses' => 'AttendeesController@join_conference']);
 
 $app->get('/attendees', 'AttendeesController@get_all');
 $app->get('/attendees/{id}', 'AttendeesController@get_id');
-$app->get('/attendees/{id}/conferences', 'AttendeesController@get_conferences');
+//$app->get('/attendees/{id}/conferences', 'AttendeesController@get_conferences');
+$app->get('/attendees/{id}/conferences', ['middleware' => 'auth:attendee', 'uses' => 'AttendeesController@get_conferences']);
 
 
 $app->delete('/attendees/{id}', 'AttendeesController@delete_attendee');

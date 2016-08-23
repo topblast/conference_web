@@ -35,6 +35,7 @@ class AttendeesController extends Controller
     public function __construct()
     {
         //
+       // $this->middleware('auth:attendee');
     }
 
 
@@ -67,20 +68,23 @@ class AttendeesController extends Controller
         {
             if ($remember)
             {
-                $customClaims = ['exp' => date('Y-m-d', strtotime('+1 day'))];
+                //Set token expiration to 1 day
+                JWTAuth::factory()->setTTL(1440);
             }
             
             else
             {
-                $customClaims = ['exp' => date('Y-m-d', strtotime('+1 minute'))];
+                //Set token expiration to 1 hour
+                JWTAuth::factory()->setTTL(60);
             }
+            
             
            
                 // attempt to verify the credentials and create a token for the user
-              if (! $token = Auth::attempt($credentials, $customClaims)) {
-
-                  return response()->json(['error' => 'invalid_credentials'], 401);
-              }
+            if (! $token = Auth::attempt($credentials)) 
+            {
+                return response()->json(['error' => 'invalid_credentials'], 401);
+            }
            
 
         }
@@ -89,18 +93,21 @@ class AttendeesController extends Controller
             // something went wrong whilst attempting to encode the token
             return response()->json(['error' => 'could_not_create_token'], 500);
         }
-
-        $user = Auth::user(); //authenticate user with successfully generated token
-
+        
+        //$user = Auth::user();
+        $user = Auth::guard('attendee')->user(); //authenticate user with successfully generated token
+        
+        
+        
         // all good so return the token and user credentials
         return response()->json(compact('user','token'));
-
+        //return response()->json($payload);
 
 
     }
 
     /**
-     * 
+     * registers a new attendee account for the user
      * @param Request $request
      * @return type
      */
@@ -145,6 +152,12 @@ class AttendeesController extends Controller
         return response()->json($attendee);
     }
     
+    /**
+     * Allows user to join chosen conference
+     * @param type $attendee_id
+     * @param type $conference_id
+     * @return type
+     */
     public function join_conference($attendee_id, $conference_id)
     {
         if ( !$attendee = Attendee::find($attendee_id) )

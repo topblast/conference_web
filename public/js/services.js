@@ -17,10 +17,18 @@ angular.module('starter.services', [])
  * @param $http {service} AngularJS' ng http service
  * @returns {services_L13.servicesAnonym$1}
  */
-.factory('Web', function($http) {
+.factory('Web', function($http, $localStorage) {
 		var Web;
 		(function(Web) {
 			var API_LOCATION = 'http://localhost:8000/';
+                        var _token = $localStorage.user_token;
+                       
+                        //console.log(_token);
+                        //make sure token persists in each page reload by declaring it in the authorization headers here
+			$http.defaults.headers.common.Authorization = 'Bearer ' + _token;
+                       
+
+                        
 			/**
 			 * @memberof Web
 			 * @ngdoc service
@@ -181,6 +189,7 @@ angular.module('starter.services', [])
 			 * @description A list of methods dealing with the conferences table
 			 */
 			var Conferences = (function() {
+                            
 				function Conferences() {}
 				/**
 				 * Gets details on all public conferences.
@@ -299,10 +308,32 @@ angular.module('starter.services', [])
 	})
 	.factory('Attendee', function($http, Web, $localStorage) {
 		var AttendeeService = (function() {
+                       
 			function AttendeeService() {
 				this.User = $localStorage.user_data;
 				this.Token = $localStorage.user_token;
+                                
+                                if($localStorage.user_data !== null)
+                                this.expiresIn = $localStorage.user_data.expiresIn;
+                                console.log(this.expiresIn);
+                                console.log(Date.now());
+                                
+                            if($localStorage.user_data !== null && $localStorage.user_data.expiresIn !== null)
+                            {
+                                var expiresIn = $localStorage.user_data.expiresIn;
+                                
+                                if(expiresIn < Date.now())
+                                {
+                                    console.log(expiresIn);
+                                    this.SetUser(null);
+                                    this.SetToken(null);
+                                    //this.SetExpire(null);
+                                }
+                            }
 			}
+                        
+                        
+                        
 			/**
 			 * Set the user data to localstorage
 			 * @memberof Attendee
@@ -323,6 +354,19 @@ angular.module('starter.services', [])
 				this.Token = token;
 				$localStorage.user_token = this.Token;
 			};
+                        
+                        /**
+                         * Sets the token's expiration time to localstorage
+                         * @memberof Attendee
+                         * @method SetExpire
+                         * @returns {boolean}
+                         */
+                        AttendeeService.prototype.SetExpire = function(expiresIn){
+                                this.expiresIn = expiresIn;
+                                var now=Date.now();
+                                $localStorage.user_data.expiresIn = now + this.expiresIn;
+                        }
+                        
 			/**
 			 * Check is the current user is logged in
 			 * @memberof Attendee
@@ -340,14 +384,28 @@ angular.module('starter.services', [])
 			 * @param {type} Password the attendee's email
 			 * @returns {boolean}
 			 */
-			AttendeeService.prototype.Login = function(email, password) {
+			AttendeeService.prototype.Login = function(email, password, remember) {
 				var _this = this;
 				return Web.Attendees.Login({
 					email: email,
-					password: password
+					password: password,
+                                        remember: remember
 				}).then(function(response) {
 					_this.SetUser(response.data.user);
 					_this.SetToken(response.data.token);
+                                        //If the remember me option was picked upon logging in
+                                        if(remember)
+                                        {
+                                            //set expiration of the login session to 1 day (converted to milliseconds below)
+                                            var expires = (24*60*60*1000);
+                                            _this.SetExpire(expires);
+                                        }
+                                        else
+                                        {
+                                            //set expiration to 1 hour
+                                            var expires = (60*1000);
+                                            _this.SetExpire(expires);
+                                        }
 					$http.defaults.headers.common.Authorization = 'Bearer ' + _this.Token;
 					return response;
 				});
@@ -361,6 +419,8 @@ angular.module('starter.services', [])
 			AttendeeService.prototype.Logout = function() {
 				this.SetUser(null);
 				this.SetToken(null);
+                                console.log("Logged out: " + this.User);
+//                                this.SetExpire(null);
 				$http.defaults.headers.common.Authorization = '';
 				return Web.Attendees.Logout();
 			};
@@ -382,6 +442,10 @@ angular.module('starter.services', [])
 			AttendeeService.prototype.Conferences = function() {
 				return Web.Attendees.Conferences(this.User.attendee_id);
 			};
+                        
+                        AttendeeService.prototype.JoinConference= function(conferenceID){
+                                return Web.Attendees.JoinConference(this.User.attendee_id, conferenceID);
+                        }
 			return AttendeeService;
 		}());
 		return new AttendeeService();

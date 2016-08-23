@@ -1,0 +1,112 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+/**
+ * Client.php
+ */
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Laravel\Lumen\Auth\Authorizable;
+use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
+use Tymon\JWTAuth\Contracts\JWTSubject as JWTSubject;
+use Illuminate\Contracts\Auth\Authenticatable;
+
+/**
+ * Client Model.
+ * 
+ * The Client model for the clients table.
+ * 
+ * @filesource
+ */
+class Client extends Model implements JWTSubject, Authenticatable {
+    
+    use AuthenticatableTrait, Authorizable;
+
+    protected $primaryKey = 'client_id';
+
+    protected $fillable = [
+        'contact_name',
+        'email',
+        'password',
+        'organisation',
+        'address1',
+        'address2',
+        'city',
+        'country',
+    ];
+
+    protected $hidden = [
+        'password',
+    ];
+    
+    /**
+     * Establishes a one-to-many relationship with conferences table
+     * @return type
+     */
+    public function conferences()
+    {
+        return $this-&gt;hasMany('App\Models\Conference');
+    }
+    
+    /**
+     * Get the identifier that will be stored in the subject claim of the JWT
+     *
+     * @return mixed
+     */
+    public function getJWTIdentifier(){
+        return $this-&gt;getKey();
+    }
+
+    /**
+     * Return a key value array, containing any custom claims to be added to the JWT
+     *
+     * @return array
+     */
+    public function getJWTCustomClaims(){
+        return [];
+    }
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

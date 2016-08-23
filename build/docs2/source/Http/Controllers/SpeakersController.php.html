@@ -1,0 +1,177 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+/**
+ * SpeakersController.php
+ */
+namespace App\Http\Controllers;
+
+use App\Models\Speaker;
+use App\Models\Presentation;
+
+use Illuminate\Http\Request;
+
+/**
+  * Controller for the Speaker Model.
+  *
+  * *SpeakersController* is a controller for the Speaker Model, which is the data model for the speakers table.
+  * 
+  */
+class SpeakersController extends Controller
+{
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        //
+    }
+    
+    
+    //GET FUNCTIONS
+    /**
+     * Gets all speakers in the model.
+     * @return type
+     */
+    public function get_all() {
+
+        $all = Speaker::all();
+        
+        return response()-&gt;json($all);
+    }
+    
+    
+    //GET BY ID FUNCTION
+    /**
+     * Gets one speaker based on id.
+     * @param type $id
+     * @return type
+     */
+    public function get_id($id) {
+        if(!$cli = Speaker::find($id))
+            return response()-&gt;json([], 404);
+
+        return response()-&gt;json($cli);
+    }
+    
+    //GET for Speaker Presentations
+    /**
+     * Gets all presentations a speaker is giving, based on the speaker's id.
+     * @param type $id
+     * @return type
+     */
+    public function get_presentations($id){
+        if(!$cli = Speaker::find($id))
+            return response()-&gt;json([], 404);
+        
+        if(!$cli = Speaker::find($id)-&gt;presentations)
+            return response()-&gt;json([], 404);
+        
+        return response()-&gt;json($cli);
+    }
+    
+    /**
+     * Gets all speakers for a specific conference, based on the conference's id.
+     * @param type $id
+     * @return type
+     */
+    public function get_conference_speakers($id){
+        $cli = Speaker::whereHas('presentations', function($q) use ($id){
+        
+            $q-&gt;where('conference_id', $id);
+                
+        })-&gt;get();
+        
+        return response()-&gt;json($cli);
+    }
+
+    //POST FUNCTION
+    /**
+     * creates a new Speaker in the speaker's table.
+     * @param Request $request
+     * @return type
+     */
+    public function create_new(Request $request){
+        $speaker = new Speaker;
+        
+        $speaker-&gt;name = $request-&gt;input('name');
+        $speaker-&gt;email = $request-&gt;input('email');
+        $speaker-&gt;affiliation = $request-&gt;input('affiliation');
+        $speaker-&gt;telephone = $request-&gt;input('telephone');
+        $speaker-&gt;image_path = $request-&gt;input('image_path');
+        
+        $speaker-&gt;save();
+        
+
+        $speaker-&gt;find($speaker-&gt;speaker_id)-&gt;presentations()-&gt;attach($request-&gt;input('presentation_id'),['type'=&gt;$request-&gt;input('type'), 'created_at' =&gt; $speaker-&gt;created_at]);
+        
+
+        return response()-&gt;json($speaker);
+
+        
+    }
+    
+    //DELETE FUNCTION
+    /**
+     * Deletes speaker from the speakers table.
+     * @param type $id
+     * @return type
+     */
+     public function delete_speaker($id)
+    {
+        if (!$del  = Speaker::find($id))
+                return response()-&gt;json([], 404);
+        Speaker::find($id)-&gt;presentations()-&gt;detach($id);
+        $del-&gt;delete();
+        
+        
+        return response()-&gt;json($del);
+    }
+
+    
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

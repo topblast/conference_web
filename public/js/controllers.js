@@ -23,6 +23,7 @@ angular.module('starter.controllers', [])
                     };
 })
 
+
 /**
  * @memberof starter
  * @ngdoc controller
@@ -36,7 +37,8 @@ angular.module('starter.controllers', [])
  * @returns {undefined}
  */
 .controller('HomeCtrl', function($scope, Web, Attendee, $localStorage, $location) {
-
+//        console.log($localStorage);
+        CheckIfLoggedIn(Attendee, $location);
 	$scope.bgImage = 'img/backgrounds/4.jpg';
 
 	var presentations = [];
@@ -138,8 +140,9 @@ angular.module('starter.controllers', [])
 	};
         
         $scope.joinConference = function(conference_id) {
+            alert('button clicked!');
             //allows user to be added to a public conference
-            Attendee.JoinConference($localStorage.user_data.attendee_id, conference_id);
+            Attendee.JoinConference(conference_id);
             
         }
 })
@@ -160,7 +163,7 @@ angular.module('starter.controllers', [])
  * @returns {undefined}
  */
 .controller('HeaderCtrl', function($scope, Attendee, $location, $localStorage) {
-	// $scope.userDetails = $localStorage.currentUser;
+	$scope.userDetails = $localStorage.user_data;
         
         Attendee.Conferences()
 		.success(function(data) {
@@ -255,7 +258,8 @@ angular.module('starter.controllers', [])
 
 	$scope.loginAttendee = function() {
 		$scope.loading = true;
-		Attendee.Login($scope.attendeeData.email, $scope.attendeeData.password)
+                console.log($scope.attendeeData.remember);
+		Attendee.Login($scope.attendeeData.email, $scope.attendeeData.password, $scope.attendeeData.remember)
 			.then(function(response) {
 					alert('Login Successful!');
 
@@ -452,6 +456,18 @@ angular.module('starter.controllers', [])
 		enableFriends: true
 	};
 });
+
+/**
+ * Checks if the user is logged in, redirects them to the login page if they are not
+ * @param {type} Attendee
+ * @param {type} $location
+ * @returns {void}
+ */
+function CheckIfLoggedIn(Attendee, $location)
+{
+    if (!Attendee.IsLogged())
+           $location.path('/login');
+}
 
 /*
 //POPUP CONTROLLER FOR HELP AND REPORT BUG
