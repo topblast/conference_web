@@ -1,0 +1,499 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+/**
+ * ConferencesController.php.
+ */
+namespace App\Http\Controllers;
+
+use App\Models\Conference;
+use App\Models\Presentation;
+use App\Models\Sponsor;
+use App\Models\Blacklist;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use JWTAuth;
+/**
+ * Controller for the conferences table.
+ *
+ * @filesource
+ */
+class ConferencesController extends Controller
+{
+	/**
+	 * Create a new controller instance.
+	 */
+	public function __construct()
+	{
+		//
+               // $this-&gt;middleware('auth:attendee');
+	}
+	/*   
+	// somewhere in your controller
+	public function getAuthenticatedUser()
+	{
+	try {
+	if (! $user = JWTAuth::parseToken()-&gt;authenticate()) {
+	return response()-&gt;json(['user_not_found'], 404);
+	}
+	} catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+	return response()-&gt;json(['token_expired'], $e-&gt;getStatusCode());
+	} catch (Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+	return response()-&gt;json(['token_invalid'], $e-&gt;getStatusCode());
+	} catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
+	return response()-&gt;json(['token_absent'], $e-&gt;getStatusCode());
+	}
+	// the token is valid and we have found the user via the sub claim
+	return response()-&gt;json(compact('user'));
+	}
+	*/
+	
+	//GET FUNCTIONS
+	/**
+	 * Gets all public conferences.
+	 *
+	 * @return type
+	 *              Returns all conference details in the form of JSON data
+	 */
+	public function get_all()
+	{
+		//Get all PUBLIC Conferences
+		$user = Auth::guard('attendee')-&gt;user(); 
+		$all = Conference::all()-&gt;where('type', 'public');
+		
+		return response()-&gt;json($all);
+//                $payload = JWTAuth::parseToken()-&gt;getPayload();
+//                return response()-&gt;json($payload);
+	}
+	
+	//GET ID FUNCTION
+	/**
+	 * Gets a specific conference by its id.
+	 *
+	 * @param type $id
+	 *
+	 * @return type
+	 *              Returns the details of that conference in the form of JSON data
+	 */
+	public function get_id($id)
+	{
+		if (!$cli = Conference::find($id))
+		{
+			return response()-&gt;json(array(), 404);
+		}
+		
+		return response()-&gt;json($cli);
+	}
+	
+	//GET PRESENTATION BY ID FUNCTION
+	/**
+	 * Gets all presentations related to a conference.
+	 *
+	 * @param type $id
+	 *                 The conference's id.
+	 *
+	 * @return type
+	 *              Returns those presentations as JSON data
+	 */
+	public function get_presentations($id)
+	{
+		if (!$cli = Conference::find($id)-&gt;presentations)
+		{
+			return response()-&gt;json(array(), 404);
+		}
+		
+		return response()-&gt;json($cli);
+	}
+	
+	/**
+	 * Gets the first presentation at a conference.
+	 *
+	 * @param type $id
+	 *                 The conference's id
+	 *
+	 * @return type
+	 *              Returns that presentation as JSON data
+	 */
+	public function select_presentation($id)
+	{
+		if (!$cli = Conference::find($id)-&gt;presentations-&gt;first())
+		{
+			return response()-&gt;json(array(), 404);
+		}
+		
+		return response()-&gt;json($cli);
+	}
+	
+	/**
+	 * Gets all speakers related to a conference.
+	 *
+	 * @param type $id
+	 *                 The conference's id
+	 *
+	 * @return type
+	 *              Returns those speakers as JSON data
+	 */
+	public function get_conference_speakers($id)
+	{
+		if (!$cli = Conference::find($id)-&gt;presentations)
+		{
+			return response()-&gt;json(array(), 404);
+		}
+		
+		//refer to http://stackoverflow.com/questions/25714273/laravel-querying-and-accessing-child-objects-in-nested-relationship-with-where
+		$cli = Conference::with(array(
+			'presentations' =&gt; function($q) use ($id)
+			{
+				$q-&gt;where('conference_id', $id); //constraint on child
+			},
+			'presentations.speakers' =&gt; function($q)
+			{
+				//$q-&gt;where('presentation_id', ''); //constraint on grandchild
+			}
+		))-&gt;find($id);
+		
+		//$cli = Conference::whereHas('presentations.speakers', function ($q) use ($id){
+		// $q-&gt;where('conference_id', 'like', $id);
+		
+		//})-&gt;get();
+		
+		//if(!$cli = Conference::find($id)-&gt;presentations()-&gt;speakers)
+		//    return response()-&gt;json([], 404);
+		
+		return response()-&gt;json($cli);
+	}
+	
+	//GET SPONSORS FUNCTION
+	/**
+	 * Gets all sponsors related to a conference.
+	 *
+	 * @param type $id
+	 *                 The conference's id
+	 *
+	 * @return type
+	 *              Returns those sponsors as JSON data
+	 */
+	public function get_sponsors($id)
+	{
+		if (!$cli = Conference::find($id)-&gt;sponsors)
+		{
+			return response()-&gt;json(array(), 404);
+		}
+		
+		return response()-&gt;json($cli);
+	}
+	
+	//POST FUNCTIONS
+	/**
+	 * attempts to register a new conference.
+	 *
+	 * @param \App\Http\Controllers\Request $request
+	 *                                               The POST request with conference details
+	 *
+	 * @return type
+	 *              Returns the conference as a JSON object if successful, error message if unsuccessful
+	 */
+	public function register(Request $request)
+	{
+		//Requires Client Authentication
+		//Handles Payment
+		//Research payment callback
+		$this-&gt;validate($request, [
+			'name' =&gt; 'required',
+			'type' =&gt; 'required',
+		//	'client_id' =&gt; 'required|exists:clients,client_id',
+			'address1' =&gt; 'required',
+			'city' =&gt; 'required',
+			'country' =&gt; 'required',
+			'start_time' =&gt; 'required|date',
+			'end_time' =&gt; 'required|date|after:start_date'
+		]);
+
+		$client = Auth::guard('client')-&gt;user();
+
+		$reg             = new Conference();
+		$reg-&gt;name       = $request-&gt;input('name');
+		$reg-&gt;type       = $request-&gt;input('type');
+		$reg-&gt;client_id  = $client-&gt;client_id; //$request-&gt;input('client_id');
+		$reg-&gt;address1   = $request-&gt;input('address1');
+		$reg-&gt;address2   = $request-&gt;input('address2');
+		$reg-&gt;city       = $request-&gt;input('city');
+		$reg-&gt;country    = $request-&gt;input('country');
+		$reg-&gt;start_time = date('Y-M-D G:i:s'. strtotime($request-&gt;input('start_time')));
+		$reg-&gt;end_time   = date('Y-M-D G:i:s'. strtotime($request-&gt;input('end_time')));
+		
+		$reg-&gt;save();
+		
+		return response()-&gt;json($reg);
+	}
+	
+	//CREATE NEW PRESENTATION FUNCTION
+	/**
+	 * Creates a new presentation for the conference.
+	 *
+	 * @param \App\Http\Controllers\Request $request
+	 *                                               The POST request with presentation details
+	 * @param type                          $id
+	 *                                               The conference's id
+	 *
+	 * @return type
+	 *              Returns conference as JSON object
+	 */
+	public function create_new_presentation(Request $request, $id)
+	{
+		if (!$conference = Conference::find($id))
+		{
+			return response()-&gt;json(array(), 404);
+		}
+		
+		$presentation           = new Presentation();
+		$presentation-&gt;title    = $request-&gt;input('title');
+		$presentation-&gt;abstract = $request-&gt;input('abstract');
+		$presentation-&gt;keywords = $request-&gt;input('keywords');
+		$presentation-&gt;room_id  = $request-&gt;input('room_id');
+		
+		$conference-&gt;presentations()-&gt;save($presentation);
+		
+		return response()-&gt;json($conference);
+	}
+	
+	//CREATE SPONSOR ID FUNCTION
+	/**
+	 * Creates a new sponsor for the conference.
+	 *
+	 * @param \App\Http\Controllers\Request $request
+	 *                                               The POST request with sponsor details
+	 * @param type                          $id
+	 *                                               The conference's id
+	 *
+	 * @return type
+	 *              Returns conference as JSON object
+	 */
+	public function create_new_sponsor(Request $request, $id)
+	{
+		if (!$conference = Conference::find($id))
+		{
+			return response()-&gt;json(array(), 404);
+		}
+		
+		$sponsor              = new Sponsor();
+		$sponsor-&gt;name        = $request-&gt;input('name');
+		$sponsor-&gt;description = $request-&gt;input('description');
+		$sponsor-&gt;image_path  = $request-&gt;input('image_path');
+		$sponsor-&gt;website     = $request-&gt;input('website');
+		
+		$conference-&gt;sponsors()-&gt;save($sponsor);
+		
+		return response()-&gt;json($conference);
+	}
+	
+	public function add_to_whitelist(Request $request, $id)
+	{
+		if (!$conference = Conference::find($id))
+		{
+			return response()-&gt;json(array(), 404);
+		}
+		
+		$whitelist                = new Whitelist();
+		$whitelist-&gt;conference_id = $id;
+		$whitelist-&gt;attendee_id   = $request-&gt;input('attendee_id');
+		$whitelist-&gt;email         = $request-&gt;input('email');
+		$whitelist-&gt;token         = $request-&gt;input('token');
+		$whitelist-&gt;type          = $request-&gt;input('type');
+		
+		$conference-&gt;whitelist()-&gt;save($whitelist);
+		
+		return response()-&gt;json($whitelist);
+	}
+	
+	public function add_to_blacklist(Request $request, $id)
+	{
+		//Client authentication required for adding attendees to blacklist
+		if (!$conference = Conference::find($id))
+		{
+			return response()-&gt;json(array(), 404);
+		}
+		
+		$blacklist                = new Blacklist();
+		$blacklist-&gt;conference_id = $id;
+		$blacklist-&gt;attendee_id   = $request-&gt;input('attendee_id');
+		
+		$conference-&gt;blacklist()-&gt;save($blacklist);
+		
+		return response()-&gt;json($blacklist);
+	}
+	
+	//DELETE FUNCTION
+	/**
+	 * Deletes a conference.
+	 *
+	 * @param \App\Http\Controllers\Request $request
+	 *                                               The DELETE request
+	 * @param type                          $id
+	 *                                               The conference's id
+	 *
+	 * @return type
+	 *              Returns conference details as JSON data
+	 */
+	public function delete_conference(Request $request, $id)
+	{
+		if (!$del = Conference::find($id))
+		{
+			return response()-&gt;json(array(), 404);
+		}
+		
+		$del-&gt;delete();
+		
+		return response()-&gt;json($del);
+	}
+	
+	//DELETE PRESENTATION BY ID FUNCTION
+	/**
+	 * Deletes a presentation related to a conference.
+	 *
+	 * @param \App\Http\Controllers\Request $request
+	 *                                               The DELETE request
+	 * @param type                          $id
+	 *
+	 * @return type
+	 *              Returns presentation details as JSON data
+	 */
+	public function delete_presentation(Request $request, $id)
+	{
+		$presentationid = $request-&gt;input('presentation_id');
+		
+		if (!$del = Conference::find($id)-&gt;presentations()-&gt;where('presentation_id', $presentationid)-&gt;first())
+		{
+			return response()-&gt;json(array(), 404);
+		}
+		
+		$del-&gt;delete();
+		
+		return response()-&gt;json($del);
+	}
+	
+	//DELETE SPONSOR BY ID FUNCTION
+	/**
+	 * Deletes a sponsor related to a conference.
+	 *
+	 * @param type                          $id
+	 *                                               The conference's id
+	 * @param \App\Http\Controllers\Request $request
+	 *                                               The DELETE request
+	 *
+	 * @return type
+	 *              Returns sponsor details as JSON data
+	 */
+	public function delete_sponsor($id, Request $request)
+	{
+		$sponsorid = $request-&gt;input('sponsor_id');
+		
+		if (!$del = Conference::find($id)-&gt;sponsors()-&gt;where('sponsor_id', $sponsorid)-&gt;first())
+		{
+			return response()-&gt;json(array(), 404);
+		}
+		
+		$del-&gt;delete();
+		
+		return response()-&gt;json($del);
+	}
+	
+	//DELETE PRESENTATION BY ID FUNCTION
+	/*
+	public function delete_presentation($id, Request $request){
+	$presentationid = $request-&gt;input('presentation_id');
+	
+	if(!$del  = Conference::find($id)-&gt;presentations()-&gt;where('presentation_id', $presentationid)-&gt;first())
+	return response()-&gt;json([], 404);
+	
+	$del-&gt;delete();
+	
+	return response()-&gt;json($del);
+	}
+	*/
+	
+	public function remove_from_whitelist()
+	{
+	}
+	
+	public function remove_from_blacklist()
+	{
+	}
+	
+	//PUT FUNCTION
+	/**
+	 * Edits an existing conference.
+	 *
+	 * @param \App\Http\Controllers\Request $request
+	 *                                               The PUT request
+	 * @param type                          $id
+	 *                                               The conference's id
+	 *
+	 * @return type
+	 *              Returns the edited conference's details as JSON data
+	 */
+	public function edit_conference(Request $request, $id)
+	{
+		if (!$edit = Conference::find($id))
+		{
+			return response()-&gt;json(array(), 404);
+		}
+		
+		$edit-&gt;name     = $request-&gt;input('name');
+		$edit-&gt;type     = $request-&gt;input('type');
+		$edit-&gt;address1 = $request-&gt;input('address1');
+		$edit-&gt;address2 = $request-&gt;input('address2');
+		$edit-&gt;city     = $request-&gt;input('city');
+		$edit-&gt;country  = $request-&gt;input('country');
+		$edit-&gt;start    = $request-&gt;input('start');
+		$edit-&gt;end      = $request-&gt;input('end');
+		
+		$edit-&gt;save();
+		
+		return response()-&gt;json($edit);
+	}
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

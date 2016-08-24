@@ -6,7 +6,12 @@
 	<nav class="menu">
 		<ul>
 			<li><a ui-sref="">Profile</a></li>
-			<li><a ui-sref="main.home">My Conferences</a></li>
+			<li><a ui-sref="main.home">My Conferences</a>
+                            <ul class="submenu">
+				<li ng-repeat="conference in conferences"><a ui-sref="main.conference({conferenceID: {{conference.conference_id}}})">{{conference.name}}</a></li>
+                            </ul>
+                        </li>
+                            
 			<!-- <ul><li>sub-menu containing list of conferences</li></ul> -->
 			<li><a ui-sref="">Change Password</a></li>
 			<li><a ui-sref="" ng-click="logout()">Logout</a></li>

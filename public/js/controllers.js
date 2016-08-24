@@ -9,6 +9,21 @@
 
 angular.module('starter.controllers', [])
 
+ .controller('TestCtrl', function($scope){
+     $scope.sliderWithArrowOptions = {
+                        name: "sliderWithArrow",
+                        $DragOrientation: 3,                            //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $DisplayPieces is greater than 1, or parking position is not 0)
+                        $SlideDuration: 800,                            //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 500
+                        $ArrowNavigatorOptions: {                       //[Optional] Options to specify and enable arrow navigator or not
+                            $Class: $JssorArrowNavigator$,              //[Requried] Class to create arrow navigator instance
+                            $ChanceToShow: 2,                           //[Required] 0 Never, 1 Mouse Over, 2 Always
+                            $AutoCenter: 2,                             //[Optional] Auto center arrows in parent container, 0 No, 1 Horizontal, 2 Vertical, 3 Both, default value is 0
+                            $Steps: 1                                   //[Optional] Steps to go for each navigation request, default value is 1
+                        }
+                    };
+})
+
+
 /**
  * @memberof starter
  * @ngdoc controller
@@ -22,7 +37,8 @@ angular.module('starter.controllers', [])
  * @returns {undefined}
  */
 .controller('HomeCtrl', function($scope, Web, Attendee, $localStorage, $location) {
-
+//        console.log($localStorage);
+        CheckIfLoggedIn(Attendee, $location);
 	$scope.bgImage = 'img/backgrounds/4.jpg';
 
 	var presentations = [];
@@ -70,15 +86,35 @@ angular.module('starter.controllers', [])
 
 	$scope.loading = true;
 
-	Attendee.Conferences($localStorage.currentUser.id)
+// Commented out Attendee.Conferences, which selects conferences which the attendee has already joined
+//	Attendee.Conferences()
+//		.success(function(data) {
+//			$scope.conferences = data;
+//			$scope.loading = false;
+//			//           // alert('Reached here with ' + $scope.speakers);
+//			angular.forEach(data, function(value, key) {
+//                                
+//				Web.Conferences.Presentation(value.conference_id).success(function(data) {
+//					
+//                                        $scope.presentation[value.conference_id] = data;
+//
+//				});
+//				//        }
+//
+//			});
+//		});
+
+        //Displays all the public conferences
+        Web.Conferences.List()
 		.success(function(data) {
 			$scope.conferences = data;
 			$scope.loading = false;
 			//           // alert('Reached here with ' + $scope.speakers);
 			angular.forEach(data, function(value, key) {
-
-				Web.Conference.selectPresentation(value.conference_id).success(function(data) {
-					$scope.presentation[value.conference_id] = data;
+                                
+				Web.Conferences.Presentation(value.conference_id).success(function(data) {
+					
+                                        $scope.presentation[value.conference_id] = data;
 
 				});
 				//        }
@@ -102,7 +138,13 @@ angular.module('starter.controllers', [])
 		//$http.defaults.headers.common.Authorization = '';
 		$location.path('/login');
 	};
-
+        
+        $scope.joinConference = function(conference_id) {
+            alert('button clicked!');
+            //allows user to be added to a public conference
+            Attendee.JoinConference(conference_id);
+            
+        }
 })
 
 .controller('bgCtrl', function($scope) {
@@ -121,7 +163,14 @@ angular.module('starter.controllers', [])
  * @returns {undefined}
  */
 .controller('HeaderCtrl', function($scope, Attendee, $location, $localStorage) {
-	// $scope.userDetails = $localStorage.currentUser;
+	$scope.userDetails = $localStorage.user_data;
+        
+        Attendee.Conferences()
+		.success(function(data) {
+			$scope.conferences = data;
+			
+                    });
+                    
 
 	$scope.logout = function() {
 		// remove user from local storage and clear http auth header
@@ -163,12 +212,12 @@ angular.module('starter.controllers', [])
  * @returns {undefined}
  */
 .controller('ConfCtrl', function($scope, $stateParams, Web) {
-	Web.Conference.Select($stateParams.conferenceID).success(function(data) {
+	Web.Conferences.Select($stateParams.conferenceID).success(function(data) {
 		$scope.conference = data;
 
 	});
 
-	Web.Conference.Presentations($stateParams.conferenceID).success(function(data) {
+	Web.Conferences.Presentations($stateParams.conferenceID).success(function(data) {
 		$scope.presentations = data;
 	});
 
@@ -209,7 +258,8 @@ angular.module('starter.controllers', [])
 
 	$scope.loginAttendee = function() {
 		$scope.loading = true;
-		Attendee.Login($scope.attendeeData.email, $scope.attendeeData.password)
+                console.log($scope.attendeeData.remember);
+		Attendee.Login($scope.attendeeData.email, $scope.attendeeData.password, $scope.attendeeData.remember)
 			.then(function(response) {
 					alert('Login Successful!');
 
@@ -406,6 +456,18 @@ angular.module('starter.controllers', [])
 		enableFriends: true
 	};
 });
+
+/**
+ * Checks if the user is logged in, redirects them to the login page if they are not
+ * @param {type} Attendee
+ * @param {type} $location
+ * @returns {void}
+ */
+function CheckIfLoggedIn(Attendee, $location)
+{
+    if (!Attendee.IsLogged())
+           $location.path('/login');
+}
 
 /*
 //POPUP CONTROLLER FOR HELP AND REPORT BUG

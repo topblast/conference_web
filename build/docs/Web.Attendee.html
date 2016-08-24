@@ -228,7 +228,7 @@
               <li>
                 <a href="Web.Attendee.html">Attendee</a>
               </li><li>
-                <a href="Web.Client.html">Client</a>
+                <a href="Web.Clients.html">Clients</a>
               </li><li>
                 <a href="Web.Conference.html">Conference</a>
               </li><li>
@@ -248,7 +248,7 @@
       </h3>
       <h1 class="title">
         Attendee
-        <a class="name-link signature-attributes" href="source/Web.Attendee.html#line256">source</a>
+        <a class="name-link signature-attributes" href="source/Web.Attendee.html#line32">source</a>
       </h1>
       <div id="main" class="big-container">
         <!-- source code html -->
@@ -269,12 +269,12 @@
   <h3 class="subsection-title">Methods</h3>
   <dl>
     <dt>
-      <a href="" class="name-link" id="changepass">
+      <a href="" class="name-link" id="ChangePassword">
         <h4 class="name">
-          changepass
-          <span class="signature">(id, onSuccess, onError)</span>
+          ChangePassword
+          <span class="signature">(id)</span>
           <span class="type-signature">
-            -&gt; undefined
+            -&gt; Promise
           </span>
         </h4>
       </a>
@@ -302,19 +302,64 @@
                   <p>attendee's id</p>
                 </span>
               </td>
-            </tr><tr>
-              <td class="name">onSuccess</td>
-              <td class="type"><span class="param-type">
-                <a href="type.html">type</a>
-              </span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h4>Returns</h4>
+        <table class="params">
+          <thead>
+            <tr><th>Type</th><th class="last">Description</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="type">
+                <span class="param-type">
+                  <a href="Promise.html">Promise</a>
+                </span>
+              </td>
               <td class="description last">
               </td>
-            </tr><tr>
-              <td class="name">onError</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </dd>
+  </dl><dl>
+    <dt>
+      <a href="" class="name-link" id="Conferences">
+        <h4 class="name">
+          Conferences
+          <span class="signature">(id)</span>
+          <span class="type-signature">
+            -&gt; Promise
+          </span>
+        </h4>
+      </a>
+    </dt>
+    <dd>
+      <div class="description">
+        <span>
+          <p>Returns a json array of the conferences the attendee is signed up for upon success, an empty array and 404 error upon failure</p>
+        </span>
+      </div>
+      <div>
+        <h4>Parameters</h4>
+        <table class="params">
+          <thead>
+            <tr><th>Name</th><th>Type</th><th class="last">Description</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="name">id</td>
               <td class="type"><span class="param-type">
                 <a href="type.html">type</a>
               </span></td>
               <td class="description last">
+                <span>
+                  <p>the attendee's id</p>
+                </span>
               </td>
             </tr>
           </tbody>
@@ -330,7 +375,7 @@
             <tr>
               <td class="type">
                 <span class="param-type">
-                  undefined
+                  <a href="Promise.html">Promise</a>
                 </span>
               </td>
               <td class="description last">
@@ -342,12 +387,12 @@
     </dd>
   </dl><dl>
     <dt>
-      <a href="" class="name-link" id="deleteAccount">
+      <a href="" class="name-link" id="Delete">
         <h4 class="name">
-          deleteAccount
-          <span class="signature">(id, onSuccess, onError)</span>
+          Delete
+          <span class="signature">(id)</span>
           <span class="type-signature">
-            -&gt; undefined
+            -&gt; Promise
           </span>
         </h4>
       </a>
@@ -375,20 +420,6 @@
                   <p>the attendee's id</p>
                 </span>
               </td>
-            </tr><tr>
-              <td class="name">onSuccess</td>
-              <td class="type"><span class="param-type">
-                <a href="type.html">type</a>
-              </span></td>
-              <td class="description last">
-              </td>
-            </tr><tr>
-              <td class="name">onError</td>
-              <td class="type"><span class="param-type">
-                <a href="type.html">type</a>
-              </span></td>
-              <td class="description last">
-              </td>
             </tr>
           </tbody>
         </table>
@@ -403,7 +434,7 @@
             <tr>
               <td class="type">
                 <span class="param-type">
-                  undefined
+                  <a href="Promise.html">Promise</a>
                 </span>
               </td>
               <td class="description last">
@@ -415,12 +446,12 @@
     </dd>
   </dl><dl>
     <dt>
-      <a href="" class="name-link" id="forgotpass">
+      <a href="" class="name-link" id="ForgotPassword">
         <h4 class="name">
-          forgotpass
-          <span class="signature">(email, onSuccess, onError)</span>
+          ForgotPassword
+          <span class="signature">(email)</span>
           <span class="type-signature">
-            -&gt; undefined
+            -&gt; Promise
           </span>
         </h4>
       </a>
@@ -448,20 +479,6 @@
                   <p>the attendee's email</p>
                 </span>
               </td>
-            </tr><tr>
-              <td class="name">onSuccess</td>
-              <td class="type"><span class="param-type">
-                <a href="type.html">type</a>
-              </span></td>
-              <td class="description last">
-              </td>
-            </tr><tr>
-              <td class="name">onError</td>
-              <td class="type"><span class="param-type">
-                <a href="type.html">type</a>
-              </span></td>
-              <td class="description last">
-              </td>
             </tr>
           </tbody>
         </table>
@@ -476,7 +493,7 @@
             <tr>
               <td class="type">
                 <span class="param-type">
-                  undefined
+                  <a href="Promise.html">Promise</a>
                 </span>
               </td>
               <td class="description last">
@@ -488,12 +505,12 @@
     </dd>
   </dl><dl>
     <dt>
-      <a href="" class="name-link" id="getConferences">
+      <a href="" class="name-link" id="JoinConference">
         <h4 class="name">
-          getConferences
-          <span class="signature">(id, onSuccess, onError)</span>
+          JoinConference
+          <span class="signature">(id, conferenceId)</span>
           <span class="type-signature">
-            -&gt; undefined
+            -&gt; Promise
           </span>
         </h4>
       </a>
@@ -522,18 +539,14 @@
                 </span>
               </td>
             </tr><tr>
-              <td class="name">onSuccess</td>
+              <td class="name">conferenceId</td>
               <td class="type"><span class="param-type">
                 <a href="type.html">type</a>
               </span></td>
               <td class="description last">
-              </td>
-            </tr><tr>
-              <td class="name">onError</td>
-              <td class="type"><span class="param-type">
-                <a href="type.html">type</a>
-              </span></td>
-              <td class="description last">
+                <span>
+                  <p>the conference's id</p>
+                </span>
               </td>
             </tr>
           </tbody>
@@ -549,7 +562,7 @@
             <tr>
               <td class="type">
                 <span class="param-type">
-                  undefined
+                  <a href="Promise.html">Promise</a>
                 </span>
               </td>
               <td class="description last">
@@ -561,12 +574,12 @@
     </dd>
   </dl><dl>
     <dt>
-      <a href="" class="name-link" id="login">
+      <a href="" class="name-link" id="Login">
         <h4 class="name">
-          login
-          <span class="signature">(credentials, onSuccess, onError)</span>
+          Login
+          <span class="signature">(credentials)</span>
           <span class="type-signature">
-            -&gt; undefined
+            -&gt; Promise
           </span>
         </h4>
       </a>
@@ -594,26 +607,6 @@
                   <p>the clients login credentials: email and password.</p>
                 </span>
               </td>
-            </tr><tr>
-              <td class="name">onSuccess</td>
-              <td class="type"><span class="param-type">
-                <a href="type.html">type</a>
-              </span></td>
-              <td class="description last">
-                <span>
-                  <p>response to return if login function is successful.</p>
-                </span>
-              </td>
-            </tr><tr>
-              <td class="name">onError</td>
-              <td class="type"><span class="param-type">
-                <a href="type.html">type</a>
-              </span></td>
-              <td class="description last">
-                <span>
-                  <p>response to return if login function fails.</p>
-                </span>
-              </td>
             </tr>
           </tbody>
         </table>
@@ -628,7 +621,7 @@
             <tr>
               <td class="type">
                 <span class="param-type">
-                  undefined
+                  <a href="Promise.html">Promise</a>
                 </span>
               </td>
               <td class="description last">
@@ -640,11 +633,11 @@
     </dd>
   </dl><dl>
     <dt>
-      <a href="" class="name-link" id="logout">
+      <a href="" class="name-link" id="Logout">
         <h4 class="name">
-          logout
+          Logout
           <span class="type-signature">
-            -&gt; undefined
+            -&gt; Promise
           </span>
         </h4>
       </a>
@@ -665,7 +658,7 @@
             <tr>
               <td class="type">
                 <span class="param-type">
-                  undefined
+                  <a href="Promise.html">Promise</a>
                 </span>
               </td>
               <td class="description last">
@@ -677,12 +670,12 @@
     </dd>
   </dl><dl>
     <dt>
-      <a href="" class="name-link" id="register">
+      <a href="" class="name-link" id="Register">
         <h4 class="name">
-          register
-          <span class="signature">(credentials, onSuccess, onError)</span>
+          Register
+          <span class="signature">(credentials)</span>
           <span class="type-signature">
-            -&gt; undefined
+            -&gt; Promise
           </span>
         </h4>
       </a>
@@ -710,19 +703,64 @@
                   <p>the attendee's credentials (email, username, password)</p>
                 </span>
               </td>
-            </tr><tr>
-              <td class="name">onSuccess</td>
-              <td class="type"><span class="param-type">
-                <a href="type.html">type</a>
-              </span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h4>Returns</h4>
+        <table class="params">
+          <thead>
+            <tr><th>Type</th><th class="last">Description</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="type">
+                <span class="param-type">
+                  <a href="Promise.html">Promise</a>
+                </span>
+              </td>
               <td class="description last">
               </td>
-            </tr><tr>
-              <td class="name">onError</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </dd>
+  </dl><dl>
+    <dt>
+      <a href="" class="name-link" id="ResetPassword">
+        <h4 class="name">
+          ResetPassword
+          <span class="signature">(token)</span>
+          <span class="type-signature">
+            -&gt; Promise
+          </span>
+        </h4>
+      </a>
+    </dt>
+    <dd>
+      <div class="description">
+        <span>
+          <p>Performs the action of resetting the attendee's password, taking the token as parameter</p>
+        </span>
+      </div>
+      <div>
+        <h4>Parameters</h4>
+        <table class="params">
+          <thead>
+            <tr><th>Name</th><th>Type</th><th class="last">Description</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="name">token</td>
               <td class="type"><span class="param-type">
                 <a href="type.html">type</a>
               </span></td>
               <td class="description last">
+                <span>
+                  <p>the password reset token</p>
+                </span>
               </td>
             </tr>
           </tbody>
@@ -738,7 +776,7 @@
             <tr>
               <td class="type">
                 <span class="param-type">
-                  undefined
+                  <a href="Promise.html">Promise</a>
                 </span>
               </td>
               <td class="description last">
@@ -750,12 +788,12 @@
     </dd>
   </dl><dl>
     <dt>
-      <a href="" class="name-link" id="update">
+      <a href="" class="name-link" id="Update">
         <h4 class="name">
-          update
-          <span class="signature">(email, onSuccess, onError)</span>
+          Update
+          <span class="signature">(id, Updated)</span>
           <span class="type-signature">
-            -&gt; undefined
+            -&gt; Promise
           </span>
         </h4>
       </a>
@@ -774,28 +812,24 @@
           </thead>
           <tbody>
             <tr>
-              <td class="name">email</td>
+              <td class="name">id</td>
               <td class="type"><span class="param-type">
                 <a href="type.html">type</a>
               </span></td>
               <td class="description last">
                 <span>
-                  <p>the attendee's email</p>
+                  <p>the attendee's id</p>
                 </span>
               </td>
             </tr><tr>
-              <td class="name">onSuccess</td>
+              <td class="name">Updated</td>
               <td class="type"><span class="param-type">
                 <a href="type.html">type</a>
               </span></td>
               <td class="description last">
-              </td>
-            </tr><tr>
-              <td class="name">onError</td>
-              <td class="type"><span class="param-type">
-                <a href="type.html">type</a>
-              </span></td>
-              <td class="description last">
+                <span>
+                  <p>user data</p>
+                </span>
               </td>
             </tr>
           </tbody>
@@ -811,7 +845,7 @@
             <tr>
               <td class="type">
                 <span class="param-type">
-                  undefined
+                  <a href="Promise.html">Promise</a>
                 </span>
               </td>
               <td class="description last">

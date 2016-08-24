@@ -130,18 +130,24 @@ nav a:hover {
 }
 
 .menu ul li ul {
-	opacity: 0;
-	position: absolute;
-	background-color: #333;
-	top: 0;
-	left: -240px;
-	min-width: 200px;
-	height: 100%;
-	-webkit-transition: opacity 450ms ease-in;
-	-moz-transition: opacity 450ms ease-in;
-	-ms-transition: opacity 450ms ease-in;
-	transition: opacity 450ms ease-in;
+  opacity: 0;
+  position: absolute;
+  background-color: #333;
+  top: 0;
+  left: -240px;
+  min-width: 200px;
+  height: 100%;
+  -webkit-transition: opacity 450ms ease-in;
+  -moz-transition: opacity 450ms ease-in;
+  -ms-transition: opacity 450ms ease-in;
+  transition: opacity 450ms ease-in;
 }
 
-
 /*.menu ul li > ul li a:hover { background-color:#2e2e2e; }*/
+    
+.carousel-inner.onebyone-carosel { margin: auto; width: 90%; }
+.onebyone-carosel .active.left { left: -33.33%; }
+.onebyone-carosel .active.right { left: 33.33%; }
+.onebyone-carosel .next { left: 33.33%; }
+.onebyone-carosel .prev { left: -33.33%; }
+

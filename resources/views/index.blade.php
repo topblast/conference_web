@@ -24,24 +24,26 @@
     <link rel="stylesheet" href="css/texthide.css">
     <link href="css/registration.css" rel="stylesheet">
     
-     <!--jQuery (include before angular)-->
-<!--      <script src="templates/assets/js/jquery-1.11.1.min.js"></script>-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-   
+
+    
     <!--bower components -->
-    <script src="{{URL::asset("vendor/angular/angular.min.js")}}"></script> 
-    <script src="{{URL::asset("vendor/angular-ui-router/release/angular-ui-router.min.js")}}"></script> 
+    <script src="{{URL::asset("public/vendor/angular/angular.min.js")}}"></script> 
+    <script src="{{URL::asset("public/vendor/angular-ui-router/release/angular-ui-router.min.js")}}"></script> 
     <script src="{{URL::asset("vendor/angularUtils-pagination/dirPagination.js")}}"></script>
     <script src="{{URL::asset("vendor/ng-backstretch/dist/ng-backstretch.js")}}"></script>
     
-    <script src="{{URL::asset("js/ngStorage.min.js")}}"></script>
+    <script src="js/ngStorage.min.js"></script>
  
     <!-- your app's js -->
-    <script src="{{URL::asset("js/app.js")}}"></script>
-    <script src="{{URL::asset("js/controllers.js")}}"></script>
-    <script src="{{URL::asset("js/services.js")}}"></script>
-    <script src="{{URL::asset("js/tabbedcon.js")}}"></script>
+    <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/tabbedcon.js"></script>
     
+    <!--jQuery-->
+<!--      <script src="templates/assets/js/jquery-1.11.1.min.js"></script>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
    
   
 	<!--Bootstrap-->
@@ -51,8 +53,10 @@
 
 	<!-- Javascript -->
 
-	<script src="{{URL::asset("js/jquery.backstretch.min.js")}}"></script>
-	<script src="{{URL::asset("js/scripts.js")}}"></script>
+
+	<script src="js/jquery.backstretch.min.js"></script>
+	<script src="js/scripts.js"></script>
+
 	
 
 </head>

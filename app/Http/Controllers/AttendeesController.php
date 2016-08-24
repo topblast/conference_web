@@ -35,6 +35,7 @@ class AttendeesController extends Controller
     public function __construct()
     {
         //
+       // $this->middleware('auth:attendee');
     }
 
 
@@ -49,6 +50,10 @@ class AttendeesController extends Controller
      * @todo Add checks for when user logs in with a remember token
      */
     public function login(Request $request) {
+        // set the remember me cookie if the user check the box
+        $remember = $request->input('remember') === null ? false : $request->input('remember');
+        //echo $remember;
+        
         $this->validate($request, [
             'email' => 'required|email',
             'password' => 'required'
@@ -61,13 +66,26 @@ class AttendeesController extends Controller
 
          try
         {
-
-              // attempt to verify the credentials and create a token for the user
-            if (! $token = Auth::attempt($credentials)) {
-
+            if ($remember)
+            {
+                //Set token expiration to 1 day
+                JWTAuth::factory()->setTTL(1440);
+            }
+            
+            else
+            {
+                //Set token expiration to 1 hour
+                JWTAuth::factory()->setTTL(60);
+            }
+            
+            
+           
+                // attempt to verify the credentials and create a token for the user
+            if (! $token = Auth::attempt($credentials)) 
+            {
                 return response()->json(['error' => 'invalid_credentials'], 401);
             }
-
+           
 
         }
         catch (JWTException $e)
@@ -75,18 +93,21 @@ class AttendeesController extends Controller
             // something went wrong whilst attempting to encode the token
             return response()->json(['error' => 'could_not_create_token'], 500);
         }
-
-        $user = Auth::user(); //authenticate user with successfully generated token
-
+        
+        //$user = Auth::user();
+        $user = Auth::guard('attendee')->user(); //authenticate user with successfully generated token
+        
+        
+        
         // all good so return the token and user credentials
         return response()->json(compact('user','token'));
-
+        //return response()->json($payload);
 
 
     }
 
     /**
-     * 
+     * registers a new attendee account for the user
      * @param Request $request
      * @return type
      */
@@ -126,8 +147,25 @@ class AttendeesController extends Controller
 
         $attendee_into['password'] = Hash::make($attendee_into['password']);
         $attendee = Attendee::create($attendee_into);
-        $attendee->find($attendee->attendee_id)->conferences()->attach($request->input('conference_id'), ['created_at'=>$attendee->created_at, 'updated_at'=>$attendee->updated_at]);
+        //$attendee->find($attendee->attendee_id)->conferences()->attach($request->input('conference_id'), ['created_at'=>$attendee->created_at, 'updated_at'=>$attendee->updated_at]);
 
+        return response()->json($attendee);
+    }
+    
+    /**
+     * Allows user to join chosen conference
+     * @param type $attendee_id
+     * @param type $conference_id
+     * @return type
+     */
+    public function join_conference($attendee_id, $conference_id)
+    {
+        if ( !$attendee = Attendee::find($attendee_id) )
+        {
+            return response()->json(array(), 404);
+	}
+        
+        $attendee->conferences()->attach($conference_id, ['created_at'=>$attendee->created_at, 'updated_at'=>$attendee->updated_at]);
         return response()->json($attendee);
     }
 

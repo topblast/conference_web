@@ -1,0 +1,362 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+/**
+ * AttendeesController.php
+ */
+
+namespace App\Http\Controllers;
+
+use App\Models\Attendee;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+
+
+use Illuminate\Http\Exception\HttpResponseException;
+use JWTAuth;
+use Tymon\JWTAuth\Exceptions\JWTException;
+use App\Http\Controllers\Controller;
+
+use Illuminate\Http\Response as IlluminateResponse;
+use Illuminate\Support\Facades\Mail;
+
+/**
+  * Controller for the Attendee Model
+  *
+  * *AttendeesController* is a controller for the Attendee Model, which is the data model for the attendees table.
+  *
+  */
+class AttendeesController extends Controller
+{
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        //
+       // $this-&gt;middleware('auth:attendee');
+    }
+
+
+   
+    /**
+     * Function to handle an attendee logging in
+     * @param Request $request 
+     * Takes POST request
+     * 
+     * @return type
+     * Returns a user token in the form of JSON data
+     * @todo Add checks for when user logs in with a remember token
+     */
+    public function login(Request $request) {
+        // set the remember me cookie if the user check the box
+        $remember = $request-&gt;input('remember') === null ? false : $request-&gt;input('remember');
+        //echo $remember;
+        
+        $this-&gt;validate($request, [
+            'email' =&gt; 'required|email',
+            'password' =&gt; 'required'
+        ]);
+
+
+
+        $credentials = $request-&gt;only('email', 'password');
+
+
+         try
+        {
+            if ($remember)
+            {
+                //Set token expiration to 1 day
+                JWTAuth::factory()-&gt;setTTL(1440);
+            }
+            
+            else
+            {
+                //Set token expiration to 1 hour
+                JWTAuth::factory()-&gt;setTTL(60);
+            }
+            
+            
+           
+                // attempt to verify the credentials and create a token for the user
+            if (! $token = Auth::attempt($credentials)) 
+            {
+                return response()-&gt;json(['error' =&gt; 'invalid_credentials'], 401);
+            }
+           
+
+        }
+        catch (JWTException $e)
+        {
+            // something went wrong whilst attempting to encode the token
+            return response()-&gt;json(['error' =&gt; 'could_not_create_token'], 500);
+        }
+        
+        //$user = Auth::user();
+        $user = Auth::guard('attendee')-&gt;user(); //authenticate user with successfully generated token
+        
+        
+        
+        // all good so return the token and user credentials
+        return response()-&gt;json(compact('user','token'));
+        //return response()-&gt;json($payload);
+
+
+    }
+
+    /**
+     * registers a new attendee account for the user
+     * @param Request $request
+     * @return type
+     */
+    public function register(Request $request){
+        $regex = '/(?=.*[0-9])(?=.*[A-Z])(?=.*).{8,}/'; //at least 8 characters including at least 1 Uppercase and 1 digit required
+        $result = $this-&gt;validate($request,[
+            'name' =&gt; 'required',
+            'email' =&gt; 'required|email',
+            'password' =&gt; 'required|min:8|regex:' . $regex,
+        ]);
+
+        if (isset($result-&gt;error))
+        {
+            return response()-&gt;json([
+                'error'=&gt; [
+                    'message' =&gt; 'Verification Failed',
+                    'result' =&gt; $result-&gt;error
+                ]
+            ], IlluminateResponse::HTTP_BAD_REQUEST);
+        }
+
+        $attendee_into = $request-&gt;only(
+            'name',
+            'email',
+            'password'
+        );
+
+        if (Attendee::where('email', $attendee_into['email'])-&gt;count() &gt; 0)
+        {
+            // Email Exist
+            return response()-&gt;json([
+                'error'=&gt; [
+                    'message' =&gt; 'Email already in use',
+                ]
+            ], 409 );
+        }
+
+        $attendee_into['password'] = Hash::make($attendee_into['password']);
+        $attendee = Attendee::create($attendee_into);
+        //$attendee-&gt;find($attendee-&gt;attendee_id)-&gt;conferences()-&gt;attach($request-&gt;input('conference_id'), ['created_at'=&gt;$attendee-&gt;created_at, 'updated_at'=&gt;$attendee-&gt;updated_at]);
+
+        return response()-&gt;json($attendee);
+    }
+    
+    /**
+     * Allows user to join chosen conference
+     * @param type $attendee_id
+     * @param type $conference_id
+     * @return type
+     */
+    public function join_conference($attendee_id, $conference_id)
+    {
+        if ( !$attendee = Attendee::find($attendee_id) )
+        {
+            return response()-&gt;json(array(), 404);
+	}
+        
+        $attendee-&gt;conferences()-&gt;attach($conference_id, ['created_at'=&gt;$attendee-&gt;created_at, 'updated_at'=&gt;$attendee-&gt;updated_at]);
+        return response()-&gt;json($attendee);
+    }
+
+    //GET FUNCTIONS
+    /**
+     * 
+     * @return type
+     */
+    public function get_all() {
+
+        $all = Attendee::all();
+
+        return response()-&gt;json($all);
+    }
+
+    //GET BY ID FUNCTION
+    /**
+     * 
+     * @param type $id
+     * @return type
+     */
+    public function get_id($id) {
+        if(!$cli = Attendee::find($id))
+            return response()-&gt;json([], 404);
+
+        return response()-&gt;json($cli);
+    }
+
+    //Logout
+    /**
+     * Function to handle attendee logging out
+     */
+    public function logout(){
+        /**
+         * invalidate generated token
+         */
+        Auth::logout();
+    }
+
+    //POST FUNCTIONS
+
+/*
+     public function register( Request $request){
+
+        $reg = new Attendee;
+        $reg-&gt;name = $request-&gt;input('name');
+        $reg-&gt;email = $request-&gt;input('email');
+        $reg-&gt;salted_password = $request-&gt;input('salted_password');
+
+        $reg-&gt;save();
+        $reg-&gt;find($reg-&gt;attendee_id)-&gt;conferences()-&gt;attach($request-&gt;input('conference_id'), ['created_at' =&gt; $reg-&gt;created_at, 'updated_at' =&gt; $reg-&gt;updated_at]);
+
+        return response()-&gt;json(&quot;New attendee added!&quot;);
+    }
+    */
+
+
+
+    //CHANGE PASSWORD FUNCTION
+    /**
+     * 
+     * @param type $id
+     * @param Request $request
+     * @return type
+     */
+    public function change_password($id, Request $request){
+        if(!$pEdit = Attendee::find($id))
+            return response()-&gt;json([], 404);
+
+        
+        $pEdit-&gt;password = $request-&gt;input('password');
+
+        $pEdit-&gt;save();
+
+        return response()-&gt;json(&quot;Password changed successfully!&quot;);
+    }
+
+
+    //DELETE FUNCTION
+    /**
+     * 
+     * @param type $id
+     * @return type
+     */
+    public function delete_attendee($id){
+        if (!$del  = Attendee::find($id))
+            return response()-&gt;json([], 404);
+
+        $del-&gt;delete();
+
+        return response()-&gt;json($del);
+    }
+
+
+        //PUT FUNCTION
+    /**
+     * 
+     * @param Request $request
+     * @param type $id
+     * @return type
+     */
+    public function edit_attendee(Request $request,$id){
+        if (!$edit  = Attendee::find($id))
+            return response()-&gt;json($del);
+
+        $edit-&gt;name = $request-&gt;input('name');
+        $edit-&gt;email = $request-&gt;input('email');
+        $edit-&gt;salted_password = $request-&gt;input('salted_password');
+
+        $edit-&gt;save();
+        $edit-&gt;conferences()-&gt;updateExistingPivot($request-&gt;input('conference_id'), ['updated_at' =&gt; $edit-&gt;updated_at]);
+
+
+        return response()-&gt;json($edit);
+    }
+    
+    /**
+     * 
+     * @param type $email
+     */
+    public function forgot_password($email){
+       // dd(config(&quot;mail&quot;));
+        //dd(config(&quot;mail.from.address&quot;));
+        
+        Mail::send(['text' =&gt; 'email'], ['email' =&gt; $email], function($message) use($email)
+        {
+            $message-&gt;from(config(&quot;mail.from.address&quot;), 'Bradley Ramsay');
+
+            $message-&gt;to($email)-&gt;subject('Forgot Password');
+        });
+    }
+
+
+    //GET CONFERENCES FUNCTION
+    /**
+     * 
+     * @param type $id
+     * @return type
+     */
+    public function get_conferences($id){
+        if (!$cli = Attendee::find($id))
+            return response()-&gt;json([], 404);
+
+        return response()-&gt;json($cli-&gt;conferences);
+    }
+
+    
+
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

@@ -1,4 +1,31 @@
-$(document).ready(function() {
+jQuery(document).ready(function() {
+	
+    /*
+        Fullscreen background
+    */
+//   $.backstretch([
+//                    "img/backgrounds/2.jpg",
+//	              "img/backgrounds/4.jpg"
+//	              //, "img/backgrounds/1.jpg"
+//	             ], {/*duration: 3000, fade: 750*/});
+//   
+//
+//    var path = location.href.split("/");
+//    if ( path.length > 3 && path[4] == "main" ) 
+//    {
+//        console.log("if reached");
+//        $('body').data('backstretch').show(1);
+//    
+//    } 
+//    
+//    else
+//    {
+//        console.log("else reached " + path[4]);
+//         $('body').data('backstretch').show(0);
+//    }
+//    $('body').data('backstretch').pause();
+    
+    
 
 	
     /*

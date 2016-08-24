@@ -228,7 +228,7 @@
               <li>
                 <a href="Web.Attendee.html">Attendee</a>
               </li><li>
-                <a href="Web.Client.html">Client</a>
+                <a href="Web.Clients.html">Clients</a>
               </li><li>
                 <a href="Web.Conference.html">Conference</a>
               </li><li>
@@ -258,11 +258,30 @@
 <li>Composer</li>
 <li>Lumen Framework</li>
 </ul>
+<p>#Setup</p>
+<ol>
+<li>Download/clone the project.</li>
+<li>Navigate to the root of the project.</li>
+<li>Create a copy of the <code>.env.example</code> file. Name it <code>.env</code>.</li>
+<li>In your <code>.env</code> file, add the following values:<ul>
+<li>For <code>DB_DATABASE</code> use the name of a database locally stored on your computer.</li>
+<li>If your username for your chosen database is different from 'root', then type in that username in <code>DB_USERNAME</code>.</li>
+<li>For <code>DB_PASSWORD</code> use the password for your chosen database. If your database has no password then leave this value blank.</li>
+<li>For <code>MAIL_EMAIL</code> choose a Gmail email address that you want notification emails to be sent from.</li>
+<li>For <code>MAIL_PASSWORD</code> enter the password for that email address.</li>
+<li>Save your changes.</li>
+</ul>
+</li>
+</ol>
 <p>#How To Run</p>
 <ol>
 <li>Navigate to the project directory.</li>
 <li>Run the Command: <pre class="prettyprint source"><code>composer install</code></pre></li>
-<li>Run the Command: <pre class="prettyprint source"><code>php artisan serve</code></pre></li>
+<li><p>If setting up the database for the first time, run the Command:</p>
+<pre class="prettyprint source"><code>php artisan migrate</code></pre><p>otherwise, skip this step.</p>
+</li>
+<li><p>Run the Command: </p>
+<pre class="prettyprint source"><code>php artisan serve</code></pre></li>
 </ol>
 <p>#API End-Points
 <a href="./endpoints.md">Click Here for API End Points</a></p>

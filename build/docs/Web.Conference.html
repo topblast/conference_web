@@ -228,7 +228,7 @@
               <li>
                 <a href="Web.Attendee.html">Attendee</a>
               </li><li>
-                <a href="Web.Client.html">Client</a>
+                <a href="Web.Clients.html">Clients</a>
               </li><li>
                 <a href="Web.Conference.html">Conference</a>
               </li><li>
@@ -248,7 +248,7 @@
       </h3>
       <h1 class="title">
         Conference
-        <a class="name-link signature-attributes" href="source/Web.Conference.html#line167">source</a>
+        <a class="name-link signature-attributes" href="source/Web.Conference.html#line185">source</a>
       </h1>
       <div id="main" class="big-container">
         <!-- source code html -->
@@ -269,12 +269,11 @@
   <h3 class="subsection-title">Methods</h3>
   <dl>
     <dt>
-      <a href="" class="name-link" id="list">
+      <a href="" class="name-link" id="List">
         <h4 class="name">
-          list
-          <span class="signature">(onSuccess, onError)</span>
+          List
           <span class="type-signature">
-            -&gt; undefined
+            -&gt; Promise
           </span>
         </h4>
       </a>
@@ -286,37 +285,6 @@
         </span>
       </div>
       <div>
-        <h4>Parameters</h4>
-        <table class="params">
-          <thead>
-            <tr><th>Name</th><th>Type</th><th class="last">Description</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="name">onSuccess</td>
-              <td class="type"><span class="param-type">
-                <a href="type.html">type</a>
-              </span></td>
-              <td class="description last">
-                <span>
-                  <p>response to return if method is successful.</p>
-                </span>
-              </td>
-            </tr><tr>
-              <td class="name">onError</td>
-              <td class="type"><span class="param-type">
-                <a href="type.html">type</a>
-              </span></td>
-              <td class="description last">
-                <span>
-                  <p>response to return if method fails.</p>
-                </span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div>
         <h4>Returns</h4>
         <table class="params">
           <thead>
@@ -326,7 +294,7 @@
             <tr>
               <td class="type">
                 <span class="param-type">
-                  undefined
+                  <a href="Promise.html">Promise</a>
                 </span>
               </td>
               <td class="description last">
@@ -338,130 +306,12 @@
     </dd>
   </dl><dl>
     <dt>
-      <a href="" class="name-link" id="select">
+      <a href="" class="name-link" id="Presentation">
         <h4 class="name">
-          select
+          Presentation
           <span class="signature">(id)</span>
           <span class="type-signature">
-            -&gt; undefined
-          </span>
-        </h4>
-      </a>
-    </dt>
-    <dd>
-      <div class="description">
-        <span>
-          <p>Gets details on a specific conferences based on id.</p>
-        </span>
-      </div>
-      <div>
-        <h4>Parameters</h4>
-        <table class="params">
-          <thead>
-            <tr><th>Name</th><th>Type</th><th class="last">Description</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="name">id</td>
-              <td class="type"><span class="param-type">
-                <a href="type.html">type</a>
-              </span></td>
-              <td class="description last">
-                <span>
-                  <p>the conference's id.</p>
-                </span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div>
-        <h4>Returns</h4>
-        <table class="params">
-          <thead>
-            <tr><th>Type</th><th class="last">Description</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="type">
-                <span class="param-type">
-                  undefined
-                </span>
-              </td>
-              <td class="description last">
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </dd>
-  </dl><dl>
-    <dt>
-      <a href="" class="name-link" id="selectPresentation">
-        <h4 class="name">
-          selectPresentation
-          <span class="signature">(id)</span>
-          <span class="type-signature">
-            -&gt; undefined
-          </span>
-        </h4>
-      </a>
-    </dt>
-    <dd>
-      <div class="description">
-        <span>
-          <p>Gets details on all presentations held at a specific conference.</p>
-        </span>
-      </div>
-      <div>
-        <h4>Parameters</h4>
-        <table class="params">
-          <thead>
-            <tr><th>Name</th><th>Type</th><th class="last">Description</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="name">id</td>
-              <td class="type"><span class="param-type">
-                <a href="type.html">type</a>
-              </span></td>
-              <td class="description last">
-                <span>
-                  <p>the conference's id.</p>
-                </span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div>
-        <h4>Returns</h4>
-        <table class="params">
-          <thead>
-            <tr><th>Type</th><th class="last">Description</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="type">
-                <span class="param-type">
-                  undefined
-                </span>
-              </td>
-              <td class="description last">
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </dd>
-  </dl><dl>
-    <dt>
-      <a href="" class="name-link" id="selectPresentation">
-        <h4 class="name">
-          selectPresentation
-          <span class="signature">(id)</span>
-          <span class="type-signature">
-            -&gt; undefined
+            -&gt; Promise
           </span>
         </h4>
       </a>
@@ -503,7 +353,125 @@
             <tr>
               <td class="type">
                 <span class="param-type">
-                  undefined
+                  <a href="Promise.html">Promise</a>
+                </span>
+              </td>
+              <td class="description last">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </dd>
+  </dl><dl>
+    <dt>
+      <a href="" class="name-link" id="Presentations">
+        <h4 class="name">
+          Presentations
+          <span class="signature">(id)</span>
+          <span class="type-signature">
+            -&gt; Promise
+          </span>
+        </h4>
+      </a>
+    </dt>
+    <dd>
+      <div class="description">
+        <span>
+          <p>Gets details on all presentations held at a specific conference.</p>
+        </span>
+      </div>
+      <div>
+        <h4>Parameters</h4>
+        <table class="params">
+          <thead>
+            <tr><th>Name</th><th>Type</th><th class="last">Description</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="name">id</td>
+              <td class="type"><span class="param-type">
+                <a href="type.html">type</a>
+              </span></td>
+              <td class="description last">
+                <span>
+                  <p>the conference's id.</p>
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h4>Returns</h4>
+        <table class="params">
+          <thead>
+            <tr><th>Type</th><th class="last">Description</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="type">
+                <span class="param-type">
+                  <a href="Promise.html">Promise</a>
+                </span>
+              </td>
+              <td class="description last">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </dd>
+  </dl><dl>
+    <dt>
+      <a href="" class="name-link" id="Select">
+        <h4 class="name">
+          Select
+          <span class="signature">(id)</span>
+          <span class="type-signature">
+            -&gt; Promise
+          </span>
+        </h4>
+      </a>
+    </dt>
+    <dd>
+      <div class="description">
+        <span>
+          <p>Gets details on a specific conferences based on id.</p>
+        </span>
+      </div>
+      <div>
+        <h4>Parameters</h4>
+        <table class="params">
+          <thead>
+            <tr><th>Name</th><th>Type</th><th class="last">Description</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="name">id</td>
+              <td class="type"><span class="param-type">
+                <a href="type.html">type</a>
+              </span></td>
+              <td class="description last">
+                <span>
+                  <p>the conference's id.</p>
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h4>Returns</h4>
+        <table class="params">
+          <thead>
+            <tr><th>Type</th><th class="last">Description</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="type">
+                <span class="param-type">
+                  <a href="Promise.html">Promise</a>
                 </span>
               </td>
               <td class="description last">

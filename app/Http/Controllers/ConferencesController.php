@@ -11,6 +11,7 @@ use App\Models\Blacklist;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use JWTAuth;
 /**
  * Controller for the conferences table.
  *
@@ -24,6 +25,7 @@ class ConferencesController extends Controller
 	public function __construct()
 	{
 		//
+               // $this->middleware('auth:attendee');
 	}
 	/*   
 	// somewhere in your controller
@@ -55,10 +57,12 @@ class ConferencesController extends Controller
 	public function get_all()
 	{
 		//Get all PUBLIC Conferences
-		
+		$user = Auth::guard('attendee')->user(); 
 		$all = Conference::all()->where('type', 'public');
 		
 		return response()->json($all);
+//                $payload = JWTAuth::parseToken()->getPayload();
+//                return response()->json($payload);
 	}
 	
 	//GET ID FUNCTION

@@ -3,7 +3,7 @@
 	<input type="checkbox" id="menuToggle"><label for="menuToggle" class="menu-icon">&#9776;</label> <a ui-sref="main.home">Home</a> | <a ui-sref="main.home-speakers({speakerID: 5})">Speakers</a> | <a ui-sref="main.conference({conferenceID:3})">Tester</a>	|
 
 
-	<p>Welcome {{userDetails.username}}!</p>
+	<p>Welcome {{userDetails.name}}!</p>
 
 
 	<nav class="menu">
@@ -11,9 +11,7 @@
 			<li><a>Profile</a>
 				<li><a ui-sref="main.home">My Conferences</a>
 					<ul class="submenu">
-						<li><a ui-sref="">conference1</a></li>
-						<li><a ui-sref="">conference2</a></li>
-						<li><a ui-sref="">conference3</a></li>
+						<li ng-repeat="conference in conferences"><a ui-sref="main.conference({conferenceID: {{conference.conference_id}}})">{{conference.name}}</a></li>
 					</ul>
 					<li><a>Change Password</a>
 						<li><a ng-click="logout()">Logout</a>
