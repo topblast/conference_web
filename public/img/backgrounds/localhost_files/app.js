@@ -335,32 +335,6 @@ angular.module('starter', [
 				templateUrl: 'templates/conhome.html' //controller: 'ForgotPassCtrl',
 			})
 
-			.state('mainz', {
-				url: '/mainz',
-				abstract: true,
-				templateUrl: '/templates/main/main.html'
-			})
-
-			.state('mainz.home', {
-				url: '/home',
-				views: {
-					'header':{
-						templateUrl: 'templates/navbar.html'
-					},
-
-					'main-home': {
-						templateUrl: 'templates/privateCon.html'
-						//controller: 'HomeCtrl'
-					},
-					'footer': {
-						templateUrl: 'templates/main/home/footer.html'
-					}
-				}
-			})
-
-
-
-
 			.state('Speakers', {
 				url: '/Speakers',
 				templateUrl: 'templates/speakers.html' //controller: 'ForgotPassCtrl',
@@ -375,71 +349,6 @@ angular.module('starter', [
 				url: '/privateCon',
 				templateUrl: 'templates/privateCon.html' //controller: 'ForgotPassCtrl',
 			})
-
-			.state('about', {
-				url: '/about',
-				templateUrl: 'templates/about.html' //controller: 'ForgotPassCtrl',
-			})
-
-			.state('specificCon', {
-				url: '/specificCon',
-				templateUrl: 'templates/specificCon.html' //controller: 'ForgotPassCtrl',
-			})
-
-			.state('Schedule', {
-				url: '/Schedule',
-				templateUrl: 'templates/Schedule.html' //controller: 'ForgotPassCtrl',
-			})
-
-			.state('speaker', {
-				url: '/speaker',
-				templateUrl: 'templates/speaker-bio.html' //controller: 'ForgotPassCtrl',
-			})
-
-			.state('navbar', {
-				url: '/navbar',
-				templateUrl: 'templates/navbar.html' //controller: 'ForgotPassCtrl',
-			})
-     
-			.state('map', {
-				url: '/map',
-				templateUrl: 'templates/map.html' //controller: 'ForgotPassCtrl',
-			})
-     
-			.state('speakers2', {
-				url: '/speakers2',
-				templateUrl: 'templates/speakers2.html' //controller: 'ForgotPassCtrl',
-			})
-			.state('header', {
-				url: '/header',
-				templateUrl: 'templates/header.html' //controller: 'ForgotPassCtrl',
-			})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
      //WARRENS TESTING!!!!!!!!!!
 			//WARRENS TESTING!!!!!!!!!!

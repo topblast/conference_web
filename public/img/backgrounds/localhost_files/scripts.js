@@ -1,12 +1,12 @@
-$(document).ready(function() {
+jQuery(document).ready(function() {
 
 	
     /*
         Fullscreen background
     */
     $('#myCarousel').carousel({
-  interval:200
-  });
+  interval: 10000
+  })
     
    // $.backstretch([
    //                  "img/backgrounds/2.jpg",

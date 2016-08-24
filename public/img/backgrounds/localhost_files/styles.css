@@ -266,10 +266,9 @@ h3 {
     text-align: left;
 }
 #border {
-	border:none;
     border-bottom: solid;
     box-shadow: 0px 0px 5px grey;
-    border-color: rgb(6, 152, 152);
+    color: rgb(6, 152, 152);
     width: 100%;
 }
 
@@ -343,20 +342,6 @@ h3 {
 	text-align: justify;
 }
 
-#con li {
-	text-align: left;
-	font-weight: 400;
-	font-size: 20px;
-}
-
-#con h3 {
-text-align: left;
-font-size: 26px;
-font-weight: 400;
-color: #555;
-}
-
-
 /*
 @media (max-width: 767px) {
     .inner-bg {
@@ -402,7 +387,7 @@ color: #555;
 
 .carousel {
     margin-bottom: 0;
-    padding: 0 12px 0px 6px;
+    padding: 0 12px 0px 12px;
 }
 
 .carousel-control {
@@ -425,101 +410,4 @@ color: #555;
 
 .carousel-indicators .active {
 background: #333333;
-}
-
-/* Remove margins and padding from the list, and add a black background color */
-ul.topnav {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: rgb(6,152,152);
-}
-
-/* Float the list items side by side */
-ul.topnav li {float: left;}
-
-/* Style the links inside the list items */
-ul.topnav li a {
-    display: inline-block;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    transition: 0.3s;
-    font-size: 20px;
-    font-style: Palatino, serif;
-}
-
-/* Change background color of links on hover */
-ul.topnav li a:hover {background-color: rgb(57,169,169);}
-
-/* Hide the list item that contains the link that should open and close the topnav on small screens */
-ul.topnav li.icon {display: none;}
-
-#searchbar{
-   height: 40px;
-	margin: 0;
-	padding: 0 20px;
-	vertical-align: middle;
-	
-	font-family: 'Roboto', sans-serif;
-	font-size: 16px;
-	font-weight: 300;
-	line-height: 50px;
-}
-
-#searchbar button.btn{
-	height: 40px;
-	margin: 2px;
-	padding: 0 20px;
-	vertical-align: middle;
-	background: rgb(17, 169, 169);
-	border: 0;
-	font-family: 'Roboto', sans-serif;
-	font-size: 16px;
-	font-weight: 300;
-	line-height: 50px;
-	color: #fff;
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
-	border-radius: 4px;
-	text-shadow: none;
-	-moz-box-shadow: none;
-	-webkit-box-shadow: none;
-	box-shadow: none;
-	-o-transition: all .3s;
-	-moz-transition: all .3s;
-	-webkit-transition: all .3s;
-	-ms-transition: all .3s;
-	transition: all .3s;
-}
-
-#nav {
-	background-color: rgb(57,169,169); 
-
-}
-
-#nav2 {
-	background-color: rgb(142, 219, 219); 
-
-}
-
-#nav h2{
-	font-size: 60px;
-	font-weight: 300;
-	background-color: rgb(57,169,169); 
-	color:#fff;
-}
-
-#nav h4{
-	font-size: 25px;
-	font-weight: 200;
-	background-color: rgb(57,169,169); 
-	color:#fff;
-	padding-right: 40px;
-}
-
-#nav button{
-	height: 53px;
 }
