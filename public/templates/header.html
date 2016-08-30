@@ -1,0 +1,30 @@
+<!--Header Template-->
+<div> 
+
+    <input type="checkbox" id="menuToggle"><label for="menuToggle" class="menu-icon">&#9776;</label> <a ui-sref="main.home">Home</a> | <a ui-sref="main.home-speakers({speakerID: 5})">Speakers</a> | <a ui-sref="main.conference({conferenceID:3})">Tester</a> |
+
+    
+    <p>Welcome {{userDetails.username}}!</p>
+    
+
+<nav class="menu">
+    <ul>
+        <li><a ui-sref="">Profile</a>
+        <li><a ui-sref="main.home">My Conferences</a>
+                <ul class="submenu">
+                    <li><a ui-sref="">conference1</a></li>
+                    <li><a ui-sref="">conference2</a></li>
+                    <li><a ui-sref="">conference3</a></li>
+                </ul>
+        <li><a ui-sref="">Change Password</a>
+        <li><a ui-sref="" ng-click="logout()">Logout</a>
+        <li><a ui-sref="" data-toggle="modal" data-target="#helpModal">Help</a>
+        <li><a ui-sref="" data-toggle="modal" data-target="#reportModal">Report Bug</a>
+    </ul>
+</nav>
+
+<div id="c-mask" class="c-mask"></div> <!-- to be used to darken page when side menu is opened -->
+
+  
+    
+</div>

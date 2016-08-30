@@ -1,0 +1,15 @@
+
+<!--Select conference Template-->
+<div ui-view="header"></div> 
+
+<p>Conferences go here</p>
+        <div>
+            {{conference.conference_id}} {{conference.name}} 
+            
+
+                <p>Speaker </p>
+                <div ng-repeat="speaker in speakers">
+                    {{speaker.speaker_id}} {{speaker.name}}
+                     <p><a href="#" ng-if="speaker" ng-click="deleteSpeaker(speaker.speaker_id)" class="text-muted">Delete</a></p>
+                    </div>
+        </div>

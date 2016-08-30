@@ -1,0 +1,24 @@
+
+<!--Conference Header-->
+<!--Tabs-->
+<div> 
+      <input type="checkbox" id="menuToggle"><label for="menuToggle" class="menu-icon">&#9776;</label> <a ui-sref="main.home">Schedule</a> | <a ui-sref="main.home-speakers({speakerID: 5})">Speakers</a> | <a ui-sref="main.test">Map</a> | <a ui-sref="main.test">About</a>
+<!--End Tabs-->
+    <br><br><br>
+    
+<nav class="menu">
+    <ul>
+        <li><a ui-sref="">Profile</a>
+        <li><a ui-sref="main.home">My Conferences</a>
+            <!-- <ul><li>sub-menu containing list of conferences</li></ul> -->
+        <li><a ui-sref="">Change Password</a>
+        <li><a ui-sref="" ng-click="logout()">Logout</a>
+        <li><a ui-sref="">Help</a>
+        <li><a ui-sref="">Report Bug</a>
+    </ul>
+</nav>
+
+
+<div id="c-mask" class="c-mask"></div> <!-- to be used to darken page when side menu is opened -->
+
+</div>  

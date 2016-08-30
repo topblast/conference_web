@@ -1,0 +1,43 @@
+<!--Login for clients-->       
+<!--Begining of heading contains the name and logo of application-->
+<div class="container-fluid">
+            <style>
+.center {
+    text-align: center;
+    }
+</style>
+            <div class="center" id="logo-holder">
+                <a class="brand" style="margin: 0; float: none; text-align:center" href="#">
+                  Client Login
+                </a>
+            </div>
+            <section>
+ <!--End -->
+<!--Form Bottom-containing the feilds that user must fill to enter the application-->               
+                    <form ng-submit="loginClient()" class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-4">
+                                <input type="email" name="email" class="form-control" placeholder="Email" ng-model="clientData.email">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-4 col-sm-offset-4">
+                                    <input type="password" name="password" class="form-control" placeholder="Password" ng-model="clientData.password">
+                                    </div>
+                                </div>
+                                <div style="padding-left:6px;" class="col-sm-4 col-sm-offset-4">
+                                        <input type="submit"  class="btn btn-default" value="Log in" >
+                                        
+                                    
+                                            <a ui-sref="client-register" class="btn btn-default " role="button">Sign up</a>
+                                        </div>
+                                </form>
+                                <div class="col-sm-4 col-sm-offset-4" style="padding-left:6px;">
+                                    <p>  Have you forgotten your username or password? 
+                                        <a ui-sref="forgotpassword"> Click here</a>
+                                    </p>
+                                </div>
+                            </section>
+                    </div>
+                     <!--Form Bottom-end-->
+                     

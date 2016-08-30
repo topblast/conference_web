@@ -1,0 +1,10 @@
+.item-expand.inactive {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	width: 30em;
+	height: 3em;
+}
+
+.empty {
+	display: none;
+}

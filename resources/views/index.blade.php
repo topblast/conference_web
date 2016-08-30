@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="css/texthide.css">
     <link href="css/registration.css" rel="stylesheet">
     
+
     
     <!--bower components -->
     <script src="{{URL::asset("public/vendor/angular/angular.min.js")}}"></script> 
@@ -42,17 +43,20 @@
     <!--jQuery-->
 <!--      <script src="templates/assets/js/jquery-1.11.1.min.js"></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
    
   
 	<!--Bootstrap-->
-	<script src="js/bootstrap.min.js"></script>
+	<script src="{{URL::asset("js/bootstrap.min.js")}}"></script>
 
-	<script src="templates/registration.js"></script>
+	<script src="{{URL::asset("templates/registration.js")}}"></script>
 
 	<!-- Javascript -->
 
+
 	<script src="js/jquery.backstretch.min.js"></script>
 	<script src="js/scripts.js"></script>
+
 	
 
 </head>
