@@ -1,0 +1,35 @@
+
+
+<div class="container-fluid" id="con">
+    <div dir-paginate="speaker in speakers | itemsPerPage: 10">
+	<div class="panel panel-default" id="border">
+		<div class="panel-body">
+                        <div>
+                            <h3>Name</h3>
+                            <p>{{speaker.name}}</p>
+                        </div>
+                    
+			<div>
+				<h3>Bio</h3>
+				<p>{{speaker.bio}}</p>
+			</div>
+			
+			<div>
+				
+
+                            <div class="row">
+                                <div class="col-md-6"><a ui-sref="main.home-speaker({speakerID: speaker.speaker_id})" class="btn pull-right">See More</a></div>
+<!--                                <div class="col-md-6">
+                                  <button class="btn pull-right" data-toggle="collapse" href="#collapse2">Join Conference</button>
+
+                                </div>-->
+                            </div>
+			</div>
+		</div>
+	</div>
+    </div>
+    <dir-pagination-controls></dir-pagination-controls>
+    
+</div>    
+            
+  

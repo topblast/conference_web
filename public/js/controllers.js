@@ -162,7 +162,15 @@ angular.module('starter.controllers', [])
  * @param $location {service} ng location
  * @returns {undefined}
  */
-.controller('HeaderCtrl', function($scope, Attendee, $location, $localStorage) {
+.controller('HeaderCtrl', function($scope, Attendee, $location, $localStorage, $stateParams, Web) {
+    console.log("We're in header ctrl!");
+        $scope.menuToggle = false;
+        $scope.select = function () {
+                $scope.menuToggle = !$scope.menuToggle;
+                console.log("is here.");
+                console.log($scope.menuToggles);
+            };
+    
 	$scope.userDetails = $localStorage.user_data;
         
         Attendee.Conferences()
@@ -171,6 +179,10 @@ angular.module('starter.controllers', [])
 			
                     });
                     
+        Web.Conferences.Select($stateParams.conferenceID)
+                .success(function(data) {
+                    $scope.conference = data;
+                   });
 
 	$scope.logout = function() {
 		// remove user from local storage and clear http auth header
@@ -203,6 +215,24 @@ angular.module('starter.controllers', [])
 })
 
 /**
+ * @memberOf starter
+ * @ngdoc controller
+ * @name SpeakersCtrl
+ * @desc Controller for the 'main-home' view in the 'main.home-speakers' state
+ * @param $scope {service} controller scope
+ * @param $stateParams {service} Parameters added to the state's url
+ * @param Web {service} factory service that holds all the table-specific services for the conference
+ * @returns {undefined}
+ */
+.controller('SpeakersCtrl', function($scope, $stateParams, Web) {
+	Web.Speakers.List().success(function(data) {
+		$scope.speakers = data;
+
+	});
+})
+
+
+/**
  * @memberof starter
  * @ngdoc controller
  * @name ConfCtrl
@@ -219,6 +249,7 @@ angular.module('starter.controllers', [])
 
 	Web.Conferences.Presentations($stateParams.conferenceID).success(function(data) {
 		$scope.presentations = data;
+                console.log($scope.presentations);
 	});
 
 	// TODO: Review the function/operation below.
@@ -335,10 +366,11 @@ angular.module('starter.controllers', [])
  * @returns {undefined}
  */
 .controller('RegCtrl', function($scope, Web, $location) {
+        console.log($scope);
 	$scope.bgImage = 'img/backgrounds/3.jpg';
 
 	$scope.submitAttendee = function() {
-
+                console.log($scope);
 		$scope.loading = true;
 
 		if ($scope.attendeeData.password !== $scope.pword) {
@@ -403,10 +435,13 @@ angular.module('starter.controllers', [])
  * @returns {undefined}
  */
 .controller('ForgotPassCtrl', function($scope, Web, $location) {
+        $scope.bgImage = 'img/backgrounds/3.jpg';
+        
 	$scope.sendEmail = function() {
+                console.log($scope);
 		$scope.loading = true;
 
-		Web.Attendee.ForgotPassword($scope.attendeeData.email)
+		Web.Attendees.ForgotPassword($scope.email)
 			.then(function(response) {
 					alert('Email Sent!');
 				},
@@ -429,14 +464,15 @@ angular.module('starter.controllers', [])
  * @param {type} Attendee
  * @returns {undefined}
  */
-.controller('ResetPassCtrl', function($scope, $stateParams, Attendee) {
+.controller('ResetPassCtrl', function($scope, $stateParams, Web) {
+        $scope.bgImage = 'img/backgrounds/3.jpg';
 	$scope.sendEmail = function() {
 		$scope.loading = true;
 		$scope.attendeeData.token = $stateParams.token;
 		$scope.attendeeData.email = $stateParams.email;
 		console.log($stateParams);
 
-		Attendee.ResetPassword($scope.attendeeData)
+		Web.Attendees.ResetPassword($scope.attendeeData)
 			.then(function(response) {
 					alert('Password successfully reset!');
 				},
@@ -449,13 +485,25 @@ angular.module('starter.controllers', [])
 	}
 })
 
-.controller('MainCtrl', function($scope) {})
+.controller('ChangePassCtrl', function($scope, $stateParams, Web){
+        
+        $scope.changePassword = function (){
+            
+            
+            if ($scope.attendeeData.password !== $scope.pword) {
+			alert("passwords don't match!");
+			return;
+		}
+        }
+})
 
-.controller('AccountCtrl', function($scope) {
-	$scope.settings = {
-		enableFriends: true
-	};
-});
+//.controller('MainCtrl', function($scope) {})
+//
+//.controller('AccountCtrl', function($scope) {
+//	$scope.settings = {
+//		enableFriends: true
+//	};
+//});
 
 /**
  * Checks if the user is logged in, redirects them to the login page if they are not

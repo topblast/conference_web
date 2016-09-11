@@ -1,0 +1,77 @@
+<!--THESE SHOULD BBE SORTED BY DATE-->
+<!--First design just a paragargh about the conference with see more  link that navigates to page with more information and has a join conference on the outside-->
+<div class="container-fluid" id="con">
+    
+<!--    <div style="width:75%; margin: auto;" ng-hide="loading" dir-paginate="conference in conferences | itemsPerPage: 7">
+	<h3>Conference {{conference.conference_id}}: {{conference.name}}</h3>
+
+
+
+
+	<p ng-class="{empty: !(presentation[conference.conference_id])}"> <strong>{{presentation[conference.conference_id].presentation_id || '?'}}: {{presentation[conference.conference_id].title || '?'}} </strong> </p>
+
+	<div style="width:75%; margin: auto; text-align: left;" class="item-expand inactive" ng-class="{empty: !(presentation[conference.conference_id])}">
+		{{presentation[conference.conference_id].abstract || '?'}}
+	</div>
+	<a ui-sref="main.conference({conferenceID: {{conference.conference_id}}})">See More</a> 
+        <button type="button" class="btn" ng-click="joinConference(conference.conference_id)">Join Conference</button>
+
+
+</div>
+<dir-pagination-controls></dir-pagination-controls>-->
+
+    <div class="panel panel-default" style="width:75%; margin: auto;" ng-hide="loading" dir-paginate="conference in conferences | itemsPerPage: 10">
+        <div class="panel-body" >
+            <h2>Conference {{conference.conference_id}}: {{conference.name}}</h2>
+            <div>
+                <img src="http://placehold.it/200x200" height="200" width="200" class="pull-left">
+                <div style="min-height: 200px;">
+                    <p ng-class="{empty: !(presentation[conference.conference_id])}"> <strong>{{presentation[conference.conference_id].presentation_id || '?'}}: {{presentation[conference.conference_id].title || '?'}} </strong> </p>
+                </div>              
+                <div style="width:75%; margin: auto; text-align: left;" class="item-expand inactive" ng-class="{empty: !(presentation[conference.conference_id])}">
+                    {{presentation[conference.conference_id].abstract || '?'}}
+                </div>
+                <a ui-sref="main.conference({conferenceID: {{conference.conference_id}}})">See More</a> 
+        
+                <div class="row">
+                    <div class="col-md-6"></div>
+                    <div class="col-md-6">
+<!--                      <button class="btn pull-right" data-toggle="collapse" href="#collapse2">Join Conference</button>-->
+                        <button type="button" class="btn" ng-click="joinConference(conference.conference_id)">Join Conference</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+                
+    </div>
+    <dir-pagination-controls></dir-pagination-controls>    
+            <!--First design END-->
+
+    <!--First design END-->
+    <!--First design just a paragraph about the conference with see more  link that navigates to page with more information and has a join conference on the outside-->
+<!--      <div class="panel panel-default">
+        <div class="panel-body" >
+          <h2>Conference 2</h2>
+          <div>
+            <img src="http://placehold.it/200x200" height="200" width="200" class="pull-left">
+              <div style="min-height: 200px;">
+                <div class="row">
+                  <p>
+                    <li>Loacation: Location of the Conference</li>
+                    <li>Date:January 29th 2017 </li>
+                    <li>Category: Cats</li>
+                    <li>Hosted by: CSS </li>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6"></div>
+                    <div class="col-md-6">
+                      <button class="btn pull-right" data-toggle="collapse" href="#collapse2">Join Conference</button>
+                      <button ui-sref="specificCon" type= "submit" class="btn pull-right">See More</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>-->
+      
+</div>

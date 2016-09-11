@@ -63,7 +63,9 @@ nav a:hover {
 	width: 240px;
 	height: 100%;
 	position: absolute;
-	background: #00A5CC;
+	/*background: #00A5CC;*/
+        background: #069898;
+	z-index: 100;
 	left: -240px;
 	transition: all .3s ease-in-out;
 	-webkit-transition: all .3s ease-in-out;
@@ -90,6 +92,13 @@ nav a:hover {
 #menuToggle:checked~ .menu {
 	position: absolute;
 	left: 0;
+}
+
+.menuOut{
+	position: absolute;
+        background: #069898;
+	left: 0;
+        z-index: 100;
 }
 
 

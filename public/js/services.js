@@ -64,7 +64,7 @@ angular.module('starter.services', [])
 				 * @returns {Promise}
 				 */
 				Attendees.ChangePassword = function(id) {
-					return $http.get(API_LOCATION + 'attendees/' + id + '/changepassword');
+					return $http.post(API_LOCATION + 'attendees/' + id + '/changepassword');
 				};
 				/**
 				 * Calls API route for an attendee's forgotten password
@@ -130,7 +130,7 @@ angular.module('starter.services', [])
 					return $http.get(API_LOCATION + 'attendees/' + id + '/conferences');
 				};
                                 /**
-				 * Returns a json array of the conferences the attendee is signed up for upon success, an empty array and 404 error upon failure
+				 * Lets an attendee join the selected conference, adding that conference to the list of conferences the attendee is signed up for
 				 * @memberof Web.Attendee
 				 * @method JoinConference
 				 * @param {type} id the attendee's id
@@ -315,8 +315,8 @@ angular.module('starter.services', [])
                                 
                                 if($localStorage.user_data !== null)
                                 this.expiresIn = $localStorage.user_data.expiresIn;
-                                console.log(this.expiresIn);
-                                console.log(Date.now());
+//                                console.log(this.expiresIn);
+//                                console.log(Date.now());
                                 
                             if($localStorage.user_data !== null && $localStorage.user_data.expiresIn !== null)
                             {
@@ -403,7 +403,7 @@ angular.module('starter.services', [])
                                         else
                                         {
                                             //set expiration to 1 hour
-                                            var expires = (60*1000);
+                                            var expires = (60*60*1000);
                                             _this.SetExpire(expires);
                                         }
 					$http.defaults.headers.common.Authorization = 'Bearer ' + _this.Token;
@@ -442,7 +442,12 @@ angular.module('starter.services', [])
 			AttendeeService.prototype.Conferences = function() {
 				return Web.Attendees.Conferences(this.User.attendee_id);
 			};
-                        
+                        /**
+                         * Lets the current user join a conference, chosen by conferenceID.
+                         * @memberOf Attendee
+                         * @method JoinConference
+                         * @returns {undefined}
+                         */
                         AttendeeService.prototype.JoinConference= function(conferenceID){
                                 return Web.Attendees.JoinConference(this.User.attendee_id, conferenceID);
                         }

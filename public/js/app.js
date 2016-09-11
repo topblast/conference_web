@@ -35,11 +35,11 @@ angular.module('starter', [
 	 * @returns {undefined}
 	 */
 
-.run(function($rootScope, $http, $location, $localStorage) {
+//.run(function($rootScope, $http, $location, $localStorage) {
 			// keep user logged in after page refresh
-			if ($localStorage.currentUser) {
-				$http.defaults.headers.common.Authorization = 'Bearer ' + $localStorage.currentUser.token;
-			}
+//			if ($localStorage.currentUser) {
+//				$http.defaults.headers.common.Authorization = 'Bearer ' + $localStorage.currentUser.token;
+//			}
 			/*
 			 * This section is currently commented out to make testing easier
 			 */
@@ -59,9 +59,11 @@ angular.module('starter', [
 			//                $location.path('/main/home'); //redirect to the main homepage
 			//            }
 			//        });
-		}
+//		}
 
-	)
+//	)
+
+
 	/**
 	 * @memberof starter
 	 * @ngdoc config
@@ -108,11 +110,11 @@ angular.module('starter', [
 				url: '/home',
 				views: {
 					'header': {
-						templateUrl: 'templates/main/home/header.html',
+						templateUrl: 'templates/main/home/navbar.html',
 						controller: 'HeaderCtrl'
 					},
 					'main-home': {
-						templateUrl: 'templates/main/home/index.html',
+						templateUrl: 'templates/main/home/publicCons.html',
 						controller: 'HomeCtrl'
 					},
 					'footer': {
@@ -125,9 +127,30 @@ angular.module('starter', [
 			 * @name main.home-speakers
 			 * @ngdoc state
 			 * @desc The child state for main.
-			 * This is the state that will display a speaker's profile
+			 * This is the state that will display all speakers
 			 */
 			.state('main.home-speakers', {
+				url: '/:conferenceID/speakers',
+				views: {
+					'header': {
+						templateUrl: 'templates/main/home/navbar.html',
+						controller: 'HeaderCtrl'
+					},
+					'main-home': {
+						templateUrl: 'templates/main/home-speakers/speakers.html',
+						controller: 'SpeakersCtrl'
+					}
+				}
+			})
+                        
+                        /**
+			 * @memberof states
+			 * @name main.home-speaker
+			 * @ngdoc state
+			 * @desc The child state for main.
+			 * This is the state that will display a speaker's profile
+			 */
+                        .state('main.home-speaker', {
 				url: '/:speakerID',
 				views: {
 					'header': {
@@ -140,6 +163,7 @@ angular.module('starter', [
 					}
 				}
 			})
+                        
 			/**
 			 * @memberof states
 			 * @name main.home-presentations
@@ -185,11 +209,11 @@ angular.module('starter', [
 				url: '/conference/:conferenceID',
 				views: {
 					'header': {
-						templateUrl: 'templates/main/conference/header.html',
+						templateUrl: 'templates/main/home/navbar.html',
 						controller: 'HeaderCtrl'
 					},
 					'main-home': {
-						templateUrl: 'templates/main/conference/select.html',
+						templateUrl: 'templates/main/conference/specificCon.html',
 						controller: 'ConfCtrl'
 					}
 				}
@@ -292,13 +316,20 @@ angular.module('starter', [
 				url: '/resetpass/:token/:email',
 				templateUrl: 'templates/attendee/reset-pass.html',
 				controller: 'ResetPassCtrl'
-			}).state('help', {
+			})
+                                
+            
+                        .state('help', {
 				url: '/help',
 				templateUrl: 'templates/help.html' //controller: 'ForgotPassCtrl',
-			}).state('report', {
+			})
+                                
+            
+                        .state('report', {
 				url: '/report',
 				templateUrl: 'templates/report.html' //controller: 'ForgotPassCtrl',
 			})
+                        
 			/**
 			 * @memberof states
 			 * @name change-password
@@ -310,13 +341,19 @@ angular.module('starter', [
 				url: '/change-password',
 				templateUrl: 'templates/attendee/change-password.html' //controller: 'ForgotPassCtrl',
 					//TODO: add controller for change password.
-			}).state('user', {
-				url: '/user',
-				templateUrl: 'templates/user.html', //controller: 'ForgotPassCtrl',
-			}).state('speaker bio', {
-				url: '/speaker',
-				templateUrl: 'templates/speaker-bio.html' //controller: 'ForgotPassCtrl',
 			})
+                                
+//                        .state('user', {
+//				url: '/user',
+//				templateUrl: 'templates/user.html', //controller: 'ForgotPassCtrl',
+//			})
+//                                
+//            
+//                        .state('speaker bio', {
+//				url: '/speaker',
+//				templateUrl: 'templates/speaker-bio.html' //controller: 'ForgotPassCtrl',
+//			})
+                        
 			/**
 			 * @memberof states
 			 * @name private-conferences
@@ -330,33 +367,34 @@ angular.module('starter', [
 				templateUrl: 'templates/private conferences.html' //controller: 'ForgotPassCtrl',
 			})
 
-      		.state('conhome', {
-				url: '/conhome',
-				templateUrl: 'templates/conhome.html' //controller: 'ForgotPassCtrl',
-			})
+//                        .state('conhome', {
+//				url: '/conhome',
+//				templateUrl: 'templates/conhome.html' //controller: 'ForgotPassCtrl',
+//			})
 
-			.state('mainz', {
-				url: '/mainz',
-				abstract: true,
-				templateUrl: '/templates/main/main.html'
-			})
-
-			.state('mainz.home', {
-				url: '/home',
-				views: {
-					'header':{
-						templateUrl: 'templates/navbar.html'
-					},
-
-					'main-home': {
-						templateUrl: 'templates/privateCon.html'
-						//controller: 'HomeCtrl'
-					},
-					'footer': {
-						templateUrl: 'templates/main/home/footer.html'
-					}
-				}
-			})
+//			.state('mainz', {
+//				url: '/mainz',
+//				abstract: true,
+//				templateUrl: '/templates/main/main.html'
+//			})
+//
+//			.state('mainz.home', {
+//				url: '/home',
+//				views: {
+//					'header':{
+//						templateUrl: 'templates/navbar.html',
+//                                                controller: 'HeaderCtrl'
+//					},
+//
+//					'main-home': {
+//						templateUrl: 'templates/privateCon.html',
+//						controller: 'HomeCtrl'
+//					},
+//					'footer': {
+//						templateUrl: 'templates/main/home/footer.html'
+//					}
+//				}
+//			})
 
 
 
@@ -381,10 +419,23 @@ angular.module('starter', [
 				templateUrl: 'templates/about.html' //controller: 'ForgotPassCtrl',
 			})
 
-			.state('specificCon', {
-				url: '/specificCon',
-				templateUrl: 'templates/specificCon.html' //controller: 'ForgotPassCtrl',
-			})
+//			.state('mainz.specificCon', {
+//                                url: '/specificCon/:conferenceID',
+//                                views: {
+//					'header':{
+//						templateUrl: 'templates/navbar.html',
+//                                                controller: 'HeaderCtrl'
+//					},
+//
+//					'main-home': {
+//						templateUrl: 'templates/specificCon.html',
+//						controller: 'ConfCtrl'
+//					},
+//					'footer': {
+//						templateUrl: 'templates/main/home/footer.html'
+//					}
+//				}
+//			})
 
 			.state('Schedule', {
 				url: '/Schedule',
@@ -441,7 +492,7 @@ angular.module('starter', [
 
 
 
-     //WARRENS TESTING!!!!!!!!!!
+                        //WARRENS TESTING!!!!!!!!!!
 			//WARRENS TESTING!!!!!!!!!!
 			//WARRENS TESTING!!!!!!!!!!
 			//WARRENS TESTING!!!!!!!!!!
