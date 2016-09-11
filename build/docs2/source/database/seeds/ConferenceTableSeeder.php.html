@@ -1,0 +1,211 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+# database/seeds/QuoteTableSeeder.php
+
+use App\Models\Conference;
+use App\Models\Presentation;
+use App\Models\Speaker;
+use App\Models\Client;
+use App\Models\Room;
+use Illuminate\Database\Seeder;
+
+class ConferenceTableSeeder extends Seeder  
+{
+    public function run()
+    {
+        /* Attendees::create([
+            'name' =&gt; 'Winston Churchill',
+            'email' =&gt; '1.jpg',
+			'salted_password' =&gt; '123sgjsdhjsw^&amp;^&amp;*&amp;*',
+			
+        ]);*/
+        
+        Client::create([
+            'contact_name' =&gt; 'Shaquanda',
+            'email' =&gt; 'soccer@q.com',
+            'password' =&gt; 'hudat',
+            'organisation' =&gt; 'Nastradamus',
+            'address1' =&gt; 'Daz not an address',
+            'city' =&gt; 'Compton',
+            'country' =&gt; 'Hell',
+        ]);
+        
+        Client::insert([
+            'contact_name' =&gt; 'Spiderman',
+            'email' =&gt; 'deez@nutscom',
+            'password' =&gt; 'Pingingly',
+            'organisation' =&gt; 'Villuminati',
+            'address1' =&gt; 'Ultimecia',
+            'city' =&gt; 'Coronary',
+            'country' =&gt; 'Heaven',
+        ]);
+
+         Conference::create([
+            'client_id' =&gt; '1',
+            'name' =&gt; 'Anakin',
+            'type' =&gt; 'public',
+            'address1' =&gt; 'Inuit',
+            'city' =&gt; 'Hell',
+            'country' =&gt; 'Heaven',
+            'start_time' =&gt; '10/06/2016 10:09',
+            'end_time' =&gt; '10/06/2016 10:19',
+        ]
+       ); 
+         
+          Conference::insert([
+            'client_id' =&gt; '2',
+            'name' =&gt; 'Luke Skywalker',
+            'type' =&gt; 'public',
+            'address1' =&gt; 'Tattooine',
+            'city' =&gt; 'Dantooine',
+            'country' =&gt; 'Star Wars',
+            'start_time' =&gt; '10/06/2016 11:09',
+            'end_time' =&gt; '10/06/2016 12:19',
+        ]
+       ); 
+         
+        Room::create([
+            'name' =&gt; 'Gully',
+            'conference_id' =&gt; '1',
+            
+        ]); 
+        
+        Room::insert([
+            'name' =&gt; 'Gaza',
+            'conference_id' =&gt; '2',
+            
+        ]); 
+         
+        Room::insert([
+            'name' =&gt; 'Weebledon',
+            'conference_id' =&gt; '1',
+            
+        ]); 
+         
+        Presentation::create(
+        [
+            'room_id' =&gt; '1',
+            'conference_id' =&gt; '1',
+            'title' =&gt; 'Brap!',
+            'abstract' =&gt; 'Getsuga Tenshou',
+            'keywords' =&gt; 'No words',
+			
+        ]); 
+        
+        Presentation::insert(
+        [
+            'room_id' =&gt; '2',
+            'conference_id' =&gt; '2',
+            'title' =&gt; 'Patter!',
+            'abstract' =&gt; 'Kuzu Ryu-Sen',
+            'keywords' =&gt; 'Hurting',
+			
+        ]); 
+          
+           Speaker::create([
+            'name' =&gt; 'That Liar',
+            'email' =&gt; 'thatemail@dot.com',
+            'affiliation' =&gt; 'That Affiliation',
+            'telephone' =&gt; '123-4567',
+            'image_path' =&gt; 'thisisapath.jpg',
+			
+        ]); 
+           
+           Speaker::insert([
+            'name' =&gt; 'The Speaker',
+            'email' =&gt; 'theemail@dot.com',
+            'affiliation' =&gt; 'The Affiliation',
+            'telephone' =&gt; '123-5467',
+            'image_path' =&gt; 'thisisapath.jpg',
+			
+        ]); 
+           
+           
+		
+		/*
+		Empty Strings work.
+		
+		Duplicate attendee ID values don't work.
+		NULL/null values don't work.
+		Values longer than the attribute limit get cut off.
+		Attendee ID can be manipulated to be out of sequence, but are in sequence when displayed in database.	
+		Minus number Attendee ID values get ignored. Default rules apply here.
+		Attendee ID # defaults to highest possible when query is added that is higher than 1 000 000
+		Text Strings need the quotes.
+		Triple escaped quotes of either variety (''&quot;&quot;'', &quot;&quot;''&quot;&quot; or &quot;'&quot;&quot;'&quot;) give an error upon executing the query
+		*/
+		
+		/*Attendees::create([
+            
+			'name' =&gt; 'Wesley&quot;s Theory',
+            'email' =&gt; 'a',
+			'salted_password' =&gt; '',
+			
+        ]); */
+		
+		/*   Attendees::create([
+            'attendee_id' =&gt; NULL,
+			'name' =&gt; '',
+            'email' =&gt; 'wqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwtttttttttttttttttttttttttttttttttttttttttttttttttttttttttteeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeejjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjddddddddddddddddddddddddddddddddddddddddddddddddddddddppppppppppppppppppppppppppppppppppppppppppppppppppppppoooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooozzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm',
+			'salted_password' =&gt; '',
+			
+        ]);   */
+
+      /* 
+		
+	  
+		Attendees::create([
+			'attendee_id' =&gt; 'NULL',
+            'name' =&gt; 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabcdefghjikllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllliiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiipppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm',
+            'email' =&gt; 'NULLA',
+			'salted_password' =&gt; 'NULL',
+			
+        ]); */
+
+        //... add more quotes if you want!
+    }
+}</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

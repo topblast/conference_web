@@ -1,0 +1,310 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class Initial extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        // Clients
+        Schema::create('clients', function(Blueprint $table){
+           $table-&gt;increments('client_id');
+           $table-&gt;string('contact_name', 100);
+           $table-&gt;string('email');
+           $table-&gt;string('salted_password', 64);
+           $table-&gt;string('organisation');
+           $table-&gt;string('address1');
+           $table-&gt;string('address2')-&gt;nullable();;
+           $table-&gt;string('city');
+           $table-&gt;string('country');
+           $table-&gt;timestamps();
+           
+           $table-&gt;unique('email');           
+        });
+        
+        // Conferences
+        Schema::create('conferences', function(Blueprint $table){
+           $table-&gt;increments('conference_id');
+           $table-&gt;integer('client_id')-&gt;unsigned();
+           $table-&gt;string('name', 100);
+           $table-&gt;enum('type', ['public', 'private']);
+           $table-&gt;string('address1');
+           $table-&gt;string('address2')-&gt;nullable();
+           $table-&gt;string('city');
+           $table-&gt;string('country');
+           $table-&gt;dateTimeTz('start_time');
+           $table-&gt;dateTimeTz('end_time');
+           $table-&gt;timestamps();
+           
+           $table-&gt;foreign('client_id')
+                -&gt;references('client_id')
+                -&gt;on('clients');
+        });
+        
+        // Speakers
+        Schema::create('speakers', function(Blueprint $table){
+           $table-&gt;increments('speaker_id');
+           $table-&gt;string('name', 100);
+           $table-&gt;string('email');
+           $table-&gt;string('affiliation', 250);
+           $table-&gt;string('telephone', 24);
+           $table-&gt;string('image_path', 250);
+           $table-&gt;timestamps();
+        });
+        
+        // Attendees
+        Schema::create('attendees', function(Blueprint $table){
+           $table-&gt;increments('attendee_id');
+           $table-&gt;string('name', 100);
+           $table-&gt;string('email');
+           $table-&gt;string('salted_password', 64);           
+           $table-&gt;timestamps();
+           
+           $table-&gt;unique('email');
+        });
+        
+        // Categories
+        Schema::create('categories', function(Blueprint $table){
+           $table-&gt;increments('category_id');
+           $table-&gt;string('name', 100);
+           $table-&gt;text('keywords');
+           $table-&gt;integer('parent_id')-&gt;nullable();
+           $table-&gt;timestamps();
+        });
+        
+        // Rooms
+        Schema::create('rooms', function(Blueprint $table){
+           $table-&gt;increments('room_id');
+           $table-&gt;string('name', 100);
+           $table-&gt;integer('conference_id')-&gt;unsigned();
+           $table-&gt;timestamps();
+           
+           $table-&gt;foreign('conference_id')
+                -&gt;references('conference_id')
+                -&gt;on('conferences');
+        });
+        
+        // Presentations
+        Schema::create('presentations', function(Blueprint $table){
+           $table-&gt;increments('presentation_id');
+           $table-&gt;integer('room_id')-&gt;unsigned();
+           $table-&gt;integer('conference_id')-&gt;unsigned();
+           $table-&gt;string('title', 100);
+           $table-&gt;text('abstract');
+           $table-&gt;text('keywords');
+           $table-&gt;timestamps();
+           
+           $table-&gt;foreign('room_id')
+                -&gt;references('room_id')
+                -&gt;on('rooms');
+           
+           $table-&gt;foreign('conference_id')
+                -&gt;references('conference_id')
+                -&gt;on('conferences');     
+            
+        });
+        
+        //Chat Logs
+        Schema::create('chatlogs', function(Blueprint $table){
+           $table-&gt;increments('chat_id');
+           $table-&gt;integer('presentation_id')-&gt;unsigned();
+           $table-&gt;integer('attendee_id')-&gt;unsigned();
+           $table-&gt;string('message', 260);
+           $table-&gt;timestamps();
+           
+           $table-&gt;foreign('presentation_id')
+                -&gt;references('presentation_id')
+                -&gt;on('presentations');
+           
+           $table-&gt;foreign('attendee_id')
+                -&gt;references('attendee_id')
+                -&gt;on('attendees');  
+        });
+        
+        // Sponsors
+        Schema::create('sponsors', function(Blueprint $table){
+           $table-&gt;increments('sponsor_id');
+           $table-&gt;integer('conference_id')-&gt;unsigned();
+           $table-&gt;string('name');
+           $table-&gt;string('description', 512);
+           $table-&gt;string('image_path', 260);
+           $table-&gt;string('website', 260);
+           $table-&gt;timestamps();
+           
+           $table-&gt;foreign('conference_id')
+                -&gt;references('conference_id')
+                -&gt;on('conferences');
+        });
+        
+        // White List
+        Schema::create('whitelist', function(Blueprint $table){
+           $table-&gt;increments('whitelist_id');
+           $table-&gt;integer('conference_id')-&gt;unsigned();
+           $table-&gt;integer('attendee_id')-&gt;unsigned()-&gt;nullable();
+           $table-&gt;string('email');
+           $table-&gt;string('token', 64);
+           $table-&gt;enum('type', ['email', 'token']);
+           $table-&gt;timestamps();
+           
+           $table-&gt;index('attendee_id');
+           
+           $table-&gt;foreign('conference_id')
+                -&gt;references('conference_id')
+                -&gt;on('conferences');
+           
+           $table-&gt;foreign('attendee_id')
+                -&gt;references('attendee_id')
+                -&gt;on('attendees');
+        });
+        
+        // Black List
+        Schema::create('blacklist', function(Blueprint $table){
+           $table-&gt;integer('conference_id')-&gt;unsigned();
+           $table-&gt;integer('attendee_id')-&gt;unsigned();
+           $table-&gt;timestamps();
+           
+           $table-&gt;foreign('conference_id')
+                -&gt;references('conference_id')
+                -&gt;on('conferences');
+           
+           $table-&gt;foreign('attendee_id')
+                -&gt;references('attendee_id')
+                -&gt;on('attendees');
+                
+           $table-&gt;primary(['conference_id', 'attendee_id']);
+        });
+        
+        // Presentation Speakers
+        Schema::create('pres_speakers', function(Blueprint $table){
+           $table-&gt;integer('presentation_id')-&gt;unsigned();
+           $table-&gt;integer('speaker_id')-&gt;unsigned();
+           $table-&gt;enum('type', ['keynote', 'discussant']);
+           $table-&gt;timestamps();
+           
+           $table-&gt;foreign('presentation_id')
+                -&gt;references('presentation_id')
+                -&gt;on('presentations')
+                -&gt;onDelete('cascade');
+           
+           $table-&gt;foreign('speaker_id')
+                -&gt;references('speaker_id')
+                -&gt;on('speakers')
+                -&gt;onDelete('cascade');
+                
+           $table-&gt;primary(['presentation_id', 'speaker_id']);
+        });
+        
+        // Presentation Categories
+        Schema::create('pres_categories', function(Blueprint $table){
+           $table-&gt;integer('presentation_id')-&gt;unsigned();
+           $table-&gt;integer('category_id')-&gt;unsigned();
+           $table-&gt;timestamps();
+           
+           $table-&gt;foreign('presentation_id')
+                -&gt;references('presentation_id')
+                -&gt;on('presentations')
+                -&gt;onDelete('cascade');
+           
+           $table-&gt;foreign('category_id')
+                -&gt;references('category_id')
+                -&gt;on('categories')
+                -&gt;onDelete('cascade');
+                
+           $table-&gt;primary(['presentation_id', 'category_id']);
+        });
+        
+        // Conference Attendees
+        Schema::create('conference_attendees', function(Blueprint $table){
+           $table-&gt;integer('conference_id')-&gt;unsigned();
+           $table-&gt;integer('attendee_id')-&gt;unsigned();
+           $table-&gt;timestamps();
+           
+           $table-&gt;foreign('conference_id')
+                -&gt;references('conference_id')
+                -&gt;on('conferences')
+                -&gt;onDelete('cascade');
+           
+           $table-&gt;foreign('attendee_id')
+                -&gt;references('attendee_id')
+                -&gt;on('attendees')
+                -&gt;onDelete('cascade');
+                
+           $table-&gt;primary(['conference_id', 'attendee_id']);
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        //
+        Schema::drop('conference_attendees');
+        Schema::drop('pres_categories');
+        Schema::drop('pres_speakers');
+        Schema::drop('blacklist');
+        Schema::drop('whitelist');
+        Schema::drop('sponsors');
+        Schema::drop('chatlogs');
+        Schema::drop('presentations');
+        Schema::drop('categories');
+        Schema::drop('rooms');
+        Schema::drop('attendees');
+        Schema::drop('speakers');
+        Schema::drop('conferences');
+        Schema::drop('clients');
+    }
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

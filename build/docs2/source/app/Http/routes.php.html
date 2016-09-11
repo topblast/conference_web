@@ -82,6 +82,8 @@ $app-&gt;put('/clients/{id}', 'ClientsController@edit_client');
  */
     
 $app-&gt;get('/conferences/', ['middleware' =&gt; 'auth:attendee', 'uses' =&gt; 'ConferencesController@get_all']);
+//$app-&gt;get('/conferences/', 'ConferencesController@get_all');
+
 $app-&gt;get('/conferences/{id}/speakers/', ['middleware' =&gt; 'auth:attendee', 'uses' =&gt; 'ConferencesController@get_conference_speakers']);
 $app-&gt;get('/conferences/{id}', 'ConferencesController@get_id');
 $app-&gt;get('/conferences/{id}/presentations/', ['middleware' =&gt; 'auth:attendee', 'uses' =&gt; 'ConferencesController@get_presentations']);
@@ -90,7 +92,7 @@ $app-&gt;get('/conferences/{id}/sponsors/', ['middleware' =&gt; 'auth:attendee',
 
 
 
-$app-&gt;post('/conferences/register', 'ConferencesController@register');
+$app-&gt;post('/conferences/register', ['middleware' =&gt; 'auth:client', 'uses' =&gt; 'ConferencesController@register']);
 $app-&gt;post('/conferences/{id}/presentations', 'ConferencesController@create_new_presentation');
 $app-&gt;post('/conferences/{id}/sponsors', 'ConferencesController@create_new_sponsor');
 $app-&gt;post('/conferences/{id}/blacklist', 'ConferencesController@add_to_blacklist');
@@ -144,10 +146,16 @@ $app-&gt;post('/auth/refresh-token', ['middleware' =&gt; 'jwt.refresh', function
 $app-&gt;post('/attendees/register', 'AttendeesController@register');
 $app-&gt;post('/attendees/{id}/changepassword', 'AttendeesController@change_password');
 $app-&gt;post('/attendees/{email}/forgotpassword', 'AttendeesController@forgot_password');
+$app-&gt;post('/password/email', 'PasswordController@postEmail');
+$app-&gt;post('/password/reset/{token}', 'PasswordController@postReset');
+
+//$app-&gt;post('/attendees/{attendeeID}/conferences/{conferenceID}', 'AttendeesController@join_conference');
+$app-&gt;post('/attendees/{attendeeID}/conferences/{conferenceID}', ['middleware' =&gt; 'auth:attendee', 'uses' =&gt; 'AttendeesController@join_conference']);
 
 $app-&gt;get('/attendees', 'AttendeesController@get_all');
 $app-&gt;get('/attendees/{id}', 'AttendeesController@get_id');
-$app-&gt;get('/attendees/{id}/conferences', 'AttendeesController@get_conferences');
+//$app-&gt;get('/attendees/{id}/conferences', 'AttendeesController@get_conferences');
+$app-&gt;get('/attendees/{id}/conferences', ['middleware' =&gt; 'auth:attendee', 'uses' =&gt; 'AttendeesController@get_conferences']);
 
 
 $app-&gt;delete('/attendees/{id}', 'AttendeesController@delete_attendee');
@@ -155,8 +163,7 @@ $app-&gt;delete('/attendees/{id}', 'AttendeesController@delete_attendee');
 //put
 $app-&gt;put('/attendees/{id}', 'AttendeesController@edit_attendee');
 
-$app-&gt;post('/password/email', 'PasswordController@postEmail');
-$app-&gt;post('/password/reset/{token}', 'PasswordController@postReset');
+
 
 //categories
 /**

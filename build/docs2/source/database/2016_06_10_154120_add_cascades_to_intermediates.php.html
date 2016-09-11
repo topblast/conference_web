@@ -1,0 +1,157 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class AddCascadesToIntermediates extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        //
+        
+        Schema::table('pres_speakers', function(Blueprint $table) {
+            $table-&gt;dropForeign('pres_speakers_presentation_id_foreign');
+            $table-&gt;dropForeign('pres_speakers_speaker_id_foreign');
+            
+            $table-&gt;foreign('presentation_id')
+                  -&gt;references('presentation_id')
+                  -&gt;onDelete('cascade');
+           
+           $table-&gt;foreign('speaker_id')
+                 -&gt;references('speaker_id')
+                 -&gt;onDelete('cascade');
+        });
+        
+        Schema::table('pres_categories', function(Blueprint $table){
+            $table-&gt;dropForeign('pres_categories_presentation_id_foreign');
+            $table-&gt;dropForeign('pres_categories_category_id_foreign');
+            
+            $table-&gt;foreign('presentation_id')
+               -&gt;references('presentation_id')  
+               -&gt;onDelete('cascade');
+           
+           $table-&gt;foreign('category_id')
+                -&gt;references('category_id')   
+                -&gt;onDelete('cascade');
+        });
+        
+         Schema::table('conference_attendees', function(Blueprint $table){
+           $table-&gt;dropForeign('conference_attendees_conference_id_foreign');  
+           $table-&gt;dropForeign('conference_attendees_attendee_id_foreign');  
+             
+           $table-&gt;foreign('conference_id')
+                 -&gt;references('conference_id')  
+                 -&gt;onDelete('cascade');
+           
+           $table-&gt;foreign('attendee_id')
+                 -&gt;references('attendee_id')  
+                 -&gt;onDelete('cascade');
+         
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        //
+         Schema::table('pres_speakers', function(Blueprint $table) {
+           $table-&gt;dropForeign('pres_speakers_presentation_id_foreign');
+            $table-&gt;dropForeign('pres_speakers_speaker_id_foreign');
+             
+            $table-&gt;foreign('presentation_id')
+                  -&gt;references('presentation_id')
+                  -&gt;on('presentations')  
+                  -&gt;onDelete('no action');
+           
+           $table-&gt;foreign('speaker_id')
+                 -&gt;references('speaker_id')
+                 -&gt;on('speakers')  
+                 -&gt;onDelete('no action');
+        });
+        
+        Schema::table('pres_categories', function(Blueprint $table){
+         $table-&gt;dropForeign('pres_categories_presentation_id_foreign');
+         $table-&gt;dropForeign('pres_categories_category_id_foreign');
+         
+         $table-&gt;foreign('presentation_id')
+               -&gt;references('presentation_id')
+               -&gt;on('presentations')  
+               -&gt;onDelete('no action');
+           
+           $table-&gt;foreign('category_id')
+                -&gt;references('category_id')
+                -&gt;on('categories')   
+                -&gt;onDelete('no action');
+        });
+        
+         Schema::table('conference_attendees', function(Blueprint $table){
+           $table-&gt;dropForeign('conference_attendees_conference_id_foreign');  
+           $table-&gt;dropForeign('conference_attendees_attendee_id_foreign');  
+             
+           $table-&gt;foreign('conference_id')
+                 -&gt;references('conference_id')
+                 -&gt;on('conferences')  
+                 -&gt;onDelete('no action');
+           
+           $table-&gt;foreign('attendee_id')
+                 -&gt;references('attendee_id')  
+                 -&gt;on('attendees')  
+                 -&gt;onDelete('no action');
+         
+        });
+    }
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

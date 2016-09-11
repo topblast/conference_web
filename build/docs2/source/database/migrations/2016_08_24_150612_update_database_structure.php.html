@@ -1,0 +1,125 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class UpdateDatabaseStructure extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        //
+        Schema::table('clients', function ($table) {
+            $table-&gt;string('organisation')-&gt;nullable()-&gt;change();
+           
+        });
+        
+        Schema::table('conferences', function ($table) {
+            $table-&gt;string('description')-&gt;after('type');
+           
+        });
+        
+        Schema::table('speakers', function ($table) {
+            $table-&gt;string('bio')-&gt;after('affiliation');
+            $table-&gt;string('affiliation')-&gt;nullable()-&gt;change();
+            $table-&gt;string('telephone')-&gt;nullable()-&gt;change();
+            $table-&gt;string('image_path')-&gt;nullable()-&gt;change();
+        });
+        
+        Schema::table('presentations', function ($table) {
+            $table-&gt;dateTime('start_time')-&gt;after('title');
+            $table-&gt;dateTime('end_time')-&gt;after('start_time');
+        });
+        
+        Schema::table('sponsors', function ($table) {
+            $table-&gt;string('description')-&gt;nullable()-&gt;change();
+            $table-&gt;string('image_path')-&gt;nullable()-&gt;change();
+            $table-&gt;string('website')-&gt;nullable()-&gt;change();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        //
+        Schema::table('clients', function ($table) {
+            $table-&gt;string('organisation')-&gt;nullable(false)-&gt;change();
+           
+        });
+        
+        Schema::table('conferences', function ($table) {
+            $table-&gt;dropColumn('description');
+           
+        });
+        
+        Schema::table('speakers', function ($table) {
+            $table-&gt;dropColumn('bio');
+            $table-&gt;string('affiliation')-&gt;nullable(false)-&gt;change();
+            $table-&gt;string('telephone')-&gt;nullable(false)-&gt;change();
+            $table-&gt;string('image_path')-&gt;nullable(false)-&gt;change();
+        });
+        
+        Schema::table('presentations', function ($table) {
+            $table-&gt;dropColumn(['start_time', 'end_time']);
+        });
+        
+        Schema::table('sponsors', function ($table) {
+            $table-&gt;string('description')-&gt;nullable(false)-&gt;change();
+            $table-&gt;string('image_path')-&gt;nullable(false)-&gt;change();
+            $table-&gt;string('website')-&gt;nullable(false)-&gt;change();
+        });
+    }
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>
