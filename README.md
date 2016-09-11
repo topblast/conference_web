@@ -14,8 +14,7 @@ CSS Conference Application Web &amp; Server Implementation
     * For `DB_DATABASE` use the name of a database locally stored on your computer.
     * If your username for your chosen database is different from 'root', then type in that username in `DB_USERNAME`.
     * For `DB_PASSWORD` use the password for your chosen database. If your database has no password then leave this value blank.
-    * For `MAIL_EMAIL` choose a Gmail email address that you want notification emails to be sent from.
-    * For `MAIL_PASSWORD` enter the password for that email address.
+    * The other values can be left blank.
     * Save your changes.
 
 #How To Run
@@ -144,6 +143,8 @@ Presentation Speaker
 Documentation for the front-end can be found at ` ./builds/docs `. Click on the index.html file.
 
 Documentation for the back-end can be found at ` ./builds/docs2 `. Click on the index.html file.
+
+Check storage/logs/lumen.log to see sent emails.
 
 ## Official Documentation
 
