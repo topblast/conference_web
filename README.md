@@ -149,12 +149,15 @@ php artisan db:seed --class=DatabaseSeeder
 This will seed the clients, conferences, rooms, presentations, speakers, and attendees tables, giving you enough values to test the app.
 Check out the official documentation for more information on creating and running seeders.
 
+##Layout
+The general layout of the app can be found in the ` ./App Layouts ` folder.
+
 ## Source Code Documentation
 Documentation for the front-end can be found at ` ./builds/docs `. Click on the index.html file.
 
 Documentation for the back-end can be found at ` ./builds/docs2 `. Click on the index.html file.
 
-Check ` storage/logs/lumen.log ` to see sent emails.
+Check ` ./storage/logs/lumen.log ` to see sent emails.
 
 ## Official Documentation
 
