@@ -154,7 +154,7 @@ Documentation for the front-end can be found at ` ./builds/docs `. Click on the 
 
 Documentation for the back-end can be found at ` ./builds/docs2 `. Click on the index.html file.
 
-Check storage/logs/lumen.log to see sent emails.
+Check ` storage/logs/lumen.log ` to see sent emails.
 
 ## Official Documentation
 
