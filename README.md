@@ -139,6 +139,16 @@ Presentation Speaker
 - Presentation ID [fk]
 - Speaker Type {Keynote, Discussant}
 
+##Seeding the Database
+After you have set up the database that you will be using, run the Command:
+
+```
+php artisan db:seed --class=DatabaseSeeder
+```
+
+This will seed the clients, conferences, rooms, presentations, speakers, and attendees tables, giving you enough values to test the app.
+Check out the official documentation for more information on creating and running seeders.
+
 ## Source Code Documentation
 Documentation for the front-end can be found at ` ./builds/docs `. Click on the index.html file.
 
