@@ -13,8 +13,8 @@
 
 $factory->define(App\Models\Presentation::class, function ($faker) {
     return [
-        'room_id' => $faker->numberBetween($min=1, $max=100),
-        'conference_id' => $faker->numberBetween($min=1, $max=100),
+        'room_id' => $faker->numberBetween($min=1, $max=20),
+        'conference_id' => $faker->numberBetween($min=1, $max=20),
         'title' => $faker->catchPhrase,
         'start_time' => $faker->time,
         'end_time' => $faker->time,

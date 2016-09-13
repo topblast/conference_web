@@ -14,7 +14,7 @@
 $factory->define(App\Models\Room::class, function ($faker) {
     return [
         'name' => $faker->city,
-        'conference_id' => $faker->numberBetween($min=1, $max=100),
+        'conference_id' => $faker->numberBetween($min=1, $max=20),
         
     ];
 });

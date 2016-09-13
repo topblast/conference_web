@@ -313,23 +313,23 @@ angular.module('starter.services', [])
 				this.User = $localStorage.user_data;
 				this.Token = $localStorage.user_token;
                                 
-                                if($localStorage.user_data !== null)
-                                this.expiresIn = $localStorage.user_data.expiresIn;
-//                                console.log(this.expiresIn);
-//                                console.log(Date.now());
-                                
-                            if($localStorage.user_data !== null && $localStorage.user_data.expiresIn !== null)
-                            {
-                                var expiresIn = $localStorage.user_data.expiresIn;
-                                
-                                if(expiresIn < Date.now())
+                                if($localStorage.user_data == null || typeof($localStorage.user_data) == 'undefined')
                                 {
-                                    console.log(expiresIn);
-                                    this.SetUser(null);
-                                    this.SetToken(null);
-                                    //this.SetExpire(null);
+                                    //do nothing
                                 }
-                            }
+                                else
+                                {
+                                    this.expiresIn = $localStorage.user_data.expiresIn;
+                              
+                                
+                                    if(this.expiresIn < Date.now())
+                                    {
+                                        console.log(this.expiresIn);
+                                        this.SetUser(null);
+                                        this.SetToken(null);
+                                        //this.SetExpire(null);
+                                    }
+                                }
 			}
                         
                         

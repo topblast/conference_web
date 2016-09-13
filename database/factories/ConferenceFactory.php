@@ -13,7 +13,7 @@
 
 $factory->define(App\Models\Conference::class, function ($faker) {
     return [
-        'client_id' => numberBetween($min=1, $max=100),
+        'client_id' => $faker->numberBetween($min=1, $max=20),
         'name' => $faker->name,
         'type' => 'public',
         'description' => $faker->sentence($nbWords=10),

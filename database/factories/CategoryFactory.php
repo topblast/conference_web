@@ -15,6 +15,6 @@ $factory->define(App\Models\Category::class, function ($faker) {
     return [
         'name' => $faker->name,
         'keywords' => $faker->sentence($nbWords = 8),
-        'parent_id' => numberBetween($min=1, $max=100),
+        'parent_id' => $faker->numberBetween($min=1, $max=20),
     ];
 });
