@@ -3,6 +3,7 @@ CSS Conference Application Web &amp; Server Implementation
 
 #Requirements
 - PHP 7.x
+- MySQL
 - Composer
 - Lumen Framework
 
