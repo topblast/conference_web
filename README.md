@@ -1,13 +1,13 @@
 # conference_web
 CSS Conference Application Web &amp; Server Implementation
 
-#Requirements
+# Requirements
 - PHP 7.x
 - MySQL
 - Composer
 - Lumen Framework
 
-#Setup
+# Setup
 1. Download/clone the project.
 2. Navigate to the root of the project.
 3. Create a copy of the `.env.example` file. Name it `.env`.
@@ -18,7 +18,7 @@ CSS Conference Application Web &amp; Server Implementation
     * The other values can be left blank.
     * Save your changes.
 
-#How To Run
+# How To Run
 1. Navigate to the project directory.
 2. Run the Command: 
 ```
@@ -35,12 +35,12 @@ otherwise, skip this step.
 php artisan serve
 ```
 
-#API End-Points
+# API End-Points
 [Click Here for API End Points](./endpoints.md)
 
 
-#Database Migrations
-##Creating Database Migration
+# Database Migrations
+## Creating Database Migration
 1. Navigate to the root folder of the project.
 2. Run the Command:
 ```
@@ -48,14 +48,14 @@ php artisan make:migration name_of_migration
 ```
 3. Note the creation of the file in the ` ./database/migrations ` folder
 
-##Setting Up Database Migration
+## Setting Up Database Migration
 When in doubt [View Documentation `RTFM`](https://laravel.com/docs/5.2/migrations#introduction)
 ###Up Function
         The Up function is basically where you make modifications to the database. For example, where you put all the code to create your tables
-###Down Function
+### Down Function
         The Down function is basically an undo function, where you place code to revert/rollback a migration.
 
-#Database Layout
+# Database Layout
 Conference database
 - CID - conference ID [pk]
 - Conference name
@@ -140,7 +140,7 @@ Presentation Speaker
 - Presentation ID [fk]
 - Speaker Type {Keynote, Discussant}
 
-##Seeding the Database
+## Seeding the Database
 After you have set up the database that you will be using, run the Command:
 
 ```
@@ -150,7 +150,7 @@ php artisan db:seed --class=DatabaseSeeder
 This will seed the clients, conferences, rooms, presentations, speakers, and attendees tables, giving you enough values to test the app.
 Check out the official documentation for more information on creating and running seeders.
 
-##Layout
+## Layout
 The general layout of the app can be found in the ` ./App Layouts ` folder.
 
 ## Source Code Documentation
